@@ -1,1 +1,7 @@
-<p>accueil works!</p>
+<form [formGroup]="form">
+  <input type="radio" formControlName="food" value="beef" /> Beef
+  <input type="radio" formControlName="food" value="lamb" /> Lamb
+  <input type="radio" formControlName="food" value="fish" /> Fish
+</form>
+
+<p>Form value: {{ form.value.food }}</p>

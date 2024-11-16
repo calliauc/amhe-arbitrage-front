@@ -16,36 +16,3 @@
   width: 80%;
   overflow-block: scroll;
 }
-
-.txt-histo-coups {
-  align-content: center;
-  padding-inline: 10px;
-  padding-block: 1px;
-  height: 29px;
-  border-bottom: 1px solid grey;
-}
-
-.btn-histo-coups {
-  text-align: center;
-  align-content: center;
-  padding-inline: 10px;
-  margin-right: 10px;
-  margin-block: 3px;
-  height: 24px;
-  border-radius: 50px;
-}
-
-.btn-histo-coups:hover {
-  cursor: pointer;
-  border: 1px solid black;
-  padding-inline: 9px;
-  height: 22px;
-}
-
-.btn-histo-coups-editer {
-  background-color: rgb(129, 129, 0);
-}
-
-.btn-histo-coups-annuler {
-  background-color: rgb(133, 0, 0);
-}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ScoreCombattantComponent } from './score-combattant/score-combattant.component';
 import { ChronoComponent } from './chrono/chrono.component';
 
@@ -6,7 +6,7 @@ import { ChronoComponent } from './chrono/chrono.component';
   selector: 'app-gestion-match',
   standalone: true,
   imports: [ScoreCombattantComponent, ChronoComponent],
-  templateUrl: './gestion-match.component.html',
-  styleUrl: './gestion-match.component.css',
+  templateUrl: './suivi-match.component.html',
+  styleUrl: './suivi-match.component.css',
 })
-export class GestionMatchComponent {}
+export class SuiviMatchComponent {}

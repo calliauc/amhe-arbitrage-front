@@ -2,105 +2,12 @@
   <h2>Historique des coups</h2>
   <div id="liste-coups">
     <table id="table-coups">
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Bleu inflige estoc sur tête de rouge
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="txt-histo-coups" style="width: 100%">
-          Rouge inflige taille sur tête de bleu
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-editer">Editer</div>
-        </td>
-        <td>
-          <div class="btn-histo-coups btn-histo-coups-annuler">Annuler</div>
-        </td>
-      </tr>
+      @for (coup of listeCoups; track $index) {
+      <app-ligne-histo-coup
+        [coup]="coup"
+        (suppressionCoup)="suprimerCoup(coup)"
+      ></app-ligne-histo-coup
+      >}
     </table>
   </div>
 </section>

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CoupLongswordComponent } from './coup-longsword/coup-longsword.component';
-import { GestionMatchComponent } from './gestion-match/gestion-match.component';
 import { HistoriqueCoupsComponent } from './historique-coups/historique-coups.component';
+import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
 
 @Component({
   selector: 'app-arbitrage',
   standalone: true,
   imports: [
     CoupLongswordComponent,
-    GestionMatchComponent,
+    SuiviMatchComponent,
     HistoriqueCoupsComponent,
   ],
   templateUrl: './arbitrage.component.html',

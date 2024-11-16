@@ -36,26 +36,32 @@
 }
 
 input {
-  display: none;
+  opacity: 0;
+  width: 130px;
+  height: 40px;
+  position: relative;
+  margin-right: -115px;
 }
 
-label {
-  background-color: #202020;
-  width: 100px;
-  height: 30px;
-  text-align: center;
-  align-content: center;
-  border-radius: 10px;
-  margin-inline: 5px;
-  margin-bottom: 5px;
-}
-
-label:hover {
+input:hover {
   cursor: pointer;
 }
 
+label {
+  width: 130px;
+  height: 40px;
+  text-align: center;
+  align-content: center;
+  background-color: rgb(32, 32, 32);
+  border-radius: 10px;
+  margin-inline: 0px;
+  margin-bottom: 5px;
+  transition: 500ms;
+  font-size: 1.2em;
+}
+
 input:checked + label {
-  background-color: #2fcc71;
+  background-color: rgb(47, 204, 113);
   color: black;
 }
 
@@ -66,7 +72,7 @@ input:checked + label {
   display: inline-block;
   margin: 10px;
   font-size: 1.2em;
-  border: 2px solid #2fcc71;
+  border: 2px solid rgb(47, 204, 113);
   border-radius: 10px;
   padding-block: 1px;
 }
@@ -74,5 +80,13 @@ input:checked + label {
 #submit:hover {
   cursor: pointer;
   padding-block: 0px;
-  border: 3px solid #2fcc71;
+  border: 3px solid rgb(47, 204, 113);
+}
+
+#dernier-coup {
+  font-size: 1.2em;
+}
+
+#dernier-coup::first-letter {
+  text-transform: capitalize;
 }
