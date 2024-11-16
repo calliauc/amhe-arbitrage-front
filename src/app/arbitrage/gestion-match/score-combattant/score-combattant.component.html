@@ -1,0 +1,11 @@
+<div
+  class="score-wrapper"
+  [ngClass]="{
+    'background-bleu': this.couleur == 'bleu',
+    'background-rouge': this.couleur == 'rouge'
+  }"
+>
+  <div class="modif-score" (click)="this.modifScore(+1)">+</div>
+  <div class="score-combattant">{{ score }}</div>
+  <div class="modif-score" (click)="this.modifScore(-1)">-</div>
+</div>

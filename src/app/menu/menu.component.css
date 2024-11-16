@@ -1,0 +1,14 @@
+menu > ul {
+  display: flex;
+  list-style-type: none;
+}
+
+menu > ul > li {
+  padding-inline: 10px;
+  padding-block: 5px;
+}
+
+menu > ul > li:hover {
+  background-color: lightgrey;
+  border-radius: 5px;
+}

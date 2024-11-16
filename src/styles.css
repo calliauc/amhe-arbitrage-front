@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  width: 70%;
+  margin-inline: 15%;
+  background-color: rgb(32, 32, 32);
+  color: aliceblue;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  border-radius: 30px;
+  padding: 20px;
+  background-color: rgb(42, 42, 42);
+  margin-bottom: 20px;
+}
+
+.background-bleu {
+  background-color: #448fff;
+}
+
+.background-rouge {
+  background-color: rgb(252, 102, 102);
+}

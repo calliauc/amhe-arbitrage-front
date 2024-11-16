@@ -1,0 +1,16 @@
+<div id="gestion-match">
+  <div id="chrono">
+    <div
+      id="ctrl-time"
+      (click)="controlTimer()"
+      [ngClass]="{
+        'chrono-play': !this.playChrono,
+        'chrono-pause': this.playChrono
+      }"
+    ></div>
+    <p id="time">
+      {{ timeLeft | timer }}
+    </p>
+  </div>
+  <div id="fin-du-match">Mettre fin au match</div>
+</div>
