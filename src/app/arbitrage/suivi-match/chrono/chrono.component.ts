@@ -1,16 +1,16 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TimerPipe } from './timer.pipe';
 
 @Component({
   selector: 'app-chrono',
   standalone: true,
-  imports: [DatePipe, CommonModule, TimerPipe],
+  imports: [CommonModule, TimerPipe],
   templateUrl: './chrono.component.html',
   styleUrl: './chrono.component.css',
 })
 export class ChronoComponent {
-  timeLeft: number = 65;
+  timeLeft: number = 0;
   interval?: any;
   playChrono: boolean = false;
 
@@ -26,7 +26,7 @@ export class ChronoComponent {
 
   startTimer() {
     this.interval = setInterval(() => {
-      this.timeLeft--;
+      this.timeLeft++;
     }, 1000);
   }
 

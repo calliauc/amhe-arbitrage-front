@@ -35,12 +35,22 @@
   border-bottom: 3px solid #505050;
 }
 
+.button-form {
+  display: flex;
+  width: 140px;
+  height: 40px;
+  margin-inline: 0px;
+  margin-bottom: 5px;
+  margin-inline: 3px;
+}
+
 input {
   opacity: 0;
-  width: 130px;
+  width: 140px;
   height: 40px;
   position: relative;
-  margin-right: -115px;
+  margin-right: -140px;
+  margin-top: -1px;
 }
 
 input:hover {
@@ -48,14 +58,12 @@ input:hover {
 }
 
 label {
-  width: 130px;
+  width: 140px;
   height: 40px;
   text-align: center;
   align-content: center;
   background-color: rgb(32, 32, 32);
   border-radius: 10px;
-  margin-inline: 0px;
-  margin-bottom: 5px;
   transition: 500ms;
   font-size: 1.2em;
 }
@@ -67,11 +75,11 @@ input:checked + label {
 
 #submit {
   width: 50%;
-  height: 30px;
+  height: 50px;
   align-self: center;
   display: inline-block;
   margin: 10px;
-  font-size: 1.2em;
+  font-size: 1.3em;
   border: 2px solid rgb(47, 204, 113);
   border-radius: 10px;
   padding-block: 1px;

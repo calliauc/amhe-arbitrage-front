@@ -25,3 +25,7 @@ main {
 .background-rouge {
   background-color: rgb(252, 102, 102);
 }
+
+.btn {
+  user-select: none;
+}

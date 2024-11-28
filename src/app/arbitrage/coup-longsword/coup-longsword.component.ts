@@ -2,10 +2,7 @@ import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HistoCoup } from '../../shared/classes/histo-coup';
 import { VulnerantLongsword } from '../../shared/classes/vulnerants';
-import {
-  PartieCorps,
-  PartieCorpsLongsword,
-} from '../../shared/classes/partieCorps';
+import { PartieCorpsLongsword } from '../../shared/classes/partieCorps';
 import { CoupsService } from '../../shared/services/coups.service';
 import { Couleurs } from '../../shared/classes/combattant';
 
@@ -32,6 +29,14 @@ export class CoupLongswordComponent {
   constructor(private coupsService: CoupsService) {}
 
   onSubmit() {
+    this.validererCoupLongsword();
+    this.coupsService.ajouterCoup(this.nouveauCoup);
+    this.coupStr = this.coupsService.lireCoup(this.nouveauCoup);
+    this.formCoup.reset();
+    this.nouveauCoup = {};
+  }
+
+  validererCoupLongsword() {
     this.nouveauCoup.attaquant = this.combattants.filter(
       (combattant) => combattant.couleur == this.formCoup.value.attaquant
     )[0];
@@ -48,9 +53,5 @@ export class CoupLongswordComponent {
     } else {
       this.nouveauCoup.partieCorps = PartieCorpsLongsword.lutte;
     }
-    this.coupsService.ajouterCoup(this.nouveauCoup);
-    this.coupStr = this.coupsService.lireCoup(this.nouveauCoup);
-    this.formCoup.reset();
-    this.nouveauCoup = {};
   }
 }

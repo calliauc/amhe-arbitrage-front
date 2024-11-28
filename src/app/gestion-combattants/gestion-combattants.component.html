@@ -1,0 +1,19 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-info">Prénom</th>
+        <th class="col-info">Nom</th>
+        <th class="col-info">Pseudo</th>
+        <th class="col-info">Club/Asso</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    @for (combattant of combattentsListe; track $index) {
+    <app-combattant-ligne [combattant]="combattant"></app-combattant-ligne>
+    }
+    <app-combattant-editer></app-combattant-editer>
+  </table>
+  <div class="btn" id="ajouter-combattant">Ajouter combattant</div>
+</main>
