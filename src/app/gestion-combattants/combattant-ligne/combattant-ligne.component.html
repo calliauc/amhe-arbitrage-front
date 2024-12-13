@@ -1,12 +1,12 @@
-<!-- @if (estModif) { -->
+@if (estModif) {
 <app-combattant-editer
   [combattant]="combattant"
   (annulerEdition)="modifCombattantAnnulee()"
   (validerEdition)="modifCombattantTerminee($event)"
 ></app-combattant-editer>
-<!-- } @else { -->
+} @else {
 <app-combattant-afficher
   [combattant]="combattant"
   (editerCombattant)="lancerEdition()"
 ></app-combattant-afficher>
-<!-- } -->
+}

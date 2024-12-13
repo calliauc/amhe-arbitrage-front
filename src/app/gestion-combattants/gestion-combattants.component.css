@@ -9,8 +9,8 @@ tr {
   /* border: 1px solid green; */
 }
 
-.col-info {
-  width: 200px;
+.col {
+  width: 20%;
   /* border: 1px solid red; */
 }
 
@@ -32,7 +32,7 @@ select {
   width: 170px;
   height: 30px;
   margin-top: 10px;
-  margin-left: 10%;
+  margin-inline: auto;
   text-align: center;
   align-content: center;
   font-size: 1.2em;

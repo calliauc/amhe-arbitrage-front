@@ -1,43 +1,31 @@
 <form [formGroup]="formEditerCombattant" (ngSubmit)="confirmer()">
   <tr>
-    <td>
-      <input
-        class="input-text-form"
-        type="text"
-        formControlName="prenom"
-        placeholder="Prénom"
-      />
+    <td class="col">
+      <input type="text" formControlName="prenom" placeholder="Prénom" />
     </td>
-    <td>
-      <input
-        class="input-text-form"
-        type="text"
-        formControlName="nom"
-        placeholder="Nom"
-      />
+    <td class="col">
+      <input type="text" formControlName="nom" placeholder="Nom" />
     </td>
-    <td>
-      <input
-        class="input-text-form"
-        type="text"
-        formControlName="pseudo"
-        placeholder="Pseudo"
-      />
+    <td class="col">
+      <input type="text" formControlName="pseudo" placeholder="Pseudo" />
     </td>
-    <td>
-      <select class="input-text-form" name="club" id="club-select">
+    <td class="col">
+      <select name="club" id="club-select">
         <option value="aucun">Aucun</option>
         <option value="burdigala">Burdigala</option>
         <option value="mesnie">La Mesnie</option>
       </select>
     </td>
-    <td>
+    <td class="col">
       <button class="btn btn-combattants btn-enregistrer-edition" type="submit">
         Enregistrer
       </button>
-    </td>
-    <td class="btn btn-combattants btn-annuler-edition" (click)="annuler()">
-      Annuler
+      <button
+        class="btn btn-combattants btn-annuler-edition"
+        (click)="annuler()"
+      >
+        Annuler
+      </button>
     </td>
   </tr>
   @if (ereurSaisie){

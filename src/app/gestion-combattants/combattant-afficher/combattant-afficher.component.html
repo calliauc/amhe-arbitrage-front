@@ -1,10 +1,15 @@
 <tr>
-  <td class="col-info">{{ combattant.prenom }}</td>
-  <td class="col-info">{{ combattant.nom }}</td>
-  <td class="col-info">{{ combattant.pseudo }}</td>
-  <td class="col-info">{{ combattant.club }}</td>
-  <td class="btn btn-combattants btn-afficher-details">Détails</td>
-  <td class="btn btn-combattants btn-editer-combattant" (click)="editer()">
-    Editer
+  <td class="col">{{ combattant.prenom }}</td>
+  <td class="col">{{ combattant.nom }}</td>
+  <td class="col">{{ combattant.pseudo }}</td>
+  <td class="col">{{ combattant.club }}</td>
+  <td class="col">
+    <button class="btn btn-combattants btn-afficher-details">Détails</button>
+    <button
+      class="btn btn-combattants btn-editer-combattant"
+      (click)="editer()"
+    >
+      Editer
+    </button>
   </td>
 </tr>

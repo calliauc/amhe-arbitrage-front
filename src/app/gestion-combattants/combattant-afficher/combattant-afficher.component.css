@@ -5,23 +5,30 @@ tr {
   /* border: 1px solid green; */
 }
 
-.col-info {
-  width: 200px;
+.col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  padding-left: 1%;
   /* border: 1px solid red; */
 }
 
 .btn-combattants {
+  width: 44%;
   text-align: center;
   align-content: center;
-  height: 20px;
+  height: 22px;
   padding-inline: 10px;
   margin-inline: 5px;
   border-radius: 50px;
+  border: 1px solid black;
+  font-size: 0.9em;
 }
 
 .btn-combattants:hover {
   cursor: pointer;
-  border: 1px solid black;
+  border: none;
   padding-inline: 9px;
 }
 
