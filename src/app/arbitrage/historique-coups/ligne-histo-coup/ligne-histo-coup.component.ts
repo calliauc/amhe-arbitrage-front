@@ -20,6 +20,6 @@ export class LigneHistoCoupComponent {
     return 'Pas de coup valable';
   }
   supprimerCoup() {
-    this.suppressionCoup.emit(this.coup);
+    this.suppressionCoup.emit();
   }
 }

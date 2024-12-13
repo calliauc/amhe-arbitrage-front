@@ -1,30 +1,46 @@
-<tr>
-  <td>
-    <input
-      class="input-text-form"
-      type="text"
-      name="prenom"
-      placeholder="Prénom"
-    />
-  </td>
-  <td>
-    <input class="input-text-form" type="text" name="nom" placeholder="Nom" />
-  </td>
-  <td>
-    <input
-      class="input-text-form"
-      type="text"
-      name="pseudo"
-      placeholder="Pseudo"
-    />
-  </td>
-  <td>
-    <select class="input-text-form" name="club" id="club-select">
-      <option value="aucun">Aucun</option>
-      <option value="burdigala">Burdigala</option>
-      <option value="mesnie">La Mesnie</option>
-    </select>
-  </td>
-  <td class="btn btn-combattants btn-enregistrer-edition">Enregistrer</td>
-  <td class="btn btn-combattants btn-annuler-edition">Annuler</td>
-</tr>
+<form [formGroup]="formEditerCombattant" (ngSubmit)="confirmer()">
+  <tr>
+    <td>
+      <input
+        class="input-text-form"
+        type="text"
+        formControlName="prenom"
+        placeholder="Prénom"
+      />
+    </td>
+    <td>
+      <input
+        class="input-text-form"
+        type="text"
+        formControlName="nom"
+        placeholder="Nom"
+      />
+    </td>
+    <td>
+      <input
+        class="input-text-form"
+        type="text"
+        formControlName="pseudo"
+        placeholder="Pseudo"
+      />
+    </td>
+    <td>
+      <select class="input-text-form" name="club" id="club-select">
+        <option value="aucun">Aucun</option>
+        <option value="burdigala">Burdigala</option>
+        <option value="mesnie">La Mesnie</option>
+      </select>
+    </td>
+    <td>
+      <button class="btn btn-combattants btn-enregistrer-edition" type="submit">
+        Enregistrer
+      </button>
+    </td>
+    <td class="btn btn-combattants btn-annuler-edition" (click)="annuler()">
+      Annuler
+    </td>
+  </tr>
+  @if (ereurSaisie){
+  <div>Certains champs sont vides</div>
+  }
+</form>

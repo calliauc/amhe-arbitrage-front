@@ -1,8 +1,12 @@
-<tr>
-  <td class="col-info">{{ combattant?.prenom }}</td>
-  <td class="col-info">{{ combattant?.nom }}</td>
-  <td class="col-info">{{ combattant?.pseudo }}</td>
-  <td class="col-info">{{ combattant?.club }}</td>
-  <td class="btn btn-combattants btn-afficher-details">Détails</td>
-  <td class="btn btn-combattants btn-editer-combattant">Editer</td>
-</tr>
+<!-- @if (estModif) { -->
+<app-combattant-editer
+  [combattant]="combattant"
+  (annulerEdition)="modifCombattantAnnulee()"
+  (validerEdition)="modifCombattantTerminee($event)"
+></app-combattant-editer>
+<!-- } @else { -->
+<app-combattant-afficher
+  [combattant]="combattant"
+  (editerCombattant)="lancerEdition()"
+></app-combattant-afficher>
+<!-- } -->

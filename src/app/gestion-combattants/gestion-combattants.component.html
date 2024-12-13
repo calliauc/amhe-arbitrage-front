@@ -12,8 +12,16 @@
     </thead>
     @for (combattant of combattentsListe; track $index) {
     <app-combattant-ligne [combattant]="combattant"></app-combattant-ligne>
+    } @if (ajoutCombattant) {
+    <app-combattant-editer
+      (annulerEdition)="annulerEdition()"
+      (validerEdition)="ajouterCombattant($event)"
+    ></app-combattant-editer>
     }
-    <app-combattant-editer></app-combattant-editer>
   </table>
-  <div class="btn" id="ajouter-combattant">Ajouter combattant</div>
+  @if (!ajoutCombattant) {
+  <div class="btn" id="ajouter-combattant" (click)="modeAjout()">
+    Ajouter combattant
+  </div>
+  }
 </main>

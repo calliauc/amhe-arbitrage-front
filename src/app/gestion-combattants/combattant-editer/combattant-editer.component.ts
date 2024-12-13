@@ -1,18 +1,52 @@
-import { Component } from '@angular/core';
-import { CombattantsService } from '../../shared/services/combattants.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Combattant } from '../../shared/classes/combattant';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-combattant-editer',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './combattant-editer.component.html',
   styleUrl: './combattant-editer.component.css',
 })
-export class CombattantEditerComponent {
-  constructor(private combattantService: CombattantsService) {}
+export class CombattantEditerComponent implements OnInit {
+  @Input() combattant: Combattant = new Combattant();
+  @Output() annulerEdition: EventEmitter<boolean> = new EventEmitter();
+  @Output() validerEdition: EventEmitter<Combattant> = new EventEmitter();
 
-  creerCombattant(combattant: Combattant) {
-    this.combattantService.ajouterCombattant(combattant);
+  ereurSaisie: boolean;
+  formEditerCombattant!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.ereurSaisie = false;
+  }
+
+  ngOnInit(): void {
+    this.formEditerCombattant = this.formBuilder.group({
+      prenom: this.combattant?.prenom,
+      nom: this.combattant?.nom,
+      pseudo: this.combattant?.pseudo,
+    });
+  }
+
+  annuler(): void {
+    this.annulerEdition.emit(true);
+  }
+
+  confirmer(): void {
+    this.ereurSaisie = false;
+    this.combattant = this.formEditerCombattant.value;
+    if (this.verifierCombattant(this.combattant)) {
+      this.validerEdition.emit(this.combattant);
+    } else {
+      this.ereurSaisie = true;
+      setTimeout(() => {
+        this.ereurSaisie = false;
+      }, 3000);
+    }
+  }
+
+  verifierCombattant(combattant: Combattant): boolean {
+    return !!combattant.prenom && !!combattant.nom && !!combattant.pseudo;
   }
 }

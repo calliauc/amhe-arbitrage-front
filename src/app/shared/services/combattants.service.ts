@@ -5,7 +5,7 @@ import { Combattant, Couleurs } from '../classes/combattant';
   providedIn: 'root',
 })
 export class CombattantsService {
-  ajoutCombattant: EventEmitter<Combattant> = new EventEmitter();
+  // ajoutCombattant: EventEmitter<Combattant> = new EventEmitter();
 
   listeCombattants = [
     {
@@ -13,7 +13,7 @@ export class CombattantsService {
       prenom: 'Clement',
       nom: 'Calliau',
       pseudo: 'Makhai',
-      club: 'Burdigala',
+      club: 'Bec Escrime',
       couleur: Couleurs.Bleu,
     },
     {
@@ -21,7 +21,7 @@ export class CombattantsService {
       prenom: 'Alex',
       nom: 'Goches',
       pseudo: 'Fiore',
-      club: 'Burdigala',
+      club: 'Bec Escrime',
       couleur: Couleurs.Rouge,
     },
   ] as Combattant[];
@@ -33,7 +33,7 @@ export class CombattantsService {
 
   ajouterCombattant(combattantAAjouter: Combattant): Combattant[] {
     this.listeCombattants.push(combattantAAjouter);
-    this.ajoutCombattant.emit(combattantAAjouter);
+    // this.ajoutCombattant.emit(combattantAAjouter);
     console.log(combattantAAjouter);
     return this.listeCombattants;
   }
