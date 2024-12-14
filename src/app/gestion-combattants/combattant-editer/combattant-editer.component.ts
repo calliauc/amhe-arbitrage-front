@@ -1,16 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Combattant } from '../../shared/classes/combattant';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-combattant-editer',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './combattant-editer.component.html',
   styleUrl: './combattant-editer.component.css',
 })
 export class CombattantEditerComponent implements OnInit {
   @Input() combattant: Combattant = new Combattant();
+  @Input() estPair!: boolean;
   @Output() annulerEdition: EventEmitter<boolean> = new EventEmitter();
   @Output() validerEdition: EventEmitter<Combattant> = new EventEmitter();
 

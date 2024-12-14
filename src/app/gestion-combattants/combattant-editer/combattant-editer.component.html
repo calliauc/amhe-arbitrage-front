@@ -1,5 +1,5 @@
 <form [formGroup]="formEditerCombattant" (ngSubmit)="confirmer()">
-  <tr>
+  <tr [ngClass]="{ lignePair: estPair }">
     <td class="col">
       <input type="text" formControlName="prenom" placeholder="Prénom" />
     </td>
@@ -29,6 +29,8 @@
     </td>
   </tr>
   @if (ereurSaisie){
-  <div>Certains champs sont vides</div>
+  <div class="bandeau-erreur">
+    <div class="message-erreur">Certains champs sont vides</div>
+  </div>
   }
 </form>

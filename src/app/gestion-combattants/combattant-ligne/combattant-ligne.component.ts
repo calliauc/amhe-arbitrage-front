@@ -12,6 +12,7 @@ import { CombattantEditerComponent } from '../combattant-editer/combattant-edite
 })
 export class CombattantLigneComponent {
   @Input() combattant!: Combattant;
+  @Input() estPair!: boolean;
   estModif: boolean;
 
   constructor() {

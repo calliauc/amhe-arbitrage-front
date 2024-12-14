@@ -1,10 +1,12 @@
-<tr>
+<tr [ngClass]="{ lignePair: estPair }">
   <td class="col">{{ combattant.prenom }}</td>
   <td class="col">{{ combattant.nom }}</td>
   <td class="col">{{ combattant.pseudo }}</td>
   <td class="col">{{ combattant.club }}</td>
   <td class="col">
-    <button class="btn btn-combattants btn-afficher-details">Détails</button>
+    <button class="btn btn-combattants btn-afficher-details" disabled>
+      Détails
+    </button>
     <button
       class="btn btn-combattants btn-editer-combattant"
       (click)="editer()"

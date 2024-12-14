@@ -5,6 +5,10 @@ tr {
   /* border: 1px solid green; */
 }
 
+.lignePair {
+  background-color: rgb(52, 52, 52);
+}
+
 .col {
   display: flex;
   justify-content: center;
