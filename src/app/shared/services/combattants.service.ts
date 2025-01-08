@@ -1,5 +1,10 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Combattant, Couleurs } from '../classes/combattant';
+import {
+  HttpClient,
+  HttpHeaders,
+  provideHttpClient,
+} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +30,18 @@ export class CombattantsService {
       couleur: Couleurs.Rouge,
     },
   ] as Combattant[];
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getCombattants(): Combattant[] {
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    });
+    let response = this.http.get('http://192.168.1.110:1080/second', {
+      headers,
+    });
+    response.subscribe((_) => {
+      console.log(_);
+    });
     return this.listeCombattants;
   }
 

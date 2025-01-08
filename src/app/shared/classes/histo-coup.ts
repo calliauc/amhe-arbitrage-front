@@ -4,6 +4,7 @@ import { Vulnerant } from './vulnerants';
 
 export class HistoCoup {
   id?: number;
+  matchId?: number;
   attaquant?: Combattant;
   defenseur?: Combattant;
   vulnerant?: Vulnerant;

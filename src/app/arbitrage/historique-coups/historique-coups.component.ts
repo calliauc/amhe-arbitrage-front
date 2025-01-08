@@ -18,7 +18,7 @@ export class HistoriqueCoupsComponent implements OnInit {
 
   ngOnInit(): void {
     this.listeCoups = this.coupsService.getListeCoups();
-    this.subscription = new this.coupsService.ajoutCoup().subscribe(
+    this.subscription = this.coupsService.ajoutCoup.subscribe(
       (nouveauCoup: HistoCoup) => this.ajoutCoup(nouveauCoup)
     );
   }

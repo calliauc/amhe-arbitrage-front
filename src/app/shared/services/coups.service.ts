@@ -8,7 +8,7 @@ import { PartieCorpsLongsword } from '../classes/partieCorps';
   providedIn: 'root',
 })
 export class CoupsService {
-  @Output() ajoutCoup: EventEmitter<HistoCoup> = new EventEmitter();
+  @Output() ajoutCoup = new EventEmitter();
   listeCoups: HistoCoup[] = [
     {
       id: 1,
