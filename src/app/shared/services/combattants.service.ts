@@ -1,54 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Combattant, Couleurs } from '../classes/combattant';
-import {
-  HttpClient,
-  HttpHeaders,
-  provideHttpClient,
-} from '@angular/common/http';
+import { Combattant } from '../classes/combattant';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CombattantsService {
-  // ajoutCombattant: EventEmitter<Combattant> = new EventEmitter();
-
-  listeCombattants = [
-    {
-      id: 1,
-      prenom: 'Clement',
-      nom: 'Calliau',
-      pseudo: 'Makhai',
-      club: 'Bec Escrime',
-      couleur: Couleurs.Bleu,
-    },
-    {
-      id: 2,
-      prenom: 'Alex',
-      nom: 'Goches',
-      pseudo: 'Fiore',
-      club: 'Bec Escrime',
-      couleur: Couleurs.Rouge,
-    },
-  ] as Combattant[];
+  URL: string = 'http://localhost:8080/combattants';
+  listeCombattants = [] as Combattant[];
   constructor(private http: HttpClient) {}
 
-  getCombattants(): Combattant[] {
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*',
-    });
-    let response = this.http.get('http://192.168.1.110:1080/second', {
-      headers,
-    });
-    response.subscribe((_) => {
-      console.log(_);
-    });
-    return this.listeCombattants;
+  public getCombattants(): Observable<Combattant[]> {
+    this.listeCombattants = [];
+    return this.http.get<Combattant[]>(this.URL, { responseType: 'json' });
   }
 
-  ajouterCombattant(combattantAAjouter: Combattant): Combattant[] {
-    this.listeCombattants.push(combattantAAjouter);
-    // this.ajoutCombattant.emit(combattantAAjouter);
-    console.log(combattantAAjouter);
-    return this.listeCombattants;
+  public ajouterCombattant(
+    combattantAAjouter: Combattant
+  ): Observable<Combattant> {
+    return this.http.post<Combattant>(this.URL, combattantAAjouter, {
+      responseType: 'json',
+    });
+  }
+
+  public modifierCombattant(
+    combattantAAjouter: Combattant
+  ): Observable<Combattant> {
+    return this.http.put<Combattant>(this.URL, combattantAAjouter, {
+      responseType: 'json',
+    });
+  }
+
+  public supprimerCombattant(id: number): Observable<Object> {
+    return this.http.delete(this.URL + '/' + id);
   }
 }

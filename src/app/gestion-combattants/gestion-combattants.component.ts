@@ -3,6 +3,8 @@ import { CombattantsService } from '../shared/services/combattants.service';
 import { Combattant } from '../shared/classes/combattant';
 import { CombattantLigneComponent } from './combattant-ligne/combattant-ligne.component';
 import { CombattantEditerComponent } from './combattant-editer/combattant-editer.component';
+import { ClubsService } from '../shared/services/clubs.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-gestion-combattants',
@@ -13,28 +15,44 @@ import { CombattantEditerComponent } from './combattant-editer/combattant-editer
 })
 export class GestionCombattantsComponent implements OnInit {
   combattentsListe?: Combattant[];
-  ajoutCombattant: boolean;
+  estModeCreation: boolean;
   nouveauCombattant: Combattant;
-  constructor(private combattantService: CombattantsService) {
-    this.ajoutCombattant = false;
+  constructor(
+    private combattantsService: CombattantsService,
+    private clubsService: ClubsService
+  ) {
+    this.estModeCreation = false;
     this.nouveauCombattant = new Combattant();
   }
 
   ngOnInit(): void {
-    this.combattentsListe = this.combattantService.getCombattants();
+    this.recupererCombattants();
+    // this.clubsService.getClubs();
   }
 
   modeAjout(): void {
-    this.ajoutCombattant = true;
+    this.estModeCreation = true;
   }
 
   annulerEdition() {
-    this.ajoutCombattant = false;
+    this.estModeCreation = false;
   }
 
-  ajouterCombattant(nouveauCombattant: Combattant) {
-    this.combattentsListe =
-      this.combattantService.ajouterCombattant(nouveauCombattant);
-    this.ajoutCombattant = false;
+  recupererCombattants() {
+    this.combattantsService.getCombattants().subscribe((result) => {
+      this.combattentsListe = result;
+      console.log('Liste', this.combattentsListe);
+    });
+  }
+
+  creerCombattant(nouveauCombattant: Combattant) {
+    this.combattentsListe?.push(nouveauCombattant);
+    this.estModeCreation = false;
+  }
+
+  supprimerCombattant(id: number) {
+    this.combattantsService
+      .supprimerCombattant(id)
+      .subscribe(() => this.recupererCombattants());
   }
 }

@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Combattant } from '../../shared/classes/combattant';
 import { NgClass } from '@angular/common';
+import { ClubPipe } from './club.pipe';
 
 @Component({
   selector: 'app-combattant-afficher',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, ClubPipe],
   templateUrl: './combattant-afficher.component.html',
   styleUrl: './combattant-afficher.component.css',
 })

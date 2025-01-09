@@ -10,10 +10,10 @@
       <input type="text" formControlName="pseudo" placeholder="Pseudo" />
     </td>
     <td class="col">
-      <select name="club" id="club-select">
-        <option value="aucun">Aucun</option>
-        <option value="burdigala">Burdigala</option>
-        <option value="mesnie">La Mesnie</option>
+      <select name="club" formControlName="club">
+        @for (club of clubsListe; track $index){
+        <option [ngValue]="club">{{ club.nomComplet }}</option>
+        }
       </select>
     </td>
     <td class="col">
@@ -21,11 +21,20 @@
         Enregistrer
       </button>
       <button
+        type="button"
         class="btn btn-combattants btn-annuler-edition"
         (click)="annuler()"
       >
         Annuler
       </button>
+      @if (combattant.id){
+      <button
+        type="button"
+        class="btn btn-combattants btn-suppression"
+        (click)="demanderSuppression()"
+      >
+        X</button
+      >}
     </td>
   </tr>
   @if (ereurSaisie){
@@ -34,3 +43,12 @@
   </div>
   }
 </form>
+@if (estModalVisible && combattant.id){
+<app-confirmation-modal
+  [id]="combattant.id"
+  [titre]="titreModal"
+  [texte]="texteModal"
+  (confirmer)="confirmerSuppression($event)"
+  (annuler)="annulerSuppression()"
+></app-confirmation-modal>
+}

@@ -1,3 +1,5 @@
+import { Club } from './club';
+
 export enum Couleurs {
   Bleu = 'bleu',
   Rouge = 'rouge',
@@ -8,6 +10,6 @@ export class Combattant {
   prenom?: string;
   nom?: string;
   pseudo?: string;
-  club?: string;
+  club?: Club;
   couleur?: Couleurs;
 }

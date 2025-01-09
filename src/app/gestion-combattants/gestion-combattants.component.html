@@ -5,23 +5,24 @@
         <th class="col">Prénom</th>
         <th class="col">Nom</th>
         <th class="col">Pseudo</th>
-        <th class="col">Club/Asso</th>
+        <th class="col">Club/Ville</th>
         <th class="col"></th>
       </tr>
     </thead>
     @for (combattant of combattentsListe; track $index; let estPair = $even) {
     <app-combattant-ligne
+      (supprimerCombattant)="supprimerCombattant($event)"
       [estPair]="estPair"
       [combattant]="combattant"
     ></app-combattant-ligne>
-    } @if (ajoutCombattant) {
+    } @if (estModeCreation) {
     <app-combattant-editer
-      (annulerEdition)="annulerEdition()"
-      (validerEdition)="ajouterCombattant($event)"
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerCombattant($event)"
     ></app-combattant-editer>
     }
   </table>
-  @if (!ajoutCombattant) {
+  @if (!estModeCreation) {
   <div class="btn" id="ajouter-combattant" (click)="modeAjout()">
     Ajouter combattant
   </div>

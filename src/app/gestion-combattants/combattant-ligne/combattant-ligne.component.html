@@ -2,7 +2,8 @@
 <app-combattant-editer
   [estPair]="estPair"
   [combattant]="combattant"
-  (annulerEdition)="modifCombattantAnnulee()"
+  (annulerEditionCreation)="modifCombattantAnnulee()"
+  (supprimerCombattant)="suppressionCombattant($event)"
   (validerEdition)="modifCombattantTerminee($event)"
 ></app-combattant-editer>
 } @else {

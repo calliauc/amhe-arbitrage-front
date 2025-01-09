@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Combattant } from '../../shared/classes/combattant';
 import { CombattantAfficherComponent } from '../combattant-afficher/combattant-afficher.component';
 import { CombattantEditerComponent } from '../combattant-editer/combattant-editer.component';
@@ -13,6 +13,7 @@ import { CombattantEditerComponent } from '../combattant-editer/combattant-edite
 export class CombattantLigneComponent {
   @Input() combattant!: Combattant;
   @Input() estPair!: boolean;
+  @Output() supprimerCombattant: EventEmitter<number> = new EventEmitter();
   estModif: boolean;
 
   constructor() {
@@ -25,6 +26,11 @@ export class CombattantLigneComponent {
 
   modifCombattantAnnulee() {
     this.estModif = false;
+  }
+
+  suppressionCombattant(id: number) {
+    this.estModif = false;
+    this.supprimerCombattant.emit(id);
   }
 
   modifCombattantTerminee(combattantModifie: Combattant) {
