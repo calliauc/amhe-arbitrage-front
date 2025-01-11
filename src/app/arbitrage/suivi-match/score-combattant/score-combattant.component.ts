@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { Combattant } from '../../../shared/models/combattant';
 
 @Component({
   selector: 'app-score-combattant',
@@ -9,8 +10,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './score-combattant.component.css',
 })
 export class ScoreCombattantComponent {
+  @Input() score: number = 0;
   @Input() couleur: string = 'bleu';
-  score: number = 0;
 
   public modifScore(modif: number) {
     this.score += modif;

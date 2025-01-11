@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Combattant } from '../../shared/classes/combattant';
+import { Combattant } from '../../shared/models/combattant';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { Club } from '../../shared/classes/club';
+import { Club } from '../../shared/models/club';
 import { ClubsService } from '../../shared/services/clubs.service';
 import { CombattantsService } from '../../shared/services/combattants.service';
 import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component';
@@ -40,13 +40,12 @@ export class CombattantEditerComponent implements OnInit {
   ngOnInit(): void {
     this.clubsListe = this.clubsService.getClubs();
     this.formEditerCombattant = this.formBuilder.group({
-      id: this.combattant?.id,
-      prenom: this.combattant?.prenom,
-      nom: this.combattant?.nom,
-      pseudo: this.combattant?.pseudo,
-      club: this.combattant?.club,
+      id: this.combattant.id,
+      prenom: this.combattant.prenom,
+      nom: this.combattant.nom,
+      pseudo: this.combattant.pseudo,
+      club: this.combattant.club,
     });
-    this.formEditerCombattant.patchValue({ club: this.combattant.club });
   }
 
   annuler(): void {
@@ -88,9 +87,9 @@ export class CombattantEditerComponent implements OnInit {
         });
     } else {
       this.combattantsService
-        .ajouterCombattant(this.combattant)
-        .subscribe((result) => {
-          this.validerCreation.emit(result);
+        .creerCombattant(this.combattant)
+        .subscribe((combattantCree) => {
+          this.validerCreation.emit(combattantCree);
         });
     }
   }

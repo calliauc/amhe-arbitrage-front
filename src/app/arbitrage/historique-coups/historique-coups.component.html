@@ -3,10 +3,10 @@
   <div id="liste-coups">
     <table id="table-coups">
       @for (coup of listeCoups; track $index) {
-      <app-ligne-histo-coup
+      <app-ligne-coup
         [coup]="coup"
         (suppressionCoup)="suprimerCoup(coup)"
-      ></app-ligne-histo-coup
+      ></app-ligne-coup
       >}
     </table>
   </div>

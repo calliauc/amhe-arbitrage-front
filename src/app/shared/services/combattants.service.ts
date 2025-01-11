@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Combattant } from '../classes/combattant';
+import { Combattant } from '../models/combattant';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -16,10 +16,8 @@ export class CombattantsService {
     return this.http.get<Combattant[]>(this.URL, { responseType: 'json' });
   }
 
-  public ajouterCombattant(
-    combattantAAjouter: Combattant
-  ): Observable<Combattant> {
-    return this.http.post<Combattant>(this.URL, combattantAAjouter, {
+  public creerCombattant(combattantACreer: Combattant): Observable<Combattant> {
+    return this.http.post<Combattant>(this.URL, combattantACreer, {
       responseType: 'json',
     });
   }

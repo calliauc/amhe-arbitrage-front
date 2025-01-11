@@ -1,33 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { CombattantsService } from '../shared/services/combattants.service';
-import { Combattant } from '../shared/classes/combattant';
+import { Combattant } from '../shared/models/combattant';
 import { CombattantLigneComponent } from './combattant-ligne/combattant-ligne.component';
 import { CombattantEditerComponent } from './combattant-editer/combattant-editer.component';
-import { ClubsService } from '../shared/services/clubs.service';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-combattants',
   standalone: true,
-  imports: [CombattantLigneComponent, CombattantEditerComponent],
+  imports: [CombattantLigneComponent, CombattantEditerComponent, CommonModule],
   templateUrl: './gestion-combattants.component.html',
   styleUrl: './gestion-combattants.component.css',
 })
 export class GestionCombattantsComponent implements OnInit {
-  combattentsListe?: Combattant[];
+  combattantsListe?: Combattant[];
+  combattantsListe$?: Observable<Combattant[]>;
   estModeCreation: boolean;
   nouveauCombattant: Combattant;
-  constructor(
-    private combattantsService: CombattantsService,
-    private clubsService: ClubsService
-  ) {
+  constructor(private combattantsService: CombattantsService) {
     this.estModeCreation = false;
     this.nouveauCombattant = new Combattant();
   }
 
   ngOnInit(): void {
     this.recupererCombattants();
-    // this.clubsService.getClubs();
   }
 
   modeAjout(): void {
@@ -39,15 +36,19 @@ export class GestionCombattantsComponent implements OnInit {
   }
 
   recupererCombattants() {
-    this.combattantsService.getCombattants().subscribe((result) => {
-      this.combattentsListe = result;
-      console.log('Liste', this.combattentsListe);
-    });
+    this.combattantsListe$ = this.combattantsService.getCombattants();
   }
 
-  creerCombattant(nouveauCombattant: Combattant) {
-    this.combattentsListe?.push(nouveauCombattant);
-    this.estModeCreation = false;
+  creerCombattant(combattantCree: Combattant) {
+    this.combattantsListe$ = this.combattantsListe$?.pipe(
+      tap((liste) => (this.estModeCreation = false))
+    );
+  }
+
+  modifierCombattant(combattantModifie: Combattant) {
+    this.combattantsListe$ = this.combattantsService
+      .modifierCombattant(combattantModifie)
+      .pipe(switchMap((_) => this.combattantsService.getCombattants()));
   }
 
   supprimerCombattant(id: number) {

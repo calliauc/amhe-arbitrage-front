@@ -1,23 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Match } from '../classes/match';
+import { Match } from '../models/match';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { NouveauMatch } from '../models/nouveau-match';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MatchsService {
-  matchs: Match[] = [];
+  URL: string = 'http://localhost:8080/matchs';
+  listeMatchs = [] as Match[];
+  constructor(private http: HttpClient) {}
 
-  creerMatch(nouveauMatch: Match): Match {
-    nouveauMatch.id = 1234;
-    this.matchs.push(nouveauMatch);
-    return nouveauMatch;
+  public getMatchs(): Observable<Match[]> {
+    this.listeMatchs = [];
+    return this.http.get<Match[]>(this.URL, { responseType: 'json' });
   }
 
-  findMatch(id: number): Match {
-    console.log('Match cherché : ' + id);
-    let matchReturn = this.matchs.find((match) => match.id == id);
-    if (matchReturn) return matchReturn;
-    return { id: 1 } as Match;
+  public getMatchById(id: number): Observable<Match> {
+    return this.http.get<Match>(`${this.URL}/${id}`);
+  }
+
+  public creerMatch(matchACreer: NouveauMatch): Observable<Match> {
+    return this.http.post<Match>(this.URL, matchACreer, {
+      responseType: 'json',
+    });
+  }
+
+  public modifierMatch(matchAModifier: Match): Observable<Match> {
+    return this.http.put<Match>(this.URL, matchAModifier, {
+      responseType: 'json',
+    });
+  }
+
+  public modifierMatchPartie(matchAModifier: Match): Observable<Match> {
+    return this.http.patch<Match>(this.URL, matchAModifier, {
+      responseType: 'json',
+    });
+  }
+
+  public supprimerMatch(id: number): Observable<Object> {
+    return this.http.delete(this.URL + '/' + id);
   }
 }

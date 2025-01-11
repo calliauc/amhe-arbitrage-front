@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LigneHistoCoupComponent } from './ligne-histo-coup.component';
+import { CombattantComponent } from './combattant.component';
 
-describe('LigneHistoCoupComponent', () => {
-  let component: LigneHistoCoupComponent;
-  let fixture: ComponentFixture<LigneHistoCoupComponent>;
+describe('CombattantComponent', () => {
+  let component: CombattantComponent;
+  let fixture: ComponentFixture<CombattantComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LigneHistoCoupComponent]
+      imports: [CombattantComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LigneHistoCoupComponent);
+    fixture = TestBed.createComponent(CombattantComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

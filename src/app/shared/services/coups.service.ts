@@ -1,17 +1,18 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { HistoCoup } from '../classes/histo-coup';
-import { Couleurs } from '../classes/combattant';
-import { VulnerantLongsword } from '../classes/vulnerants';
-import { PartieCorpsLongsword } from '../classes/partieCorps';
+import { Coup } from '../models/coup';
+import { Couleurs } from '../models/combattant';
+import { VulnerantLongsword } from '../models/vulnerants';
+import { PartieCorpsLongsword } from '../models/partie-corps';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoupsService {
   @Output() ajoutCoup = new EventEmitter();
-  listeCoups: HistoCoup[] = [
+  listeCoups: Coup[] = [
     {
       id: 1,
+      matchId: 1,
       attaquant: { id: 1, couleur: Couleurs.Bleu },
       defenseur: { id: 2, couleur: Couleurs.Rouge },
       vulnerant: VulnerantLongsword.estoc,
@@ -19,6 +20,7 @@ export class CoupsService {
     },
     {
       id: 2,
+      matchId: 1,
       attaquant: { id: 2, couleur: Couleurs.Rouge },
       defenseur: { id: 1, couleur: Couleurs.Bleu },
       vulnerant: VulnerantLongsword.taille,
@@ -26,6 +28,7 @@ export class CoupsService {
     },
     {
       id: 3,
+      matchId: 1,
       attaquant: { id: 1, couleur: Couleurs.Bleu },
       defenseur: { id: 2, couleur: Couleurs.Rouge },
       vulnerant: VulnerantLongsword.lutte,
@@ -33,6 +36,7 @@ export class CoupsService {
     },
     {
       id: 4,
+      matchId: 1,
       attaquant: { id: 2, couleur: Couleurs.Rouge },
       defenseur: { id: 1, couleur: Couleurs.Bleu },
       vulnerant: VulnerantLongsword.entaille,
@@ -40,25 +44,25 @@ export class CoupsService {
     },
   ];
 
-  public getListeCoups(): HistoCoup[] {
+  public getListeCoups(): Coup[] {
     return this.listeCoups;
   }
 
-  ajouterCoup(coupAAjouter: HistoCoup): HistoCoup[] {
+  ajouterCoup(coupAAjouter: Coup): Coup[] {
     this.listeCoups.push(coupAAjouter);
     this.ajoutCoup.emit(coupAAjouter);
     console.log(coupAAjouter);
     return this.listeCoups;
   }
 
-  suprimerCoup(coupASupprimer: HistoCoup): HistoCoup[] {
+  suprimerCoup(coupASupprimer: Coup): Coup[] {
     this.listeCoups = this.listeCoups?.filter(
       (coup) => coup.id !== coupASupprimer.id
     );
     return this.listeCoups;
   }
 
-  lireCoup(coup: HistoCoup) {
+  lireCoup(coup: Coup) {
     let coupStr: string = '';
     if (!!coup) {
       coupStr += coup.attaquant?.couleur;

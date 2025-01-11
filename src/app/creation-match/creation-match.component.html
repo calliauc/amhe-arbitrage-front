@@ -1,6 +1,28 @@
-<h3>Formulaire</h3>
-<p>Combattant A (recherche)</p>
-<p>Combattant B (recherche)</p>
-<p>Ruleset (liste déroulante)</p>
-<p>Affichage interractif et modifiable du ruleset</p>
-<button (click)="creerMatch()">Creer match</button>
+<h3>Formulaire de création de match :</h3>
+<form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
+  <div>
+    <span>Sélectionner le combattant BLEU : </span>
+    <select name="" formControlName="combattantBleu">
+      @for (combattant of combattantsListe; track $index){
+      <option [ngValue]="combattant.id">{{ combattant | nomsDisplay }}</option>
+      }
+    </select>
+    <div><br /></div>
+    <span>Sélectionner le combattant ROUGE : </span>
+    <select name="" formControlName="combattantRouge">
+      @for (combattant of combattantsListe; track $index){
+      <option [ngValue]="combattant.id">{{ combattant | nomsDisplay }}</option>
+      }
+    </select>
+  </div>
+  <br />
+  <button class="btn" type="submit">Créer</button>
+</form>
+
+<p>Reste à faire :</p>
+<ul>
+  <li>Combattant A (recherche)</li>
+  <li>Combattant B (recherche)</li>
+  <li>Ruleset (liste déroulante)</li>
+  <li>Affichage interractif et modifiable du ruleset</li>
+</ul>

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Combattant } from '../../shared/classes/combattant';
+import { Combattant } from '../../shared/models/combattant';
 import { NgClass } from '@angular/common';
-import { ClubPipe } from './club.pipe';
+import { ClubPipe } from '../../shared/pipes/club.pipe';
 
 @Component({
   selector: 'app-combattant-afficher',

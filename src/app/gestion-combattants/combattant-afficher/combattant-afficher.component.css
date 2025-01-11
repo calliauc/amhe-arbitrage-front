@@ -18,6 +18,17 @@ tr {
   /* border: 1px solid red; */
 }
 
+.col-club {
+  justify-content: left;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  scrollbar-width: 1px;
+  scrollbar-color: red;
+}
+
 .btn-combattants {
   width: 44%;
   text-align: center;

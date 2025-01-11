@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { LigneHistoCoupComponent } from './ligne-histo-coup/ligne-histo-coup.component';
-import { HistoCoup } from '../../shared/classes/histo-coup';
+import { LigneCoupComponent } from './ligne-histo-coup/ligne-coup.component';
+import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
 
 @Component({
   selector: 'app-historique-coups',
   standalone: true,
-  imports: [LigneHistoCoupComponent],
+  imports: [LigneCoupComponent],
   templateUrl: './historique-coups.component.html',
   styleUrl: './historique-coups.component.css',
 })
 export class HistoriqueCoupsComponent implements OnInit {
-  listeCoups?: HistoCoup[];
+  listeCoups?: Coup[];
   subscription: any;
 
   constructor(private coupsService: CoupsService) {}
@@ -19,15 +19,15 @@ export class HistoriqueCoupsComponent implements OnInit {
   ngOnInit(): void {
     this.listeCoups = this.coupsService.getListeCoups();
     this.subscription = this.coupsService.ajoutCoup.subscribe(
-      (nouveauCoup: HistoCoup) => this.ajoutCoup(nouveauCoup)
+      (nouveauCoup: Coup) => this.ajoutCoup(nouveauCoup)
     );
   }
 
-  ajoutCoup(nouveauCoup: HistoCoup) {
+  ajoutCoup(nouveauCoup: Coup) {
     this.listeCoups?.push(nouveauCoup);
   }
 
-  suprimerCoup(coupASupprimer: HistoCoup) {
+  suprimerCoup(coupASupprimer: Coup) {
     this.listeCoups = this.coupsService.suprimerCoup(coupASupprimer);
   }
 }

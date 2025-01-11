@@ -9,9 +9,11 @@
         <th class="col"></th>
       </tr>
     </thead>
-    @for (combattant of combattentsListe; track $index; let estPair = $even) {
+    @for (combattant of combattantsListe$ | async; track $index; let estPair =
+    $even) {
     <app-combattant-ligne
       (supprimerCombattant)="supprimerCombattant($event)"
+      (modifierCombattant)="modifierCombattant($event)"
       [estPair]="estPair"
       [combattant]="combattant"
     ></app-combattant-ligne>

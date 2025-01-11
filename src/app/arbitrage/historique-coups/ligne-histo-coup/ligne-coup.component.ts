@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { HistoCoup } from '../../../shared/classes/histo-coup';
+import { Coup } from '../../../shared/models/coup';
 import { CoupsService } from '../../../shared/services/coups.service';
 
 @Component({
-  selector: 'app-ligne-histo-coup',
+  selector: 'app-ligne-coup',
   standalone: true,
   imports: [],
-  templateUrl: './ligne-histo-coup.component.html',
-  styleUrl: './ligne-histo-coup.component.css',
+  templateUrl: './ligne-coup.component.html',
+  styleUrl: './ligne-coup.component.css',
 })
-export class LigneHistoCoupComponent {
-  @Input() coup?: HistoCoup;
-  @Output() suppressionCoup: EventEmitter<HistoCoup> = new EventEmitter();
+export class LigneCoupComponent {
+  @Input() coup!: Coup;
+  @Output() suppressionCoup: EventEmitter<Coup> = new EventEmitter();
 
   constructor(private coupsService: CoupsService) {}
 

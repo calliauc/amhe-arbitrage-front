@@ -41,6 +41,10 @@
   background-image: url("../../../assets/img/pause-btn.png");
 }
 
+.est-fini {
+  background-image: url("../../../assets/img/stop.png");
+}
+
 #fin-du-match {
   margin-top: 30px;
   border: 3px solid aliceblue;

@@ -4,13 +4,22 @@
       id="ctrl-time"
       (click)="controlTimer()"
       [ngClass]="{
-        'chrono-play': !this.playChrono,
-        'chrono-pause': this.playChrono
+        'chrono-play': !this.estDemarre || this.estEnPause,
+        'chrono-pause': this.estDemarre && !this.estEnPause,
+        'est-fini': this.estFini
       }"
     ></div>
-    <p id="time">
-      {{ timeLeft | timer }}
-    </p>
+    <cd-timer
+      id="time"
+      #basicTimer
+      [startTime]="timerStart"
+      [endTime]="timerEnd"
+      [countdown]="timerReverse"
+      [maxTimeUnit]="'minute'"
+      [format]="'ms'"
+      [autoStart]="false"
+      (onComplete)="complete()"
+    ></cd-timer>
   </div>
   <div class="btn" id="fin-du-match">Mettre fin au match</div>
 </div>
