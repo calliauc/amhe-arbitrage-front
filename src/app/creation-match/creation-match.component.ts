@@ -43,11 +43,11 @@ export class CreationMatchComponent implements OnInit {
       this.formCreerMatch.value.combattantRouge
     );
     console.log(nouveauMatch);
-    this.matchsService.creerMatch(nouveauMatch).subscribe((matchCree: Match) =>
-      this.router.navigate(['arbitrage'], {
-        queryParams: { id: matchCree.id },
-      })
-    );
+    this.matchsService
+      .creerMatch(nouveauMatch)
+      .subscribe((matchCree: Match) =>
+        this.router.navigate(['arbitrage', matchCree.id])
+      );
   }
 
   ruleset() {

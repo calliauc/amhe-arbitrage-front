@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  viewChild,
+} from '@angular/core';
 import { Combattant } from '../../shared/models/combattant';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
@@ -14,13 +24,14 @@ import { ConfirmationModalComponent } from '../../shared/confirmation-modal/conf
   templateUrl: './combattant-editer.component.html',
   styleUrl: './combattant-editer.component.css',
 })
-export class CombattantEditerComponent implements OnInit {
+export class CombattantEditerComponent implements OnInit, AfterViewInit {
   @Input() combattant: Combattant = new Combattant();
   @Input() estPair!: boolean;
   @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
   @Output() supprimerCombattant: EventEmitter<number> = new EventEmitter();
   @Output() validerEdition: EventEmitter<Combattant> = new EventEmitter();
   @Output() validerCreation: EventEmitter<Combattant> = new EventEmitter();
+  @ViewChild('focus') focusForm!: ElementRef;
 
   clubsListe!: Club[];
   ereurSaisie: boolean;
@@ -46,6 +57,10 @@ export class CombattantEditerComponent implements OnInit {
       pseudo: this.combattant.pseudo,
       club: this.combattant.club,
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.focusForm.nativeElement.focus();
   }
 
   annuler(): void {

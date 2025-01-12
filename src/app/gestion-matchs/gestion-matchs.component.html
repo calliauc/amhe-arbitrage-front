@@ -1,0 +1,22 @@
+<main>
+  <div>
+    @for (match of matchs; track $index) {
+    <div>
+      Match : {{ match.id }} =>
+      <a routerLink="/arbitrage/{{ match.id }}">Arbitrer match</a>
+    </div>
+    <div>
+      <span>{{ match.bleu | nomsDisplay }}</span>
+      <span> => </span>
+      <span>{{ match.bleu.club | clubDisplay }}</span>
+    </div>
+    <div>
+      <span>{{ match.rouge | nomsDisplay }}</span>
+      <span> => </span>
+      <span>{{ match.rouge.club | clubDisplay }}</span>
+    </div>
+    <br /><br />
+    }
+    <button class="btn" (click)="creerMatch()">Creer nouveau match</button>
+  </div>
+</main>

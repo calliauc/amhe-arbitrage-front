@@ -26,14 +26,14 @@ export class ArbitrageComponent {
     private matchsService: MatchsService,
     private router: Router
   ) {
-    this.route.queryParams.subscribe((matchInput) => {
-      this.matchsService.getMatchById(matchInput['id']).subscribe((match) => {
+    this.route.params.subscribe((params) => {
+      this.matchsService.getMatchById(params['id']).subscribe((match) => {
         if (match) {
           this.match = match;
           console.log(this.match);
         } else {
-          console.log('Pas de match');
-          this.router.navigate(['creer-match']);
+          alert('Match introuvable');
+          this.router.navigate(['matchs']);
         }
       });
     });

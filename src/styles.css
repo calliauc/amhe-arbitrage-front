@@ -18,6 +18,10 @@ main {
   margin-bottom: 20px;
 }
 
+a:visited {
+  color: blueviolet;
+}
+
 .background-bleu {
   background-color: rgb(68, 143, 255);
 }

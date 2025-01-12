@@ -1,0 +1,10 @@
+main {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

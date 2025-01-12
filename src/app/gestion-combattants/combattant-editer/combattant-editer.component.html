@@ -1,7 +1,12 @@
-<form [formGroup]="formEditerCombattant" (ngSubmit)="confirmer()">
+<form
+  [formGroup]="formEditerCombattant"
+  (ngSubmit)="confirmer()"
+  (keydown.enter)="confirmer()"
+  (keydown.escape)="annuler()"
+>
   <tr [ngClass]="{ lignePair: estPair }">
     <td class="col">
-      <input type="text" formControlName="prenom" placeholder="Prénom" />
+      <input type="text" formControlName="prenom" placeholder="Prénom" #focus />
     </td>
     <td class="col">
       <input type="text" formControlName="nom" placeholder="Nom" />

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { TimerPipe } from './timer.pipe';
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
+import { TimerStatus } from '../../../shared/models/timer-tick';
 
 @Component({
   selector: 'app-chrono',
@@ -12,8 +12,8 @@ import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 })
 export class ChronoComponent {
   @ViewChild('basicTimer') chrono!: CdTimerComponent;
-  timerStart: number = 0;
-  timerEnd: number = 8;
+  timerStart: number = 55;
+  timerEnd: number = 90;
   timerReverse: boolean = false;
   interval?: any;
   estDemarre: boolean = false;
@@ -34,6 +34,10 @@ export class ChronoComponent {
       this.estDemarre = true;
       this.estEnPause = false;
     }
+  }
+
+  tick(timerStatus: TimerStatus) {
+    console.log(timerStatus);
   }
 
   complete() {

@@ -9,7 +9,7 @@ import { Combattant } from '../models/combattant';
 export class NomsPipe implements PipeTransform {
   transform(combattant: Combattant | undefined): string {
     if (combattant)
-      return `(${combattant.id}) ${combattant.prenom} ${combattant.nom}`;
+      return `${combattant.id}- ${combattant.prenom} ${combattant.nom}`;
     return 'Pas de nom';
   }
 }

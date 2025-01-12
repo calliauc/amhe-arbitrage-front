@@ -1,4 +1,9 @@
 /* SCORE */
+.combattant {
+  text-align: center;
+  margin: auto;
+}
+
 #score {
   display: flex;
   flex-direction: row;

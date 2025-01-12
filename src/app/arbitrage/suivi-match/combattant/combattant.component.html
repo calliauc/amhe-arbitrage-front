@@ -1,5 +1,3 @@
-<div>COMBATTANT :</div>
-<div>{{ combattant.nom }}</div>
-<div>{{ combattant.prenom }}</div>
-<div>({{ combattant.pseudo }})</div>
+<div>COMBATTANT {{ couleur | uppercase }}</div>
+<div>{{ combattant | nomsDisplay }}</div>
 <div>{{ combattant.club | clubDisplay }}</div>

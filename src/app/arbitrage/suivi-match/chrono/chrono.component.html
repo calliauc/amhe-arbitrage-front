@@ -19,6 +19,7 @@
       [format]="'ms'"
       [autoStart]="false"
       (onComplete)="complete()"
+      (onTick)="tick($event)"
     ></cd-timer>
   </div>
   <div class="btn" id="fin-du-match">Mettre fin au match</div>

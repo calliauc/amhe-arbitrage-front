@@ -1,5 +1,9 @@
 <section id="score">
-  <app-combattant [combattant]="match.bleu"></app-combattant>
+  <app-combattant
+    class="combattant"
+    [combattant]="match.bleu"
+    [couleur]="'bleu'"
+  ></app-combattant>
   <app-score-combattant
     [score]="match.scoreBleu"
     [couleur]="'bleu'"
@@ -9,5 +13,9 @@
     [score]="match.scoreRouge"
     [couleur]="'rouge'"
   ></app-score-combattant>
-  <app-combattant [combattant]="match.rouge"></app-combattant>
+  <app-combattant
+    class="combattant"
+    [combattant]="match.rouge"
+    [couleur]="'rouge'"
+  ></app-combattant>
 </section>
