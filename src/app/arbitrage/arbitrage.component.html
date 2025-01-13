@@ -3,7 +3,9 @@
   <div>Match : {{ match.id }}</div>
   <app-gestion-match [match]="match"></app-gestion-match>
   <div id="separateur"></div>
-  <app-coup-longsword></app-coup-longsword>
+  <app-coup-longsword [match]="match"></app-coup-longsword>
   <app-historique-coups></app-historique-coups>
+  } @else {
+  <div>Chargement du match</div>
   }
 </main>

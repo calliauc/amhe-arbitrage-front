@@ -27,16 +27,14 @@ export class MatchsService {
     });
   }
 
-  public modifierMatch(matchAModifier: Match): Observable<Match> {
-    return this.http.put<Match>(this.URL, matchAModifier, {
-      responseType: 'json',
-    });
-  }
-
-  public modifierMatchPartie(matchAModifier: Match): Observable<Match> {
-    return this.http.patch<Match>(this.URL, matchAModifier, {
-      responseType: 'json',
-    });
+  public modifierMatch(id: number, matchAModifier: Match): Observable<Match> {
+    return this.http.put<Match>(
+      `${this.URL}/${matchAModifier.id}`,
+      matchAModifier,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   public supprimerMatch(id: number): Observable<Object> {

@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 import { TimerStatus } from '../../../shared/models/timer-tick';
+import { Match } from '../../../shared/models/match';
 
 @Component({
   selector: 'app-chrono',
@@ -11,14 +18,15 @@ import { TimerStatus } from '../../../shared/models/timer-tick';
   styleUrl: './chrono.component.css',
 })
 export class ChronoComponent {
+  @Input() match!: Match;
+  @Output() timerTick: EventEmitter<TimerStatus> = new EventEmitter();
+  @Output() timerFin: EventEmitter<number> = new EventEmitter();
   @ViewChild('basicTimer') chrono!: CdTimerComponent;
-  timerStart: number = 55;
-  timerEnd: number = 90;
-  timerReverse: boolean = false;
-  interval?: any;
+
   estDemarre: boolean = false;
   estEnPause: boolean = false;
   estFini: boolean = false;
+  tickActuel: number = 0;
 
   controlTimer() {
     if (this.estDemarre) {
@@ -37,11 +45,20 @@ export class ChronoComponent {
   }
 
   tick(timerStatus: TimerStatus) {
-    console.log(timerStatus);
+    this.tickActuel = timerStatus.tick_count;
+    if (timerStatus.tick_count % 5 == 0) {
+      this.timerTick.emit(timerStatus);
+    }
   }
 
   complete() {
-    console.log('Fini');
     this.estFini = true;
+    this.timerFin.emit(this.tickActuel);
+  }
+
+  terminerMatch() {
+    this.chrono.stop();
+    this.estFini = true;
+    this.timerFin.emit(this.tickActuel);
   }
 }

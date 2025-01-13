@@ -12,9 +12,9 @@
     <cd-timer
       id="time"
       #basicTimer
-      [startTime]="timerStart"
-      [endTime]="timerEnd"
-      [countdown]="timerReverse"
+      [startTime]="match.timerStart"
+      [endTime]="match.timerEnd"
+      [countdown]="match.timerReverse"
       [maxTimeUnit]="'minute'"
       [format]="'ms'"
       [autoStart]="false"
@@ -22,5 +22,7 @@
       (onTick)="tick($event)"
     ></cd-timer>
   </div>
-  <div class="btn" id="fin-du-match">Mettre fin au match</div>
+  <div class="btn" id="fin-du-match" (click)="terminerMatch()">
+    Mettre fin au match
+  </div>
 </div>

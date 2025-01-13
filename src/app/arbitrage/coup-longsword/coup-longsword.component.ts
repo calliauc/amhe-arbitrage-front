@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Coup } from '../../shared/models/coup';
 import { VulnerantLongsword } from '../../shared/models/vulnerants';
 import { PartieCorpsLongsword } from '../../shared/models/partie-corps';
 import { CoupsService } from '../../shared/services/coups.service';
-import { Couleurs } from '../../shared/models/combattant';
+import { Combattant, Couleurs } from '../../shared/models/combattant';
 import { NouveauCoup } from '../../shared/models/nouveau-coup';
+import { Match } from '../../shared/models/match';
 
 @Component({
   selector: 'app-coup-longsword',
@@ -14,14 +15,13 @@ import { NouveauCoup } from '../../shared/models/nouveau-coup';
   templateUrl: './coup-longsword.component.html',
   styleUrl: './coup-longsword.component.css',
 })
-export class CoupLongswordComponent {
-  // nouveauCoup: NouveauCoup = {};
+export class CoupLongswordComponent implements OnInit {
+  @Input() match!: Match;
+
+  nouveauCoup: NouveauCoup = new NouveauCoup();
   coupStr?: string;
   formSaisirCoup!: FormGroup;
-  combattants = [
-    { id: 1, couleur: Couleurs.Bleu },
-    { id: 2, couleur: Couleurs.Rouge },
-  ];
+  combattants!: Combattant[];
 
   constructor(private coupsService: CoupsService) {
     this.formSaisirCoup = new FormGroup({
@@ -31,12 +31,14 @@ export class CoupLongswordComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.combattants = [this.match.bleu, this.match.rouge];
+  }
+
   onSubmit() {
-    // this.validererCoupLongsword();
-    // this.coupsService.ajouterCoup(this.nouveauCoup);
-    // this.coupStr = this.coupsService.lireCoup(this.nouveauCoup);
-    // this.formSaisirCoup.reset();
-    // this.nouveauCoup = {};
+    this.validererCoupLongsword();
+    this.formSaisirCoup.reset();
+    this.nouveauCoup = new NouveauCoup();
   }
 
   validererCoupLongsword() {
@@ -57,4 +59,6 @@ export class CoupLongswordComponent {
     //   this.nouveauCoup.partieCorps = PartieCorpsLongsword.lutte;
     // }
   }
+
+  enregistrerCoup(nouveauCoup: NouveauCoup) {}
 }

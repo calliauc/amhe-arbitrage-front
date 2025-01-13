@@ -4,7 +4,7 @@ import { Vulnerant } from './vulnerants';
 
 export class NouveauCoup {
   matchId!: number;
-  bleuId!: Combattant;
+  ataquantId!: Combattant;
   rougeId!: Combattant;
   vulnerant!: Vulnerant;
   partieCorps?: PartieCorps;

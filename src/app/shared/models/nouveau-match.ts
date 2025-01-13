@@ -5,12 +5,21 @@ export class NouveauMatch {
   rouge: {
     id: number;
   };
-  timer?: number;
-  timerMax?: number;
-  sensTimer?: boolean;
+  timerStart?: number;
+  timerEnd?: number;
+  timerReverse?: boolean;
 
-  constructor(bleu: number, rouge: number) {
+  constructor(
+    bleu: number,
+    rouge: number,
+    timerStart: number,
+    timerEnd: number,
+    timerReverse: boolean
+  ) {
     this.bleu = { id: bleu };
     this.rouge = { id: rouge };
+    this.timerStart = timerStart;
+    this.timerEnd = timerEnd;
+    this.timerReverse = timerReverse;
   }
 }

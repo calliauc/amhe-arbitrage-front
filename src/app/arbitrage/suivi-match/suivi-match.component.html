@@ -7,11 +7,17 @@
   <app-score-combattant
     [score]="match.scoreBleu"
     [couleur]="'bleu'"
+    (scoreEvent)="updateScoreBleu($event)"
   ></app-score-combattant>
-  <app-chrono></app-chrono>
+  <app-chrono
+    [match]="match"
+    (timerTick)="timerTick($event)"
+    (timerFin)="timerFin($event)"
+  ></app-chrono>
   <app-score-combattant
     [score]="match.scoreRouge"
     [couleur]="'rouge'"
+    (scoreEvent)="updateScoreRouge($event)"
   ></app-score-combattant>
   <app-combattant
     class="combattant"

@@ -33,6 +33,9 @@ export class CreationMatchComponent implements OnInit {
     this.formCreerMatch = this.formBuilder.group({
       combattantBleu: null,
       combattantRouge: null,
+      timerStart: 0,
+      timerEnd: 300,
+      rebours: false,
     });
   }
 
@@ -40,7 +43,10 @@ export class CreationMatchComponent implements OnInit {
     console.log(this.formCreerMatch.value);
     let nouveauMatch = new NouveauMatch(
       this.formCreerMatch.value.combattantBleu,
-      this.formCreerMatch.value.combattantRouge
+      this.formCreerMatch.value.combattantRouge,
+      this.formCreerMatch.value.timerStart,
+      this.formCreerMatch.value.timerEnd,
+      this.formCreerMatch.value.timerSens
     );
     console.log(nouveauMatch);
     this.matchsService

@@ -7,6 +7,8 @@ export class Coup {
   matchId!: number;
   attaquant!: Combattant;
   defenseur!: Combattant;
+  attaquantCouleur!: string;
+  defenseurCouleur!: string;
   vulnerant!: Vulnerant;
   partieCorps?: PartieCorps;
 }

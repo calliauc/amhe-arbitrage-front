@@ -6,7 +6,7 @@ export class Match {
   rouge!: Combattant;
   scoreBleu: number = 0;
   scoreRouge: number = 0;
-  timer: number = 0;
-  timerMax: number = 600;
-  timerSens: boolean = true;
+  timerStart: number = 0;
+  timerEnd: number = 600;
+  timerReverse: boolean = true;
 }
