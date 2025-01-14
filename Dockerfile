@@ -1,11 +1,20 @@
-FROM node:22-alpine AS build
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build
+FROM node:22
 
-# Serve Application using Nginx Server
-FROM nginx:alpine
-COPY --from=build /app/dist/amhe-arbitrage-front/ /usr/share/nginx/html
-EXPOSE 80
+RUN npm install -g @angular/cli
+
+WORKDIR /
+RUN mkdir angular-app
+WORKDIR /angular-app
+
+ENV APP_NAME 'my-app'
+ENV ROUTING 'true'
+ENV STANDALONE 'false'
+ENV STRICT 'true'
+ENV STYLE 'scss'
+
+CMD ng new $APP_NAME --routing=$ROUTING --standalone=$STANDALONE --strict=$STRICT --style=$STYLE \
+    && mv $APP_NAME/* . \
+    && rm -rf $APP_NAME \
+    && ng serve --host 0.0.0.0 --port 4200
+
 EXPOSE 4200
