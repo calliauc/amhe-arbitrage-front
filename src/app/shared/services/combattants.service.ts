@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Combattant } from '../models/combattant';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CombattantsService {
-  URL: string = 'http://localhost:8080/combattants';
+  env = environment;
+  URL = `${this.env.baseUrl}/combattants`;
   listeCombattants = [] as Combattant[];
   constructor(private http: HttpClient) {}
 

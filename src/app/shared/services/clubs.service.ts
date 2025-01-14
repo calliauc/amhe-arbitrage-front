@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Club } from '../models/club';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClubsService {
-  URL: string = 'http://localhost:8080/clubs';
+  env = environment;
+  URL = `${this.env.baseUrl}/combattants`;
   listeClubs = [] as Club[];
   constructor(private http: HttpClient) {}
 

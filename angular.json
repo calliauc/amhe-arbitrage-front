@@ -67,7 +67,7 @@
               "buildTarget": "amhe-arbitrage-front:build:dev"
             }
           },
-          "defaultConfiguration": "dev"
+          "defaultConfiguration": "prod"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

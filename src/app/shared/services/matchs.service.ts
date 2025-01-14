@@ -3,12 +3,14 @@ import { Match } from '../models/match';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NouveauMatch } from '../models/nouveau-match';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MatchsService {
-  URL: string = 'http://localhost:8080/matchs';
+  env = environment;
+  URL = `${this.env.baseUrl}/combattants`;
   listeMatchs = [] as Match[];
   constructor(private http: HttpClient) {}
 

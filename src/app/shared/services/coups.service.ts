@@ -3,14 +3,16 @@ import { Coup } from '../models/coup';
 import { Observable, Subject } from 'rxjs';
 import { NouveauCoup } from '../models/nouveau-coup';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoupsService {
+  env = environment;
+  URL = `${this.env.baseUrl}/combattants`;
   notificationCoup = new Subject<boolean>();
   notification$ = this.notificationCoup.asObservable();
-  URL: string = 'http://localhost:8080/coups';
   constructor(private http: HttpClient) {}
 
   public getCoups(): Observable<Coup[]> {
