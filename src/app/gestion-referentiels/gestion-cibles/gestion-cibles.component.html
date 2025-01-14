@@ -1,0 +1,27 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">Cible</th>
+        <th class="col">Texte d'affichage</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (cible of ciblesListe$ | async; track $index; let estPair = $even) {
+    <app-cible-ligne
+      (supprimerCible)="supprimerCible($event)"
+      (modifierCible)="modifierCible($event)"
+      [estPair]="estPair"
+      [cible]="cible"
+    ></app-cible-ligne>
+    } @if (estModeCreation) {
+    <app-cible-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerCible($event)"
+    ></app-cible-editer>
+    }
+  </table>
+  @if (!estModeCreation) {
+  <div class="btn" id="ajouter-cible" (click)="modeAjout()">Ajouter cible</div>
+  }
+</main>

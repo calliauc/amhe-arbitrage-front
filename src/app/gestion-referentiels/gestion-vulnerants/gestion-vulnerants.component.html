@@ -1,0 +1,30 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">Vulnérant</th>
+        <th class="col">Texte d'affichage</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (vulnerant of vulnerantsListe$ | async; track $index; let estPair =
+    $even) {
+    <app-vulnerant-ligne
+      (supprimerVulnerant)="supprimerVulnerant($event)"
+      (modifierVulnerant)="modifierVulnerant($event)"
+      [estPair]="estPair"
+      [vulnerant]="vulnerant"
+    ></app-vulnerant-ligne>
+    } @if (estModeCreation) {
+    <app-vulnerant-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerVulnerant($event)"
+    ></app-vulnerant-editer>
+    }
+  </table>
+  @if (!estModeCreation) {
+  <div class="btn" id="ajouter-vulnerant" (click)="modeAjout()">
+    Ajouter vulnerant
+  </div>
+  }
+</main>

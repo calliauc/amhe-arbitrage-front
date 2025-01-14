@@ -1,0 +1,15 @@
+@if (estModif) {
+<app-vulnerant-editer
+  [estPair]="estPair"
+  [vulnerant]="vulnerant"
+  (annulerEditionCreation)="modifVulnerantAnnulee()"
+  (supprimerVulnerant)="suppressionVulnerant($event)"
+  (validerEdition)="modifVulnerantTerminee($event)"
+></app-vulnerant-editer>
+} @else {
+<app-vulnerant-afficher
+  [estPair]="estPair"
+  [vulnerant]="vulnerant"
+  (editerVulnerant)="lancerEdition()"
+></app-vulnerant-afficher>
+}

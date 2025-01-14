@@ -2,9 +2,15 @@ main {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  font-size: 1.3em;
 }
 
 a:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+button {
+  font-size: 1.1em;
+  margin-inline: 10px;
 }

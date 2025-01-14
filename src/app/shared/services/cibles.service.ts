@@ -21,4 +21,20 @@ export class CiblesService {
       responseType: 'json',
     });
   }
+
+  public creerCible(cibleACreer: Cible): Observable<Cible> {
+    return this.http.post<Cible>(this.URL, cibleACreer, {
+      responseType: 'json',
+    });
+  }
+
+  public modifierCible(cibleAAjouter: Cible): Observable<Cible> {
+    return this.http.put<Cible>(this.URL, cibleAAjouter, {
+      responseType: 'json',
+    });
+  }
+
+  public supprimerCible(id: number): Observable<Object> {
+    return this.http.delete(this.URL + '/' + id);
+  }
 }

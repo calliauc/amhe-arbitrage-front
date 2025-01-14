@@ -1,0 +1,12 @@
+<tr [ngClass]="{ lignePair: estPair }">
+  <td class="col">{{ cible.code }}</td>
+  <td class="col">{{ cible.libelle }}</td>
+  <td class="col">
+    <button class="btn btn-cibles btn-afficher-details" disabled>
+      Détails
+    </button>
+    <button class="btn btn-cibles btn-editer-cible" (click)="editer()">
+      Editer
+    </button>
+  </td>
+</tr>

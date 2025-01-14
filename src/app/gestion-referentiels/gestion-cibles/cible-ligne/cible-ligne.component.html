@@ -1,0 +1,15 @@
+@if (estModif) {
+<app-cible-editer
+  [estPair]="estPair"
+  [cible]="cible"
+  (annulerEditionCreation)="modifCibleAnnulee()"
+  (supprimerCible)="suppressionCible($event)"
+  (validerEdition)="modifCibleTerminee($event)"
+></app-cible-editer>
+} @else {
+<app-cible-afficher
+  [estPair]="estPair"
+  [cible]="cible"
+  (editerCible)="lancerEdition()"
+></app-cible-afficher>
+}

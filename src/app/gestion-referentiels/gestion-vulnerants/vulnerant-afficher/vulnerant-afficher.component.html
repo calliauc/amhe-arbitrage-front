@@ -1,0 +1,12 @@
+<tr [ngClass]="{ lignePair: estPair }">
+  <td class="col">{{ vulnerant.code }}</td>
+  <td class="col">{{ vulnerant.libelle }}</td>
+  <td class="col">
+    <button class="btn btn-vulnerants btn-afficher-details" disabled>
+      Détails
+    </button>
+    <button class="btn btn-vulnerants btn-editer-vulnerant" (click)="editer()">
+      Editer
+    </button>
+  </td>
+</tr>

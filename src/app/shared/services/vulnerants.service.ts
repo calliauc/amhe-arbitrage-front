@@ -21,4 +21,22 @@ export class VulnerantsService {
       responseType: 'json',
     });
   }
+
+  public creerVulnerant(vulnerantACreer: Vulnerant): Observable<Vulnerant> {
+    return this.http.post<Vulnerant>(this.URL, vulnerantACreer, {
+      responseType: 'json',
+    });
+  }
+
+  public modifierVulnerant(
+    vulnerantAAjouter: Vulnerant
+  ): Observable<Vulnerant> {
+    return this.http.put<Vulnerant>(this.URL, vulnerantAAjouter, {
+      responseType: 'json',
+    });
+  }
+
+  public supprimerVulnerant(id: number): Observable<Object> {
+    return this.http.delete(this.URL + '/' + id);
+  }
 }
