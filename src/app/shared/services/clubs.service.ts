@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Club } from '../models/club';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,27 +10,26 @@ import { environment } from '../../../environments/environment';
 export class ClubsService {
   env = environment;
   URL = `${this.env.baseUrl}/clubs`;
-  listeClubs = [] as Club[];
+
   constructor(private http: HttpClient) {}
 
-  public getClubs() {
-    this.listeClubs = [];
-    this.http
-      .get<Club[]>(this.URL, { responseType: 'json' })
-      .subscribe((result) => {
-        this.listeClubs.push(...result);
-      });
-    return this.listeClubs;
+  public getClubs(): Observable<Club[]> {
+    return this.http.get<Club[]>(this.URL, { responseType: 'json' });
   }
 
-  ajouterClub(clubAAjouter: Club): Club[] {
-    this.http
-      .post<Club>(this.URL, clubAAjouter, {
-        responseType: 'json',
-      })
-      .subscribe((clubCree) => {
-        this.listeClubs.push(clubCree);
-      });
-    return this.listeClubs;
+  public creerClub(clubACreer: Club): Observable<Club> {
+    return this.http.post<Club>(this.URL, clubACreer, {
+      responseType: 'json',
+    });
+  }
+
+  public modifierClub(clubAAjouter: Club): Observable<Club> {
+    return this.http.put<Club>(this.URL, clubAAjouter, {
+      responseType: 'json',
+    });
+  }
+
+  public supprimerClub(id: number): Observable<Object> {
+    return this.http.delete(this.URL + '/' + id);
   }
 }

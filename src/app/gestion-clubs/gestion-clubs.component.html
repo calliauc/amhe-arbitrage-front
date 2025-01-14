@@ -1,0 +1,28 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">Ville</th>
+        <th class="col">Nom court</th>
+        <th class="col">Nom complet</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (club of clubsListe$ | async; track $index; let estPair = $even) {
+    <app-club-ligne
+      (supprimerClub)="supprimerClub($event)"
+      (modifierClub)="modifierClub($event)"
+      [estPair]="estPair"
+      [club]="club"
+    ></app-club-ligne>
+    } @if (estModeCreation) {
+    <app-club-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerClub($event)"
+    ></app-club-editer>
+    }
+  </table>
+  @if (!estModeCreation) {
+  <div class="btn" id="ajouter-club" (click)="modeAjout()">Ajouter club</div>
+  }
+</main>

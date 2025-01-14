@@ -1,0 +1,15 @@
+@if (estModif) {
+<app-club-editer
+  [estPair]="estPair"
+  [club]="club"
+  (annulerEditionCreation)="modifClubAnnulee()"
+  (supprimerClub)="suppressionClub($event)"
+  (validerEdition)="modifClubTerminee($event)"
+></app-club-editer>
+} @else {
+<app-club-afficher
+  [estPair]="estPair"
+  [club]="club"
+  (editerClub)="lancerEdition()"
+></app-club-afficher>
+}

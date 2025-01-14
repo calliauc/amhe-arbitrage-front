@@ -49,7 +49,9 @@ export class CombattantEditerComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.clubsListe = this.clubsService.getClubs();
+    this.clubsService
+      .getClubs()
+      .subscribe((clubs) => (this.clubsListe = clubs));
     this.formEditerCombattant = this.formBuilder.group({
       id: this.combattant.id,
       prenom: this.combattant.prenom,

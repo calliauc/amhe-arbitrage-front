@@ -10,11 +10,9 @@ import { environment } from '../../../environments/environment';
 export class CombattantsService {
   env = environment;
   URL = `${this.env.baseUrl}/combattants`;
-  listeCombattants = [] as Combattant[];
   constructor(private http: HttpClient) {}
 
   public getCombattants(): Observable<Combattant[]> {
-    this.listeCombattants = [];
     return this.http.get<Combattant[]>(this.URL, { responseType: 'json' });
   }
 

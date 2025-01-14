@@ -1,0 +1,9 @@
+tr {
+  display: flex;
+  /* border: 1px solid green; */
+}
+
+.col-info {
+  width: 200px;
+  /* border: 1px solid red; */
+}

@@ -1,0 +1,56 @@
+<form
+  [formGroup]="formEditerClub"
+  (ngSubmit)="confirmer()"
+  (keydown.enter)="confirmer()"
+  (keydown.escape)="annuler()"
+>
+  <tr [ngClass]="{ lignePair: estPair }">
+    <td class="col">
+      <input type="text" formControlName="ville" placeholder="Ville" #focus />
+    </td>
+    <td class="col">
+      <input type="text" formControlName="nomCourt" placeholder="Nom court" />
+    </td>
+    <td class="col">
+      <input
+        type="text"
+        formControlName="nomComplet"
+        placeholder="Nom complet du club"
+      />
+    </td>
+    <td class="col">
+      <button class="btn btn-clubs btn-enregistrer-edition" type="submit">
+        Enregistrer
+      </button>
+      <button
+        type="button"
+        class="btn btn-clubs btn-annuler-edition"
+        (click)="annuler()"
+      >
+        Annuler
+      </button>
+      @if (club.id){
+      <button
+        type="button"
+        class="btn btn-clubs btn-suppression"
+        (click)="demanderSuppression()"
+      >
+        X</button
+      >}
+    </td>
+  </tr>
+  @if (ereurSaisie){
+  <div class="bandeau-erreur">
+    <div class="message-erreur">Certains champs sont vides</div>
+  </div>
+  }
+</form>
+@if (estModalVisible && club.id){
+<app-confirmation-modal
+  [id]="club.id"
+  [titre]="titreModal"
+  [texte]="texteModal"
+  (confirmer)="confirmerSuppression($event)"
+  (annuler)="annulerSuppression()"
+></app-confirmation-modal>
+}
