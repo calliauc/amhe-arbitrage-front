@@ -11,7 +11,7 @@ import { CoupsService } from '../../../shared/services/coups.service';
 })
 export class LigneCoupComponent {
   @Input() coup!: Coup;
-  @Output() suppressionCoup: EventEmitter<Coup> = new EventEmitter();
+  @Output() suppressionCoup: EventEmitter<number> = new EventEmitter();
 
   constructor(private coupsService: CoupsService) {}
 
@@ -20,6 +20,6 @@ export class LigneCoupComponent {
     return 'Pas de coup valable';
   }
   supprimerCoup() {
-    this.suppressionCoup.emit();
+    this.suppressionCoup.emit(this.coup.id);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoupLongswordComponent } from './coup-longsword/coup-longsword.component';
+import { CreationCoupComponent } from './creation-coup/creation-coup.component';
 import { HistoriqueCoupsComponent } from './historique-coups/historique-coups.component';
 import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-arbitrage',
   standalone: true,
   imports: [
-    CoupLongswordComponent,
+    CreationCoupComponent,
     SuiviMatchComponent,
     HistoriqueCoupsComponent,
     CommonModule,
@@ -28,18 +28,18 @@ export class ArbitrageComponent implements OnInit {
     private matchsService: MatchsService,
     private router: Router
   ) {
-    this.route.params.subscribe((params) => (this.matchId = params['id']));
-  }
-
-  ngOnInit(): void {
-    this.matchsService.getMatchById(this.matchId).subscribe((match) => {
-      if (match) {
-        this.match = match;
-        console.log(this.match);
-      } else {
-        alert('Match introuvable');
-        this.router.navigate(['matchs']);
-      }
+    this.route.params.subscribe((params) => {
+      this.matchsService.getMatchById(params['id']).subscribe((match) => {
+        if (match) {
+          this.match = match;
+        } else {
+          alert('Match introuvable');
+          this.router.navigate(['matchs']);
+        }
+      });
+      this.matchId = params['id'];
     });
   }
+
+  ngOnInit(): void {}
 }

@@ -18,7 +18,9 @@ export class MatchsService {
   }
 
   public getMatchById(id: number): Observable<Match> {
-    return this.http.get<Match>(`${this.URL}/${id}`);
+    return this.http.get<Match>(`${this.URL}/${id}`, {
+      responseType: 'json',
+    });
   }
 
   public creerMatch(matchACreer: NouveauMatch): Observable<Match> {
@@ -38,6 +40,6 @@ export class MatchsService {
   }
 
   public supprimerMatch(id: number): Observable<Object> {
-    return this.http.delete(this.URL + '/' + id);
+    return this.http.delete(`${this.URL}/${id}`);
   }
 }

@@ -5,7 +5,7 @@
       @for (coup of listeCoups; track $index) {
       <app-ligne-coup
         [coup]="coup"
-        (suppressionCoup)="suprimerCoup(coup)"
+        (suppressionCoup)="suprimerCoup($event)"
       ></app-ligne-coup
       >}
     </table>

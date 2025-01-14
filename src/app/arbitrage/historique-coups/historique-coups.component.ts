@@ -12,22 +12,22 @@ import { CoupsService } from '../../shared/services/coups.service';
 })
 export class HistoriqueCoupsComponent implements OnInit {
   listeCoups?: Coup[];
-  subscription: any;
 
   constructor(private coupsService: CoupsService) {}
 
   ngOnInit(): void {
-    this.listeCoups = this.coupsService.getListeCoups();
-    this.subscription = this.coupsService.ajoutCoup.subscribe(
-      (nouveauCoup: Coup) => this.ajoutCoup(nouveauCoup)
-    );
+    this.refreshList();
+    this.coupsService.notification$.subscribe((coup) => this.refreshList());
   }
 
-  ajoutCoup(nouveauCoup: Coup) {
-    this.listeCoups?.push(nouveauCoup);
+  refreshList() {
+    this.coupsService.getCoups().subscribe((coups) => {
+      this.listeCoups = coups;
+      console.log(coups);
+    });
   }
 
-  suprimerCoup(coupASupprimer: Coup) {
-    this.listeCoups = this.coupsService.suprimerCoup(coupASupprimer);
+  suprimerCoup(id: number) {
+    this.coupsService.supprimerCoup(id).subscribe((_) => this.refreshList());
   }
 }

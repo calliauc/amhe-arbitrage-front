@@ -1,6 +1,6 @@
 import { Combattant } from './combattant';
-import { PartieCorps } from './partie-corps';
-import { Vulnerant } from './vulnerants';
+import { Cible } from './cible';
+import { Vulnerant } from './vulnerant';
 
 export class Coup {
   id!: number;
@@ -10,5 +10,5 @@ export class Coup {
   attaquantCouleur!: string;
   defenseurCouleur!: string;
   vulnerant!: Vulnerant;
-  partieCorps?: PartieCorps;
+  cible?: Cible;
 }
