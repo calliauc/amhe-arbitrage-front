@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class MatchsService {
   env = environment;
-  URL = `${this.env.baseUrl}/combattants`;
+  URL = `${this.env.baseUrl}/matchs`;
   listeMatchs = [] as Match[];
   constructor(private http: HttpClient) {}
 

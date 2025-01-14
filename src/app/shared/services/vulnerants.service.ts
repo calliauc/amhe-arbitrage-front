@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class VulnerantsService {
   env = environment;
-  URL = `${this.env.baseUrl}/combattants`;
+  URL = `${this.env.baseUrl}/vulnerants`;
   constructor(private http: HttpClient) {}
 
   public getVulnerants(): Observable<Vulnerant[]> {

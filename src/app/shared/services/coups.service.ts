@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class CoupsService {
   env = environment;
-  URL = `${this.env.baseUrl}/combattants`;
+  URL = `${this.env.baseUrl}/coups`;
   notificationCoup = new Subject<boolean>();
   notification$ = this.notificationCoup.asObservable();
   constructor(private http: HttpClient) {}

@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class CiblesService {
   env = environment;
-  URL = `${this.env.baseUrl}/combattants`;
+  URL = `${this.env.baseUrl}/cibles`;
   constructor(private http: HttpClient) {}
 
   public getCibles(): Observable<Cible[]> {

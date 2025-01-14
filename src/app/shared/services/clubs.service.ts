@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ClubsService {
   env = environment;
-  URL = `${this.env.baseUrl}/combattants`;
+  URL = `${this.env.baseUrl}/clubs`;
   listeClubs = [] as Club[];
   constructor(private http: HttpClient) {}
 
