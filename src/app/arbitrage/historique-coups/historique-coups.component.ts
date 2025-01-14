@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LigneCoupComponent } from './ligne-histo-coup/ligne-coup.component';
 import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
@@ -11,6 +11,7 @@ import { CoupsService } from '../../shared/services/coups.service';
   styleUrl: './historique-coups.component.css',
 })
 export class HistoriqueCoupsComponent implements OnInit {
+  @Input() matchId!: number;
   listeCoups?: Coup[];
 
   constructor(private coupsService: CoupsService) {}
@@ -21,7 +22,7 @@ export class HistoriqueCoupsComponent implements OnInit {
   }
 
   refreshList() {
-    this.coupsService.getCoups().subscribe((coups) => {
+    this.coupsService.getCoupsByMatch(this.matchId).subscribe((coups) => {
       this.listeCoups = coups;
       console.log(coups);
     });

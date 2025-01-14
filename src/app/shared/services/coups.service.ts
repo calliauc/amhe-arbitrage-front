@@ -19,8 +19,10 @@ export class CoupsService {
     return this.http.get<Coup[]>(this.URL, { responseType: 'json' });
   }
 
-  public getCoupsBymatch(match_id: number): Observable<Coup[]> {
-    return this.http.get<Coup[]>(this.URL, { responseType: 'json' });
+  public getCoupsByMatch(match_id: number): Observable<Coup[]> {
+    return this.http.get<Coup[]>(`${this.URL}/match/${match_id}`, {
+      responseType: 'json',
+    });
   }
 
   public getCoupById(id: number): Observable<Coup> {
