@@ -1,17 +1,30 @@
 main {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   font-size: 1.3em;
 }
 
-a:hover {
-  cursor: pointer;
-  text-decoration: underline;
+button {
+  font-size: 1.2em;
+  margin-inline: 2%;
+  margin-block: 5px;
 }
 
-button {
-  font-size: 1.1em;
-  margin-inline: 10px;
-  margin-block: 5px;
+button:hover {
+  cursor: pointer;
+}
+
+.btn-gestion-match {
+  width: 46%;
+}
+
+.btn-creation-match {
+  width: 96%;
+}
+
+.match-wrapper {
+  border-radius: 30px;
+  background-color: rgb(32, 32, 32);
+  padding: 10px;
+  margin: 5px;
 }

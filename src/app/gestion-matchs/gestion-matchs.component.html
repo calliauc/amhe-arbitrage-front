@@ -1,21 +1,28 @@
 <main>
   <div>
     @for (match of matchs; track $index) {
-    <div>
-      Match {{ match.id }} =>
-      <a routerLink="/arbitrage/{{ match.id }}"
-        ><button>Arbitrer match</button></a
-      ><button (click)="demanderSuppression()">Supprimer match</button>
-    </div>
-    <div>
-      <span>{{ match.bleu | nomsDisplay }}</span>
-      <span> => </span>
-      <span>{{ match.bleu.club | clubDisplay }}</span>
-    </div>
-    <div>
-      <span>{{ match.rouge | nomsDisplay }}</span>
-      <span> => </span>
-      <span>{{ match.rouge.club | clubDisplay }}</span>
+    <div class="match-wrapper">
+      <div>Match {{ match.id }}</div>
+      <div>
+        <a routerLink="/arbitrage/{{ match.id }}"
+          ><button class="btn-gestion-match">Arbitrer match</button></a
+        ><button class="btn-gestion-match" (click)="demanderSuppression()">
+          Supprimer match
+        </button>
+      </div>
+      <div>
+        <span>BLEU : </span>
+        <span>{{ match.bleu | nomsDisplay }}</span>
+        <br />
+        <span>{{ match.bleu.club | clubDisplay }}</span>
+      </div>
+      <br />
+      <div>
+        <span>ROUGE : </span>
+        <span>{{ match.rouge | nomsDisplay }}</span
+        ><br />
+        <span>{{ match.rouge.club | clubDisplay }}</span>
+      </div>
     </div>
     <br /><br />
     @if (estModalVisible && match.id){
@@ -27,6 +34,8 @@
       (annuler)="annulerSuppression()"
     ></app-confirmation-modal>
     } }
-    <button class="btn" (click)="creerMatch()">Creer nouveau match</button>
+    <button class="btn-creation-match" (click)="creerMatch()">
+      Creer nouveau match
+    </button>
   </div>
 </main>
