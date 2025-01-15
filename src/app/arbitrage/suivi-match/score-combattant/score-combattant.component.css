@@ -27,3 +27,9 @@
   color: black;
   font-size: 4em;
 }
+
+@media screen and (max-width: 1099px) {
+  .score-wrapper {
+    width: 100%;
+  }
+}

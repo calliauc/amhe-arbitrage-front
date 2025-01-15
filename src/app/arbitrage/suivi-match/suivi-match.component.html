@@ -1,25 +1,30 @@
-<section id="score">
+<section id="section-suivi">
   <app-combattant
+    id="combattant-1"
     class="combattant"
     [combattant]="match.bleu"
     [couleur]="'bleu'"
   ></app-combattant>
   <app-score-combattant
+    id="score-1"
     [score]="match.scoreBleu"
     [couleur]="'bleu'"
     (scoreEvent)="updateScoreBleu($event)"
   ></app-score-combattant>
   <app-chrono
+    id="chrono"
     [match]="match"
     (timerTick)="timerTick($event)"
     (timerFin)="timerFin($event)"
   ></app-chrono>
   <app-score-combattant
+    id="score-2"
     [score]="match.scoreRouge"
     [couleur]="'rouge'"
     (scoreEvent)="updateScoreRouge($event)"
   ></app-score-combattant>
   <app-combattant
+    id="combattant-2"
     class="combattant"
     [combattant]="match.rouge"
     [couleur]="'rouge'"

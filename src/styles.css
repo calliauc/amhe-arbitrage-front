@@ -33,3 +33,14 @@ a:visited {
 .btn {
   user-select: none;
 }
+
+@media screen and (max-width: 1099px) {
+  body {
+    width: 90%;
+    margin-inline: 5%;
+  }
+  main {
+    border-radius: 30px;
+    padding: 2px;
+  }
+}

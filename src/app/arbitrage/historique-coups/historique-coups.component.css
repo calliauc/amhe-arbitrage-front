@@ -16,3 +16,14 @@
   width: 80%;
   overflow-block: scroll;
 }
+
+@media screen and (max-width: 1099px) {
+  #historique {
+    width: 100%;
+  }
+  #liste-coups {
+    max-height: 300px;
+    width: 100%;
+    overflow-block: scroll;
+  }
+}

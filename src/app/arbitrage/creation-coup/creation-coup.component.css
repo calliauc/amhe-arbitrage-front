@@ -98,3 +98,9 @@ input:checked + label {
 #dernier-coup::first-letter {
   text-transform: capitalize;
 }
+
+@media screen and (max-width: 1099px) {
+  #coup {
+    width: 100%;
+  }
+}

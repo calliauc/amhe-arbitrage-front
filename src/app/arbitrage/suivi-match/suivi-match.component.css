@@ -4,7 +4,7 @@
   margin: auto;
 }
 
-#score {
+#section-suivi {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -14,4 +14,40 @@
 
 #score > h2 {
   text-align: center;
+}
+
+@media screen and (max-width: 1099px) {
+  #section-suivi {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+  }
+
+  #combattant-1 {
+    width: 45%;
+    order: 1;
+  }
+  #combattant-2 {
+    width: 45%;
+    order: 2;
+  }
+  #score-1 {
+    width: 45%;
+    order: 3;
+    margin-inline: auto;
+    margin-block: 10px;
+  }
+  #score-2 {
+    width: 45%;
+    order: 4;
+    margin-inline: auto;
+    margin-block: 10px;
+  }
+
+  #chrono {
+    width: 100%;
+    order: 5;
+  }
 }
