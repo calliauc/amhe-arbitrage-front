@@ -5,6 +5,7 @@ import { VulnerantsService } from '../../shared/services/vulnerants.service';
 import { Vulnerant } from '../../shared/models/vulnerant';
 import { VulnerantLigneComponent } from './vulnerant-ligne/vulnerant-ligne.component';
 import { VulnerantEditerComponent } from './vulnerant-editer/vulnerant-editer.component';
+import { GestionRulesetsComponent } from '../gestion-rulesets/gestion-rulesets.component';
 
 @Component({
   selector: 'app-gestion-vulnerants',
