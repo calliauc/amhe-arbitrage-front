@@ -1,0 +1,56 @@
+tr {
+  display: flex;
+  height: 25px;
+  padding-bottom: 2px;
+  /* border: 1px solid green; */
+}
+
+.lignePair {
+  background-color: rgb(52, 52, 52);
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  padding-left: 1%;
+  /* border: 1px solid red; */
+}
+
+.col-club {
+  justify-content: left;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  scrollbar-width: 1px;
+  scrollbar-color: red;
+}
+
+.btn-rulesets {
+  width: 44%;
+  text-align: center;
+  align-content: center;
+  height: 22px;
+  padding-inline: 10px;
+  margin-inline: 5px;
+  border-radius: 50px;
+  border: 1px solid black;
+  font-size: 0.9em;
+}
+
+.btn-rulesets:hover {
+  cursor: pointer;
+  border: none;
+  padding-inline: 9px;
+}
+
+.btn-afficher-details {
+  background-color: #2fcc71;
+}
+
+.btn-editer-ruleset {
+  background-color: rgb(129, 129, 0);
+}

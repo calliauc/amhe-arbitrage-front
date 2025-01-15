@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -17,7 +18,7 @@ import { Match } from '../../../shared/models/match';
   templateUrl: './chrono.component.html',
   styleUrl: './chrono.component.css',
 })
-export class ChronoComponent {
+export class ChronoComponent implements AfterViewInit {
   @Input() match!: Match;
   @Output() timerTick: EventEmitter<TimerStatus> = new EventEmitter();
   @Output() timerFin: EventEmitter<number> = new EventEmitter();
@@ -27,6 +28,10 @@ export class ChronoComponent {
   estEnPause: boolean = false;
   estFini: boolean = false;
   tickActuel: number = 0;
+
+  ngAfterViewInit(): void {
+    this.chrono.stop();
+  }
 
   controlTimer() {
     if (this.estDemarre) {

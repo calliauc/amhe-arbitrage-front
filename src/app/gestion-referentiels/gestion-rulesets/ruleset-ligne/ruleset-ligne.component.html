@@ -1,0 +1,15 @@
+@if (estModif) {
+<app-ruleset-editer
+  [estPair]="estPair"
+  [ruleset]="ruleset"
+  (annulerEditionCreation)="modifRulesetAnnulee()"
+  (supprimerRuleset)="suppressionRuleset($event)"
+  (validerEdition)="modifRulesetTerminee($event)"
+></app-ruleset-editer>
+} @else {
+<app-ruleset-afficher
+  [estPair]="estPair"
+  [ruleset]="ruleset"
+  (editerRuleset)="lancerEdition()"
+></app-ruleset-afficher>
+}

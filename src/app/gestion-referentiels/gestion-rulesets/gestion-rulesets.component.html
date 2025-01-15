@@ -1,0 +1,32 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">Nom</th>
+        <th class="col">Description</th>
+        <th class="col">TimerStart</th>
+        <th class="col">Cibles</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (ruleset of rulesetsListe$ | async; track $index; let estPair = $even)
+    {
+    <app-ruleset-ligne
+      (supprimerRuleset)="supprimerRuleset($event)"
+      (modifierRuleset)="modifierRuleset($event)"
+      [estPair]="estPair"
+      [ruleset]="ruleset"
+    ></app-ruleset-ligne>
+    } @if (estModeCreation) {
+    <app-ruleset-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerRuleset($event)"
+    ></app-ruleset-editer>
+    }
+  </table>
+  @if (!estModeCreation) {
+  <div class="btn" id="ajouter-ruleset" (click)="modeAjout()">
+    Ajouter ruleset
+  </div>
+  }
+</main>

@@ -1,0 +1,63 @@
+<form
+  [formGroup]="formEditerRuleset"
+  (ngSubmit)="confirmer()"
+  (keypress.enter)="confirmer()"
+  (keypress.escape)="annuler()"
+>
+  <tr [ngClass]="{ lignePair: estPair }">
+    <td class="col">
+      <input type="text" formControlName="nom" placeholder="Prénom" #focus />
+    </td>
+    <td class="col">
+      <input type="text" formControlName="description" placeholder="Nom" />
+    </td>
+    <td class="col">
+      <input
+        type="text"
+        formControlName="timerStart"
+        placeholder="Début du chrono"
+      />
+    </td>
+    <td class="col">
+      <select name="club" formControlName="club">
+        @for (cible of ciblesListe; track $index){
+        <option [ngValue]="cible">{{ cible.code }}</option>
+        }
+      </select>
+    </td>
+    <td class="col">
+      <button class="btn btn-rulesets btn-enregistrer-edition" type="submit">
+        Enregistrer
+      </button>
+      <button
+        type="button"
+        class="btn btn-rulesets btn-annuler-edition"
+        (click)="annuler()"
+      >
+        Annuler
+      </button>
+      @if (ruleset.id){
+      <button
+        type="button"
+        class="btn btn-rulesets btn-suppression"
+        (click)="demanderSuppression()"
+      >
+        X</button
+      >}
+    </td>
+  </tr>
+  @if (ereurSaisie){
+  <div class="bandeau-erreur">
+    <div class="message-erreur">Certains champs sont vides</div>
+  </div>
+  }
+</form>
+@if (estModalVisible && ruleset.id){
+<app-confirmation-modal
+  [id]="ruleset.id"
+  [titre]="titreModal"
+  [texte]="texteModal"
+  (confirmer)="confirmerSuppression($event)"
+  (annuler)="annulerSuppression()"
+></app-confirmation-modal>
+}
