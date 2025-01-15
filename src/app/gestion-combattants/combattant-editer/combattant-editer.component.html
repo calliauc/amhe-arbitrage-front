@@ -1,8 +1,8 @@
 <form
   [formGroup]="formEditerCombattant"
   (ngSubmit)="confirmer()"
-  (keydown.enter)="confirmer()"
-  (keydown.escape)="annuler()"
+  (keypress.enter)="confirmer()"
+  (keypress.escape)="annuler()"
 >
   <tr [ngClass]="{ lignePair: estPair }">
     <td class="col">

@@ -32,7 +32,6 @@ export class CoupsService {
   }
 
   public creerCoup(coupACreer: NouveauCoup): Observable<Coup> {
-    console.log('creation', coupACreer);
     return this.http.post<Coup>(this.URL, coupACreer, {
       responseType: 'json',
     });

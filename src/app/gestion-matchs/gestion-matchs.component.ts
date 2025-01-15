@@ -28,7 +28,6 @@ export class GestionMatchsComponent implements OnInit {
   refreshList() {
     this.matchsService.getMatchs().subscribe((matchs) => {
       this.matchs = matchs;
-      console.log(this.matchs);
     });
   }
 

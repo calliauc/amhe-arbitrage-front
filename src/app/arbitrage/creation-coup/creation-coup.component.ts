@@ -49,9 +49,7 @@ export class CreationCoupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formSaisirCoup.value);
     this.validererCoupLongsword();
-    console.log(this.nouveauCoup);
     this.enregistrerCoup(this.nouveauCoup);
     this.formSaisirCoup.reset();
     this.nouveauCoup = new NouveauCoup();
@@ -90,7 +88,6 @@ export class CreationCoupComponent implements OnInit {
     } as Coup;
     this.coupsService.creerCoup(coup).subscribe((coup) => {
       this.coupsService.notificationCoup.next(true);
-      console.log(coup);
     });
   }
 }

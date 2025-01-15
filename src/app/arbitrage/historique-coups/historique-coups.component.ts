@@ -24,7 +24,6 @@ export class HistoriqueCoupsComponent implements OnInit {
   refreshList() {
     this.coupsService.getCoupsByMatch(this.matchId).subscribe((coups) => {
       this.listeCoups = coups;
-      console.log(coups);
     });
   }
 
