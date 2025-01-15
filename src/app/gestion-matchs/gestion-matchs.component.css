@@ -13,4 +13,5 @@ a:hover {
 button {
   font-size: 1.1em;
   margin-inline: 10px;
+  margin-block: 5px;
 }
