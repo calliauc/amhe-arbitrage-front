@@ -68,6 +68,16 @@ label {
   font-size: 1.2em;
 }
 
+#bleu {
+  /* color: rgb(68, 143, 255); */
+  border: 2px solid rgb(68, 143, 255);
+}
+
+#rouge {
+  /* color: rgb(252, 102, 102); */
+  border: 2px solid rgb(252, 102, 102);
+}
+
 input:checked + label {
   background-color: rgb(47, 204, 113);
   color: black;

@@ -1,21 +1,19 @@
 <tr [ngClass]="{ lignePair: estPair }">
   <td class="col">{{ ruleset.nom }}</td>
   <td class="col">{{ ruleset.description }}</td>
-  <td class="col">{{ ruleset.timerStart }}</td>
+  <td class="col">{{ ruleset.timerLimite | timer }}</td>
+  <td class="col">{{ ruleset.timerReverse | timerReverse }}</td>
   <td class="col">
-    @for (cible of ruleset.cibles; track $index) {
-    <span>{{ cible }},</span>
-    }
+    <span> {{ ruleset.vulnerants | rulesetRefDisplay }}</span>
+  </td>
+  <td class="col">
+    <span> {{ ruleset.cibles | rulesetRefDisplay }}</span>
   </td>
   <td class="col">
     <button class="btn btn-rulesets btn-afficher-details" disabled>
       Détails
     </button>
-    <button
-      class="btn btn-rulesets btn-editer-ruleset"
-      disabled
-      (click)="editer()"
-    >
+    <button class="btn btn-rulesets btn-editer-ruleset" (click)="editer()">
       Editer
     </button>
   </td>

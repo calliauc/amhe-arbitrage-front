@@ -58,3 +58,9 @@
   border: 3px solid rgb(255, 0, 0);
   font-size: 1.2em;
 }
+
+@media screen and (max-width: 1099px) {
+  #fin-du-match {
+    margin-top: 10px;
+  }
+}

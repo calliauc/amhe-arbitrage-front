@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Ruleset } from '../../../shared/models/ruleset';
+import { TimerReversePipe } from '../../../shared/pipes/timerReverse.pipe';
+import { TimerPipe } from '../../../shared/pipes/timer.pipe';
+import { RulsetRefPipe } from '../../../shared/pipes/ruleset-refs.pipe';
 
 @Component({
   selector: 'app-ruleset-afficher',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, TimerReversePipe, TimerPipe, RulsetRefPipe],
   templateUrl: './ruleset-afficher.component.html',
   styleUrl: './ruleset-afficher.component.css',
 })

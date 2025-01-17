@@ -31,7 +31,7 @@ export class MatchsService {
     });
   }
 
-  public modifierMatch(id: number, matchAModifier: Match): Observable<Match> {
+  public modifierMatch(matchAModifier: Match): Observable<Match> {
     return this.http.put<Match>(
       `${this.URL}/${matchAModifier.id}`,
       matchAModifier,

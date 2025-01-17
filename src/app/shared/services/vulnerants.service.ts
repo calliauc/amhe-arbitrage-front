@@ -29,11 +29,15 @@ export class VulnerantsService {
   }
 
   public modifierVulnerant(
-    vulnerantAAjouter: Vulnerant
+    vulnerantAModifier: Vulnerant
   ): Observable<Vulnerant> {
-    return this.http.put<Vulnerant>(this.URL, vulnerantAAjouter, {
-      responseType: 'json',
-    });
+    return this.http.put<Vulnerant>(
+      `${this.URL}/${vulnerantAModifier.id}`,
+      vulnerantAModifier,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   public supprimerVulnerant(id: number): Observable<Object> {

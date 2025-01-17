@@ -22,28 +22,28 @@ export class SuiviMatchComponent {
   updateScoreBleu(scoreBleu: number) {
     this.match.scoreBleu = scoreBleu;
     this.matchsService
-      .modifierMatch(this.match.id, this.match)
+      .modifierMatch(this.match)
       .subscribe((match) => (this.match = match));
   }
 
   updateScoreRouge(scoreRouge: number) {
     this.match.scoreRouge = scoreRouge;
     this.matchsService
-      .modifierMatch(this.match.id, this.match)
+      .modifierMatch(this.match)
       .subscribe((match) => (this.match = match));
   }
 
   timerTick(timerEvent: TimerStatus) {
     this.match.timerStart = timerEvent.tick_count;
     this.matchsService
-      .modifierMatch(this.match.id, this.match)
+      .modifierMatch(this.match)
       .subscribe((match) => (this.match = match));
   }
 
   timerFin(tick_count: number) {
     this.match.timerStart = tick_count;
     this.matchsService
-      .modifierMatch(this.match.id, this.match)
+      .modifierMatch(this.match)
       .subscribe((match) => (this.match = match));
   }
 }

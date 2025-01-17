@@ -23,10 +23,14 @@ export class ClubsService {
     });
   }
 
-  public modifierClub(clubAAjouter: Club): Observable<Club> {
-    return this.http.put<Club>(this.URL, clubAAjouter, {
-      responseType: 'json',
-    });
+  public modifierClub(clubAModifier: Club): Observable<Club> {
+    return this.http.put<Club>(
+      `${this.URL}/${clubAModifier.id}`,
+      clubAModifier,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   public supprimerClub(id: number): Observable<Object> {

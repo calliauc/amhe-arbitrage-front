@@ -28,10 +28,14 @@ export class CiblesService {
     });
   }
 
-  public modifierCible(cibleAAjouter: Cible): Observable<Cible> {
-    return this.http.put<Cible>(this.URL, cibleAAjouter, {
-      responseType: 'json',
-    });
+  public modifierCible(cibleAModifier: Cible): Observable<Cible> {
+    return this.http.put<Cible>(
+      `${this.URL}/${cibleAModifier.id}`,
+      cibleAModifier,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   public supprimerCible(id: number): Observable<Object> {

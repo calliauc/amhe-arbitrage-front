@@ -9,12 +9,19 @@ import {
   ViewChild,
   viewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/confirmation-modal/confirmation-modal.component';
 import { Ruleset } from '../../../shared/models/ruleset';
 import { RulesetsService } from '../../../shared/services/rulesets.service';
-import { Cible } from '../../../shared/models/cible';
+import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { VulnerantsService } from '../../../shared/services/vulnerants.service';
 import { CiblesService } from '../../../shared/services/cibles.service';
 
 @Component({
@@ -33,9 +40,10 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
   @Output() validerCreation: EventEmitter<Ruleset> = new EventEmitter();
   @ViewChild('focus') focusForm!: ElementRef;
 
-  ciblesListe!: Cible[];
   ereurSaisie: boolean;
   estModalVisible: boolean = false;
+  estListeVulnerantsVisible: boolean = false;
+  estListeCiblesVisible: boolean = false;
   titreModal: string = 'Confirmer la suppression ?';
   texteModal: string = 'Cette action est définitive';
   formEditerRuleset!: FormGroup;
@@ -43,26 +51,85 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
   constructor(
     private formBuilder: FormBuilder,
     private rulesetsService: RulesetsService,
+    private vulnerantsService: VulnerantsService,
     private ciblesService: CiblesService
   ) {
     this.ereurSaisie = false;
   }
 
   ngOnInit(): void {
-    this.ciblesService
-      .getCibles()
-      .subscribe((cibles) => (this.ciblesListe = cibles));
-    this.formEditerRuleset = this.formBuilder.group({
-      id: this.ruleset.id,
-      nom: this.ruleset.nom,
-      description: this.ruleset.description,
-      timerStart: this.ruleset.timerStart,
-      cibles: this.ciblesListe,
-    });
+    this.initForm();
   }
 
   ngAfterViewInit(): void {
     this.focusForm.nativeElement.focus();
+  }
+
+  initForm() {
+    this.formEditerRuleset = this.formBuilder.group({
+      id: this.ruleset.id,
+      nom: this.ruleset.nom,
+      description: this.ruleset.description,
+      timerLimite: this.ruleset.timerLimite,
+      timerReverse: this.ruleset.timerReverse,
+      vulnerants: new FormArray([]),
+      cibles: new FormArray([]),
+    });
+    this.initVulnerantsForm();
+    this.initCiblesForm();
+  }
+
+  initVulnerantsForm() {
+    if (!this.ruleset.id) {
+      this.vulnerantsService.getVulnerants().subscribe((vs) => {
+        vs.forEach((v) => {
+          let ref = {
+            id: v.id,
+            code: v.code,
+            libelle: v.libelle,
+            checked: false,
+          } as RulesetRef;
+          this.ruleset.vulnerants?.push(ref);
+        });
+      });
+      //TODO récupérer liste vierge des vulnerants
+    }
+    const formVulnerants = this.formEditerRuleset.get(
+      'vulnerants'
+    ) as FormArray;
+    this.ruleset?.vulnerants?.forEach((vulnerant) => {
+      formVulnerants.push(
+        new FormGroup({
+          id: new FormControl(vulnerant.id),
+          name: new FormControl(vulnerant.code),
+          checked: new FormControl(vulnerant.checked),
+        })
+      );
+    });
+  }
+
+  initCiblesForm() {
+    if (!this.ruleset.id) {
+      //TODO récupérer liste vierge des cibles
+    }
+    const formCibles = this.formEditerRuleset.get('cibles') as FormArray;
+    this.ruleset?.cibles?.forEach((cible) => {
+      formCibles.push(
+        new FormGroup({
+          id: new FormControl(cible.id),
+          name: new FormControl(cible.code),
+          checked: new FormControl(cible.checked),
+        })
+      );
+    });
+  }
+
+  showVulnerants() {
+    this.estListeVulnerantsVisible = !this.estListeVulnerantsVisible;
+  }
+
+  showCibles() {
+    this.estListeCiblesVisible = !this.estListeCiblesVisible;
   }
 
   annuler(): void {
@@ -83,8 +150,15 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
   }
 
   confirmer(): void {
+    // TODO vérifier checked
+    console.log(this.formEditerRuleset.value);
     this.ereurSaisie = false;
     this.ruleset = this.formEditerRuleset.value;
+    // this.ruleset.timerLimite = this.convertirTemps(
+    //   this.formEditerRuleset.value.timerLimite
+    // );
+    console.log(this.ruleset);
+
     if (this.verifierRuleset(this.ruleset)) {
       this.enregistrer();
     } else {
@@ -109,7 +183,17 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // convertirTemps(temps: string): number {
+  //   if (temps) {
+  //     let valuesTemps: string[] = temps.split(':');
+  //     let minutes = Number(valuesTemps[0]);
+  //     let secondes = Number(valuesTemps[1]);
+  //     return minutes * 60 + secondes;
+  //   }
+  //   return 0;
+  // }
+
   verifierRuleset(ruleset: Ruleset): boolean {
-    return !!ruleset.nom && !!ruleset.nom && !!ruleset.description;
+    return true || ruleset.nom;
   }
 }

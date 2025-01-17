@@ -1,15 +1,14 @@
 <section id="coup">
-  <h2>Coup porté : Longsword</h2>
   <form [formGroup]="formSaisirCoup" (ngSubmit)="onSubmit()" id="form-coup">
     <div class="section-form">Qui frappe ?</div>
     <div id="attaquant-selector">
       <div class="button-form">
         <input type="radio" formControlName="attaquant" value="bleu" />
-        <label> {{ match.bleu | nomsDisplay }}</label>
+        <label id="bleu"> {{ match.bleu | nomsDisplay }}</label>
       </div>
       <div class="button-form">
         <input type="radio" formControlName="attaquant" value="rouge" />
-        <label> {{ match.rouge | nomsDisplay }}</label>
+        <label id="rouge"> {{ match.rouge | nomsDisplay }}</label>
       </div>
     </div>
     <div class="section-form">Quel vulnérant ?</div>

@@ -1,10 +1,11 @@
+import { RulesetRef } from './ruleset-ref';
+
 export class Ruleset {
   id?: number;
   nom?: string;
   description?: string;
-  timerStart?: number;
-  timerEnd?: number;
+  timerLimite?: number;
   timerReverse?: boolean;
-  vulnerants?: number[];
-  cibles?: number[];
+  vulnerants?: RulesetRef[];
+  cibles?: RulesetRef[];
 }

@@ -6,25 +6,71 @@
 >
   <tr [ngClass]="{ lignePair: estPair }">
     <td class="col">
-      <input type="text" formControlName="nom" placeholder="Prénom" #focus />
-    </td>
-    <td class="col">
-      <input type="text" formControlName="description" placeholder="Nom" />
-    </td>
-    <td class="col">
       <input
+        class="input-txt"
         type="text"
-        formControlName="timerStart"
-        placeholder="Début du chrono"
+        formControlName="nom"
+        placeholder="Nom"
+        #focus
       />
     </td>
     <td class="col">
-      <select name="club" formControlName="club">
-        @for (cible of ciblesListe; track $index){
-        <option [ngValue]="cible">{{ cible.code }}</option>
-        }
-      </select>
+      <input
+        class="input-txt"
+        type="text"
+        formControlName="description"
+        placeholder="Description"
+      />
     </td>
+    <td class="col">
+      <input
+        class="input-txt"
+        type="text"
+        formControlName="timerLimite"
+        placeholder="300"
+      />
+    </td>
+    <td class="col">
+      <input type="radio" formControlName="timerReverse" value="false" />
+      <label>⏫</label>
+      <input type="radio" formControlName="timerReverse" value="true" />
+      <label>⏬</label>
+    </td>
+    <td class="col">
+      @if (ruleset.id) { @if (estListeVulnerantsVisible) {
+      <div class="btn-masquer-refs" (click)="showVulnerants()">OK</div>
+      <div name="vulnerants" formArrayName="vulnerants" class="list-ref">
+        @for (vulnerant of ruleset.vulnerants; track $index){
+        <div [formGroupName]="$index">
+          <span>
+            <input type="checkbox" formControlName="checked" />
+          </span>
+          <span>{{ vulnerant.code }}</span>
+        </div>
+        }
+      </div>
+      } @else{
+      <div class="btn-afficher-refs" (click)="showVulnerants()">Dérouler</div>
+      }} @else { <span>(Edition requise)</span> }
+    </td>
+    <td class="col">
+      @if (ruleset.id) { @if (estListeCiblesVisible) {
+      <div class="btn-masquer-refs" (click)="showCibles()">OK</div>
+      <div name="cibles" formArrayName="cibles" class="list-ref">
+        @for (cible of ruleset.cibles; track $index){
+        <div [formGroupName]="$index">
+          <span>
+            <input type="checkbox" formControlName="checked" />
+          </span>
+          <span>{{ cible.code }}</span>
+        </div>
+        }
+      </div>
+      } @else {
+      <div class="btn-afficher-refs" (click)="showCibles()">Dérouler</div>
+      }} @else { <span>(Edition requise)</span> }
+    </td>
+
     <td class="col">
       <button class="btn btn-rulesets btn-enregistrer-edition" type="submit">
         Enregistrer

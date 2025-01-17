@@ -23,10 +23,14 @@ export class RulesetsService {
     });
   }
 
-  public modifierRuleset(rulesetAAjouter: Ruleset): Observable<Ruleset> {
-    return this.http.put<Ruleset>(this.URL, rulesetAAjouter, {
-      responseType: 'json',
-    });
+  public modifierRuleset(rulesetAModifier: Ruleset): Observable<Ruleset> {
+    return this.http.put<Ruleset>(
+      `${this.URL}/${rulesetAModifier.id}`,
+      rulesetAModifier,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   public supprimerRuleset(id: number): Observable<Object> {

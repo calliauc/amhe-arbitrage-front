@@ -23,11 +23,15 @@ export class CombattantsService {
   }
 
   public modifierCombattant(
-    combattantAAjouter: Combattant
+    combattantAModifier: Combattant
   ): Observable<Combattant> {
-    return this.http.put<Combattant>(this.URL, combattantAAjouter, {
-      responseType: 'json',
-    });
+    return this.http.put<Combattant>(
+      `${this.URL}/${combattantAModifier.id}`,
+      combattantAModifier,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   public supprimerCombattant(id: number): Observable<Object> {
