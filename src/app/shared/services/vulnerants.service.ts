@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Vulnerant } from '../models/vulnerant';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { RulesetRef } from '../models/ruleset-ref';
 
 @Injectable({
   providedIn: 'root',
@@ -12,26 +12,26 @@ export class VulnerantsService {
   URL = `${this.env.baseUrl}/vulnerants`;
   constructor(private http: HttpClient) {}
 
-  public getVulnerants(): Observable<Vulnerant[]> {
-    return this.http.get<Vulnerant[]>(this.URL, { responseType: 'json' });
+  public getVulnerants(): Observable<RulesetRef[]> {
+    return this.http.get<RulesetRef[]>(this.URL, { responseType: 'json' });
   }
 
-  ajouterVulnerant(vulnerantAAjouter: Vulnerant): Observable<Vulnerant> {
-    return this.http.post<Vulnerant>(this.URL, vulnerantAAjouter, {
+  ajouterVulnerant(vulnerantAAjouter: RulesetRef): Observable<RulesetRef> {
+    return this.http.post<RulesetRef>(this.URL, vulnerantAAjouter, {
       responseType: 'json',
     });
   }
 
-  public creerVulnerant(vulnerantACreer: Vulnerant): Observable<Vulnerant> {
-    return this.http.post<Vulnerant>(this.URL, vulnerantACreer, {
+  public creerVulnerant(vulnerantACreer: RulesetRef): Observable<RulesetRef> {
+    return this.http.post<RulesetRef>(this.URL, vulnerantACreer, {
       responseType: 'json',
     });
   }
 
   public modifierVulnerant(
-    vulnerantAModifier: Vulnerant
-  ): Observable<Vulnerant> {
-    return this.http.put<Vulnerant>(
+    vulnerantAModifier: RulesetRef
+  ): Observable<RulesetRef> {
+    return this.http.put<RulesetRef>(
       `${this.URL}/${vulnerantAModifier.id}`,
       vulnerantAModifier,
       {

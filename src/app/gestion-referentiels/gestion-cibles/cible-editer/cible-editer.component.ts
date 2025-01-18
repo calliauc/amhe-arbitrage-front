@@ -11,8 +11,8 @@ import {
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/confirmation-modal/confirmation-modal.component';
-import { Cible } from '../../../shared/models/cible';
 import { CiblesService } from '../../../shared/services/cibles.service';
+import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-cible-editer',
@@ -22,15 +22,15 @@ import { CiblesService } from '../../../shared/services/cibles.service';
   styleUrl: './cible-editer.component.css',
 })
 export class CibleEditerComponent implements OnInit, AfterViewInit {
-  @Input() cible: Cible = new Cible();
+  @Input() cible: RulesetRef = new RulesetRef();
   @Input() estPair!: boolean;
   @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
   @Output() supprimerCible: EventEmitter<number> = new EventEmitter();
-  @Output() validerEdition: EventEmitter<Cible> = new EventEmitter();
-  @Output() validerCreation: EventEmitter<Cible> = new EventEmitter();
+  @Output() validerEdition: EventEmitter<RulesetRef> = new EventEmitter();
+  @Output() validerCreation: EventEmitter<RulesetRef> = new EventEmitter();
   @ViewChild('focus') focusForm!: ElementRef;
 
-  ciblesListe!: Cible[];
+  ciblesListe!: RulesetRef[];
   ereurSaisie: boolean;
   estModalVisible: boolean = false;
   titreModal: string = 'Confirmer la suppression ?';
@@ -98,7 +98,7 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
     }
   }
 
-  verifierCible(cible: Cible): boolean {
+  verifierCible(cible: RulesetRef): boolean {
     return !!cible.code && !!cible.libelle;
   }
 }

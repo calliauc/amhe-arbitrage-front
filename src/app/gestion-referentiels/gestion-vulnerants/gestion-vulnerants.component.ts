@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { VulnerantsService } from '../../shared/services/vulnerants.service';
-import { Vulnerant } from '../../shared/models/vulnerant';
 import { VulnerantLigneComponent } from './vulnerant-ligne/vulnerant-ligne.component';
 import { VulnerantEditerComponent } from './vulnerant-editer/vulnerant-editer.component';
-import { GestionRulesetsComponent } from '../gestion-rulesets/gestion-rulesets.component';
+import { RulesetRef } from '../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-gestion-vulnerants',
@@ -15,13 +14,13 @@ import { GestionRulesetsComponent } from '../gestion-rulesets/gestion-rulesets.c
   styleUrl: './gestion-vulnerants.component.css',
 })
 export class GestionVulnerantsComponent implements OnInit {
-  vulnerantsListe?: Vulnerant[];
-  vulnerantsListe$?: Observable<Vulnerant[]>;
+  vulnerantsListe?: RulesetRef[];
+  vulnerantsListe$?: Observable<RulesetRef[]>;
   estModeCreation: boolean;
-  nouveauVulnerant: Vulnerant;
+  nouveauVulnerant: RulesetRef;
   constructor(private vulnerantsService: VulnerantsService) {
     this.estModeCreation = false;
-    this.nouveauVulnerant = new Vulnerant();
+    this.nouveauVulnerant = new RulesetRef();
   }
 
   ngOnInit(): void {
@@ -40,13 +39,13 @@ export class GestionVulnerantsComponent implements OnInit {
     this.vulnerantsListe$ = this.vulnerantsService.getVulnerants();
   }
 
-  creerVulnerant(vulnerantCree: Vulnerant) {
+  creerVulnerant(vulnerantCree: RulesetRef) {
     this.vulnerantsListe$ = this.vulnerantsListe$?.pipe(
       tap((liste) => (this.estModeCreation = false))
     );
   }
 
-  modifierVulnerant(vulnerantModifie: Vulnerant) {
+  modifierVulnerant(vulnerantModifie: RulesetRef) {
     this.vulnerantsListe$ = this.vulnerantsService
       .modifierVulnerant(vulnerantModifie)
       .pipe(switchMap((_) => this.vulnerantsService.getVulnerants()));

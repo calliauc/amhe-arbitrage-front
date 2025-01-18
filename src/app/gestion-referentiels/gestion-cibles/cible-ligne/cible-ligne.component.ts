@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CibleAfficherComponent } from '../cible-afficher/cible-afficher.component';
 import { CibleEditerComponent } from '../cible-editer/cible-editer.component';
-import { Cible } from '../../../shared/models/cible';
+import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-cible-ligne',
@@ -11,10 +11,10 @@ import { Cible } from '../../../shared/models/cible';
   styleUrl: './cible-ligne.component.css',
 })
 export class CibleLigneComponent {
-  @Input() cible!: Cible;
+  @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
   @Output() supprimerCible: EventEmitter<number> = new EventEmitter();
-  @Output() modifierCible: EventEmitter<Cible> = new EventEmitter();
+  @Output() modifierCible: EventEmitter<RulesetRef> = new EventEmitter();
   estModif: boolean;
 
   constructor() {
@@ -34,7 +34,7 @@ export class CibleLigneComponent {
     this.supprimerCible.emit(id);
   }
 
-  modifCibleTerminee(cibleModifie: Cible) {
+  modifCibleTerminee(cibleModifie: RulesetRef) {
     this.modifierCible.emit(cibleModifie);
     this.estModif = false;
   }

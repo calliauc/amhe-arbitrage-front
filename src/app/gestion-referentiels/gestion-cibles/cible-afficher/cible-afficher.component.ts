@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Cible } from '../../../shared/models/cible';
+import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-cible-afficher',
@@ -10,7 +10,7 @@ import { Cible } from '../../../shared/models/cible';
   styleUrl: './cible-afficher.component.css',
 })
 export class CibleAfficherComponent implements OnInit {
-  @Input() cible!: Cible;
+  @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
   @Output() editerCible: EventEmitter<boolean> = new EventEmitter();
 

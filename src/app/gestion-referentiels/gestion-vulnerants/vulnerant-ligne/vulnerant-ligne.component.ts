@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { VulnerantAfficherComponent } from '../vulnerant-afficher/vulnerant-afficher.component';
 import { VulnerantEditerComponent } from '../vulnerant-editer/vulnerant-editer.component';
-import { Vulnerant } from '../../../shared/models/vulnerant';
+import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-vulnerant-ligne',
@@ -11,10 +11,10 @@ import { Vulnerant } from '../../../shared/models/vulnerant';
   styleUrl: './vulnerant-ligne.component.css',
 })
 export class VulnerantLigneComponent {
-  @Input() vulnerant!: Vulnerant;
+  @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
   @Output() supprimerVulnerant: EventEmitter<number> = new EventEmitter();
-  @Output() modifierVulnerant: EventEmitter<Vulnerant> = new EventEmitter();
+  @Output() modifierVulnerant: EventEmitter<RulesetRef> = new EventEmitter();
   estModif: boolean;
 
   constructor() {
@@ -34,7 +34,7 @@ export class VulnerantLigneComponent {
     this.supprimerVulnerant.emit(id);
   }
 
-  modifVulnerantTerminee(vulnerantModifie: Vulnerant) {
+  modifVulnerantTerminee(vulnerantModifie: RulesetRef) {
     this.modifierVulnerant.emit(vulnerantModifie);
     this.estModif = false;
   }

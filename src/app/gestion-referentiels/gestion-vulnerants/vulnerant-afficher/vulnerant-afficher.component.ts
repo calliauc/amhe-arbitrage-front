@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Vulnerant } from '../../../shared/models/vulnerant';
+import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-vulnerant-afficher',
@@ -10,7 +10,7 @@ import { Vulnerant } from '../../../shared/models/vulnerant';
   styleUrl: './vulnerant-afficher.component.css',
 })
 export class VulnerantAfficherComponent implements OnInit {
-  @Input() vulnerant!: Vulnerant;
+  @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
   @Output() editerVulnerant: EventEmitter<boolean> = new EventEmitter();
 

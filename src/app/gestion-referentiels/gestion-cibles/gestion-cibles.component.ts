@@ -3,8 +3,8 @@ import { CibleLigneComponent } from './cible-ligne/cible-ligne.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CiblesService } from '../../shared/services/cibles.service';
-import { Cible } from '../../shared/models/cible';
 import { CibleEditerComponent } from './cible-editer/cible-editer.component';
+import { RulesetRef } from '../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-gestion-cibles',
@@ -14,14 +14,14 @@ import { CibleEditerComponent } from './cible-editer/cible-editer.component';
   styleUrl: './gestion-cibles.component.css',
 })
 export class GestionCiblesComponent implements OnInit {
-  ciblesListe?: Cible[];
-  ciblesListe$?: Observable<Cible[]>;
+  ciblesListe?: RulesetRef[];
+  ciblesListe$?: Observable<RulesetRef[]>;
   estModeCreation: boolean;
-  nouveauCible: Cible;
+  nouveauCible: RulesetRef;
 
   constructor(private ciblesService: CiblesService) {
     this.estModeCreation = false;
-    this.nouveauCible = new Cible();
+    this.nouveauCible = new RulesetRef();
   }
 
   ngOnInit(): void {
@@ -40,13 +40,13 @@ export class GestionCiblesComponent implements OnInit {
     this.ciblesListe$ = this.ciblesService.getCibles();
   }
 
-  creerCible(cibleCree: Cible) {
+  creerCible(cibleCree: RulesetRef) {
     this.ciblesListe$ = this.ciblesListe$?.pipe(
       tap((liste) => (this.estModeCreation = false))
     );
   }
 
-  modifierCible(cibleModifie: Cible) {
+  modifierCible(cibleModifie: RulesetRef) {
     this.ciblesListe$ = this.ciblesService
       .modifierCible(cibleModifie)
       .pipe(switchMap((_) => this.ciblesService.getCibles()));

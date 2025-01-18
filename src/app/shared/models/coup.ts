@@ -1,6 +1,5 @@
 import { Combattant } from './combattant';
-import { Cible } from './cible';
-import { Vulnerant } from './vulnerant';
+import { RulesetRef } from './ruleset-ref';
 
 export class Coup {
   id!: number;
@@ -9,6 +8,6 @@ export class Coup {
   defenseur!: Combattant;
   attaquantCouleur!: string;
   defenseurCouleur!: string;
-  vulnerant!: Vulnerant;
-  cible?: Cible;
+  vulnerant!: RulesetRef;
+  cible?: RulesetRef;
 }

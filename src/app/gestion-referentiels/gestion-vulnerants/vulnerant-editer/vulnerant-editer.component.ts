@@ -11,8 +11,8 @@ import {
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/confirmation-modal/confirmation-modal.component';
-import { Vulnerant } from '../../../shared/models/vulnerant';
 import { VulnerantsService } from '../../../shared/services/vulnerants.service';
+import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-vulnerant-editer',
@@ -22,15 +22,15 @@ import { VulnerantsService } from '../../../shared/services/vulnerants.service';
   styleUrl: './vulnerant-editer.component.css',
 })
 export class VulnerantEditerComponent implements OnInit, AfterViewInit {
-  @Input() vulnerant: Vulnerant = new Vulnerant();
+  @Input() vulnerant: RulesetRef = new RulesetRef();
   @Input() estPair!: boolean;
   @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
   @Output() supprimerVulnerant: EventEmitter<number> = new EventEmitter();
-  @Output() validerEdition: EventEmitter<Vulnerant> = new EventEmitter();
-  @Output() validerCreation: EventEmitter<Vulnerant> = new EventEmitter();
+  @Output() validerEdition: EventEmitter<RulesetRef> = new EventEmitter();
+  @Output() validerCreation: EventEmitter<RulesetRef> = new EventEmitter();
   @ViewChild('focus') focusForm!: ElementRef;
 
-  vulnerantsListe!: Vulnerant[];
+  vulnerantsListe!: RulesetRef[];
   ereurSaisie: boolean;
   estModalVisible: boolean = false;
   titreModal: string = 'Confirmer la suppression ?';
@@ -102,7 +102,7 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
     }
   }
 
-  verifierVulnerant(vulnerant: Vulnerant): boolean {
+  verifierVulnerant(vulnerant: RulesetRef): boolean {
     return !!vulnerant.code && !!vulnerant.libelle;
   }
 }

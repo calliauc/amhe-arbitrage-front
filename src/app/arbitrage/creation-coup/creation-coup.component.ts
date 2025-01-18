@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Coup } from '../../shared/models/coup';
-import { Vulnerant } from '../../shared/models/vulnerant';
-import { Cible } from '../../shared/models/cible';
 import { CoupsService } from '../../shared/services/coups.service';
 import { NouveauCoup } from '../../shared/models/nouveau-coup';
 import { Match } from '../../shared/models/match';
@@ -10,6 +8,7 @@ import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { CiblesService } from '../../shared/services/cibles.service';
 import { VulnerantsService } from '../../shared/services/vulnerants.service';
+import { RulesetRef } from '../../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-creation-coup',
@@ -20,8 +19,8 @@ import { VulnerantsService } from '../../shared/services/vulnerants.service';
 })
 export class CreationCoupComponent implements OnInit {
   @Input() match!: Match;
-  vulnerants!: Vulnerant[];
-  cibles!: Cible[];
+  vulnerants!: RulesetRef[];
+  cibles!: RulesetRef[];
 
   nouveauCoup: NouveauCoup = new NouveauCoup();
   formSaisirCoup!: FormGroup;
@@ -70,10 +69,10 @@ export class CreationCoupComponent implements OnInit {
     }
     this.nouveauCoup.vulnerant = {
       id: this.formSaisirCoup.value.vulnerant.id,
-    } as Vulnerant;
+    } as RulesetRef;
     this.nouveauCoup.cible = {
       id: this.formSaisirCoup.value.cible.id,
-    } as Cible;
+    } as RulesetRef;
   }
 
   enregistrerCoup(nouveauCoup: NouveauCoup) {
