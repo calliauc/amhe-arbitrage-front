@@ -5,6 +5,7 @@ import { ClubPipe } from '../shared/pipes/club.pipe';
 import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { Router, RouterLink } from '@angular/router';
 import { ConfirmationModalComponent } from '../shared/confirmation-modal/confirmation-modal.component';
+import { couleurs, RulesetRef } from '../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-gestion-matchs',

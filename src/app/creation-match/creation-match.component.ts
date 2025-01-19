@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { TimerPipe } from '../shared/pipes/timer.pipe';
 import { RulsetRefPipe } from '../shared/pipes/ruleset-refs.pipe';
 import { TimerReversePipe } from '../shared/pipes/timerReverse.pipe';
+import { couleurs } from '../shared/models/ruleset-ref';
 
 @Component({
   selector: 'app-creation-match',
@@ -34,6 +35,7 @@ export class CreationMatchComponent implements OnInit {
   combattantsListe!: Combattant[];
   rulesets?: Ruleset[];
   rulesetChoisi?: Ruleset;
+  couleurs = couleurs;
 
   constructor(
     private formBuilder: FormBuilder,

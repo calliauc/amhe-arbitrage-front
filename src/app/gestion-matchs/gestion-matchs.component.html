@@ -10,15 +10,13 @@
           Supprimer match
         </button>
       </div>
-      <div>
-        <span>BLEU : </span>
+      <div [style.color]="match.couleurA">
         <span>{{ match.infosA | nomsDisplay }}</span>
         <br />
         <span>{{ match.infosA.club | clubDisplay }}</span>
       </div>
       <br />
-      <div>
-        <span>ROUGE : </span>
+      <div [style.color]="match.couleurB">
         <span>{{ match.infosB | nomsDisplay }}</span
         ><br />
         <span>{{ match.infosB.club | clubDisplay }}</span>

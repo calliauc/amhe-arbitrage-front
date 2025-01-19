@@ -15,10 +15,6 @@ export class LigneCoupComponent {
 
   constructor(private coupsService: CoupsService) {}
 
-  lireCoup() {
-    if (!!this.coup) return this.coupsService.lireCoup(this.coup);
-    return 'Pas de coup valable';
-  }
   supprimerCoup() {
     this.suppressionCoup.emit(this.coup.id);
   }

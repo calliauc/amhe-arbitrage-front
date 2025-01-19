@@ -21,6 +21,8 @@ export class CreationCoupComponent implements OnInit {
   @Input() match!: Match;
   vulnerants!: RulesetRef[];
   cibles!: RulesetRef[];
+  borderA!: string;
+  borderB!: string;
 
   nouveauCoup: NouveauCoup = new NouveauCoup();
   formSaisirCoup!: FormGroup;
@@ -34,6 +36,8 @@ export class CreationCoupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.borderA = '2px solid ' + this.match.couleurA;
+    this.borderB = '2px solid ' + this.match.couleurB;
     this.ciblesService
       .getCibles()
       .subscribe((cibles) => (this.cibles = cibles));
@@ -85,6 +89,11 @@ export class CreationCoupComponent implements OnInit {
       vulnerant: nouveauCoup.vulnerant,
       cible: nouveauCoup.cible,
     } as Coup;
+    console.log(nouveauCoup);
+    if (nouveauCoup.vulnerant.id === 4) {
+      coup.cible = undefined;
+    }
+    console.log(coup);
     this.coupsService.creerCoup(coup).subscribe((coup) => {
       this.coupsService.notificationCoup.next(true);
     });

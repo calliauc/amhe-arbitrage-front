@@ -9,7 +9,7 @@
     id="score-a"
     [score]="match.scoreA"
     [couleur]="match.couleurA"
-    (scoreEvent)="updateScoreBleu($event)"
+    (scoreEvent)="updateScoreA($event)"
   ></app-score-combattant>
   <app-chrono
     id="chrono"
@@ -21,7 +21,7 @@
     id="score-b"
     [score]="match.scoreB"
     [couleur]="match.couleurB"
-    (scoreEvent)="updateScoreRouge($event)"
+    (scoreEvent)="updateScoreB($event)"
   ></app-score-combattant>
   <app-combattant
     id="combattant-b"

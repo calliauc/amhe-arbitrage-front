@@ -20,8 +20,10 @@
     </select>
     <span>Et sa couleur : </span>
     <select name="" formControlName="couleurA">
-      @for (couleur of ["bleu", "rouge"]; track $index){
-      <option [ngValue]="couleur">{{ couleur }}</option>
+      @for (couleur of couleurs; track $index){
+      <option [ngValue]="couleur.code" [style.background-color]="couleur.code">
+        {{ couleur.libelle }}
+      </option>
       }
     </select>
     <div><br /></div>
@@ -33,8 +35,10 @@
     </select>
     <span>Et sa couleur : </span>
     <select name="" formControlName="couleurB">
-      @for (couleur of ["bleu", "rouge"]; track $index){
-      <option [ngValue]="couleur">{{ couleur }}</option>
+      @for (couleur of couleurs; track $index){
+      <option [ngValue]="couleur.code" [style.background-color]="couleur.code">
+        {{ couleur.libelle }}
+      </option>
       }
     </select>
   </div>

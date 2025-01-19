@@ -52,6 +52,8 @@ export class CoupsService {
   }
 
   lireCoup(coup: Coup) {
+    console.log(coup);
+
     let coupStr: string = '';
     if (coup) {
       coupStr += coup.attaquantCouleur;

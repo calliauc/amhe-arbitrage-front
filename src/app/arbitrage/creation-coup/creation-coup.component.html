@@ -4,11 +4,15 @@
     <div id="attaquant-selector">
       <div class="button-form">
         <input type="radio" formControlName="attaquant" value="a" />
-        <label id="a"> {{ match.infosA | nomsDisplay }}</label>
+        <label [style.border]="borderA">
+          {{ match.infosA | nomsDisplay }}</label
+        >
       </div>
       <div class="button-form">
         <input type="radio" formControlName="attaquant" value="b" />
-        <label id="b"> {{ match.infosB | nomsDisplay }}</label>
+        <label [style.border]="borderB">
+          {{ match.infosB | nomsDisplay }}</label
+        >
       </div>
     </div>
     <div class="section-form">Quel vulnérant ?</div>

@@ -18,14 +18,14 @@ export class SuiviMatchComponent {
 
   constructor(private matchsService: MatchsService) {}
 
-  updateScoreBleu(scoreA: number) {
+  updateScoreA(scoreA: number) {
     this.match.scoreA = scoreA;
     this.matchsService
       .modifierMatch(this.match)
       .subscribe((match) => (this.match = match));
   }
 
-  updateScoreRouge(scoreB: number) {
+  updateScoreB(scoreB: number) {
     this.match.scoreB = scoreB;
     this.matchsService
       .modifierMatch(this.match)

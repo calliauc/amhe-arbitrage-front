@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Combattant } from '../../../shared/models/combattant';
-import { CombattantsService } from '../../../shared/services/combattants.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-score-combattant',
@@ -12,7 +10,7 @@ import { CombattantsService } from '../../../shared/services/combattants.service
 })
 export class ScoreCombattantComponent {
   @Input() score: number = 0;
-  @Input() couleur: string = 'bleu';
+  @Input() couleur!: string;
   @Output() scoreEvent: EventEmitter<number> = new EventEmitter();
 
   public modifScore(modif: number) {

@@ -1,2 +1,4 @@
-<div>{{ combattant | nomsDisplay }}</div>
-<div>{{ combattant.club | clubDisplay }}</div>
+<div [style.color]="couleur">
+  <div>{{ combattant | nomsDisplay }}</div>
+  <div>{{ combattant.club | clubDisplay }}</div>
+</div>
