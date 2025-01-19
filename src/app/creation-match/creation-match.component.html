@@ -1,19 +1,56 @@
 <h3>Formulaire de création de match :</h3>
+<form [formGroup]="formRuleset">
+  <div>
+    <span>Sélectionner le ruleset : </span>
+    <select name="" formControlName="ruleset">
+      @for (ruleset of rulesets; track $index){
+      <option [ngValue]="ruleset">{{ ruleset.nom }}</option>
+      }
+    </select>
+  </div>
+</form>
+<br />
 <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
   <div>
-    <span>Sélectionner le combattant BLEU : </span>
-    <select name="" formControlName="combattantBleu">
+    <span>Sélectionner le combattant A : </span>
+    <select name="" formControlName="combattantA">
       @for (combattant of combattantsListe; track $index){
       <option [ngValue]="combattant.id">{{ combattant | nomsDisplay }}</option>
+      }
+    </select>
+    <span>Et sa couleur : </span>
+    <select name="" formControlName="couleurA">
+      @for (couleur of ["bleu", "rouge"]; track $index){
+      <option [ngValue]="couleur">{{ couleur }}</option>
       }
     </select>
     <div><br /></div>
-    <span>Sélectionner le combattant ROUGE : </span>
-    <select name="" formControlName="combattantRouge">
+    <span>Sélectionner le combattant B : </span>
+    <select name="" formControlName="combattantB">
       @for (combattant of combattantsListe; track $index){
       <option [ngValue]="combattant.id">{{ combattant | nomsDisplay }}</option>
       }
     </select>
+    <span>Et sa couleur : </span>
+    <select name="" formControlName="couleurB">
+      @for (couleur of ["bleu", "rouge"]; track $index){
+      <option [ngValue]="couleur">{{ couleur }}</option>
+      }
+    </select>
+  </div>
+  <br />
+  <div>
+    @if (rulesetChoisi) {
+    <p>Ruleset : {{ rulesetChoisi.nom }}</p>
+    <p>Détails : {{ rulesetChoisi.description }}</p>
+    <p>
+      Timer : {{ rulesetChoisi.timerLimite | timer }} ({{
+        rulesetChoisi.timerReverse | timerReverse
+      }})
+    </p>
+    <p>Vulnerants : {{ rulesetChoisi.vulnerants | rulesetRefDisplay }}</p>
+    <p>Cibles : {{ rulesetChoisi.cibles | rulesetRefDisplay }}</p>
+    }
   </div>
   <br />
   <button class="btn" type="submit">Créer</button>

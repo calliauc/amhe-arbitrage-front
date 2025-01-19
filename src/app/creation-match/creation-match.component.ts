@@ -7,23 +7,40 @@ import { CombattantsService } from '../shared/services/combattants.service';
 import { Combattant } from '../shared/models/combattant';
 import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { NouveauMatch } from '../shared/models/nouveau-match';
+import { Ruleset } from '../shared/models/ruleset';
+import { RulesetsService } from '../shared/services/rulesets.service';
+import { CommonModule } from '@angular/common';
+import { TimerPipe } from '../shared/pipes/timer.pipe';
+import { RulsetRefPipe } from '../shared/pipes/ruleset-refs.pipe';
+import { TimerReversePipe } from '../shared/pipes/timerReverse.pipe';
 
 @Component({
   selector: 'app-creation-match',
   standalone: true,
-  imports: [ReactiveFormsModule, NomsPipe],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    NomsPipe,
+    TimerPipe,
+    RulsetRefPipe,
+    TimerReversePipe,
+  ],
   templateUrl: './creation-match.component.html',
   styleUrl: './creation-match.component.css',
 })
 export class CreationMatchComponent implements OnInit {
   formCreerMatch!: FormGroup;
+  formRuleset!: FormGroup;
   combattantsListe!: Combattant[];
+  rulesets?: Ruleset[];
+  rulesetChoisi?: Ruleset;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private matchsService: MatchsService,
-    private combattantsService: CombattantsService
+    private combattantsService: CombattantsService,
+    private rulesetsService: RulesetsService
   ) {}
 
   ngOnInit(): void {
@@ -31,38 +48,74 @@ export class CreationMatchComponent implements OnInit {
       this.combattantsListe = liste;
     });
     this.formCreerMatch = this.formBuilder.group({
-      combattantBleu: null,
-      combattantRouge: null,
-      timerStart: 0,
-      timerEnd: 300,
-      rebours: false,
+      combattantA: null,
+      combattantB: null,
+      couleurA: null,
+      couleurB: null,
+    });
+    this.initRuleset();
+  }
+
+  initRuleset() {
+    this.rulesetsService.getRulesets().subscribe((rulesets) => {
+      this.rulesets = rulesets;
+    });
+    this.formRuleset = this.formBuilder.group({
+      ruleset: null,
+    });
+    this.formRuleset.valueChanges.subscribe((ruleset) => {
+      this.rulesetChoisi = ruleset.ruleset;
     });
   }
 
   creerMatch() {
-    console.log(this.formCreerMatch.value);
-    let nouveauMatch = new NouveauMatch(
-      this.formCreerMatch.value.combattantBleu,
-      this.formCreerMatch.value.combattantRouge,
-      this.formCreerMatch.value.timerStart,
-      this.formCreerMatch.value.timerEnd,
-      this.formCreerMatch.value.timerSens
-    );
-    console.log(nouveauMatch);
-    this.matchsService
-      .creerMatch(nouveauMatch)
-      .subscribe((matchCree: Match) =>
-        this.router.navigate(['arbitrage', matchCree.id])
+    if (this.estIncomplet()) {
+      alert('Certains champs sont incomplets');
+    } else if (this.estIncorrect()) {
+      alert('Les champs sont mal remplis');
+    } else {
+      let nouveauMatch = new NouveauMatch(
+        this.formCreerMatch.value.combattantA,
+        this.formCreerMatch.value.combattantB,
+        this.formCreerMatch.value.couleurA,
+        this.formCreerMatch.value.couleurB,
+        this.setRuleset()
       );
+      this.matchsService
+        .creerMatch(nouveauMatch)
+        .subscribe((matchCree: Match) => {
+          this.router.navigate(['arbitrage', matchCree.id]);
+        });
+    }
   }
 
-  ruleset() {
-    /**
-     * Pré-remplit les scores, timer, arme et autre
-     * selon le ruleset sélectionné
-     *
-     * Par exemple pour l'épée longue :
-     *  les scores à 6 et timer croisant à 0
-     */
+  estIncomplet(): boolean {
+    return !(
+      this.formCreerMatch.value.combattantA &&
+      this.formCreerMatch.value.combattantB &&
+      this.formCreerMatch.value.couleurA &&
+      this.formCreerMatch.value.couleurB &&
+      this.rulesetChoisi
+    );
+  }
+  estIncorrect(): boolean {
+    return (
+      this.formCreerMatch.value.combattantA ===
+        this.formCreerMatch.value.combattantB ||
+      this.formCreerMatch.value.couleurA === this.formCreerMatch.value.couleurB
+    );
+  }
+
+  setRuleset(): Ruleset {
+    let vulnerants = this.rulesetChoisi!.vulnerants?.map((v) => v.id);
+    let cibles = this.rulesetChoisi!.cibles?.map((c) => c.id);
+    return {
+      nom: this.rulesetChoisi!.nom,
+      description: this.rulesetChoisi!.description,
+      timerLimite: this.rulesetChoisi!.timerLimite,
+      timerReverse: this.rulesetChoisi!.timerReverse,
+      vulnerants: vulnerants,
+      cibles: cibles,
+    } as Ruleset;
   }
 }

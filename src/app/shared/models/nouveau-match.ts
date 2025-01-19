@@ -1,25 +1,27 @@
+import { Ruleset } from './ruleset';
+
 export class NouveauMatch {
-  bleu: {
+  infosA: {
     id: number;
   };
-  rouge: {
+  infosB: {
     id: number;
   };
-  timerStart?: number;
-  timerEnd?: number;
-  timerReverse?: boolean;
+  couleurA: string;
+  couleurB: string;
+  ruleset: Ruleset;
 
   constructor(
-    bleu: number,
-    rouge: number,
-    timerStart: number,
-    timerEnd: number,
-    timerReverse: boolean
+    a: number,
+    b: number,
+    couleurA: string,
+    couleurB: string,
+    ruleset: Ruleset
   ) {
-    this.bleu = { id: bleu };
-    this.rouge = { id: rouge };
-    this.timerStart = timerStart;
-    this.timerEnd = timerEnd;
-    this.timerReverse = timerReverse;
+    this.infosA = { id: a };
+    this.infosB = { id: b };
+    this.couleurA = couleurA;
+    this.couleurB = couleurB;
+    this.ruleset = ruleset;
   }
 }

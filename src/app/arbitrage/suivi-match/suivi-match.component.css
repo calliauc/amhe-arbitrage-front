@@ -25,21 +25,21 @@
     width: 100%;
   }
 
-  #combattant-1 {
+  #combattant-a {
     width: 45%;
     order: 1;
   }
-  #combattant-2 {
+  #combattant-b {
     width: 45%;
     order: 2;
   }
-  #score-1 {
+  #score-a {
     width: 45%;
     order: 3;
     margin-inline: auto;
     margin-block: 10px;
   }
-  #score-2 {
+  #score-b {
     width: 45%;
     order: 4;
     margin-inline: auto;

@@ -56,16 +56,16 @@ export class CreationCoupComponent implements OnInit {
 
   validererCoupLongsword() {
     this.nouveauCoup.matchId = this.match.id;
-    if (this.formSaisirCoup.value.attaquant == 'rouge') {
-      this.nouveauCoup.attaquant = this.match.rouge;
-      this.nouveauCoup.attaquantCouleur = 'rouge';
-      this.nouveauCoup.defenseur = this.match.bleu;
-      this.nouveauCoup.defenseurCouleur = 'bleu';
-    } else if (this.formSaisirCoup.value.attaquant == 'bleu') {
-      this.nouveauCoup.attaquant = this.match.bleu;
-      this.nouveauCoup.attaquantCouleur = 'bleu';
-      this.nouveauCoup.defenseur = this.match.rouge;
-      this.nouveauCoup.defenseurCouleur = 'rouge';
+    if (this.formSaisirCoup.value.attaquant == 'b') {
+      this.nouveauCoup.attaquant = this.match.infosB;
+      this.nouveauCoup.attaquantCouleur = this.match.couleurB;
+      this.nouveauCoup.defenseur = this.match.infosA;
+      this.nouveauCoup.defenseurCouleur = this.match.couleurA;
+    } else if (this.formSaisirCoup.value.attaquant == 'a') {
+      this.nouveauCoup.attaquant = this.match.infosA;
+      this.nouveauCoup.attaquantCouleur = this.match.couleurA;
+      this.nouveauCoup.defenseur = this.match.infosB;
+      this.nouveauCoup.defenseurCouleur = this.match.couleurB;
     }
     this.nouveauCoup.vulnerant = {
       id: this.formSaisirCoup.value.vulnerant.id,

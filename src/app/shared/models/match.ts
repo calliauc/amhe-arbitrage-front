@@ -1,12 +1,14 @@
 import { Combattant } from './combattant';
+import { Ruleset } from './ruleset';
 
 export class Match {
   id!: number;
-  bleu!: Combattant;
-  rouge!: Combattant;
-  scoreBleu: number = 0;
-  scoreRouge: number = 0;
-  timerStart: number = 0;
-  timerEnd: number = 600;
-  timerReverse: boolean = true;
+  infosA!: Combattant;
+  infosB!: Combattant;
+  couleurA!: string;
+  couleurB!: string;
+  scoreA: number = 0;
+  scoreB: number = 0;
+  timer: number = 0;
+  ruleset!: Ruleset;
 }

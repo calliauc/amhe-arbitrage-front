@@ -32,6 +32,7 @@ export class ArbitrageComponent implements OnInit {
       this.matchsService.getMatchById(params['id']).subscribe((match) => {
         if (match) {
           this.match = match;
+          console.log(match);
         } else {
           alert('Match introuvable');
           this.router.navigate(['matchs']);

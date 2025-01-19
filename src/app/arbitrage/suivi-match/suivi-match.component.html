@@ -1,14 +1,14 @@
 <section id="section-suivi">
   <app-combattant
-    id="combattant-1"
+    id="combattant-a"
     class="combattant"
-    [combattant]="match.bleu"
-    [couleur]="'bleu'"
+    [combattant]="match.infosA"
+    [couleur]="match.couleurA"
   ></app-combattant>
   <app-score-combattant
-    id="score-1"
-    [score]="match.scoreBleu"
-    [couleur]="'bleu'"
+    id="score-a"
+    [score]="match.scoreA"
+    [couleur]="match.couleurA"
     (scoreEvent)="updateScoreBleu($event)"
   ></app-score-combattant>
   <app-chrono
@@ -18,15 +18,15 @@
     (timerFin)="timerFin($event)"
   ></app-chrono>
   <app-score-combattant
-    id="score-2"
-    [score]="match.scoreRouge"
-    [couleur]="'rouge'"
+    id="score-b"
+    [score]="match.scoreB"
+    [couleur]="match.couleurB"
     (scoreEvent)="updateScoreRouge($event)"
   ></app-score-combattant>
   <app-combattant
-    id="combattant-2"
+    id="combattant-b"
     class="combattant"
-    [combattant]="match.rouge"
-    [couleur]="'rouge'"
+    [combattant]="match.infosB"
+    [couleur]="match.couleurB"
   ></app-combattant>
 </section>
