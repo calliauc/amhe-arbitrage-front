@@ -24,8 +24,9 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class VulnerantEditerComponent implements OnInit, AfterViewInit {
   @Input() vulnerant: RulesetRef = new RulesetRef();
   @Input() estPair!: boolean;
+  @Input() estModeEdition: boolean = false;
   @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
-  @Output() supprimerVulnerant: EventEmitter<number> = new EventEmitter();
+  @Output() supprimerVulnerant: EventEmitter<string> = new EventEmitter();
   @Output() validerEdition: EventEmitter<RulesetRef> = new EventEmitter();
   @Output() validerCreation: EventEmitter<RulesetRef> = new EventEmitter();
   @ViewChild('focus') focusForm!: ElementRef;
@@ -46,7 +47,6 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.formEditerVulnerant = this.formBuilder.group({
-      id: this.vulnerant.id,
       code: this.vulnerant.code,
       libelle: this.vulnerant.libelle,
     });
@@ -64,9 +64,9 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(id: number) {
+  confirmerSuppression(code: string | number) {
     this.estModalVisible = false;
-    this.supprimerVulnerant.emit(id);
+    this.supprimerVulnerant.emit(code as string);
   }
 
   annulerSuppression() {
@@ -87,7 +87,7 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
   }
 
   enregistrer() {
-    if (this.vulnerant.id) {
+    if (this.estModeEdition) {
       this.vulnerantsService
         .modifierVulnerant(this.vulnerant)
         .subscribe((result) => {

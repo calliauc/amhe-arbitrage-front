@@ -24,6 +24,7 @@ export class RulesetsService {
   }
 
   public modifierRuleset(rulesetAModifier: Ruleset): Observable<Ruleset> {
+    console.log('Service ruleset : ', rulesetAModifier);
     return this.http.put<Ruleset>(
       `${this.URL}/${rulesetAModifier.id}`,
       rulesetAModifier,

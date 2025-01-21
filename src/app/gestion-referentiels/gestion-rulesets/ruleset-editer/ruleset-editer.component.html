@@ -36,6 +36,7 @@
       <input type="radio" formControlName="timerReverse" value="true" />
       <label>⏬</label>
     </td>
+    <!-- VULNERANTS -->
     <td class="col">
       @if (ruleset.id) { @if (estListeVulnerantsVisible) {
       <div class="btn-masquer-refs" (click)="showVulnerants()">OK</div>
@@ -53,6 +54,7 @@
       <div class="btn-afficher-refs" (click)="showVulnerants()">Dérouler</div>
       }} @else { <span>(Edition requise)</span> }
     </td>
+    <!-- CIBLES -->
     <td class="col">
       @if (ruleset.id) { @if (estListeCiblesVisible) {
       <div class="btn-masquer-refs" (click)="showCibles()">OK</div>

@@ -51,9 +51,9 @@ export class GestionVulnerantsComponent implements OnInit {
       .pipe(switchMap((_) => this.vulnerantsService.getVulnerants()));
   }
 
-  supprimerVulnerant(id: number) {
+  supprimerVulnerant(code: string) {
     this.vulnerantsService
-      .supprimerVulnerant(id)
+      .supprimerVulnerant(code)
       .subscribe(() => this.recupererVulnerants());
   }
 }

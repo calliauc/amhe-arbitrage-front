@@ -83,6 +83,8 @@ export class CreationMatchComponent implements OnInit {
         this.formCreerMatch.value.couleurB,
         this.setRuleset()
       );
+      console.log(nouveauMatch);
+
       this.matchsService
         .creerMatch(nouveauMatch)
         .subscribe((matchCree: Match) => {
@@ -109,8 +111,8 @@ export class CreationMatchComponent implements OnInit {
   }
 
   setRuleset(): Ruleset {
-    let vulnerants = this.rulesetChoisi!.vulnerants?.map((v) => v.id);
-    let cibles = this.rulesetChoisi!.cibles?.map((c) => c.id);
+    let vulnerants = this.rulesetChoisi!.vulnerants;
+    let cibles = this.rulesetChoisi!.cibles;
     return {
       nom: this.rulesetChoisi!.nom,
       description: this.rulesetChoisi!.description,

@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
@@ -17,7 +23,7 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
   templateUrl: './creation-coup.component.html',
   styleUrl: './creation-coup.component.css',
 })
-export class CreationCoupComponent implements OnInit {
+export class CreationCoupComponent implements OnInit, OnChanges {
   @Input() match!: Match;
   vulnerants!: RulesetRef[];
   cibles!: RulesetRef[];
@@ -51,6 +57,8 @@ export class CreationCoupComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {}
+
   onSubmit() {
     this.validererCoupLongsword();
     this.enregistrerCoup(this.nouveauCoup);
@@ -63,20 +71,25 @@ export class CreationCoupComponent implements OnInit {
     if (this.formSaisirCoup.value.attaquant == 'b') {
       this.nouveauCoup.attaquant = this.match.infosB;
       this.nouveauCoup.attaquantCouleur = this.match.couleurB;
+      this.nouveauCoup.attaquantScore = this.match.scoreB;
       this.nouveauCoup.defenseur = this.match.infosA;
       this.nouveauCoup.defenseurCouleur = this.match.couleurA;
+      this.nouveauCoup.defenseurScore = this.match.scoreA;
     } else if (this.formSaisirCoup.value.attaquant == 'a') {
       this.nouveauCoup.attaquant = this.match.infosA;
       this.nouveauCoup.attaquantCouleur = this.match.couleurA;
+      this.nouveauCoup.attaquantScore = this.match.scoreA;
       this.nouveauCoup.defenseur = this.match.infosB;
       this.nouveauCoup.defenseurCouleur = this.match.couleurB;
+      this.nouveauCoup.defenseurScore = this.match.scoreB;
     }
     this.nouveauCoup.vulnerant = {
-      id: this.formSaisirCoup.value.vulnerant.id,
+      code: this.formSaisirCoup.value.vulnerant.code,
     } as RulesetRef;
-    this.nouveauCoup.cible = {
-      id: this.formSaisirCoup.value.cible.id,
-    } as RulesetRef;
+    if (this.nouveauCoup.vulnerant.code !== 'lutte')
+      this.nouveauCoup.cible = {
+        code: this.formSaisirCoup.value.cible.code,
+      } as RulesetRef;
   }
 
   enregistrerCoup(nouveauCoup: NouveauCoup) {
@@ -84,16 +97,13 @@ export class CreationCoupComponent implements OnInit {
       matchId: nouveauCoup.matchId,
       attaquant: nouveauCoup.attaquant,
       attaquantCouleur: nouveauCoup.attaquantCouleur,
+      attaquantScore: nouveauCoup.attaquantScore,
       defenseur: nouveauCoup.defenseur,
       defenseurCouleur: nouveauCoup.defenseurCouleur,
+      defenseurScore: nouveauCoup.defenseurScore,
       vulnerant: nouveauCoup.vulnerant,
       cible: nouveauCoup.cible,
     } as Coup;
-    console.log(nouveauCoup);
-    if (nouveauCoup.vulnerant.id === 4) {
-      coup.cible = undefined;
-    }
-    console.log(coup);
     this.coupsService.creerCoup(coup).subscribe((coup) => {
       this.coupsService.notificationCoup.next(true);
     });

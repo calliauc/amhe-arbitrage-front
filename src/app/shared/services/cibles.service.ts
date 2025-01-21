@@ -16,6 +16,12 @@ export class CiblesService {
     return this.http.get<RulesetRef[]>(this.URL, { responseType: 'json' });
   }
 
+  public getCiblesByListe(codes: string[]): Observable<RulesetRef[]> {
+    return this.http.post<RulesetRef[]>(`${this.URL}/ruleset`, codes, {
+      responseType: 'json',
+    });
+  }
+
   public ajouterCible(cibleAAjouter: RulesetRef): Observable<RulesetRef> {
     return this.http.post<RulesetRef>(this.URL, cibleAAjouter, {
       responseType: 'json',
@@ -30,7 +36,7 @@ export class CiblesService {
 
   public modifierCible(cibleAModifier: RulesetRef): Observable<RulesetRef> {
     return this.http.put<RulesetRef>(
-      `${this.URL}/${cibleAModifier.id}`,
+      `${this.URL}/${cibleAModifier.code}`,
       cibleAModifier,
       {
         responseType: 'json',
@@ -38,7 +44,7 @@ export class CiblesService {
     );
   }
 
-  public supprimerCible(id: number): Observable<Object> {
-    return this.http.delete(this.URL + '/' + id);
+  public supprimerCible(code: string): Observable<Object> {
+    return this.http.delete(this.URL + '/' + code);
   }
 }

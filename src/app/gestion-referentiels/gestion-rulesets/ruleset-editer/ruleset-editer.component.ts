@@ -84,7 +84,6 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
       this.vulnerantsService.getVulnerants().subscribe((vs) => {
         vs.forEach((v) => {
           let ref = {
-            id: v.id,
             code: v.code,
             libelle: v.libelle,
             checked: false,
@@ -100,8 +99,7 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     this.ruleset?.vulnerants?.forEach((vulnerant) => {
       formVulnerants.push(
         new FormGroup({
-          id: new FormControl(vulnerant.id),
-          name: new FormControl(vulnerant.code),
+          code: new FormControl(vulnerant.code),
           checked: new FormControl(vulnerant.checked),
         })
       );
@@ -110,14 +108,23 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
 
   initCiblesForm() {
     if (!this.ruleset.id) {
+      this.ciblesService.getCibles().subscribe((cs) => {
+        cs.forEach((c) => {
+          let ref = {
+            code: c.code,
+            libelle: c.libelle,
+            checked: false,
+          } as RulesetRef;
+          this.ruleset.cibles?.push(ref);
+        });
+      });
       //TODO récupérer liste vierge des cibles
     }
     const formCibles = this.formEditerRuleset.get('cibles') as FormArray;
     this.ruleset?.cibles?.forEach((cible) => {
       formCibles.push(
         new FormGroup({
-          id: new FormControl(cible.id),
-          name: new FormControl(cible.code),
+          code: new FormControl(cible.code),
           checked: new FormControl(cible.checked),
         })
       );
@@ -140,9 +147,9 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(id: number) {
+  confirmerSuppression(id: number | string) {
     this.estModalVisible = false;
-    this.supprimerRuleset.emit(id);
+    this.supprimerRuleset.emit(id as number);
   }
 
   annulerSuppression() {
@@ -151,13 +158,11 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
 
   confirmer(): void {
     // TODO vérifier checked
-    console.log(this.formEditerRuleset.value);
     this.ereurSaisie = false;
     this.ruleset = this.formEditerRuleset.value;
     // this.ruleset.timerLimite = this.convertirTemps(
     //   this.formEditerRuleset.value.timerLimite
     // );
-    console.log(this.ruleset);
 
     if (this.verifierRuleset(this.ruleset)) {
       this.enregistrer();
@@ -171,7 +176,9 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
 
   enregistrer() {
     if (this.ruleset.id) {
+      console.log('Envoi : ', this.ruleset);
       this.rulesetsService.modifierRuleset(this.ruleset).subscribe((result) => {
+        console.log('resultat : ', result);
         this.validerEdition.emit(result);
       });
     } else {

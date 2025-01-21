@@ -52,9 +52,9 @@ export class GestionCiblesComponent implements OnInit {
       .pipe(switchMap((_) => this.ciblesService.getCibles()));
   }
 
-  supprimerCible(id: number) {
+  supprimerCible(code: string) {
     this.ciblesService
-      .supprimerCible(id)
+      .supprimerCible(code)
       .subscribe(() => this.recupererCibles());
   }
 }

@@ -13,7 +13,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class VulnerantLigneComponent {
   @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
-  @Output() supprimerVulnerant: EventEmitter<number> = new EventEmitter();
+  @Output() supprimerVulnerant: EventEmitter<string> = new EventEmitter();
   @Output() modifierVulnerant: EventEmitter<RulesetRef> = new EventEmitter();
   estModif: boolean;
 
@@ -29,9 +29,9 @@ export class VulnerantLigneComponent {
     this.estModif = false;
   }
 
-  suppressionVulnerant(id: number) {
+  suppressionVulnerant(code: string) {
     this.estModif = false;
-    this.supprimerVulnerant.emit(id);
+    this.supprimerVulnerant.emit(code);
   }
 
   modifVulnerantTerminee(vulnerantModifie: RulesetRef) {

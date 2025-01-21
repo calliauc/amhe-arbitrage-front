@@ -24,8 +24,9 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class CibleEditerComponent implements OnInit, AfterViewInit {
   @Input() cible: RulesetRef = new RulesetRef();
   @Input() estPair!: boolean;
+  @Input() estModeEdition: boolean = false;
   @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
-  @Output() supprimerCible: EventEmitter<number> = new EventEmitter();
+  @Output() supprimerCible: EventEmitter<string> = new EventEmitter();
   @Output() validerEdition: EventEmitter<RulesetRef> = new EventEmitter();
   @Output() validerCreation: EventEmitter<RulesetRef> = new EventEmitter();
   @ViewChild('focus') focusForm!: ElementRef;
@@ -46,7 +47,6 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.formEditerCible = this.formBuilder.group({
-      id: this.cible.id,
       code: this.cible.code,
       libelle: this.cible.libelle,
     });
@@ -64,9 +64,9 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(id: number) {
+  confirmerSuppression(code: string | number) {
     this.estModalVisible = false;
-    this.supprimerCible.emit(id);
+    this.supprimerCible.emit(code as string);
   }
 
   annulerSuppression() {
@@ -87,7 +87,7 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
   }
 
   enregistrer() {
-    if (this.cible.id) {
+    if (this.estModeEdition) {
       this.ciblesService.modifierCible(this.cible).subscribe((result) => {
         this.validerEdition.emit(result);
       });

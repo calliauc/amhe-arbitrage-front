@@ -16,6 +16,12 @@ export class VulnerantsService {
     return this.http.get<RulesetRef[]>(this.URL, { responseType: 'json' });
   }
 
+  public getVulnerantsByListe(codes: string[]): Observable<RulesetRef[]> {
+    return this.http.post<RulesetRef[]>(`${this.URL}/ruleset`, codes, {
+      responseType: 'json',
+    });
+  }
+
   ajouterVulnerant(vulnerantAAjouter: RulesetRef): Observable<RulesetRef> {
     return this.http.post<RulesetRef>(this.URL, vulnerantAAjouter, {
       responseType: 'json',
@@ -32,7 +38,7 @@ export class VulnerantsService {
     vulnerantAModifier: RulesetRef
   ): Observable<RulesetRef> {
     return this.http.put<RulesetRef>(
-      `${this.URL}/${vulnerantAModifier.id}`,
+      `${this.URL}/${vulnerantAModifier.code}`,
       vulnerantAModifier,
       {
         responseType: 'json',
@@ -40,7 +46,7 @@ export class VulnerantsService {
     );
   }
 
-  public supprimerVulnerant(id: number): Observable<Object> {
-    return this.http.delete(this.URL + '/' + id);
+  public supprimerVulnerant(code: string): Observable<Object> {
+    return this.http.delete(this.URL + '/' + code);
   }
 }

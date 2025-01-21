@@ -26,7 +26,7 @@
       >
         Annuler
       </button>
-      @if (cible.id){
+      @if (estModeEdition){
       <button
         type="button"
         class="btn btn-cibles btn-suppression"
@@ -42,9 +42,9 @@
   </div>
   }
 </form>
-@if (estModalVisible && cible.id){
+@if (estModalVisible && estModeEdition){
 <app-confirmation-modal
-  [id]="cible.id"
+  [id]="cible.code"
   [titre]="titreModal"
   [texte]="texteModal"
   (confirmer)="confirmerSuppression($event)"

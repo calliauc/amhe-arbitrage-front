@@ -65,9 +65,9 @@ export class ClubEditerComponent implements OnInit, AfterViewInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(id: number) {
+  confirmerSuppression(id: number | string) {
     this.estModalVisible = false;
-    this.supprimerClub.emit(id);
+    this.supprimerClub.emit(id as number);
   }
 
   annulerSuppression() {

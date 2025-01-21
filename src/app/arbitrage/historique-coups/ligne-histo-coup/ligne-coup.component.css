@@ -1,4 +1,5 @@
 .txt-histo-coups {
+  width: 100%;
   align-content: center;
   padding-inline: 10px;
   padding-block: 1px;
@@ -8,6 +9,13 @@
 }
 .txt-histo-coups::first-letter {
   text-transform: capitalize;
+}
+
+.mobile {
+  display: none;
+}
+.desktop {
+  display: block;
 }
 
 .btn-histo-coups {
@@ -33,4 +41,17 @@
 
 .btn-histo-coups-annuler {
   background-color: rgb(133, 0, 0);
+}
+
+@media screen and (max-width: 1099px) {
+  .txt-histo-coups {
+    height: 50px;
+    width: 100%;
+  }
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
 }

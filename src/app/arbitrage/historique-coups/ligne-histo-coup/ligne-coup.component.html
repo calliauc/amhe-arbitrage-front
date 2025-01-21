@@ -1,13 +1,26 @@
 <tr>
-  <td class="txt-histo-coups" style="width: 100%">
-    <span [style.color]="coup.attaquantCouleur">{{
-      coup.attaquant.prenom
-    }}</span
-    ><span>{{ coup.vulnerant.libelle }}</span
-    ><span>{{ coup.cible?.libelle }}</span
-    ><span [style.color]="coup.defenseurCouleur">{{
-      coup.defenseur.prenom
-    }}</span>
+  <td class="txt-histo-coups desktop">
+    <span [style.color]="coup.attaquantCouleur"
+      >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
+    ><span>{{ coup.vulnerant.libelle }}</span>
+    @if (coup.vulnerant.code!="lutte") {
+    <span>{{ coup.cible?.libelle }}</span
+    >}
+    <span [style.color]="coup.defenseurCouleur"
+      >{{ coup.defenseur.prenom }} ({{ coup.defenseurScore }})</span
+    >
+  </td>
+  <td class="txt-histo-coups mobile">
+    <span [style.color]="coup.attaquantCouleur"
+      >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
+    >
+    =>
+    <span [style.color]="coup.defenseurCouleur"
+      >{{ coup.defenseur.prenom }} ({{ coup.defenseurScore }})</span
+    >
+    <br />
+    <span>{{ coup.vulnerant.libelle }}</span
+    >/<span>{{ coup.cible?.libelle }}</span>
   </td>
   <td>
     <div

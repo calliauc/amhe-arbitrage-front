@@ -13,7 +13,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class CibleLigneComponent {
   @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
-  @Output() supprimerCible: EventEmitter<number> = new EventEmitter();
+  @Output() supprimerCible: EventEmitter<string> = new EventEmitter();
   @Output() modifierCible: EventEmitter<RulesetRef> = new EventEmitter();
   estModif: boolean;
 
@@ -29,9 +29,9 @@ export class CibleLigneComponent {
     this.estModif = false;
   }
 
-  suppressionCible(id: number) {
+  suppressionCible(code: string) {
     this.estModif = false;
-    this.supprimerCible.emit(id);
+    this.supprimerCible.emit(code);
   }
 
   modifCibleTerminee(cibleModifie: RulesetRef) {

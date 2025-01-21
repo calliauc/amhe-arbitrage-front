@@ -45,12 +45,6 @@ export class GestionRulesetsComponent implements OnInit {
     );
   }
 
-  modifierRuleset(rulesetModifie: Ruleset) {
-    this.rulesetsListe$ = this.rulesetsService
-      .modifierRuleset(rulesetModifie)
-      .pipe(switchMap((_) => this.rulesetsService.getRulesets()));
-  }
-
   supprimerRuleset(id: number) {
     this.rulesetsService
       .supprimerRuleset(id)

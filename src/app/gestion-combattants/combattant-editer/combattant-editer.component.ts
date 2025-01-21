@@ -73,9 +73,9 @@ export class CombattantEditerComponent implements OnInit, AfterViewInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(id: number) {
+  confirmerSuppression(id: number | string) {
     this.estModalVisible = false;
-    this.supprimerCombattant.emit(id);
+    this.supprimerCombattant.emit(id as number);
   }
 
   annulerSuppression() {

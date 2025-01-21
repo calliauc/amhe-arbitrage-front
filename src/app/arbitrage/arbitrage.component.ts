@@ -43,4 +43,10 @@ export class ArbitrageComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  refreshMatch(matchUpdate: Match) {
+    this.matchsService
+      .modifierMatch(matchUpdate)
+      .subscribe((match) => (this.match = match));
+  }
 }

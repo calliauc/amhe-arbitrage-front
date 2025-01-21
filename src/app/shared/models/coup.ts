@@ -8,6 +8,8 @@ export class Coup {
   defenseur!: Combattant;
   attaquantCouleur!: string;
   defenseurCouleur!: string;
+  attaquantScore!: number;
+  defenseurScore!: number;
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
 }

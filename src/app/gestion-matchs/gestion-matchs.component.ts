@@ -40,9 +40,11 @@ export class GestionMatchsComponent implements OnInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(id: number) {
+  confirmerSuppression(id: number | string) {
     this.estModalVisible = false;
-    this.matchsService.supprimerMatch(id).subscribe((_) => this.refreshList());
+    this.matchsService
+      .supprimerMatch(id as number)
+      .subscribe((_) => this.refreshList());
   }
 
   annulerSuppression() {

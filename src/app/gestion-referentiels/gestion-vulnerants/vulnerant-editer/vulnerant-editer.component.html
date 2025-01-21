@@ -26,7 +26,7 @@
       >
         Annuler
       </button>
-      @if (vulnerant.id){
+      @if (estModeEdition){
       <button
         type="button"
         class="btn btn-vulnerants btn-suppression"
@@ -42,9 +42,9 @@
   </div>
   }
 </form>
-@if (estModalVisible && vulnerant.id){
+@if (estModalVisible && estModeEdition){
 <app-confirmation-modal
-  [id]="vulnerant.id"
+  [id]="vulnerant.code"
   [titre]="titreModal"
   [texte]="texteModal"
   (confirmer)="confirmerSuppression($event)"

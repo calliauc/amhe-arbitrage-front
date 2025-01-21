@@ -8,10 +8,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './confirmation-modal.component.css',
 })
 export class ConfirmationModalComponent {
-  @Input() id!: number;
+  @Input() id!: number | string;
+  @Input() code: string = '';
   @Input() titre: string = "Confirmer l'action ?";
   @Input() texte: string = 'Pour de vrai de vrai ? Pinkie promesse ?';
-  @Output() confirmer = new EventEmitter<number>();
+  @Output() confirmer = new EventEmitter<number | string>();
   @Output() annuler = new EventEmitter<boolean>();
 
   confirmerAction() {
