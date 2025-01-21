@@ -114,6 +114,7 @@ export class CreationMatchComponent implements OnInit {
     let vulnerants = this.rulesetChoisi!.vulnerants;
     let cibles = this.rulesetChoisi!.cibles;
     return {
+      id: this.rulesetChoisi!.id,
       nom: this.rulesetChoisi!.nom,
       description: this.rulesetChoisi!.description,
       timerLimite: this.rulesetChoisi!.timerLimite,

@@ -25,8 +25,8 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
 })
 export class CreationCoupComponent implements OnInit, OnChanges {
   @Input() match!: Match;
-  vulnerants!: RulesetRef[];
-  cibles!: RulesetRef[];
+  // vulnerants!: RulesetRef[];
+  // cibles!: RulesetRef[];
   borderA!: string;
   borderB!: string;
 
@@ -36,20 +36,24 @@ export class CreationCoupComponent implements OnInit, OnChanges {
 
   constructor(
     private coupsService: CoupsService,
-    private vulnerantsService: VulnerantsService,
-    private ciblesService: CiblesService,
+    // private vulnerantsService: VulnerantsService,
+    // private ciblesService: CiblesService,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.borderA = '2px solid ' + this.match.couleurA;
     this.borderB = '2px solid ' + this.match.couleurB;
-    this.ciblesService
-      .getCibles()
-      .subscribe((cibles) => (this.cibles = cibles));
-    this.vulnerantsService
-      .getVulnerants()
-      .subscribe((vulnerants) => (this.vulnerants = vulnerants));
+    // this.ciblesService.getCibles().subscribe((cibles) => {
+    //   this.cibles = cibles;
+    //   console.log('cibles service : ', this.cibles);
+    //   console.log('cibles match : ', this.match.ruleset.cibles);
+    // });
+    // this.vulnerantsService.getVulnerants().subscribe((vulnerants) => {
+    //   this.vulnerants = vulnerants;
+    //   console.log('vulnerants service : ', this.vulnerants);
+    //   console.log('vulnerants match : ', this.match.ruleset.vulnerants);
+    // });
     this.formSaisirCoup = this.formBuilder.group({
       attaquant: null,
       vulnerant: null,

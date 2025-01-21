@@ -1,4 +1,5 @@
 <section id="coup">
+  <h3>{{ match.ruleset.nom }}</h3>
   <form [formGroup]="formSaisirCoup" (ngSubmit)="onSubmit()" id="form-coup">
     <div class="section-form">Qui frappe ?</div>
     <div id="attaquant-selector">
@@ -17,21 +18,22 @@
     </div>
     <div class="section-form">Quel vulnérant ?</div>
     <div id="vulnerant-selector">
-      @for (vulnerant of vulnerants; track $index) {
+      @for (vulnerant of match.ruleset.vulnerants; track $index) { @if
+      (vulnerant.checked) {
       <div class="button-form">
         <input type="radio" formControlName="vulnerant" [value]="vulnerant" />
         <label>{{ vulnerant.code | titlecase }}</label>
       </div>
-      }
+      }}
     </div>
     <div class="section-form">Quelle partie du corps ?</div>
     <div id="cible-selector">
-      @for (cible of cibles; track $index) {
+      @for (cible of match.ruleset.cibles; track $index) { @if (cible.checked) {
       <div class="button-form">
         <input type="radio" formControlName="cible" [value]="cible" />
         <label>{{ cible.code | titlecase }}</label>
       </div>
-      }
+      }}
     </div>
     <button id="submit" type="submit">Valider le coup</button>
   </form>
