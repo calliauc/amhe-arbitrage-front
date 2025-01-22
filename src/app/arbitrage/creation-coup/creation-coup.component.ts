@@ -12,8 +12,6 @@ import { NouveauCoup } from '../../shared/models/nouveau-coup';
 import { Match } from '../../shared/models/match';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { TitleCasePipe } from '@angular/common';
-import { CiblesService } from '../../shared/services/cibles.service';
-import { VulnerantsService } from '../../shared/services/vulnerants.service';
 import { RulesetRef } from '../../shared/models/ruleset-ref';
 
 @Component({
@@ -25,8 +23,6 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
 })
 export class CreationCoupComponent implements OnInit, OnChanges {
   @Input() match!: Match;
-  // vulnerants!: RulesetRef[];
-  // cibles!: RulesetRef[];
   borderA!: string;
   borderB!: string;
 
@@ -36,28 +32,17 @@ export class CreationCoupComponent implements OnInit, OnChanges {
 
   constructor(
     private coupsService: CoupsService,
-    // private vulnerantsService: VulnerantsService,
-    // private ciblesService: CiblesService,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.borderA = '2px solid ' + this.match.couleurA;
     this.borderB = '2px solid ' + this.match.couleurB;
-    // this.ciblesService.getCibles().subscribe((cibles) => {
-    //   this.cibles = cibles;
-    //   console.log('cibles service : ', this.cibles);
-    //   console.log('cibles match : ', this.match.ruleset.cibles);
-    // });
-    // this.vulnerantsService.getVulnerants().subscribe((vulnerants) => {
-    //   this.vulnerants = vulnerants;
-    //   console.log('vulnerants service : ', this.vulnerants);
-    //   console.log('vulnerants match : ', this.match.ruleset.vulnerants);
-    // });
     this.formSaisirCoup = this.formBuilder.group({
       attaquant: null,
       vulnerant: null,
       cible: null,
+      doubleTouche: false,
     });
   }
 
@@ -94,10 +79,12 @@ export class CreationCoupComponent implements OnInit, OnChanges {
       this.nouveauCoup.cible = {
         code: this.formSaisirCoup.value.cible.code,
       } as RulesetRef;
+    this.nouveauCoup.doubleTouche = this.formSaisirCoup.value.doubleTouche;
+    console.log(this.nouveauCoup);
   }
 
   enregistrerCoup(nouveauCoup: NouveauCoup) {
-    let coup: Coup = {
+    let coup = {
       matchId: nouveauCoup.matchId,
       attaquant: nouveauCoup.attaquant,
       attaquantCouleur: nouveauCoup.attaquantCouleur,
@@ -107,6 +94,7 @@ export class CreationCoupComponent implements OnInit, OnChanges {
       defenseurScore: nouveauCoup.defenseurScore,
       vulnerant: nouveauCoup.vulnerant,
       cible: nouveauCoup.cible,
+      doubleTouche: nouveauCoup.doubleTouche,
     } as Coup;
     this.coupsService.creerCoup(coup).subscribe((coup) => {
       this.coupsService.notificationCoup.next(true);

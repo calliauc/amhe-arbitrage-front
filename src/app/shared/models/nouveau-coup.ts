@@ -11,4 +11,5 @@ export class NouveauCoup {
   defenseurScore!: number;
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
+  doubleTouche!: boolean;
 }

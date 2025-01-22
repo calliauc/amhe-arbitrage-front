@@ -12,4 +12,5 @@ export class Coup {
   defenseurScore!: number;
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
+  doubleTouche: boolean = false;
 }

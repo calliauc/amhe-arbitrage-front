@@ -1,5 +1,8 @@
 <tr>
   <td class="txt-histo-coups desktop">
+    @if (coup.doubleTouche) {
+    <span>(D) </span>
+    }
     <span [style.color]="coup.attaquantCouleur"
       >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
     ><span>{{ coup.vulnerant.libelle }}</span>
@@ -11,6 +14,9 @@
     >
   </td>
   <td class="txt-histo-coups mobile">
+    @if (coup.doubleTouche) {
+    <span>(D) </span>
+    }
     <span [style.color]="coup.attaquantCouleur"
       >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
     >
