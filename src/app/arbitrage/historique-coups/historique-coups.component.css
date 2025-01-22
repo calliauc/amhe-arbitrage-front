@@ -11,19 +11,55 @@
   margin-bottom: 30px;
 }
 
-#liste-coups {
-  max-height: 300px;
-  width: 80%;
-  overflow-block: scroll;
+#table-coups {
+  width: 90%;
+}
+
+.ligne-coup {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+}
+
+.btn-histo-coup-supprimer {
+  text-align: center;
+  align-content: center;
+  padding-inline: 10px;
+  margin-right: 10px;
+  margin-block: 3px;
+  height: 24px;
+  border-radius: 50px;
+  background-color: rgb(133, 0, 0);
+}
+
+.btn-histo-coup-supprimer:hover {
+  cursor: pointer;
+  border: 1px solid black;
+  padding-inline: 9px;
+  height: 22px;
 }
 
 @media screen and (max-width: 1099px) {
   #historique {
+    width: 90vw;
+  }
+  #table-coups {
     width: 100%;
   }
-  #liste-coups {
-    max-height: 300px;
-    width: 100%;
-    overflow-block: scroll;
+
+  .btn-histo-coup-supprimer {
+    size: 2em;
+    padding-inline: 10px;
+    margin-right: 10px;
+    margin-block: auto;
+    height: 34px;
+    border-radius: 50px;
+    background-color: rgb(133, 0, 0);
+  }
+
+  .btn-histo-coup-supprimer:hover {
+    padding-inline: 9px;
+    height: 32px;
   }
 }

@@ -23,11 +23,11 @@ export class HistoriqueCoupsComponent implements OnInit {
 
   refreshList() {
     this.coupsService.getCoupsByMatch(this.matchId).subscribe((coups) => {
-      this.listeCoups = coups;
+      this.listeCoups = coups.sort((a: Coup, b: Coup) => b.id - a.id);
     });
   }
 
-  suprimerCoup(id: number) {
+  supprimerCoup(id: number) {
     this.coupsService.supprimerCoup(id).subscribe((_) => this.refreshList());
   }
 }

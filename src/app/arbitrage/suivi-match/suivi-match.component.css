@@ -27,27 +27,27 @@
 
   #combattant-a {
     width: 45%;
-    order: 1;
+    order: 2;
   }
   #combattant-b {
     width: 45%;
-    order: 2;
+    order: 3;
   }
   #score-a {
     width: 45%;
-    order: 3;
+    order: 4;
     margin-inline: auto;
     margin-block: 10px;
   }
   #score-b {
     width: 45%;
-    order: 4;
+    order: 5;
     margin-inline: auto;
     margin-block: 10px;
   }
 
   #chrono {
     width: 100%;
-    order: 5;
+    order: 1;
   }
 }

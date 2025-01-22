@@ -1,13 +1,13 @@
 <section id="historique">
   <h2>Historique des coups</h2>
-  <div id="liste-coups">
-    <table id="table-coups">
-      @for (coup of listeCoups; track $index) {
-      <app-ligne-coup
-        [coup]="coup"
-        (suppressionCoup)="suprimerCoup($event)"
-      ></app-ligne-coup
-      >}
-    </table>
-  </div>
+  <table id="table-coups">
+    @for (coup of listeCoups; track $index) {
+    <div class="ligne-coup">
+      <app-ligne-coup [coup]="coup"></app-ligne-coup>
+      <span class="btn-histo-coup-supprimer" (click)="supprimerCoup(coup.id)">
+        X
+      </span>
+    </div>
+    }
+  </table>
 </section>

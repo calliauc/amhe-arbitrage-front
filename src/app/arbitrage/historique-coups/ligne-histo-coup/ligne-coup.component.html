@@ -1,4 +1,4 @@
-<tr>
+<tr class="tr-coup">
   <td class="txt-histo-coups desktop">
     @if (coup.doubleTouche) {
     <span>(D) </span>
@@ -27,13 +27,5 @@
     <br />
     <span>{{ coup.vulnerant.libelle }}</span
     >/<span>{{ coup.cible?.libelle }}</span>
-  </td>
-  <td>
-    <div
-      class="btn btn-histo-coups btn-histo-coups-annuler"
-      (click)="supprimerCoup()"
-    >
-      X
-    </div>
   </td>
 </tr>
