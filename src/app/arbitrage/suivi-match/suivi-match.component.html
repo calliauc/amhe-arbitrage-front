@@ -14,8 +14,9 @@
   <app-chrono
     id="chrono"
     [match]="match"
-    (timerTick)="timerTick($event)"
-    (timerFin)="timerFin($event)"
+    (timerEvent)="updateTimer($event)"
+    (timerDebutEvent)="setDebutMatch()"
+    (timerFinEvent)="setFinMatch($event)"
   ></app-chrono>
   <app-score-combattant
     id="score-b"

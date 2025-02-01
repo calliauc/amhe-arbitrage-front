@@ -13,8 +13,8 @@
       id="time"
       #basicTimer
       [startTime]="match.timer"
-      [endTime]="300"
-      [countdown]="false"
+      [endTime]="match.ruleset.timerLimite!"
+      [countdown]="match.ruleset.timerReverse!"
       [maxTimeUnit]="'minute'"
       [format]="'ms'"
       [autoStart]="true"

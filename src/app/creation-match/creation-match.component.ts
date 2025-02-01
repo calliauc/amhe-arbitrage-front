@@ -81,8 +81,10 @@ export class CreationMatchComponent implements OnInit {
         this.formCreerMatch.value.combattantB,
         this.formCreerMatch.value.couleurA,
         this.formCreerMatch.value.couleurB,
+        0,
         this.setRuleset()
       );
+      nouveauMatch = this.setTimer(nouveauMatch);
       console.log(nouveauMatch);
 
       this.matchsService
@@ -102,6 +104,7 @@ export class CreationMatchComponent implements OnInit {
       this.rulesetChoisi
     );
   }
+
   estIncorrect(): boolean {
     return (
       this.formCreerMatch.value.combattantA ===
@@ -122,5 +125,13 @@ export class CreationMatchComponent implements OnInit {
       vulnerants: vulnerants,
       cibles: cibles,
     } as Ruleset;
+  }
+
+  setTimer(match: NouveauMatch): NouveauMatch {
+    if (this.rulesetChoisi!.timerReverse) {
+      match.timer = match.ruleset.timerLimite!;
+      match.ruleset.timerLimite = 0;
+    }
+    return match;
   }
 }

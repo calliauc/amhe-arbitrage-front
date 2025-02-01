@@ -5,20 +5,29 @@ import { ClubPipe } from '../shared/pipes/club.pipe';
 import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { Router, RouterLink } from '@angular/router';
 import { ConfirmationModalComponent } from '../shared/confirmation-modal/confirmation-modal.component';
-import { couleurs, RulesetRef } from '../shared/models/ruleset-ref';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-matchs',
   standalone: true,
-  imports: [RouterLink, ClubPipe, NomsPipe, ConfirmationModalComponent],
+  imports: [
+    RouterLink,
+    ClubPipe,
+    NomsPipe,
+    ConfirmationModalComponent,
+    DatePipe,
+  ],
   templateUrl: './gestion-matchs.component.html',
   styleUrl: './gestion-matchs.component.css',
 })
 export class GestionMatchsComponent implements OnInit {
-  matchs: Match[] = [];
+  matchsNouveau: Match[] = [];
+  matchsEnCours: Match[] = [];
+  matchsFinis: Match[] = [];
   estModalVisible: boolean = false;
   titreModal: string = 'Confirmer la suppression ?';
   texteModal: string = 'Cette action est définitive';
+  idASupprimer?: number;
 
   constructor(private matchsService: MatchsService, private router: Router) {}
 
@@ -28,7 +37,11 @@ export class GestionMatchsComponent implements OnInit {
 
   refreshList() {
     this.matchsService.getMatchs().subscribe((matchs) => {
-      this.matchs = matchs;
+      this.matchsNouveau = matchs.filter((match) => match.statut === 'nouveau');
+      this.matchsEnCours = matchs.filter(
+        (match) => match.statut === 'en cours'
+      );
+      this.matchsFinis = matchs.filter((match) => match.statut === 'fini');
     });
   }
 
@@ -36,7 +49,8 @@ export class GestionMatchsComponent implements OnInit {
     this.router.navigate(['creer-match']);
   }
 
-  demanderSuppression(): void {
+  demanderSuppression(id: number): void {
+    this.idASupprimer = id;
     this.estModalVisible = true;
   }
 

@@ -4,13 +4,13 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 import { TimerStatus } from '../../../shared/models/timer-tick';
 import { Match } from '../../../shared/models/match';
+import { MatchsService } from '../../../shared/services/matchs.service';
 
 @Component({
   selector: 'app-chrono',
@@ -21,14 +21,17 @@ import { Match } from '../../../shared/models/match';
 })
 export class ChronoComponent implements AfterViewInit {
   @Input() match!: Match;
-  @Output() timerTick: EventEmitter<TimerStatus> = new EventEmitter();
-  @Output() timerFin: EventEmitter<number> = new EventEmitter();
+  @Output() timerEvent: EventEmitter<number> = new EventEmitter();
+  @Output() timerDebutEvent: EventEmitter<null> = new EventEmitter();
+  @Output() timerFinEvent: EventEmitter<number> = new EventEmitter();
   @ViewChild('basicTimer') chrono!: CdTimerComponent;
 
   estDemarre: boolean = false;
   estEnPause: boolean = false;
   estFini: boolean = false;
   tickActuel: number = 0;
+
+  constructor(private matchsService: MatchsService) {}
 
   ngAfterViewInit(): void {
     this.chrono.stop();
@@ -44,6 +47,7 @@ export class ChronoComponent implements AfterViewInit {
         this.estEnPause = true;
       }
     } else {
+      this.timerDebutEvent.emit();
       this.chrono.start();
       this.estDemarre = true;
       this.estEnPause = false;
@@ -53,18 +57,18 @@ export class ChronoComponent implements AfterViewInit {
   tick(timerStatus: TimerStatus) {
     this.tickActuel = timerStatus.tick_count;
     if (timerStatus.tick_count % 5 == 0) {
-      this.timerTick.emit(timerStatus);
+      this.timerEvent.emit(this.tickActuel);
     }
   }
 
   complete() {
     this.estFini = true;
-    this.timerFin.emit(this.tickActuel);
+    this.timerFinEvent.emit(this.tickActuel);
   }
 
   terminerMatch() {
     this.chrono.stop();
     this.estFini = true;
-    this.timerFin.emit(this.tickActuel);
+    this.timerFinEvent.emit(this.tickActuel);
   }
 }

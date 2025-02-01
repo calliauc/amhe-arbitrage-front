@@ -23,29 +23,39 @@ import { TimerStatus } from '../../shared/models/timer-tick';
 })
 export class SuiviMatchComponent implements OnChanges {
   @Input() match!: Match;
-  @Output() matchEvent: EventEmitter<Match> = new EventEmitter();
+  @Output() matchEvent: EventEmitter<null> = new EventEmitter();
 
   ngOnChanges(changes: SimpleChanges): void {}
 
   constructor(private matchsService: MatchsService) {}
 
+  updateTimer(tick_count: number) {
+    this.matchsService
+      .modifierTimerMatch(this.match.id, tick_count)
+      .subscribe();
+  }
+
   updateScoreA(scoreA: number) {
-    this.match.scoreA = scoreA;
-    this.matchEvent.emit(this.match);
+    this.matchsService
+      .modifierScoreAMatch(this.match.id, scoreA)
+      .subscribe((_) => this.matchEvent.emit());
   }
 
   updateScoreB(scoreB: number) {
-    this.match.scoreB = scoreB;
-    this.matchEvent.emit(this.match);
+    this.matchsService
+      .modifierScoreBMatch(this.match.id, scoreB)
+      .subscribe((_) => this.matchEvent.emit());
   }
 
-  timerTick(timerEvent: TimerStatus) {
-    this.match.timer = timerEvent.tick_count;
-    this.matchEvent.emit(this.match);
+  setDebutMatch() {
+    this.matchsService
+      .modifierDateDebutMatch(this.match.id, new Date())
+      .subscribe((_) => this.matchEvent.emit());
   }
 
-  timerFin(tick_count: number) {
-    this.match.timer = tick_count;
-    this.matchEvent.emit(this.match);
+  setFinMatch(tick_count: number) {
+    this.matchsService
+      .modifierDateFinMatch(this.match.id, new Date(), tick_count)
+      .subscribe((_) => this.matchEvent.emit());
   }
 }

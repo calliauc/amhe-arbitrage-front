@@ -1,9 +1,9 @@
 <main>
   @if (match) {
-  <!-- <div>Match : {{ match.id }}</div> -->
+  <div>Statut : {{ match.statut }}</div>
   <app-gestion-match
     [match]="match"
-    (matchEvent)="refreshMatch($event)"
+    (matchEvent)="refreshMatch()"
   ></app-gestion-match>
   <div id="separateur"></div>
   <app-creation-coup [match]="match"></app-creation-coup>

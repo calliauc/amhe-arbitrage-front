@@ -9,6 +9,7 @@ export class NouveauMatch {
   };
   couleurA: string;
   couleurB: string;
+  timer: number;
   ruleset: Ruleset;
 
   constructor(
@@ -16,12 +17,14 @@ export class NouveauMatch {
     b: number,
     couleurA: string,
     couleurB: string,
+    timer: number,
     ruleset: Ruleset
   ) {
     this.infosA = { id: a };
     this.infosB = { id: b };
     this.couleurA = couleurA;
     this.couleurB = couleurB;
+    this.timer = timer;
     this.ruleset = ruleset;
   }
 }

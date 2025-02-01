@@ -9,6 +9,10 @@ export class Match {
   couleurB!: string;
   scoreA: number = 0;
   scoreB: number = 0;
+  dateCreation?: Date;
+  dateDebut?: Date;
+  dateFin?: Date;
+  statut!: string;
   timer: number = 0;
   ruleset!: Ruleset;
 }
