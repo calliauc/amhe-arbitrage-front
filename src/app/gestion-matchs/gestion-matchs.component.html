@@ -1,135 +1,38 @@
 <main>
-  <div>
-    <h2>Nouveaux matchs</h2>
+  <button class="btn-creation-match" (click)="creerMatch()">
+    Creer un match
+  </button>
+  <h2>Nouveaux matchs</h2>
+  <div class="liste-matchs">
     @for (match of matchsNouveau; track $index) {
-    <div class="match-wrapper">
-      <div>Match {{ match.id }}</div>
-      <div>Statut : {{ match.statut }}</div>
-      <div>
-        Date création : {{ match.dateCreation | date : "dd MMM yyyy (HH:mm)" }}
-      </div>
-      <div>
-        Date création : {{ match.dateCreation | date : "dd/MM/yy - HH:mm:ss" }}
-      </div>
-      <div>
-        Date Début : {{ match.dateDebut | date : "dd MMM yyyy (HH:mm:ss)" }}
-      </div>
-      <div>
-        Date Fin : {{ match.dateFin | date : "dd MMM yyyy (HH:mm:ss)" }}
-      </div>
-      <div>
-        <a routerLink="/arbitrage/{{ match.id }}"
-          ><button class="btn-gestion-match">Arbitrer match</button></a
-        ><button
-          class="btn-gestion-match"
-          (click)="demanderSuppression(match.id)"
-        >
-          Supprimer match
-        </button>
-      </div>
-      <div [style.color]="match.couleurA">
-        <span>{{ match.infosA | nomsDisplay }}</span>
-        <br />
-        <span>{{ match.infosA.club | clubDisplay }}</span>
-      </div>
-      <br />
-      <div [style.color]="match.couleurB">
-        <span>{{ match.infosB | nomsDisplay }}</span
-        ><br />
-        <span>{{ match.infosB.club | clubDisplay }}</span>
-      </div>
+    <div class="match">
+      <app-match-afficher
+        [match]="match"
+        (matchEvent)="refreshList()"
+      ></app-match-afficher>
     </div>
     }
-    <h2>Matchs en cours</h2>
+  </div>
+  <h2>Matchs en cours</h2>
+  <div class="liste-matchs">
     @for (match of matchsEnCours; track $index) {
-    <div class="match-wrapper">
-      <div>Match {{ match.id }}</div>
-      <div>Statut : {{ match.statut }}</div>
-      <div>
-        Date création : {{ match.dateCreation | date : "dd MMM yyyy (HH:mm)" }}
-      </div>
-      <div>
-        Date création : {{ match.dateCreation | date : "dd/MM/yy - HH:mm:ss" }}
-      </div>
-      <div>
-        Date Début : {{ match.dateDebut | date : "dd MMM yyyy (HH:mm:ss)" }}
-      </div>
-      <div>
-        Date Fin : {{ match.dateFin | date : "dd MMM yyyy (HH:mm:ss)" }}
-      </div>
-      <div>
-        <a routerLink="/arbitrage/{{ match.id }}"
-          ><button class="btn-gestion-match">Arbitrer match</button></a
-        ><button
-          class="btn-gestion-match"
-          (click)="demanderSuppression(match.id)"
-        >
-          Supprimer match
-        </button>
-      </div>
-      <div [style.color]="match.couleurA">
-        <span>{{ match.infosA | nomsDisplay }}</span>
-        <br />
-        <span>{{ match.infosA.club | clubDisplay }}</span>
-      </div>
-      <br />
-      <div [style.color]="match.couleurB">
-        <span>{{ match.infosB | nomsDisplay }}</span
-        ><br />
-        <span>{{ match.infosB.club | clubDisplay }}</span>
-      </div>
+    <div class="match">
+      <app-match-afficher
+        [match]="match"
+        (matchEvent)="refreshList()"
+      ></app-match-afficher>
     </div>
     }
-    <h2>Matchs terminés</h2>
+  </div>
+  <h2>Matchs terminés</h2>
+  <div class="liste-matchs">
     @for (match of matchsFinis; track $index) {
-    <div class="match-wrapper">
-      <div>Match {{ match.id }}</div>
-      <div>Statut : {{ match.statut }}</div>
-      <div>
-        Date création : {{ match.dateCreation | date : "dd MMM yyyy (HH:mm)" }}
-      </div>
-      <div>
-        Date création : {{ match.dateCreation | date : "dd/MM/yy - HH:mm:ss" }}
-      </div>
-      <div>
-        Date Début : {{ match.dateDebut | date : "dd MMM yyyy (HH:mm:ss)" }}
-      </div>
-      <div>
-        Date Fin : {{ match.dateFin | date : "dd MMM yyyy (HH:mm:ss)" }}
-      </div>
-      <div>
-        <a routerLink="/arbitrage/{{ match.id }}"
-          ><button class="btn-gestion-match">Arbitrer match</button></a
-        ><button
-          class="btn-gestion-match"
-          (click)="demanderSuppression(match.id)"
-        >
-          Supprimer match
-        </button>
-      </div>
-      <div [style.color]="match.couleurA">
-        <span>{{ match.infosA | nomsDisplay }}</span>
-        <br />
-        <span>{{ match.infosA.club | clubDisplay }}</span>
-      </div>
-      <br />
-      <div [style.color]="match.couleurB">
-        <span>{{ match.infosB | nomsDisplay }}</span
-        ><br />
-        <span>{{ match.infosB.club | clubDisplay }}</span>
-      </div>
+    <div class="match">
+      <app-match-afficher
+        [match]="match"
+        (matchEvent)="refreshList()"
+      ></app-match-afficher>
     </div>
-    } @if (estModalVisible){
-    <app-confirmation-modal
-      [id]="idASupprimer!"
-      [titre]="titreModal"
-      [texte]="texteModal"
-      (confirmer)="confirmerSuppression($event)"
-      (annuler)="annulerSuppression()"
-    ></app-confirmation-modal>
     }
-    <button class="btn-creation-match" (click)="creerMatch()">
-      Creer nouveau match
-    </button>
   </div>
 </main>

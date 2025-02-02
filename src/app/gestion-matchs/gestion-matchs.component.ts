@@ -6,6 +6,7 @@ import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { Router, RouterLink } from '@angular/router';
 import { ConfirmationModalComponent } from '../shared/confirmation-modal/confirmation-modal.component';
 import { DatePipe } from '@angular/common';
+import { MatchAfficherComponent } from './match-afficher/match-afficher.component';
 
 @Component({
   selector: 'app-gestion-matchs',
@@ -16,6 +17,7 @@ import { DatePipe } from '@angular/common';
     NomsPipe,
     ConfirmationModalComponent,
     DatePipe,
+    MatchAfficherComponent,
   ],
   templateUrl: './gestion-matchs.component.html',
   styleUrl: './gestion-matchs.component.css',

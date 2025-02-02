@@ -1,0 +1,51 @@
+<div class="match-wrapper">
+  <div id="top-card">
+    <div>
+      <span>Match {{ match.id }} </span>
+      <span>({{ match.statut }})</span>
+    </div>
+    <div>
+      @if (match.statut=="nouveau") {
+      <p>
+        Créé le {{ match.dateCreation | date : "dd/MM/yyyy" }} à
+        {{ match.dateCreation | date : "HH:mm:ss" }}
+      </p>
+      } @else {
+      <div>Date : {{ match.dateDebut | date : "dd/MM/yyyy" }}</div>
+      @if (match.statut=="en cours") {
+      <span>Débuté à {{ match.dateDebut | date : "HH:mm" }}</span>
+      } @if (match.statut=="fini") {
+      <span>De {{ match.dateDebut | date : "HH:mm" }}</span>
+      <span> à {{ match.dateFin | date : "HH:mm" }}</span>
+      } }
+    </div>
+  </div>
+  <div id="middle-card">
+    <p [style.color]="match.couleurA">
+      <span>{{ match.infosA | nomsDisplay }}</span>
+      <br />
+      <span>{{ match.infosA.club | clubDisplay }}</span>
+    </p>
+    <p [style.color]="match.couleurB">
+      <span>{{ match.infosB | nomsDisplay }}</span
+      ><br />
+      <span>{{ match.infosB.club | clubDisplay }}</span>
+    </p>
+  </div>
+  <div id="bottom-card">
+    <a routerLink="/arbitrage/{{ match.id }}"
+      ><button id="button-arbitrer">Arbitrer match</button></a
+    ><button id="button-supprimer" (click)="demanderSuppression(match.id)">
+      X
+    </button>
+  </div>
+</div>
+@if (estModalVisible){
+<app-confirmation-modal
+  [id]="match.id"
+  [titre]="titreModal"
+  [texte]="texteModal"
+  (confirmer)="confirmerSuppression($event)"
+  (annuler)="annulerSuppression()"
+></app-confirmation-modal>
+}
