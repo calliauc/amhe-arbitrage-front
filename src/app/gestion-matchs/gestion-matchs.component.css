@@ -10,7 +10,7 @@ main {
   flex-wrap: wrap;
   justify-content: flex-start;
   border-radius: 30px;
-  background-color: rgb(32, 32, 32);
+  /* background-color: rgb(30, 30, 30); */
   width: 100%;
   padding-inline-start: 10px;
   padding-block-start: 10px;
@@ -18,11 +18,11 @@ main {
 
 .match {
   width: 300px;
-  height: 300px;
-  border-radius: 25px;
+  height: 320px;
+  border-radius: 10px;
   margin-block-end: 10px;
   margin-inline-end: 10px;
-  border: 3px solid rgb(100, 100, 100);
+  border: 3px solid rgb(30, 30, 30);
 }
 
 button {
@@ -32,4 +32,10 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1099px) {
+  .match {
+    margin-inline: auto;
+  }
 }

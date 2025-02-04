@@ -2,7 +2,7 @@
 body {
   width: 70%;
   margin-inline: 15%;
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(30, 30, 30);
   color: aliceblue;
 }
 
@@ -14,7 +14,7 @@ h1 {
 main {
   border-radius: 30px;
   padding: 20px;
-  background-color: rgb(42, 42, 42);
+  background-color: rgb(50, 50, 50);
   margin-bottom: 20px;
 }
 

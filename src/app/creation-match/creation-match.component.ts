@@ -14,6 +14,7 @@ import { TimerPipe } from '../shared/pipes/timer.pipe';
 import { RulsetRefPipe } from '../shared/pipes/ruleset-refs.pipe';
 import { TimerReversePipe } from '../shared/pipes/timerReverse.pipe';
 import { couleurs } from '../shared/models/ruleset-ref';
+import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
 
 @Component({
   selector: 'app-creation-match',
@@ -25,16 +26,23 @@ import { couleurs } from '../shared/models/ruleset-ref';
     TimerPipe,
     RulsetRefPipe,
     TimerReversePipe,
+    CreationMatchModalComponent,
   ],
   templateUrl: './creation-match.component.html',
   styleUrl: './creation-match.component.css',
 })
 export class CreationMatchComponent implements OnInit {
+  estModalVisible: boolean = false;
+  nouveauMatch?: NouveauMatch;
   formCreerMatch!: FormGroup;
-  formRuleset!: FormGroup;
   combattantsListe!: Combattant[];
   rulesets?: Ruleset[];
   rulesetChoisi?: Ruleset;
+  a?: Combattant;
+  b?: Combattant;
+  colorA?: string;
+  colorB?: string;
+  rechercheCombattantA?: string;
   couleurs = couleurs;
 
   constructor(
@@ -46,27 +54,40 @@ export class CreationMatchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getDatas();
+    this.initForm();
+  }
+
+  getDatas() {
     this.combattantsService.getCombattants().subscribe((liste) => {
       this.combattantsListe = liste;
     });
-    this.formCreerMatch = this.formBuilder.group({
-      combattantA: null,
-      combattantB: null,
-      couleurA: null,
-      couleurB: null,
-    });
-    this.initRuleset();
-  }
-
-  initRuleset() {
     this.rulesetsService.getRulesets().subscribe((rulesets) => {
       this.rulesets = rulesets;
     });
-    this.formRuleset = this.formBuilder.group({
+  }
+
+  initForm() {
+    this.rulesetChoisi = undefined;
+    this.a = undefined;
+    this.b = undefined;
+    this.colorA = undefined;
+    this.colorB = undefined;
+
+    this.formCreerMatch = this.formBuilder.group({
+      combattantA: null,
+      combattantB: null,
+      couleurA: 'white',
+      couleurB: 'white',
       ruleset: null,
     });
-    this.formRuleset.valueChanges.subscribe((ruleset) => {
-      this.rulesetChoisi = ruleset.ruleset;
+    this.formCreerMatch.valueChanges.subscribe((values) => {
+      console.log(values);
+      this.rulesetChoisi = values.ruleset;
+      this.a = this.combattantsListe.find((c) => c.id === values.combattantA);
+      this.b = this.combattantsListe.find((c) => c.id === values.combattantB);
+      this.colorA = values.couleurA;
+      this.colorB = values.couleurB;
     });
   }
 
@@ -76,7 +97,7 @@ export class CreationMatchComponent implements OnInit {
     } else if (this.estIncorrect()) {
       alert('Les champs sont mal remplis');
     } else {
-      let nouveauMatch = new NouveauMatch(
+      this.nouveauMatch = new NouveauMatch(
         this.formCreerMatch.value.combattantA,
         this.formCreerMatch.value.combattantB,
         this.formCreerMatch.value.couleurA,
@@ -84,14 +105,9 @@ export class CreationMatchComponent implements OnInit {
         0,
         this.setRuleset()
       );
-      nouveauMatch = this.setTimer(nouveauMatch);
-      console.log(nouveauMatch);
-
-      this.matchsService
-        .creerMatch(nouveauMatch)
-        .subscribe((matchCree: Match) => {
-          this.router.navigate(['arbitrage', matchCree.id]);
-        });
+      this.nouveauMatch = this.setTimer(this.nouveauMatch);
+      console.log(this.nouveauMatch);
+      this.estModalVisible = true;
     }
   }
 
@@ -133,5 +149,28 @@ export class CreationMatchComponent implements OnInit {
       match.ruleset.timerLimite = 0;
     }
     return match;
+  }
+
+  annulerCreation() {
+    this.estModalVisible = false;
+  }
+
+  confirmerCreation(suite: string) {
+    this.matchsService
+      .creerMatch(this.nouveauMatch!)
+      .subscribe((matchCree: Match) => {
+        this.estModalVisible = false;
+        switch (suite) {
+          case 'liste':
+            this.router.navigate(['matchs']);
+            break;
+          case 'arbitrer':
+            this.router.navigate(['arbitrage', matchCree.id]);
+            break;
+          case 'rester':
+            this.initForm();
+            break;
+        }
+      });
   }
 }

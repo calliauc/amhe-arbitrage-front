@@ -1,0 +1,97 @@
+h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4em;
+}
+form {
+  margin-inline: auto;
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 1.1em;
+}
+
+#select-combattants {
+  order: 1;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+#select-combattant {
+  display: flex;
+}
+
+#preview-combattants {
+  order: 3;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#select-ruleset {
+  text-align: center;
+  order: 2;
+  width: 39%;
+}
+
+select {
+  margin-inline: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  order: 5;
+  width: 100px;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-inline: auto;
+}
+
+@media screen and (max-width: 1099px) {
+  form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1.1em;
+  }
+
+  #select-combattants {
+    order: 1;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  #select-combattant {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+    margin-right: 10%;
+    margin-bottom: 10px;
+  }
+
+  .select-label {
+    text-align: right;
+    grid-column: 1;
+  }
+
+  .select-field {
+    grid-column: 2;
+  }
+
+  #preview-combattants {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-block: 10px;
+  }
+
+  #select-ruleset {
+    margin-top: 10px;
+    width: 100%;
+  }
+}

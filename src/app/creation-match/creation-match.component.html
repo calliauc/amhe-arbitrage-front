@@ -1,69 +1,100 @@
-<h3>Formulaire de création de match :</h3>
-<form [formGroup]="formRuleset">
-  <div>
-    <span>Sélectionner le ruleset : </span>
-    <select name="" formControlName="ruleset">
-      @for (ruleset of rulesets; track $index){
-      <option [ngValue]="ruleset">{{ ruleset.nom }}</option>
-      }
-    </select>
-  </div>
-</form>
-<br />
-<form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
-  <div>
-    <span>Sélectionner le combattant A : </span>
-    <select name="" formControlName="combattantA">
-      @for (combattant of combattantsListe; track $index){
-      <option [ngValue]="combattant.id">{{ combattant | nomsDisplay }}</option>
-      }
-    </select>
-    <span>Et sa couleur : </span>
-    <select name="" formControlName="couleurA">
-      @for (couleur of couleurs; track $index){
-      <option [ngValue]="couleur.code" [style.background-color]="couleur.code">
-        {{ couleur.libelle }}
-      </option>
-      }
-    </select>
-    <div><br /></div>
-    <span>Sélectionner le combattant B : </span>
-    <select name="" formControlName="combattantB">
-      @for (combattant of combattantsListe; track $index){
-      <option [ngValue]="combattant.id">{{ combattant | nomsDisplay }}</option>
-      }
-    </select>
-    <span>Et sa couleur : </span>
-    <select name="" formControlName="couleurB">
-      @for (couleur of couleurs; track $index){
-      <option [ngValue]="couleur.code" [style.background-color]="couleur.code">
-        {{ couleur.libelle }}
-      </option>
-      }
-    </select>
-  </div>
-  <br />
-  <div>
-    @if (rulesetChoisi) {
-    <p>Ruleset : {{ rulesetChoisi.nom }}</p>
-    <p>Détails : {{ rulesetChoisi.description }}</p>
-    <p>
-      Timer : {{ rulesetChoisi.timerLimite | timer }} ({{
-        rulesetChoisi.timerReverse | timerReverse
-      }})
-    </p>
-    <p>Vulnerants : {{ rulesetChoisi.vulnerants | rulesetRefDisplay }}</p>
-    <p>Cibles : {{ rulesetChoisi.cibles | rulesetRefDisplay }}</p>
-    }
-  </div>
-  <br />
-  <button class="btn" type="submit">Créer et arbitrer</button>
-</form>
+<main>
+  <h3>Formulaire de création de match</h3>
+  <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
+    <div id="select-combattants">
+      <div id="select-combattant">
+        <div class="select-label">Combattant A</div>
+        <select class="select-field" name="" formControlName="combattantA">
+          <div>test{{ rechercheCombattantA }}</div>
+          @for (combattant of combattantsListe; track $index){
+          <option [ngValue]="combattant.id">
+            {{ combattant | nomsDisplay }}
+          </option>
+          }
+        </select>
+        <div class="select-label">Couleur</div>
+        <select class="select-field" name="" formControlName="couleurA">
+          @for (couleur of couleurs; track $index){
+          <option
+            [ngValue]="couleur.code"
+            [style.background-color]="couleur.code"
+          >
+            {{ couleur.libelle }}
+          </option>
+          }
+        </select>
+      </div>
+      <div id="select-combattant">
+        <div class="select-label">Combattant B</div>
+        <select class="select-field" name="" formControlName="combattantB">
+          @for (combattant of combattantsListe; track $index){
+          <option [ngValue]="combattant.id">
+            {{ combattant | nomsDisplay }}
+          </option>
+          }
+        </select>
+        <div class="select-label">Couleur</div>
+        <select class="select-field" name="" formControlName="couleurB">
+          @for (couleur of couleurs; track $index){
+          <option
+            [ngValue]="couleur.code"
+            [style.background-color]="couleur.code"
+          >
+            {{ couleur.libelle }}
+          </option>
+          }
+        </select>
+      </div>
+      <div id="preview-combattants">
+        @if (a) {
+        <div [style.color]="colorA">
+          <div>{{ a.prenom }} {{ a.nom }}</div>
+          <div>{{ a.club?.nomComplet }} ({{ a.club?.ville }})</div>
+        </div>
+        } @if (b) {
+        <div [style.color]="colorB">
+          <div>{{ b.prenom }} {{ b.nom }}</div>
+          <div>{{ b.club?.nomComplet }} ({{ b.club?.ville }})</div>
+        </div>
+        }
+      </div>
+    </div>
 
-<p>Reste à faire :</p>
-<ul>
-  <li>Combattant A (recherche)</li>
-  <li>Combattant B (recherche)</li>
-  <li>Ruleset (liste déroulante)</li>
-  <li>Affichage interractif et modifiable du ruleset</li>
-</ul>
+    <div id="select-ruleset">
+      <div>
+        <span>Sélectionner le ruleset</span>
+        <select name="" formControlName="ruleset">
+          @for (ruleset of rulesets; track $index){
+          <option [ngValue]="ruleset">{{ ruleset.nom }}</option>
+          }
+        </select>
+      </div>
+      <div id="preview-ruleset">
+        @if (rulesetChoisi) {
+        <!-- <div>Ruleset : {{ rulesetChoisi.nom }}</div> -->
+        <div>Détails : {{ rulesetChoisi.description }}</div>
+        <div>
+          Timer : {{ rulesetChoisi.timerLimite | timer }} ({{
+            rulesetChoisi.timerReverse | timerReverse
+          }})
+        </div>
+        <br />
+        <div>
+          Vulnerants : {{ rulesetChoisi.vulnerants | rulesetRefDisplay }}
+        </div>
+        <div>Cibles : {{ rulesetChoisi.cibles | rulesetRefDisplay }}</div>
+        }
+      </div>
+    </div>
+
+    <button class="btn" type="submit">Créer</button>
+  </form>
+  @if (estModalVisible){
+  <app-creation-match-modal
+    titre="Confirmer la creation d'un match"
+    texte=""
+    (annuler)="annulerCreation()"
+    (confirmer)="confirmerCreation($event)"
+  ></app-creation-match-modal>
+  }
+</main>
