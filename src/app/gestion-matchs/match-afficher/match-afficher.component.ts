@@ -6,6 +6,7 @@ import { ConfirmationModalComponent } from '../../shared/confirmation-modal/conf
 import { DatePipe } from '@angular/common';
 import { MatchsService } from '../../shared/services/matchs.service';
 import { Router, RouterLink } from '@angular/router';
+import { TimerPipe } from '../../shared/pipes/timer.pipe';
 
 @Component({
   selector: 'app-match-afficher',
@@ -16,6 +17,7 @@ import { Router, RouterLink } from '@angular/router';
     NomsPipe,
     ConfirmationModalComponent,
     DatePipe,
+    TimerPipe,
   ],
   templateUrl: './match-afficher.component.html',
   styleUrl: './match-afficher.component.css',

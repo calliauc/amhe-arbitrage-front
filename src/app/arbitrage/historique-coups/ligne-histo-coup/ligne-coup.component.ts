@@ -12,11 +12,4 @@ import { DatePipe } from '@angular/common';
 })
 export class LigneCoupComponent {
   @Input() coup!: Coup;
-  // @Output() suppressionCoup: EventEmitter<number> = new EventEmitter();
-
-  constructor(private coupsService: CoupsService) {}
-
-  // supprimerCoup() {
-  //   this.suppressionCoup.emit(this.coup.id);
-  // }
 }
