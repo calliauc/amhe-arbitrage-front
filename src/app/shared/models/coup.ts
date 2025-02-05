@@ -10,7 +10,8 @@ export class Coup {
   defenseurCouleur!: string;
   attaquantScore!: number;
   defenseurScore!: number;
+  timecode!: Date;
+  doubleTouche: boolean = false;
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
-  doubleTouche: boolean = false;
 }

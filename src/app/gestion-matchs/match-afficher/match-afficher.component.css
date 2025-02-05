@@ -14,8 +14,8 @@
 }
 
 #middle-card {
-  height: 170px;
-  /* border: 1px solid green; */
+  height: 190px;
+  border: 1px solid rgb(40, 40, 40);
   background-color: rgb(40, 40, 40);
 }
 
@@ -30,7 +30,7 @@
 #button-arbitrer {
   width: 250px;
   height: 46px;
-  border: 7px outset rgb(50, 50, 50);
+  border: 5px outset rgb(50, 50, 50);
   /* border: none; */
   color: aliceblue;
   font-size: 1em;

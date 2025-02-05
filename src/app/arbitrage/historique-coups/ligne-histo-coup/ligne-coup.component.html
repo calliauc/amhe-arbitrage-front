@@ -1,7 +1,8 @@
 <tr class="tr-coup">
   <td class="txt-histo-coups desktop">
+    <span>{{ coup.timecode | date : "HH:mm:ss" }} - </span>
     @if (coup.doubleTouche) {
-    <span>(D) </span>
+    <span>(D) - </span>
     }
     <span [style.color]="coup.attaquantCouleur"
       >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
@@ -14,8 +15,9 @@
     >
   </td>
   <td class="txt-histo-coups mobile">
+    <span>{{ coup.timecode | date : "HH:mm:ss" }} - </span>
     @if (coup.doubleTouche) {
-    <span>(D) </span>
+    <span>(D) - </span>
     }
     <span [style.color]="coup.attaquantCouleur"
       >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span

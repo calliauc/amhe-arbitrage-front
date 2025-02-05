@@ -1,24 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
-import { ClubPipe } from '../shared/pipes/club.pipe';
-import { NomsPipe } from '../shared/pipes/noms.pipe';
-import { Router, RouterLink } from '@angular/router';
-import { ConfirmationModalComponent } from '../shared/confirmation-modal/confirmation-modal.component';
-import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatchAfficherComponent } from './match-afficher/match-afficher.component';
 
 @Component({
   selector: 'app-gestion-matchs',
   standalone: true,
-  imports: [
-    RouterLink,
-    ClubPipe,
-    NomsPipe,
-    ConfirmationModalComponent,
-    DatePipe,
-    MatchAfficherComponent,
-  ],
+  imports: [MatchAfficherComponent],
   templateUrl: './gestion-matchs.component.html',
   styleUrl: './gestion-matchs.component.css',
 })

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NouveauMatch } from '../../shared/models/nouveau-match';
 
 @Component({
   selector: 'app-creation-match-modal',

@@ -84,6 +84,9 @@ export class CreationCoupComponent implements OnInit, OnChanges {
   }
 
   enregistrerCoup(nouveauCoup: NouveauCoup) {
+    let date = new Date();
+    console.log(date);
+
     let coup = {
       matchId: nouveauCoup.matchId,
       attaquant: nouveauCoup.attaquant,
@@ -92,10 +95,13 @@ export class CreationCoupComponent implements OnInit, OnChanges {
       defenseur: nouveauCoup.defenseur,
       defenseurCouleur: nouveauCoup.defenseurCouleur,
       defenseurScore: nouveauCoup.defenseurScore,
+      doubleTouche: nouveauCoup.doubleTouche,
+      timecode: date,
       vulnerant: nouveauCoup.vulnerant,
       cible: nouveauCoup.cible,
-      doubleTouche: nouveauCoup.doubleTouche,
     } as Coup;
+    console.log(coup);
+
     this.coupsService.creerCoup(coup).subscribe((coup) => {
       this.coupsService.notificationCoup.next(true);
     });

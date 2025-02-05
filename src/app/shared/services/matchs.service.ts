@@ -26,6 +26,7 @@ export class MatchsService {
   }
 
   public creerMatch(matchACreer: NouveauMatch): Observable<Match> {
+    console.log('Service creation : ' + matchACreer.dateCreation);
     return this.http.post<Match>(this.URL, matchACreer, {
       responseType: 'json',
     });

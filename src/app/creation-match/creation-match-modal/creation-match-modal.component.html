@@ -2,11 +2,11 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
     <h2>{{ titre }}</h2>
     <p>{{ texte }}</p>
-    <button id="btn-arbitrer" (click)="arbitrer()">Créer et arbitrer</button>
-    <button id="btn-liste" (click)="liste()">Créer et voir la liste</button>
-    <button id="btn-rester" (click)="rester()">
-      Créer et rester sur la page
+    <button id="btn-arbitrer" (click)="arbitrer()">Arbitrer le match</button>
+    <button id="btn-liste" (click)="liste()">
+      Revenir à la liste des matchs
     </button>
+    <button id="btn-rester" (click)="rester()">Créer un autre match</button>
     <button id="btn-annuler" (click)="annulerCreation()">
       Annuler la création
     </button>

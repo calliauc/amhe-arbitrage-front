@@ -103,6 +103,7 @@ export class CreationMatchComponent implements OnInit {
         this.formCreerMatch.value.couleurA,
         this.formCreerMatch.value.couleurB,
         0,
+        new Date(),
         this.setRuleset()
       );
       this.nouveauMatch = this.setTimer(this.nouveauMatch);
