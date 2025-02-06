@@ -22,35 +22,40 @@
   </div>
   <div id="middle-card">
     @if (match.statut == "en cours") {
-    <div>{{ match.timer | timer }}</div>
+    <div id="chrono">Chrono : {{ match.timer | timer }}</div>
     }
-    <div class="combattant" [style.color]="match.couleurA">
-      @if(match.statut!="nouveau") {
-      <div>{{ match.scoreA }}</div>
-      }
-      <div>
+    <div class="ligne-combattant" [style.color]="match.couleurA">
+      <div class="combattant">
         <span>{{ match.infosA | nomsDisplay }}</span>
         <br />
         <span>{{ match.infosA.club | clubDisplay }}</span>
       </div>
-    </div>
-    <div class="combattant" [style.color]="match.couleurB">
       @if(match.statut!="nouveau") {
-      <div>{{ match.scoreB }}</div>
+      <div class="score-combattant">{{ match.scoreA }}</div>
       }
-      <div>
+    </div>
+    <div class="ligne-combattant" [style.color]="match.couleurB">
+      <div class="combattant">
         <span>{{ match.infosB | nomsDisplay }}</span
         ><br />
         <span>{{ match.infosB.club | clubDisplay }}</span>
       </div>
+      @if(match.statut!="nouveau") {
+      <div class="score-combattant">{{ match.scoreB }}</div>
+      }
     </div>
-    <div id="bottom-card">
-      <a routerLink="/arbitrage/{{ match.id }}"
-        ><button id="button-arbitrer">Arbitrer match</button></a
-      ><button id="button-supprimer" (click)="demanderSuppression(match.id)">
-        X
-      </button>
-    </div>
+    <!-- <div id="tags">
+      Tags : @for (tag of tags; track $index) {
+      <span> [{{ tag }}]</span>
+      }
+    </div> -->
+  </div>
+  <div id="bottom-card">
+    <a routerLink="/arbitrage/{{ match.id }}"
+      ><button id="button-arbitrer">Arbitrer match</button></a
+    ><button id="button-supprimer" (click)="demanderSuppression(match.id)">
+      X
+    </button>
   </div>
   @if (estModalVisible){
   <app-confirmation-modal

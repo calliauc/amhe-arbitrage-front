@@ -29,6 +29,7 @@ export class MatchAfficherComponent {
   estModalVisible: boolean = false;
   titreModal: string = 'Confirmer la suppression ?';
   texteModal: string = 'Cette action est définitive';
+  // tags = ['Poules', 'Poule-A', 'Poule-A', 'Poule-A', 'Poule-A'];
 
   constructor(private matchsService: MatchsService, private router: Router) {}
 

@@ -26,27 +26,29 @@ export class MatchsService {
   }
 
   public creerMatch(matchACreer: NouveauMatch): Observable<Match> {
+    matchACreer.dateCreation.setHours(matchACreer.dateCreation.getHours() + 1);
     console.log('Service creation : ' + matchACreer.dateCreation);
     return this.http.post<Match>(this.URL, matchACreer, {
       responseType: 'json',
     });
   }
 
-  public modifierMatch(matchAModifier: Match): Observable<Match> {
-    console.log('Modif match', matchAModifier);
-    return this.http.put<Match>(
-      `${this.URL}/${matchAModifier.id}`,
-      matchAModifier,
-      {
-        responseType: 'json',
-      }
-    );
-  }
+  // public modifierMatch(matchAModifier: Match): Observable<Match> {
+  //   console.log('Modif match', matchAModifier);
+  //   return this.http.put<Match>(
+  //     `${this.URL}/${matchAModifier.id}`,
+  //     matchAModifier,
+  //     {
+  //       responseType: 'json',
+  //     }
+  //   );
+  // }
 
   public modifierDateDebutMatch(
     id: number,
     dateDebut: Date
   ): Observable<Object> {
+    dateDebut.setHours(dateDebut.getHours() + 1);
     let dateString = dateDebut.toISOString().slice(0, -5);
     return this.http.put(
       `${this.URL}/partial/${id}?dateDebut=${dateString}&statut=en cours`,
@@ -59,6 +61,7 @@ export class MatchsService {
     dateFin: Date,
     timer: Number
   ): Observable<Object> {
+    dateFin.setHours(dateFin.getHours() + 1);
     let dateString = dateFin.toISOString().slice(0, -5);
     return this.http.put(
       `${this.URL}/partial/${id}?dateFin=${dateString}&timer=${timer}&statut=fini`,

@@ -28,11 +28,19 @@ export class GestionMatchsComponent implements OnInit {
 
   refreshList() {
     this.matchsService.getMatchs().subscribe((matchs) => {
-      this.matchsNouveau = matchs.filter((match) => match.statut === 'nouveau');
-      this.matchsEnCours = matchs.filter(
-        (match) => match.statut === 'en cours'
-      );
-      this.matchsFinis = matchs.filter((match) => match.statut === 'fini');
+      if (matchs) {
+        this.matchsNouveau = matchs.filter(
+          (match) => match.statut === 'nouveau'
+        );
+        this.matchsEnCours = matchs.filter(
+          (match) => match.statut === 'en cours'
+        );
+        this.matchsFinis = matchs.filter((match) => match.statut === 'fini');
+      } else {
+        this.matchsNouveau = [];
+        this.matchsEnCours = [];
+        this.matchsFinis = [];
+      }
     });
   }
 
