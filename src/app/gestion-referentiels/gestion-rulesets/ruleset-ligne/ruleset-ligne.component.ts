@@ -13,6 +13,7 @@ import { Ruleset } from '../../../shared/models/ruleset';
 export class RulesetLigneComponent {
   @Input() ruleset!: Ruleset;
   @Input() estPair!: boolean;
+  @Input() estLectureSeule!: boolean;
   @Output() supprimerRuleset: EventEmitter<number> = new EventEmitter();
   @Output() modifierRuleset: EventEmitter<Ruleset> = new EventEmitter();
   estModif: boolean;

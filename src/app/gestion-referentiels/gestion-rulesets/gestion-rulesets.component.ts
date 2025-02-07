@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RulesetLigneComponent } from './ruleset-ligne/ruleset-ligne.component';
 import { RulesetEditerComponent } from './ruleset-editer/ruleset-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
@@ -14,6 +14,8 @@ import { RulesetsService } from '../../shared/services/rulesets.service';
   styleUrl: './gestion-rulesets.component.css',
 })
 export class GestionRulesetsComponent implements OnInit {
+  @Input() estLectureSeule!: boolean;
+
   rulesetsListe?: Ruleset[];
   rulesetsListe$?: Observable<Ruleset[]>;
   estModeCreation: boolean;

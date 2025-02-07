@@ -12,6 +12,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class CibleAfficherComponent implements OnInit {
   @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
+  @Input() estLectureSeule!: boolean;
   @Output() editerCible: EventEmitter<boolean> = new EventEmitter();
 
   ngOnInit(): void {

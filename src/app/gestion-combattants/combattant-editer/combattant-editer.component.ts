@@ -15,7 +15,7 @@ import { NgClass } from '@angular/common';
 import { Club } from '../../shared/models/club';
 import { ClubsService } from '../../shared/services/clubs.service';
 import { CombattantsService } from '../../shared/services/combattants.service';
-import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-combattant-editer',

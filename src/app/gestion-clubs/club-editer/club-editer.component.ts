@@ -12,7 +12,7 @@ import { Club } from '../../shared/models/club';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ClubsService } from '../../shared/services/clubs.service';
-import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-club-editer',

@@ -15,6 +15,7 @@ import { RulsetRefPipe } from '../../../shared/pipes/ruleset-refs.pipe';
 export class RulesetAfficherComponent implements OnInit {
   @Input() ruleset!: Ruleset;
   @Input() estPair!: boolean;
+  @Input() estLectureSeule!: boolean;
   @Output() editerRuleset: EventEmitter<boolean> = new EventEmitter();
 
   ngOnInit(): void {

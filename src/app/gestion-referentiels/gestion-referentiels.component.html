@@ -1,3 +1,30 @@
-<app-gestion-vulnerants></app-gestion-vulnerants>
-<app-gestion-cibles></app-gestion-cibles>
-<app-gestion-rulesets></app-gestion-rulesets>
+<div id="header">
+  <h3>Gestion des référentiels</h3>
+  @if (estLectureSeule) {
+  <div>
+    <span>Cet écran est en lecture seule</span>
+    <button (click)="ouvrirSecu()">Déverouiller</button>
+  </div>
+  } @else {
+  <div>
+    <span>Un grand pouvoir implique de grandes responsabilités</span>
+    <button (click)="stopModif()">J'ai compris, j'arrête</button>
+  </div>
+
+  }
+</div>
+
+<app-gestion-vulnerants
+  [estLectureSeule]="estLectureSeule"
+></app-gestion-vulnerants>
+<app-gestion-cibles [estLectureSeule]="estLectureSeule"></app-gestion-cibles>
+<app-gestion-rulesets
+  [estLectureSeule]="estLectureSeule"
+></app-gestion-rulesets>
+@if (estModateSecuVisible) {
+<app-secu-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller($event)"
+  (annuler)="annuler()"
+></app-secu-modal>
+}

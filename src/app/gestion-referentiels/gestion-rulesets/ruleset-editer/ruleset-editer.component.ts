@@ -17,7 +17,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { ConfirmationModalComponent } from '../../../shared/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { Ruleset } from '../../../shared/models/ruleset';
 import { RulesetsService } from '../../../shared/services/rulesets.service';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';

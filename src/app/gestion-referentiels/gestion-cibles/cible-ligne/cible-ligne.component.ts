@@ -13,6 +13,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class CibleLigneComponent {
   @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
+  @Input() estLectureSeule!: boolean;
   @Output() supprimerCible: EventEmitter<string> = new EventEmitter();
   @Output() modifierCible: EventEmitter<RulesetRef> = new EventEmitter();
   estModif: boolean;

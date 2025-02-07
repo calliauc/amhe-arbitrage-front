@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { VulnerantsService } from '../../shared/services/vulnerants.service';
@@ -14,6 +14,8 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
   styleUrl: './gestion-vulnerants.component.css',
 })
 export class GestionVulnerantsComponent implements OnInit {
+  @Input() estLectureSeule!: boolean;
+
   vulnerantsListe?: RulesetRef[];
   vulnerantsListe$?: Observable<RulesetRef[]>;
   estModeCreation: boolean;

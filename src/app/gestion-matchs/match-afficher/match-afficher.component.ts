@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Match } from '../../shared/models/match';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
-import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { DatePipe } from '@angular/common';
 import { MatchsService } from '../../shared/services/matchs.service';
 import { Router, RouterLink } from '@angular/router';

@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { ConfirmationModalComponent } from '../../../shared/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { VulnerantsService } from '../../../shared/services/vulnerants.service';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 

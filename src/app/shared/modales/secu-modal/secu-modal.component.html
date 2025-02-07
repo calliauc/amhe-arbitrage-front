@@ -1,0 +1,22 @@
+<div
+  class="modal-overlay"
+  (keydown.escape)="annulerSecret()"
+  (click)="annulerSecret()"
+>
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Déverouillage requis</h2>
+    <label for="secretInput"
+      >Veuillez renseigner le mot de passe pour {{ secu.code }}</label
+    >
+    <div>
+      <input
+        #secret
+        [(ngModel)]="secu.secret"
+        id="secretInput"
+        type="password"
+      />
+    </div>
+    <button id="btn-annuler" (click)="annulerSecret()">Annuler</button>
+    <button id="btn-confirmer" (click)="confirmerSecret()">Confirmer</button>
+  </div>
+</div>
