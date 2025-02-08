@@ -1,4 +1,5 @@
 import { Ruleset } from './ruleset';
+import { Tag } from './tag';
 
 export class NouveauMatch {
   infosA: {
@@ -11,6 +12,7 @@ export class NouveauMatch {
   couleurB: string;
   timer: number;
   dateCreation!: Date;
+  tags: Tag[] = [];
   ruleset: Ruleset;
 
   constructor(
@@ -20,6 +22,7 @@ export class NouveauMatch {
     couleurB: string,
     timer: number,
     dateCreation: Date,
+    tags: Tag[],
     ruleset: Ruleset
   ) {
     this.infosA = { id: a };
@@ -28,6 +31,7 @@ export class NouveauMatch {
     this.couleurB = couleurB;
     this.timer = timer;
     this.dateCreation = dateCreation;
+    this.tags = tags;
     this.ruleset = ruleset;
   }
 }

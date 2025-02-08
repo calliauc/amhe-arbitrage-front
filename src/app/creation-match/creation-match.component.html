@@ -5,7 +5,7 @@
       <div id="select-combattant">
         <div class="select-label">Combattant A</div>
         <select class="select-field" name="" formControlName="combattantA">
-          <div>test{{ rechercheCombattantA }}</div>
+          <div>{{ rechercheCombattantA }}</div>
           @for (combattant of combattantsListe; track $index){
           <option [ngValue]="combattant.id">
             {{ combattant | nomsDisplay }}
@@ -85,6 +85,21 @@
         <div>Cibles : {{ rulesetChoisi.cibles | rulesetRefDisplay }}</div>
         }
       </div>
+    </div>
+
+    <div id="select-tags">
+      <div id="tags-titre">Tags</div>
+      @for (tag of tags; track $index) {
+      <div>
+        <input
+          type="checkbox"
+          [value]="tag.id"
+          [checked]="tag.checked"
+          (change)="onChange($event)"
+        />
+        {{ tag.code }}
+      </div>
+      }
     </div>
 
     <button class="btn" type="submit">Créer</button>

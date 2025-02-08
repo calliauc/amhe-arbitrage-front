@@ -3,9 +3,10 @@ h3 {
   text-align: center;
   font-size: 1.4em;
 }
+
 form {
   margin-inline: auto;
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -14,9 +15,10 @@ form {
 
 #select-combattants {
   order: 1;
-  width: 60%;
+  width: 50%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 #select-combattant {
@@ -24,8 +26,7 @@ form {
 }
 
 #preview-combattants {
-  order: 3;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -33,7 +34,18 @@ form {
 #select-ruleset {
   text-align: center;
   order: 2;
-  width: 39%;
+  width: 30%;
+}
+
+#select-tags {
+  order: 3;
+  width: 15%;
+}
+
+#tags-titre {
+  font-size: 1.2em;
+  padding-inline-start: 20px;
+  margin-bottom: 5px;
 }
 
 select {
@@ -42,7 +54,7 @@ select {
 }
 
 button {
-  order: 5;
+  order: 6;
   width: 100px;
   font-size: 1.5em;
   margin-top: 20px;
@@ -55,6 +67,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     font-size: 1.1em;
   }
 
@@ -91,7 +104,13 @@ button {
   }
 
   #select-ruleset {
-    margin-top: 10px;
+    margin-block: 10px;
     width: 100%;
+  }
+
+  #select-tags {
+    width: 70%;
+    padding-inline-start: 30%;
+    margin-block: 10px;
   }
 }

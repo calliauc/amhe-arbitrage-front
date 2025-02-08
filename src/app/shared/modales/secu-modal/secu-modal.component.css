@@ -20,6 +20,10 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+input {
+  margin: 10px;
+}
+
 button {
   width: 120px;
   text-align: center;

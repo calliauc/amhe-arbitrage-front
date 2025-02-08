@@ -28,8 +28,13 @@
     }
   </table>
   @if (!estModeCreation) {
-  <div class="btn" id="ajouter-ruleset" (click)="modeAjout()">
+  <button
+    class="btn"
+    id="ajouter-ruleset"
+    [disabled]="estLectureSeule"
+    (click)="modeAjout()"
+  >
     Ajouter ruleset
-  </div>
+  </button>
   }
 </main>

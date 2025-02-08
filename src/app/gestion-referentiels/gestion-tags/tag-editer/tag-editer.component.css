@@ -1,7 +1,3 @@
-main {
-  display: flex;
-  flex-direction: column;
-}
 tr {
   display: flex;
   height: 25px;
@@ -22,18 +18,11 @@ tr {
   /* border: 1px solid red; */
 }
 
-.col-cible {
-  justify-content: left;
-  overflow-x: scroll;
-  white-space: nowrap;
+input {
+  text-align: center;
 }
 
-::-webkit-scrollbar {
-  scrollbar-width: 1px;
-  scrollbar-color: red;
-}
-
-.btn-cibles {
+.btn-tags {
   width: 44%;
   text-align: center;
   align-content: center;
@@ -45,16 +34,40 @@ tr {
   font-size: 0.9em;
 }
 
-.btn-cibles:hover {
+.btn-tags:hover {
   cursor: pointer;
   border: none;
   padding-inline: 9px;
 }
 
-.btn-afficher-details {
+.btn-enregistrer-edition {
   background-color: #2fcc71;
 }
 
-.btn-editer-cible {
-  background-color: rgb(129, 129, 0);
+.btn-annuler-edition {
+  background-color: rgb(173, 173, 173);
+}
+
+.btn-suppression {
+  background-color: rgb(248, 0, 0);
+  font-weight: 700;
+  position: relative;
+  width: 35px;
+  margin-right: -40px;
+}
+
+.bandeau-erreur {
+  display: flex;
+  justify-content: center;
+}
+
+.message-erreur {
+  background-color: rgba(200, 30, 30, 0.3);
+  font-size: 1em;
+  padding-inline: 10px;
+  padding-block: 5px;
+  margin-block: 10px;
+  width: 200px;
+  border-radius: 10px;
+  text-align: center;
 }

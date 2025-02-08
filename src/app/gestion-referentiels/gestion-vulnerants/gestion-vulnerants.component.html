@@ -24,8 +24,13 @@
     }
   </table>
   @if (!estModeCreation) {
-  <div class="btn" id="ajouter-vulnerant" (click)="modeAjout()">
+  <button
+    class="btn"
+    id="ajouter-vulnerant"
+    [disabled]="estLectureSeule"
+    (click)="modeAjout()"
+  >
     Ajouter vulnerant
-  </div>
+  </button>
   }
 </main>

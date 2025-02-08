@@ -4,6 +4,7 @@ import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnera
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
 import { Secu } from '../shared/models/secu';
 import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
 
 @Component({
   selector: 'app-gestion-referentiels',
@@ -12,6 +13,7 @@ import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.comp
     GestionCiblesComponent,
     GestionVulnerantsComponent,
     GestionRulesetsComponent,
+    GestionTagsComponent,
     SecuModalComponent,
   ],
   templateUrl: './gestion-referentiels.component.html',

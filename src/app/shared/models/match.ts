@@ -1,5 +1,6 @@
 import { Combattant } from './combattant';
 import { Ruleset } from './ruleset';
+import { Tag } from './tag';
 
 export class Match {
   id!: number;
@@ -14,5 +15,6 @@ export class Match {
   dateFin?: Date;
   statut!: string;
   timer: number = 0;
+  tags: Tag[] = [];
   ruleset!: Ruleset;
 }

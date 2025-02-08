@@ -1,0 +1,34 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">Tag</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (tag of tagsListe$ | async; track $index; let estPair = $even) {
+    <app-tag-ligne
+      (supprimerTag)="supprimerTag($event)"
+      (modifierTag)="modifierTag($event)"
+      [estLectureSeule]="estLectureSeule"
+      [estPair]="estPair"
+      [tag]="tag"
+    ></app-tag-ligne>
+    } @if (estModeCreation) {
+    <app-tag-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerTag($event)"
+    ></app-tag-editer>
+    }
+  </table>
+  @if (!estModeCreation) {
+  <button
+    class="btn"
+    id="ajouter-tag"
+    [disabled]="estLectureSeule"
+    (click)="modeAjout()"
+  >
+    Ajouter tag
+  </button>
+  }
+</main>

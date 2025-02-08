@@ -190,16 +190,6 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // convertirTemps(temps: string): number {
-  //   if (temps) {
-  //     let valuesTemps: string[] = temps.split(':');
-  //     let minutes = Number(valuesTemps[0]);
-  //     let secondes = Number(valuesTemps[1]);
-  //     return minutes * 60 + secondes;
-  //   }
-  //   return 0;
-  // }
-
   verifierRuleset(ruleset: Ruleset): boolean {
     return true || ruleset.nom;
   }

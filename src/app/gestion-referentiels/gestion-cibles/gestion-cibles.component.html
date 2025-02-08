@@ -23,6 +23,13 @@
     }
   </table>
   @if (!estModeCreation) {
-  <div class="btn" id="ajouter-cible" (click)="modeAjout()">Ajouter cible</div>
+  <button
+    class="btn"
+    id="ajouter-cible"
+    [disabled]="estLectureSeule"
+    (click)="modeAjout()"
+  >
+    Ajouter cible
+  </button>
   }
 </main>

@@ -1,0 +1,17 @@
+@if (estModif) {
+<app-tag-editer
+  [estPair]="estPair"
+  [tag]="tag"
+  [estModeEdition]="true"
+  (annulerEditionCreation)="modifTagAnnulee()"
+  (supprimerTag)="suppressionTag($event)"
+  (validerEdition)="modifTagTerminee($event)"
+></app-tag-editer>
+} @else {
+<app-tag-afficher
+  [estPair]="estPair"
+  [tag]="tag"
+  [estLectureSeule]="estLectureSeule"
+  (editerTag)="lancerEdition()"
+></app-tag-afficher>
+}

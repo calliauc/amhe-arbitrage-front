@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CombattantsService } from '../shared/services/combattants.service';
 import { Combattant } from '../shared/models/combattant';
 import { NomsPipe } from '../shared/pipes/noms.pipe';
@@ -15,6 +21,8 @@ import { RulsetRefPipe } from '../shared/pipes/ruleset-refs.pipe';
 import { TimerReversePipe } from '../shared/pipes/timerReverse.pipe';
 import { couleurs } from '../shared/models/ruleset-ref';
 import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
+import { Tag, TagCb } from '../shared/models/tag';
+import { TagsService } from '../shared/services/tags.service';
 
 @Component({
   selector: 'app-creation-match',
@@ -37,6 +45,7 @@ export class CreationMatchComponent implements OnInit {
   formCreerMatch!: FormGroup;
   combattantsListe!: Combattant[];
   rulesets?: Ruleset[];
+  tags: TagCb[] = [];
   rulesetChoisi?: Ruleset;
   a?: Combattant;
   b?: Combattant;
@@ -50,7 +59,8 @@ export class CreationMatchComponent implements OnInit {
     private router: Router,
     private matchsService: MatchsService,
     private combattantsService: CombattantsService,
-    private rulesetsService: RulesetsService
+    private rulesetsService: RulesetsService,
+    private tagsService: TagsService
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +74,15 @@ export class CreationMatchComponent implements OnInit {
     });
     this.rulesetsService.getRulesets().subscribe((rulesets) => {
       this.rulesets = rulesets;
+    });
+    this.tagsService.getTags().subscribe((tags) => {
+      tags.forEach((tag) =>
+        this.tags.push({
+          id: tag.id,
+          code: tag.code,
+          checked: false,
+        })
+      );
     });
   }
 
@@ -79,15 +98,25 @@ export class CreationMatchComponent implements OnInit {
       combattantB: null,
       couleurA: 'white',
       couleurB: 'white',
+      tags: null,
       ruleset: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
-      console.log(values);
       this.rulesetChoisi = values.ruleset;
       this.a = this.combattantsListe.find((c) => c.id === values.combattantA);
       this.b = this.combattantsListe.find((c) => c.id === values.combattantB);
       this.colorA = values.couleurA;
       this.colorB = values.couleurB;
+    });
+  }
+
+  onChange($event: any) {
+    const id = $event.target.value;
+    const isChecked = $event.target.checked;
+    this.tags.forEach((tag) => {
+      if (tag.id == id) {
+        tag.checked = isChecked;
+      }
     });
   }
 
@@ -104,6 +133,7 @@ export class CreationMatchComponent implements OnInit {
         this.formCreerMatch.value.couleurB,
         0,
         new Date(),
+        this.tags.filter((tag) => tag.checked),
         this.setRuleset()
       );
       this.nouveauMatch = this.setTimer(this.nouveauMatch);
