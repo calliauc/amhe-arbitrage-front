@@ -6,3 +6,9 @@ tr {
 .col-info {
   width: 33%;
 }
+
+@media screen and (max-width: 1099px) {
+  tr {
+    height: auto;
+  }
+}

@@ -53,3 +53,9 @@ tr {
 .btn-editer-vulnerant {
   background-color: rgb(129, 129, 0);
 }
+
+@media screen and (max-width: 1099px) {
+  tr {
+    height: auto;
+  }
+}

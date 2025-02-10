@@ -52,4 +52,8 @@ select {
   table {
     width: 100%;
   }
+
+  tr {
+    height: auto;
+  }
 }

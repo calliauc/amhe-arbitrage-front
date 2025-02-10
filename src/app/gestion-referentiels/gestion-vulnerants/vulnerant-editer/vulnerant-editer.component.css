@@ -70,3 +70,9 @@ input {
   border-radius: 10px;
   text-align: center;
 }
+
+@media screen and (max-width: 1099px) {
+  tr {
+    height: auto;
+  }
+}

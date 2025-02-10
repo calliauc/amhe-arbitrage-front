@@ -1,10 +1,8 @@
 tr {
   display: flex;
   width: 100%;
-  /* border: 1px solid green; */
 }
 
 .col-info {
   width: 50%;
-  /* border: 1px solid red; */
 }
