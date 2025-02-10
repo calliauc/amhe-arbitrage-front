@@ -6,13 +6,13 @@ import { CreationMatchComponent } from './creation-match/creation-match.componen
 import { GestionMatchsComponent } from './gestion-matchs/gestion-matchs.component';
 import { GestionClubsComponent } from './gestion-clubs/gestion-clubs.component';
 import { GestionReferentielsComponent } from './gestion-referentiels/gestion-referentiels.component';
-import { AffichagePoulesComponent } from './affichage-poules/affichage-poules.component';
+import { GestionPoulesComponent } from './gestion-poules/gestion-poules.component';
 
 export const routes: Routes = [
   { path: 'creer-match', component: CreationMatchComponent },
   { path: 'matchs', component: GestionMatchsComponent },
   { path: 'arbitrage/:id', component: ArbitrageComponent },
-  { path: 'poules', component: AffichagePoulesComponent },
+  { path: 'poules', component: GestionPoulesComponent },
   { path: 'combattants', component: GestionCombattantsComponent },
   { path: 'clubs', component: GestionClubsComponent },
   { path: 'referentiels', component: GestionReferentielsComponent },

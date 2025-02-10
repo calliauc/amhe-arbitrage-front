@@ -13,6 +13,7 @@ import { ClubPipe } from '../../shared/pipes/club.pipe';
 export class CombattantAfficherComponent implements OnInit {
   @Input() combattant!: Combattant;
   @Input() estPair!: boolean;
+  @Input() estLectureSeule!: boolean;
   @Output() editerCombattant: EventEmitter<boolean> = new EventEmitter();
 
   ngOnInit(): void {

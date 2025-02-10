@@ -1,9 +1,14 @@
 tr {
   display: flex;
-  /* border: 1px solid green; */
+  width: 100%;
 }
 
 .col-info {
-  width: 200px;
-  /* border: 1px solid red; */
+  width: 14%;
+}
+
+@media screen and (max-width: 1099px) {
+  tr {
+    height: auto;
+  }
 }

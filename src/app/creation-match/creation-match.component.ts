@@ -23,6 +23,7 @@ import { couleurs } from '../shared/models/ruleset-ref';
 import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
 import { Tag, TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
+import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
 
 @Component({
   selector: 'app-creation-match',
@@ -35,6 +36,7 @@ import { TagsService } from '../shared/services/tags.service';
     RulsetRefPipe,
     TimerReversePipe,
     CreationMatchModalComponent,
+    SecuModalComponent,
   ],
   templateUrl: './creation-match.component.html',
   styleUrl: './creation-match.component.css',
@@ -53,6 +55,8 @@ export class CreationMatchComponent implements OnInit {
   colorB?: string;
   rechercheCombattantA?: string;
   couleurs = couleurs;
+  estModateSecuVisible: boolean = false;
+  estLectureSeule: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -203,5 +207,21 @@ export class CreationMatchComponent implements OnInit {
             break;
         }
       });
+  }
+
+  ouvrirSecu() {
+    this.estModateSecuVisible = true;
+  }
+
+  deverouiller() {
+    this.estLectureSeule = false;
+    this.estModateSecuVisible = false;
+  }
+  annuler() {
+    this.estModateSecuVisible = false;
+  }
+
+  stopModif() {
+    this.estLectureSeule = true;
   }
 }

@@ -13,6 +13,7 @@ import { CombattantEditerComponent } from '../combattant-editer/combattant-edite
 export class CombattantLigneComponent {
   @Input() combattant!: Combattant;
   @Input() estPair!: boolean;
+  @Input() estLectureSeule!: boolean;
   @Output() supprimerCombattant: EventEmitter<number> = new EventEmitter();
   @Output() modifierCombattant: EventEmitter<Combattant> = new EventEmitter();
   estModif: boolean;

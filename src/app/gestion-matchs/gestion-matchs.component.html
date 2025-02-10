@@ -1,7 +1,27 @@
 <main>
-  <button class="btn-creation-match" (click)="creerMatch()">
-    Creer un match
-  </button>
+  <div id="bloc-secu">
+    @if (estLectureSeule) {
+    <div>
+      <span>Cet écran est en lecture seule</span>
+      <button class="button-secu" (click)="ouvrirSecu()">Déverouiller</button>
+    </div>
+    } @else {
+    <div>
+      <span>Un grand pouvoir implique de grandes responsabilités</span>
+      <button class="button-secu" (click)="stopModif()">
+        J'ai compris, j'arrête
+      </button>
+    </div>
+    }
+  </div>
+  @if (!estLectureSeule) {
+  <button
+    [disabled]="estLectureSeule"
+    id="btn-creation-match"
+    (click)="creerMatch()"
+  >
+    Creer un match</button
+  >}
   <h2>Nouveaux matchs</h2>
   @if (matchsNouveau.length==0) {
   <p>Pas de match à lancer</p>
@@ -11,6 +31,7 @@
     <div class="match">
       <app-match-afficher
         [match]="match"
+        [estLectureSeule]="estLectureSeule"
         (matchEvent)="refreshList()"
       ></app-match-afficher>
     </div>
@@ -45,3 +66,10 @@
     }
   </div>
 </main>
+@if (estModateSecuVisible) {
+<app-secu-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller()"
+  (annuler)="annuler()"
+></app-secu-modal>
+}

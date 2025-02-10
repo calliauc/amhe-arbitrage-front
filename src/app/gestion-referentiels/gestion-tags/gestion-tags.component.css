@@ -3,19 +3,17 @@ main {
   flex-direction: column;
 }
 table {
-  width: 80%;
-  margin-inline: 10%;
+  width: 30%;
+  margin-inline: auto;
 }
 
 tr {
   display: flex;
   width: 100%;
-  /* border: 1px solid green; */
 }
 
 .col {
   width: 25%;
-  /* border: 1px solid red; */
 }
 
 th,
@@ -46,4 +44,10 @@ select {
 
 #ajouter-tag:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1099px) {
+  table {
+    width: 100%;
+  }
 }

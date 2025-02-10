@@ -1,5 +1,18 @@
 <main>
-  <h3>Formulaire de création de match</h3>
+  <!-- <h3>Formulaire de création de match</h3> -->
+  @if (estLectureSeule) {
+  <div>
+    <span>Cet écran est en lecture seule</span>
+    <button class="btn-secu" (click)="ouvrirSecu()">Déverouiller</button>
+  </div>
+  } @else {
+  <div>
+    <span>Un grand pouvoir implique de grandes responsabilités</span>
+    <button class="btn-secu" (click)="stopModif()">
+      J'ai compris, j'arrête
+    </button>
+  </div>
+  }
   <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
     <div id="select-combattants">
       <div id="select-combattant">
@@ -102,7 +115,14 @@
       }
     </div>
 
-    <button class="btn" type="submit">Créer</button>
+    <button
+      [disabled]="estLectureSeule"
+      class="btn"
+      id="btn-creer-match"
+      type="submit"
+    >
+      Créer
+    </button>
   </form>
   @if (estModalVisible){
   <app-creation-match-modal
@@ -113,3 +133,10 @@
   ></app-creation-match-modal>
   }
 </main>
+@if (estModateSecuVisible) {
+<app-secu-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller()"
+  (annuler)="annuler()"
+></app-secu-modal>
+}

@@ -1,9 +1,8 @@
 tr {
   display: flex;
-  /* border: 1px solid green; */
+  width: 100%;
 }
 
 .col-info {
-  width: 200px;
-  /* border: 1px solid red; */
+  width: 33%;
 }

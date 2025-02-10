@@ -37,7 +37,8 @@ export class SecuModalComponent implements OnInit, AfterViewInit {
   }
 
   confirmerSecret() {
-    this.confirmer.emit(this.secu);
+    if (this.secu.secret === 'secret') this.confirmer.emit(this.secu);
+    else alert('Nope');
   }
   annulerSecret(): void {
     this.annuler.emit(true);

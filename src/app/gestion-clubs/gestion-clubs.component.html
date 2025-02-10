@@ -1,4 +1,17 @@
 <main>
+  @if (estLectureSeule) {
+  <div>
+    <span>Cet écran est en lecture seule</span>
+    <button class="btn-secu" (click)="ouvrirSecu()">Déverouiller</button>
+  </div>
+  } @else {
+  <div>
+    <span>Un grand pouvoir implique de grandes responsabilités</span>
+    <button class="btn-secu" (click)="stopModif()">
+      J'ai compris, j'arrête
+    </button>
+  </div>
+  }
   <table>
     <thead>
       <tr>
@@ -14,6 +27,7 @@
       (modifierClub)="modifierClub($event)"
       [estPair]="estPair"
       [club]="club"
+      [estLectureSeule]="estLectureSeule"
     ></app-club-ligne>
     } @if (estModeCreation) {
     <app-club-editer
@@ -23,6 +37,20 @@
     }
   </table>
   @if (!estModeCreation) {
-  <div class="btn" id="ajouter-club" (click)="modeAjout()">Ajouter club</div>
+  <button
+    class="btn"
+    id="ajouter-club"
+    [disabled]="estLectureSeule"
+    (click)="modeAjout()"
+  >
+    Ajouter club
+  </button>
   }
 </main>
+@if (estModateSecuVisible) {
+<app-secu-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller()"
+  (annuler)="annuler()"
+></app-secu-modal>
+}

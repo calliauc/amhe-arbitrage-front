@@ -5,11 +5,17 @@ import { ClubLigneComponent } from './club-ligne/club-ligne.component';
 import { ClubEditerComponent } from './club-editer/club-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
 
 @Component({
   selector: 'app-gestion-clubs',
   standalone: true,
-  imports: [ClubLigneComponent, ClubEditerComponent, CommonModule],
+  imports: [
+    ClubLigneComponent,
+    ClubEditerComponent,
+    CommonModule,
+    SecuModalComponent,
+  ],
   templateUrl: './gestion-clubs.component.html',
   styleUrl: './gestion-clubs.component.css',
 })
@@ -18,6 +24,9 @@ export class GestionClubsComponent implements OnInit {
   clubsListe$?: Observable<Club[]>;
   estModeCreation: boolean;
   nouveauClub: Club;
+  estModateSecuVisible: boolean = false;
+  estLectureSeule: boolean = true;
+
   constructor(private clubsService: ClubsService) {
     this.estModeCreation = false;
     this.nouveauClub = new Club();
@@ -53,5 +62,21 @@ export class GestionClubsComponent implements OnInit {
 
   supprimerClub(id: number) {
     this.clubsService.supprimerClub(id).subscribe(() => this.recupererClubs());
+  }
+
+  ouvrirSecu() {
+    this.estModateSecuVisible = true;
+  }
+
+  deverouiller() {
+    this.estLectureSeule = false;
+    this.estModateSecuVisible = false;
+  }
+  annuler() {
+    this.estModateSecuVisible = false;
+  }
+
+  stopModif() {
+    this.estLectureSeule = true;
   }
 }

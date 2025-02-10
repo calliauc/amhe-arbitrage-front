@@ -4,18 +4,16 @@ main {
 }
 table {
   width: 80%;
-  margin-inline: 10%;
+  margin-inline: auto;
 }
 
 tr {
   display: flex;
   width: 100%;
-  /* border: 1px solid green; */
 }
 
 .col {
   width: 14%;
-  /* border: 1px solid red; */
 }
 
 th,
@@ -46,4 +44,13 @@ select {
 
 #ajouter-ruleset:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1099px) {
+  table {
+    width: 100%;
+  }
+  tr {
+    height: auto;
+  }
 }

@@ -1,3 +1,9 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 table {
   width: 80%;
   margin-inline: 10%;
@@ -29,10 +35,9 @@ select {
 }
 
 #ajouter-club {
-  width: 170px;
-  height: 30px;
+  padding-inline: 10px;
+  padding-block: 5px;
   margin-top: 10px;
-  margin-inline: auto;
   text-align: center;
   align-content: center;
   font-size: 1.2em;
@@ -42,4 +47,8 @@ select {
 
 #ajouter-club:hover {
   cursor: pointer;
+}
+
+#ajouter-club:disabled {
+  cursor: not-allowed;
 }

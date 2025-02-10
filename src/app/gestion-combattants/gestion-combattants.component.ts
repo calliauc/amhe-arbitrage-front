@@ -5,11 +5,17 @@ import { CombattantLigneComponent } from './combattant-ligne/combattant-ligne.co
 import { CombattantEditerComponent } from './combattant-editer/combattant-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
 
 @Component({
   selector: 'app-gestion-combattants',
   standalone: true,
-  imports: [CombattantLigneComponent, CombattantEditerComponent, CommonModule],
+  imports: [
+    CombattantLigneComponent,
+    CombattantEditerComponent,
+    CommonModule,
+    SecuModalComponent,
+  ],
   templateUrl: './gestion-combattants.component.html',
   styleUrl: './gestion-combattants.component.css',
 })
@@ -18,6 +24,9 @@ export class GestionCombattantsComponent implements OnInit {
   combattantsListe$?: Observable<Combattant[]>;
   estModeCreation: boolean;
   nouveauCombattant: Combattant;
+  estModateSecuVisible: boolean = false;
+  estLectureSeule: boolean = true;
+
   constructor(private combattantsService: CombattantsService) {
     this.estModeCreation = false;
     this.nouveauCombattant = new Combattant();
@@ -55,5 +64,21 @@ export class GestionCombattantsComponent implements OnInit {
     this.combattantsService
       .supprimerCombattant(id)
       .subscribe(() => this.recupererCombattants());
+  }
+
+  ouvrirSecu() {
+    this.estModateSecuVisible = true;
+  }
+
+  deverouiller() {
+    this.estLectureSeule = false;
+    this.estModateSecuVisible = false;
+  }
+  annuler() {
+    this.estModateSecuVisible = false;
+  }
+
+  stopModif() {
+    this.estLectureSeule = true;
   }
 }

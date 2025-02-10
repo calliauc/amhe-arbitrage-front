@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AffichagePoulesComponent } from './affichage-poules.component';
+import { GestionPoulesComponent } from './gestion-poules.component';
 
 describe('AffichagePoulesComponent', () => {
-  let component: AffichagePoulesComponent;
-  let fixture: ComponentFixture<AffichagePoulesComponent>;
+  let component: GestionPoulesComponent;
+  let fixture: ComponentFixture<GestionPoulesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AffichagePoulesComponent]
-    })
-    .compileComponents();
+      imports: [GestionPoulesComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(AffichagePoulesComponent);
+    fixture = TestBed.createComponent(GestionPoulesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

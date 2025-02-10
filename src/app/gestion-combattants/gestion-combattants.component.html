@@ -1,4 +1,17 @@
 <main>
+  @if (estLectureSeule) {
+  <div>
+    <span>Cet écran est en lecture seule</span>
+    <button class="btn-secu" (click)="ouvrirSecu()">Déverouiller</button>
+  </div>
+  } @else {
+  <div>
+    <span>Un grand pouvoir implique de grandes responsabilités</span>
+    <button class="btn-secu" (click)="stopModif()">
+      J'ai compris, j'arrête
+    </button>
+  </div>
+  }
   <table>
     <thead>
       <tr>
@@ -16,6 +29,7 @@
       (modifierCombattant)="modifierCombattant($event)"
       [estPair]="estPair"
       [combattant]="combattant"
+      [estLectureSeule]="estLectureSeule"
     ></app-combattant-ligne>
     } @if (estModeCreation) {
     <app-combattant-editer
@@ -25,8 +39,20 @@
     }
   </table>
   @if (!estModeCreation) {
-  <div class="btn" id="ajouter-combattant" (click)="modeAjout()">
+  <button
+    class="btn"
+    id="ajouter-combattant"
+    [disabled]="estLectureSeule"
+    (click)="modeAjout()"
+  >
     Ajouter combattant
-  </div>
+  </button>
   }
 </main>
+@if (estModateSecuVisible) {
+<app-secu-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller()"
+  (annuler)="annuler()"
+></app-secu-modal>
+}

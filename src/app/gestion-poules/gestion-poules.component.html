@@ -1,0 +1,66 @@
+<main>
+  @if (estLectureSeule) {
+  <div>
+    <span class="btn-secu">Cet écran est en lecture seule</span>
+    <button (click)="ouvrirSecu()">Déverouiller</button>
+  </div>
+  } @else {
+  <div>
+    <span>Un grand pouvoir implique de grandes responsabilités</span>
+    <button class="btn-secu" (click)="stopModif()">
+      J'ai compris, j'arrête
+    </button>
+    <div id="bloc-creation">
+      @if (!estModeCreation) {
+      <button (click)="entrerModeCreation()">Ajouter poule</button>
+      } @if (estModeCreation) {
+      <div id="form-creation">
+        <label for="nomPoule">Nom</label>
+        <input
+          id="input-nom"
+          name="nomPoule"
+          type="text"
+          (change)="onNomChange($event)"
+        />
+        <button (click)="ajouterPoule()">Valider</button>
+        <button (click)="annulerAjout()">Annuler</button>
+
+        <div id="select-tags">
+          <!-- <div id="tags-titre">Tags</div> -->
+          @for (tag of tags; track $index) {
+          <div>
+            <input
+              type="checkbox"
+              [value]="tag.id"
+              [checked]="tag.checked"
+              (change)="onTagsChange($event)"
+            />
+            {{ tag.code }}
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  }
+
+  <div id="liste-poules">
+    @for (poule of poules; track $index) {
+    <div class="poule">
+      <app-affichage-poule
+        [poule]="poule"
+        [estLectureSeule]="estLectureSeule"
+        (supprimer)="supprimerPoule($event)"
+      ></app-affichage-poule>
+    </div>
+    }
+  </div>
+</main>
+@if (estModateSecuVisible) {
+<app-secu-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller()"
+  (annuler)="annuler()"
+></app-secu-modal>
+}

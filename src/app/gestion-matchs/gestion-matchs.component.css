@@ -1,11 +1,11 @@
 main {
   display: flex;
   flex-direction: column;
-  font-size: 1.3em;
   align-items: center;
 }
 
 .liste-matchs {
+  font-size: 1.3em;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -25,7 +25,12 @@ main {
   border: 3px solid rgb(30, 30, 30);
 }
 
-button {
+.button-secu {
+  margin-inline: 3px;
+}
+
+#btn-creation-match {
+  margin-top: 10px;
   font-size: 1.3em;
   width: 300px;
 }

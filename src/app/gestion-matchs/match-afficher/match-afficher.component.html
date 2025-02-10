@@ -55,7 +55,11 @@
   <div id="bottom-card">
     <a routerLink="/arbitrage/{{ match.id }}"
       ><button id="button-arbitrer">Arbitrer match</button></a
-    ><button id="button-supprimer" (click)="demanderSuppression(match.id)">
+    ><button
+      id="button-supprimer"
+      [disabled]="estLectureSeule"
+      (click)="demanderSuppression(match.id)"
+    >
       X
     </button>
   </div>

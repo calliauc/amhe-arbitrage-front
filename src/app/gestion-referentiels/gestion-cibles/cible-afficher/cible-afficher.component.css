@@ -1,10 +1,7 @@
-main {
-  display: flex;
-  flex-direction: column;
-}
 tr {
   display: flex;
   height: 25px;
+  width: 100%;
   padding-bottom: 2px;
   /* border: 1px solid green; */
 }
@@ -17,7 +14,7 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 33%;
   padding-left: 1%;
   /* border: 1px solid red; */
 }

@@ -24,6 +24,7 @@ import { TimerPipe } from '../../shared/pipes/timer.pipe';
 })
 export class MatchAfficherComponent {
   @Input() match!: Match;
+  @Input() estLectureSeule!: boolean;
   @Output() matchEvent: EventEmitter<null> = new EventEmitter();
 
   estModalVisible: boolean = false;

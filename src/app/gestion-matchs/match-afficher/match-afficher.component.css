@@ -87,3 +87,11 @@
   /* font-size: 1.1em; */
   transition: 0.1s;
 }
+#button-supprimer:hover {
+  cursor: pointer;
+}
+
+#button-supprimer:disabled {
+  background-color: rgb(100, 70, 70);
+  cursor: not-allowed;
+}

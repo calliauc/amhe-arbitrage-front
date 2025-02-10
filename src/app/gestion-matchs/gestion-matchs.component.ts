@@ -3,11 +3,12 @@ import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
 import { Router } from '@angular/router';
 import { MatchAfficherComponent } from './match-afficher/match-afficher.component';
+import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
 
 @Component({
   selector: 'app-gestion-matchs',
   standalone: true,
-  imports: [MatchAfficherComponent],
+  imports: [MatchAfficherComponent, SecuModalComponent],
   templateUrl: './gestion-matchs.component.html',
   styleUrl: './gestion-matchs.component.css',
 })
@@ -19,6 +20,8 @@ export class GestionMatchsComponent implements OnInit {
   titreModal: string = 'Confirmer la suppression ?';
   texteModal: string = 'Cette action est définitive';
   idASupprimer?: number;
+  estModateSecuVisible: boolean = false;
+  estLectureSeule: boolean = true;
 
   constructor(private matchsService: MatchsService, private router: Router) {}
 
@@ -62,5 +65,21 @@ export class GestionMatchsComponent implements OnInit {
 
   annulerSuppression() {
     this.estModalVisible = false;
+  }
+
+  ouvrirSecu() {
+    this.estModateSecuVisible = true;
+  }
+
+  deverouiller() {
+    this.estLectureSeule = false;
+    this.estModateSecuVisible = false;
+  }
+  annuler() {
+    this.estModateSecuVisible = false;
+  }
+
+  stopModif() {
+    this.estLectureSeule = true;
   }
 }

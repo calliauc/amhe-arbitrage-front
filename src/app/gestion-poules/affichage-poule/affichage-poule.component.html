@@ -1,9 +1,8 @@
 <div id="poule">
   <div id="titre-poule">
-    <h3>
-      {{ poule.description }}
-    </h3>
-    <button class="btn" id="btn-supprimer" (click)="onSupprimer()">X</button>
+    <h3>{{ poule.nom }}</h3>
+    @if (!estLectureSeule) {
+    <button class="btn" id="btn-supprimer" (click)="onSupprimer()">X</button>}
   </div>
   <h4 id="liste-tags">
     @for (tag of poule.tags; track $index) {
@@ -11,7 +10,7 @@
     }
   </h4>
   <table id="liste-combattants">
-    @for (c of poule.combattants; track $index) {
+    @for (c of combattants; track $index) {
     <tr class="combattant">
       <td class="nom">{{ c | nomsDisplay }}</td>
       <td>-</td>

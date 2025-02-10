@@ -4,6 +4,9 @@
 }
 
 #titre-poule {
+  background-color: rgb(40, 40, 40);
+  border-start-start-radius: 6px;
+  border-start-end-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +14,7 @@
 
 h3 {
   text-align: center;
-  margin-block: 10px;
+  margin-block: 7px;
 }
 
 h4 {
@@ -23,15 +26,16 @@ h4 {
 
 .tag {
   border: 1px solid grey;
-  border-radius: 10px;
-  padding: 3px;
+  background-color: rgb(30, 30, 30);
+  border-radius: 13px;
   margin-inline: 2px;
+  padding-inline: 6px;
+  padding-block: 4px;
 }
 
 table {
   width: 100%;
   margin-block: 10px;
-  /* border: 1px solid red; */
 }
 
 .nom {
