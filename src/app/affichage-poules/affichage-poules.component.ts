@@ -26,6 +26,7 @@ export class AffichagePoulesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.setDefaultData();
     this.tagsService.getTags().subscribe((tags) => {
       tags.forEach((tag) =>
         this.tags.push({
@@ -35,6 +36,10 @@ export class AffichagePoulesComponent implements OnInit {
         })
       );
     });
+  }
+
+  entrerModeCreation() {
+    this.estModeCreation = true;
   }
 
   onDescriptionChange($event: any) {
@@ -66,5 +71,68 @@ export class AffichagePoulesComponent implements OnInit {
         this.poules.push(nouvellePoule);
         console.log(this.poules);
       });
+    this.estModeCreation = false;
+  }
+
+  supprimerPoule(position: number) {
+    this.poules.splice(position, 1);
+  }
+
+  setDefaultData() {
+    this.poules.push({
+      tags: [
+        {
+          id: 1,
+          code: 'Poule A',
+        },
+        {
+          id: 4,
+          code: 'Longsword',
+        },
+        {
+          id: 5,
+          code: 'B-CUP-1',
+        },
+      ],
+      description: 'Poule A',
+      combattants: [
+        {
+          id: 1,
+          nom: 'Calliau',
+          prenom: 'Clement',
+          pseudo: 'Makhai',
+          club: {
+            id: 1,
+            nomCourt: 'BEC',
+            nomComplet: 'BEC Escrime',
+            ville: 'Bordeaux',
+          },
+        },
+        {
+          id: 2,
+          nom: 'Goches',
+          prenom: 'Alex',
+          pseudo: 'Walter',
+          club: {
+            id: 1,
+            nomCourt: 'BEC',
+            nomComplet: 'BEC Escrime',
+            ville: 'Bordeaux',
+          },
+        },
+        {
+          id: 3,
+          nom: 'Le Bras',
+          prenom: 'Damien',
+          pseudo: 'Hache',
+          club: {
+            id: 2,
+            nomCourt: 'Mesnie',
+            nomComplet: 'La Mesnie du Blanc Castel',
+            ville: 'Blanquefort',
+          },
+        },
+      ],
+    });
   }
 }

@@ -1,13 +1,22 @@
-<h3>{{ poule.description }}</h3>
-<span>Tags : </span>
-@for (tag of poule.tags; track $index) {
-<span>[{{ tag.code }}], </span>
-}
-<br />
-@for (c of poule.combattants; track $index) {
-<div>
-  <span>{{ c | nomsDisplay }}</span>
-  <span> - </span>
-  <span>{{ c.club | clubDisplay }}</span>
+<div id="poule">
+  <div id="titre-poule">
+    <h3>
+      {{ poule.description }}
+    </h3>
+    <button class="btn" id="btn-supprimer" (click)="onSupprimer()">X</button>
+  </div>
+  <h4 id="liste-tags">
+    @for (tag of poule.tags; track $index) {
+    <span class="tag">{{ tag.code }}</span>
+    }
+  </h4>
+  <table id="liste-combattants">
+    @for (c of poule.combattants; track $index) {
+    <tr class="combattant">
+      <td class="nom">{{ c | nomsDisplay }}</td>
+      <td>-</td>
+      <td class="club">{{ c.club | clubDisplay }}</td>
+    </tr>
+    }
+  </table>
 </div>
-}

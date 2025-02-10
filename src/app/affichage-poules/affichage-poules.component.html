@@ -1,27 +1,43 @@
-@for (poule of poules; track $index) {
-<app-affichage-poule [poule]="poule"></app-affichage-poule>
-}
-
-<div id="creation-poule">
-  <label for="descriptionPoule">Description</label>
-  <input
-    type="text"
-    (change)="onDescriptionChange($event)"
-    name="descriptionPoule"
-  />
-  <div id="select-tags">
-    <div id="tags-titre">Tags</div>
-    @for (tag of tags; track $index) {
-    <div>
+<main>
+  <div id="bloc-creation">
+    @if (!estModeCreation) {
+    <button (click)="entrerModeCreation()">Ajouter poule</button>
+    } @if (estModeCreation) {
+    <div id="form-creation">
+      <label for="descriptionPoule">Description</label>
       <input
-        type="checkbox"
-        [value]="tag.id"
-        [checked]="tag.checked"
-        (change)="onTagsChange($event)"
+        id="input-description"
+        name="descriptionPoule"
+        type="text"
+        (change)="onDescriptionChange($event)"
       />
-      {{ tag.code }}
+      <button (click)="ajouterPoule()">Valider</button>
+
+      <div id="select-tags">
+        <!-- <div id="tags-titre">Tags</div> -->
+        @for (tag of tags; track $index) {
+        <div>
+          <input
+            type="checkbox"
+            [value]="tag.id"
+            [checked]="tag.checked"
+            (change)="onTagsChange($event)"
+          />
+          {{ tag.code }}
+        </div>
+        }
+      </div>
     </div>
     }
   </div>
-  <button (click)="ajouterPoule()">Creer liste</button>
-</div>
+  <div id="liste-poules">
+    @for (poule of poules; track $index) {
+    <div class="poule">
+      <app-affichage-poule
+        [poule]="poule"
+        (supprimer)="supprimerPoule($index)"
+      ></app-affichage-poule>
+    </div>
+    }
+  </div>
+</main>

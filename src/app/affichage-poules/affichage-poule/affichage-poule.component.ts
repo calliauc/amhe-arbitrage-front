@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, EventEmitter, Input, input, Output } from '@angular/core';
 import { Poule } from '../../shared/models/poule';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
@@ -12,4 +12,9 @@ import { ClubPipe } from '../../shared/pipes/club.pipe';
 })
 export class AffichagePouleComponent {
   @Input() poule!: Poule;
+  @Output() supprimer = new EventEmitter<Object>();
+
+  onSupprimer() {
+    this.supprimer.emit();
+  }
 }
