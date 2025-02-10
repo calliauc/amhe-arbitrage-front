@@ -46,8 +46,13 @@
   width: 10%;
 }
 
-#tags {
-  /* border: 1px solid blue; */
+.tag {
+  border: 1px solid grey;
+  background-color: rgb(30, 30, 30);
+  border-radius: 13px;
+  margin-inline: 2px;
+  padding-inline: 6px;
+  padding-block: 4px;
 }
 
 #bottom-card {

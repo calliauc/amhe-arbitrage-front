@@ -44,13 +44,11 @@
       <div class="score-combattant">{{ match.scoreB }}</div>
       }
     </div>
-    @if (match.tags.length>0) {
     <div id="tags">
-      Tags : @for (tag of match.tags; track $index) {
-      <span> [{{ tag.code }}]</span>
+      @for (tag of match.tags; track $index) {
+      <span class="tag">{{ tag.code }}</span>
       }
     </div>
-    }
   </div>
   <div id="bottom-card">
     <a routerLink="/arbitrage/{{ match.id }}"
