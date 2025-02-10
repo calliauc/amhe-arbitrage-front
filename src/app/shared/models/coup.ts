@@ -12,6 +12,8 @@ export class Coup {
   defenseurScore!: number;
   timecode!: Date;
   doubleTouche: boolean = false;
+  simultanee: boolean = false;
+  faute: boolean = false;
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
 }

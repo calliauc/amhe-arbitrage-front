@@ -3,6 +3,7 @@ import { Combattant } from '../models/combattant';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Tag } from '../models/tag';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,13 @@ export class CombattantsService {
 
   public getCombattants(): Observable<Combattant[]> {
     return this.http.get<Combattant[]>(this.URL, { responseType: 'json' });
+  }
+
+  public getCombattantsByTagsMatchs(tags: Tag[]): Observable<Combattant[]> {
+    let tagsId = tags.map((tag) => tag.id);
+    return this.http.post<Combattant[]>(`${this.URL}/tags`, tagsId, {
+      responseType: 'json',
+    });
   }
 
   public creerCombattant(combattantACreer: Combattant): Observable<Combattant> {

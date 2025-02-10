@@ -1,0 +1,13 @@
+<h3>{{ poule.description }}</h3>
+<span>Tags : </span>
+@for (tag of poule.tags; track $index) {
+<span>[{{ tag.code }}], </span>
+}
+<br />
+@for (c of poule.combattants; track $index) {
+<div>
+  <span>{{ c | nomsDisplay }}</span>
+  <span> - </span>
+  <span>{{ c.club | clubDisplay }}</span>
+</div>
+}

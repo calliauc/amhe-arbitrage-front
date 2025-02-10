@@ -43,6 +43,8 @@ export class CreationCoupComponent implements OnInit, OnChanges {
       vulnerant: null,
       cible: null,
       doubleTouche: false,
+      simultanee: false,
+      faute: false,
     });
   }
 
@@ -80,6 +82,8 @@ export class CreationCoupComponent implements OnInit, OnChanges {
         code: this.formSaisirCoup.value.cible.code,
       } as RulesetRef;
     this.nouveauCoup.doubleTouche = this.formSaisirCoup.value.doubleTouche;
+    this.nouveauCoup.simultanee = this.formSaisirCoup.value.simultanee;
+    this.nouveauCoup.faute = this.formSaisirCoup.value.faute;
     console.log(this.nouveauCoup);
   }
 
@@ -96,6 +100,8 @@ export class CreationCoupComponent implements OnInit, OnChanges {
       defenseurCouleur: nouveauCoup.defenseurCouleur,
       defenseurScore: nouveauCoup.defenseurScore,
       doubleTouche: nouveauCoup.doubleTouche,
+      simultanee: nouveauCoup.simultanee,
+      faute: nouveauCoup.faute,
       timecode: date,
       vulnerant: nouveauCoup.vulnerant,
       cible: nouveauCoup.cible,

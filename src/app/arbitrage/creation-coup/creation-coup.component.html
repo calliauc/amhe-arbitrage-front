@@ -36,9 +36,19 @@
       }}
     </div>
     <div class="section-form">Autres infos</div>
-    <div>
-      <input type="checkbox" formControlName="doubleTouche" />
-      <label>Double</label>
+    <div id="autre-infos">
+      <div class="button-form">
+        <input type="checkbox" formControlName="doubleTouche" />
+        <label>Double</label>
+      </div>
+      <div class="button-form">
+        <input type="checkbox" formControlName="simultanee" />
+        <label>Simultanée</label>
+      </div>
+      <div class="button-form">
+        <input type="checkbox" formControlName="faute" />
+        <label>Faute</label>
+      </div>
     </div>
     <button id="submit" type="submit">Valider le coup</button>
   </form>

@@ -12,4 +12,6 @@ export class NouveauCoup {
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
   doubleTouche!: boolean;
+  simultanee!: boolean;
+  faute!: boolean;
 }
