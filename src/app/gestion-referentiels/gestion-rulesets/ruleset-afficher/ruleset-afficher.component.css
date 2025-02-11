@@ -14,7 +14,7 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14%;
+  width: 17%;
   padding-left: 1%;
   /* border: 1px solid red; */
 }
@@ -31,7 +31,7 @@ tr {
 }
 
 .btn-rulesets {
-  width: 44%;
+  width: 60px;
   text-align: center;
   align-content: center;
   height: 22px;

@@ -2,6 +2,7 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 table {
   width: 50%;
   margin-inline: auto;
@@ -10,12 +11,13 @@ table {
 tr {
   display: flex;
   width: 100%;
-  /* border: 1px solid green; */
 }
 
 .col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 33%;
-  /* border: 1px solid red; */
 }
 
 th,
@@ -53,7 +55,9 @@ select {
     width: 100%;
   }
 
-  tr {
+  th {
     height: auto;
+    padding-bottom: 5px;
+    margin-top: -10px;
   }
 }

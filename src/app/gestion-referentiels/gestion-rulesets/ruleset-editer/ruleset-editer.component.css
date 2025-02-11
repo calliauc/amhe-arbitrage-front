@@ -14,7 +14,7 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14%;
+  width: 17%;
   padding-left: 1%;
   /* border: 1px solid red; */
 }
@@ -44,12 +44,17 @@ tr {
   padding: 3px;
 }
 
+.btn-afficher-refs:hover,
+.btn-masquer-refs:hover {
+  cursor: pointer;
+}
+
 .btn-rulesets {
-  width: 44%;
+  width: 75px;
   text-align: center;
   align-content: center;
   height: 22px;
-  padding-inline: 10px;
+  padding-inline: 5px;
   margin-inline: 5px;
   border-radius: 50px;
   border: 1px solid black;
@@ -59,7 +64,7 @@ tr {
 .btn-rulesets:hover {
   cursor: pointer;
   border: none;
-  padding-inline: 9px;
+  padding-inline: 4px;
 }
 
 .btn-enregistrer-edition {
@@ -72,10 +77,11 @@ tr {
 
 .btn-suppression {
   background-color: rgb(248, 0, 0);
+  border-radius: 7px;
   font-weight: 700;
-  position: relative;
-  width: 35px;
-  margin-right: -40px;
+  width: 22px;
+  /* position: relative;
+  margin-right: -40px; */
 }
 
 .bandeau-erreur {

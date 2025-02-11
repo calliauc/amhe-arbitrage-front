@@ -2,8 +2,9 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 table {
-  width: 80%;
+  width: 100%;
   margin-inline: auto;
 }
 
@@ -13,7 +14,10 @@ tr {
 }
 
 .col {
-  width: 14%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17%;
 }
 
 th,
@@ -50,7 +54,10 @@ select {
   table {
     width: 100%;
   }
-  tr {
+
+  th {
     height: auto;
+    padding-bottom: 5px;
+    margin-top: -10px;
   }
 }
