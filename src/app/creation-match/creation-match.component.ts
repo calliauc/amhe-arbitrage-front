@@ -21,9 +21,9 @@ import { RulsetRefPipe } from '../shared/pipes/ruleset-refs.pipe';
 import { TimerReversePipe } from '../shared/pipes/timerReverse.pipe';
 import { couleurs } from '../shared/models/ruleset-ref';
 import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
-import { Tag, TagCb } from '../shared/models/tag';
+import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
-import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-creation-match',
@@ -36,7 +36,7 @@ import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.comp
     RulsetRefPipe,
     TimerReversePipe,
     CreationMatchModalComponent,
-    SecuModalComponent,
+    LoginComponent,
   ],
   templateUrl: './creation-match.component.html',
   styleUrl: './creation-match.component.css',
@@ -70,7 +70,6 @@ export class CreationMatchComponent implements OnInit {
   ngOnInit(): void {
     this.getDatas();
     this.initForm();
-    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
   getDatas() {
@@ -123,6 +122,10 @@ export class CreationMatchComponent implements OnInit {
         tag.checked = isChecked;
       }
     });
+  }
+
+  updateLogin(lock: boolean) {
+    this.estLectureSeule = lock;
   }
 
   creerMatch() {
@@ -208,23 +211,5 @@ export class CreationMatchComponent implements OnInit {
             break;
         }
       });
-  }
-
-  ouvrirSecu() {
-    this.estModateSecuVisible = true;
-  }
-
-  deverouiller() {
-    this.estLectureSeule = false;
-    this.estModateSecuVisible = false;
-    localStorage.setItem('secu', 'unlocked');
-  }
-  annuler() {
-    this.estModateSecuVisible = false;
-  }
-
-  stopModif() {
-    this.estLectureSeule = true;
-    localStorage.clear();
   }
 }

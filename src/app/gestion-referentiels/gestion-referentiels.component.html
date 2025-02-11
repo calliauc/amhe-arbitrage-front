@@ -1,18 +1,5 @@
 <div id="header">
-  <h3>Gestion des référentiels</h3>
-  @if (estLectureSeule) {
-  <div>
-    <span>Cet écran est en lecture seule</span>
-    <button class="btn-secu" (click)="ouvrirSecu()">Déverouiller</button>
-  </div>
-  } @else {
-  <div>
-    <span>Un grand pouvoir implique de grandes responsabilités</span>
-    <button class="btn-secu" (click)="stopModif()">
-      J'ai compris, j'arrête
-    </button>
-  </div>
-  }
+  <app-login (loginEvent)="updateLogin($event)"></app-login>
 </div>
 
 <app-gestion-vulnerants
@@ -23,11 +10,3 @@
 <app-gestion-rulesets
   [estLectureSeule]="estLectureSeule"
 ></app-gestion-rulesets>
-
-@if (estModateSecuVisible) {
-<app-secu-modal
-  [code]="'refs'"
-  (confirmer)="deverouiller()"
-  (annuler)="annuler()"
-></app-secu-modal>
-}

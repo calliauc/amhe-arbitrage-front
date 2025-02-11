@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Poule } from '../shared/models/poule';
-import { Tag, TagCb } from '../shared/models/tag';
+import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
-import { CombattantsService } from '../shared/services/combattants.service';
 import { Combattant } from '../shared/models/combattant';
 import { AffichagePouleComponent } from './affichage-poule/affichage-poule.component';
 import { PoulesService } from '../shared/services/poules.service';
-import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-gestion-poules',
   standalone: true,
-  imports: [AffichagePouleComponent, SecuModalComponent],
+  imports: [AffichagePouleComponent, LoginComponent],
   templateUrl: './gestion-poules.component.html',
   styleUrl: './gestion-poules.component.css',
 })
@@ -26,7 +25,6 @@ export class GestionPoulesComponent implements OnInit {
 
   constructor(
     private tagsService: TagsService,
-    private combattantsService: CombattantsService,
     private poulesService: PoulesService
   ) {}
 
@@ -42,6 +40,10 @@ export class GestionPoulesComponent implements OnInit {
       );
     });
     this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
+  }
+
+  updateLogin(lock: boolean) {
+    this.estLectureSeule = lock;
   }
 
   entrerModeCreation() {
@@ -91,25 +93,6 @@ export class GestionPoulesComponent implements OnInit {
   chargerPoules() {
     this.poulesService.getPoules().subscribe((poules) => {
       this.poules = poules;
-      console.log(poules);
     });
-  }
-
-  ouvrirSecu() {
-    this.estModateSecuVisible = true;
-  }
-
-  deverouiller() {
-    this.estLectureSeule = false;
-    this.estModateSecuVisible = false;
-    localStorage.setItem('secu', 'unlocked');
-  }
-  annuler() {
-    this.estModateSecuVisible = false;
-  }
-
-  stopModif() {
-    this.estLectureSeule = true;
-    localStorage.clear();
   }
 }

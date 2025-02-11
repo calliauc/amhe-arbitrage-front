@@ -3,12 +3,12 @@ import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
 import { Router } from '@angular/router';
 import { MatchAfficherComponent } from './match-afficher/match-afficher.component';
-import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-gestion-matchs',
   standalone: true,
-  imports: [MatchAfficherComponent, SecuModalComponent],
+  imports: [MatchAfficherComponent, LoginComponent],
   templateUrl: './gestion-matchs.component.html',
   styleUrl: './gestion-matchs.component.css',
 })
@@ -27,7 +27,10 @@ export class GestionMatchsComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshList();
-    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
+  }
+
+  updateLogin(lock: boolean) {
+    this.estLectureSeule = lock;
   }
 
   refreshList() {
@@ -66,23 +69,5 @@ export class GestionMatchsComponent implements OnInit {
 
   annulerSuppression() {
     this.estModalVisible = false;
-  }
-
-  ouvrirSecu() {
-    this.estModateSecuVisible = true;
-  }
-
-  deverouiller() {
-    this.estLectureSeule = false;
-    localStorage.setItem('secu', 'unlocked');
-    this.estModateSecuVisible = false;
-  }
-  annuler() {
-    this.estModateSecuVisible = false;
-  }
-
-  stopModif() {
-    this.estLectureSeule = true;
-    localStorage.clear();
   }
 }

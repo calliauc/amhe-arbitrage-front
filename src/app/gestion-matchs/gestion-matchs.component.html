@@ -1,19 +1,5 @@
 <main>
-  <div id="bloc-secu">
-    @if (estLectureSeule) {
-    <div>
-      <span>Cet écran est en lecture seule</span>
-      <button class="button-secu" (click)="ouvrirSecu()">Déverouiller</button>
-    </div>
-    } @else {
-    <div>
-      <span>Un grand pouvoir implique de grandes responsabilités</span>
-      <button class="button-secu" (click)="stopModif()">
-        J'ai compris, j'arrête
-      </button>
-    </div>
-    }
-  </div>
+  <app-login (loginEvent)="updateLogin($event)"></app-login>
   @if (!estLectureSeule) {
   <button
     [disabled]="estLectureSeule"
@@ -68,10 +54,3 @@
     }
   </div>
 </main>
-@if (estModateSecuVisible) {
-<app-secu-modal
-  [code]="'refs'"
-  (confirmer)="deverouiller()"
-  (annuler)="annuler()"
-></app-secu-modal>
-}

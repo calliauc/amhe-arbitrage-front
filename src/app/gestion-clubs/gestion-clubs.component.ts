@@ -6,6 +6,7 @@ import { ClubEditerComponent } from './club-editer/club-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-gestion-clubs',
@@ -15,6 +16,7 @@ import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.comp
     ClubEditerComponent,
     CommonModule,
     SecuModalComponent,
+    LoginComponent,
   ],
   templateUrl: './gestion-clubs.component.html',
   styleUrl: './gestion-clubs.component.css',
@@ -34,9 +36,11 @@ export class GestionClubsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recupererClubs();
-    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
+  updateLogin(lock: boolean) {
+    this.estLectureSeule = lock;
+  }
   modeAjout(): void {
     this.estModeCreation = true;
   }
@@ -63,24 +67,5 @@ export class GestionClubsComponent implements OnInit {
 
   supprimerClub(id: number) {
     this.clubsService.supprimerClub(id).subscribe(() => this.recupererClubs());
-  }
-
-  ouvrirSecu() {
-    this.estModateSecuVisible = true;
-  }
-
-  deverouiller() {
-    this.estLectureSeule = false;
-    this.estModateSecuVisible = false;
-    localStorage.setItem('secu', 'unlocked');
-  }
-
-  annuler() {
-    this.estModateSecuVisible = false;
-  }
-
-  stopModif() {
-    this.estLectureSeule = true;
-    localStorage.clear();
   }
 }

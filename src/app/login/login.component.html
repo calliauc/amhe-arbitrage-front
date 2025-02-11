@@ -1,0 +1,17 @@
+@if (estLectureSeule) {
+<div>
+  <span>Modifications 🚫</span>
+  <button class="btn-secu" (click)="ouvrirSecu()">Déverouiller</button>
+</div>
+} @else {
+<div>
+  <span>Un grand pouvoir implique de grandes responsabilités</span>
+  <button class="btn-secu" (click)="stopModif()">J'ai compris, j'arrête</button>
+</div>
+} @if (estModateSecuVisible) {
+<app-secu-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller()"
+  (annuler)="annuler()"
+></app-secu-modal>
+}

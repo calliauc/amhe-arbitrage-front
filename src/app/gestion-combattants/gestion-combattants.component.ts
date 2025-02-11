@@ -5,7 +5,7 @@ import { CombattantLigneComponent } from './combattant-ligne/combattant-ligne.co
 import { CombattantEditerComponent } from './combattant-editer/combattant-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-gestion-combattants',
@@ -14,7 +14,7 @@ import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.comp
     CombattantLigneComponent,
     CombattantEditerComponent,
     CommonModule,
-    SecuModalComponent,
+    LoginComponent,
   ],
   templateUrl: './gestion-combattants.component.html',
   styleUrl: './gestion-combattants.component.css',
@@ -34,7 +34,10 @@ export class GestionCombattantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recupererCombattants();
-    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
+  }
+
+  updateLogin(lock: boolean) {
+    this.estLectureSeule = lock;
   }
 
   modeAjout(): void {
@@ -65,23 +68,5 @@ export class GestionCombattantsComponent implements OnInit {
     this.combattantsService
       .supprimerCombattant(id)
       .subscribe(() => this.recupererCombattants());
-  }
-
-  ouvrirSecu() {
-    this.estModateSecuVisible = true;
-  }
-
-  deverouiller() {
-    this.estLectureSeule = false;
-    this.estModateSecuVisible = false;
-    localStorage.setItem('secu', 'unlocked');
-  }
-  annuler() {
-    this.estModateSecuVisible = false;
-  }
-
-  stopModif() {
-    this.estLectureSeule = true;
-    localStorage.clear();
   }
 }
