@@ -4,7 +4,10 @@
   <td class="col">{{ combattant.pseudo }}</td>
   <td class="col col-club">{{ combattant.club | clubDisplay }}</td>
   <td class="col">
-    <button class="btn btn-combattants btn-afficher-details" disabled>
+    <button
+      class="btn btn-combattants btn-afficher-details"
+      (click)="onDetails(combattant.id!)"
+    >
       Détails
     </button>
     <button

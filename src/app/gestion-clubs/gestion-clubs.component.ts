@@ -15,7 +15,6 @@ import { LoginComponent } from '../login/login.component';
     ClubLigneComponent,
     ClubEditerComponent,
     CommonModule,
-    SecuModalComponent,
     LoginComponent,
   ],
   templateUrl: './gestion-clubs.component.html',

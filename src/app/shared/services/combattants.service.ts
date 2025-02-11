@@ -17,6 +17,12 @@ export class CombattantsService {
     return this.http.get<Combattant[]>(this.URL, { responseType: 'json' });
   }
 
+  public getCombattantById(id: number): Observable<Combattant> {
+    return this.http.get<Combattant>(`${this.URL}/${id}`, {
+      responseType: 'json',
+    });
+  }
+
   public getCombattantsByTagsMatchs(tags: Tag[]): Observable<Combattant[]> {
     let tagsId = tags.map((tag) => tag.id);
     return this.http.post<Combattant[]>(`${this.URL}/tags`, tagsId, {
