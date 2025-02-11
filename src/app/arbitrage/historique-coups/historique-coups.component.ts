@@ -12,6 +12,7 @@ import { CoupsService } from '../../shared/services/coups.service';
 })
 export class HistoriqueCoupsComponent implements OnInit {
   @Input() matchId!: number;
+  @Input() estLectureSeule!: boolean;
   listeCoups?: Coup[];
 
   constructor(private coupsService: CoupsService) {}

@@ -1,0 +1,30 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#combattants {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#status {
+  font-size: 1.2em;
+}
+
+#btn-refresh {
+  width: 200px;
+  height: 40px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  border: 2px solid #2fcc71;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1099px) {
+  #combattants {
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}

@@ -1,14 +1,2 @@
-#raf {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 260px;
-  white-space: nowrap;
-  overflow-x: scroll;
-}
-.ok {
-  text-decoration: line-through;
-}
-a:visited {
-  color: beige;
+@media screen and (max-width: 1099px) {
 }

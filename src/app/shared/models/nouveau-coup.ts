@@ -11,7 +11,9 @@ export class NouveauCoup {
   defenseurScore!: number;
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
-  doubleTouche!: boolean;
+  doubleAtk!: boolean;
+  doubleDef!: boolean;
+  afterblow!: boolean;
   simultanee!: boolean;
   faute!: boolean;
 }

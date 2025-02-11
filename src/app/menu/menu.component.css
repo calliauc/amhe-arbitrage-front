@@ -1,18 +1,62 @@
 menu {
-  overflow: auto;
-}
-
-menu > ul {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  font-size: 1.5em;
+  justify-content: center;
   display: flex;
-  list-style-type: none;
+  background-color: rgb(20, 20, 20);
 }
 
-menu > ul > li {
+.affiche,
+.masque {
+  display: flex;
+}
+
+.menu-elem {
   padding-inline: 10px;
   padding-block: 5px;
+  border-radius: 5px;
 }
 
-menu > ul > li:hover {
-  background-color: lightgrey;
+.menu-elem:hover {
+  background-color: grey;
+  color: black;
   border-radius: 5px;
+}
+
+.btn-menu {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 0px;
+  display: none;
+}
+
+@media screen and (max-width: 1099px) {
+  menu {
+    top: 25px;
+    width: auto;
+    flex-direction: column;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .masque {
+    display: none;
+  }
+
+  .menu-elem {
+  }
+
+  .btn-menu {
+    font-size: 1em;
+    width: 65px;
+    height: 25px;
+    display: block;
+  }
 }

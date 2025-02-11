@@ -34,6 +34,7 @@ export class GestionCombattantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recupererCombattants();
+    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
   modeAjout(): void {
@@ -73,6 +74,7 @@ export class GestionCombattantsComponent implements OnInit {
   deverouiller() {
     this.estLectureSeule = false;
     this.estModateSecuVisible = false;
+    localStorage.setItem('secu', 'unlocked');
   }
   annuler() {
     this.estModateSecuVisible = false;
@@ -80,5 +82,6 @@ export class GestionCombattantsComponent implements OnInit {
 
   stopModif() {
     this.estLectureSeule = true;
+    localStorage.clear();
   }
 }

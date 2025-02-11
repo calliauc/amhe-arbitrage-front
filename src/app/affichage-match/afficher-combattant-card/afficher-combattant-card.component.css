@@ -1,0 +1,15 @@
+#combattant {
+  border-radius: 20px;
+  width: 300px;
+  text-align: center;
+  margin-inline: 10px;
+  font-size: 1.3em;
+}
+
+@media screen and (max-width: 1099px) {
+  #combattant {
+    margin-inline: auto;
+    margin-block: 5px;
+    width: 90%;
+  }
+}

@@ -51,15 +51,20 @@
     </div>
   </div>
   <div id="bottom-card">
+    @if (estLectureSeule) {
+    <a routerLink="/match/{{ match.id }}"
+      ><button id="button-details" class="btn-match">Détails</button></a
+    >
+    } @else {
     <a routerLink="/arbitrage/{{ match.id }}"
-      ><button id="button-arbitrer">Arbitrer match</button></a
+      ><button id="button-arbitrer" class="btn-match">Arbitrer</button></a
     ><button
       id="button-supprimer"
-      [disabled]="estLectureSeule"
+      class="btn-match"
       (click)="demanderSuppression(match.id)"
     >
-      X
-    </button>
+      X</button
+    >}
   </div>
   @if (estModalVisible){
   <app-confirmation-modal

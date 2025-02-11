@@ -4,9 +4,10 @@
     @for (coup of listeCoups; track $index) {
     <div class="ligne-coup">
       <app-ligne-coup [coup]="coup"></app-ligne-coup>
+      @if (!estLectureSeule) {
       <span class="btn-histo-coup-supprimer" (click)="supprimerCoup(coup.id)">
-        X
-      </span>
+        X </span
+      >}
     </div>
     }
   </table>

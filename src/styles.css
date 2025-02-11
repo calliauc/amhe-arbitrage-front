@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   width: 70%;
+  margin-top: 40px;
   margin-inline: 15%;
   background-color: rgb(30, 30, 30);
   color: aliceblue;
@@ -34,7 +35,11 @@ a:visited {
   user-select: none;
 }
 
-button:disabled {
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:disabled {
   cursor: not-allowed;
 }
 
@@ -48,6 +53,7 @@ button:disabled {
 }
 @media screen and (max-width: 1099px) {
   body {
+    margin-top: 25px;
     width: 90%;
     margin-inline: 5%;
   }

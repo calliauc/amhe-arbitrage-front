@@ -41,6 +41,7 @@ export class GestionPoulesComponent implements OnInit {
         })
       );
     });
+    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
   entrerModeCreation() {
@@ -101,6 +102,7 @@ export class GestionPoulesComponent implements OnInit {
   deverouiller() {
     this.estLectureSeule = false;
     this.estModateSecuVisible = false;
+    localStorage.setItem('secu', 'unlocked');
   }
   annuler() {
     this.estModateSecuVisible = false;
@@ -108,5 +110,6 @@ export class GestionPoulesComponent implements OnInit {
 
   stopModif() {
     this.estLectureSeule = true;
+    localStorage.clear();
   }
 }

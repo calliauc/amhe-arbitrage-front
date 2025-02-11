@@ -9,7 +9,9 @@ import { Coup } from '../models/coup';
 export class DetailsCoupPipe implements PipeTransform {
   transform(coup: Coup): string {
     let details = '';
-    details += coup.doubleTouche ? '[D] ' : '';
+    details += coup.doubleAtk ? '[Da] ' : '';
+    details += coup.doubleDef ? '[Dd] ' : '';
+    details += coup.afterblow ? '[A] ' : '';
     details += coup.simultanee ? '[S] ' : '';
     details += coup.faute ? '[F] ' : '';
     details += details.length > 0 ? '- ' : '';

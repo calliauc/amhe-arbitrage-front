@@ -63,6 +63,18 @@
   height: 46px;
 }
 
+#button-details {
+  width: 300px;
+  height: 46px;
+  border: 5px outset rgb(50, 50, 50);
+  /* border: none; */
+  color: aliceblue;
+  font-size: 1em;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background-color: rgb(30, 30, 30);
+}
+
 #button-arbitrer {
   width: 250px;
   height: 46px;
@@ -86,13 +98,12 @@
 }
 
 #button-arbitrer:hover {
-  cursor: pointer;
   border: 7px outset rgb(55, 55, 55);
   background-color: rgb(35, 35, 35);
   /* font-size: 1.1em; */
   transition: 0.1s;
 }
-#button-supprimer:hover {
+.btn-match:hover {
   cursor: pointer;
 }
 

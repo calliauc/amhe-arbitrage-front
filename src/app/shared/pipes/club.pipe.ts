@@ -6,7 +6,8 @@ import { Club } from '../../shared/models/club';
   standalone: true,
 })
 export class ClubPipe implements PipeTransform {
-  transform(club: Club | undefined): string {
+  transform(club: Club | undefined, longueur: boolean = false): string {
+    if (club && longueur) return `${club.nomComplet} (${club.ville})`;
     if (club) return `${club.nomCourt} (${club.ville})`;
     return 'Pas de club';
   }

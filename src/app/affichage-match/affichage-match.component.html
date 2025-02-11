@@ -1,0 +1,26 @@
+<main>
+  @if (match) {
+  <div id="status">Statut du match : {{ match.statut }}</div>
+  <button class="btn" id="btn-refresh" (click)="refreshMatch()">
+    Actualiser affichage
+  </button>
+  <div id="combattants">
+    <app-afficher-combattant-card
+      [combattant]="match.infosA"
+      [couleur]="match.couleurA"
+      [score]="match.scoreA"
+    ></app-afficher-combattant-card>
+    <app-afficher-combattant-card
+      [combattant]="match.infosB"
+      [couleur]="match.couleurB"
+      [score]="match.scoreB"
+    ></app-afficher-combattant-card>
+  </div>
+  <app-historique-coups
+    [estLectureSeule]="true"
+    [matchId]="matchId"
+  ></app-historique-coups>
+  } @else {
+  <div>Chargement du match</div>
+  }
+</main>

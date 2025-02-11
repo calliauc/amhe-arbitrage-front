@@ -1,25 +1,24 @@
-<menu>
-  <ul>
-    <li>
-      <a routerLink="">Accueil</a>
-    </li>
-    <li>
-      <a routerLink="creer-match">Nouveau match</a>
-    </li>
-    <li>
-      <a routerLink="matchs">Matchs</a>
-    </li>
-    <li>
-      <a routerLink="poules">Poules</a>
-    </li>
-    <li>
-      <a routerLink="combattants">Combattants</a>
-    </li>
-    <li>
-      <a routerLink="clubs">Clubs</a>
-    </li>
-    <li>
-      <a routerLink="referentiels">Référentiels</a>
-    </li>
-  </ul>
+@if (!estMenuVisible) {
+<button class="btn-menu" (click)="afficherMenu()">Menu</button>} @if
+(estMenuVisible) {
+<button class="btn-menu" (click)="masquerMenu()">Masquer</button>}
+<menu
+  [ngClass]="{
+  'masque': !this.estMenuVisible,
+  'affiche': this.estMenuVisible,
+}"
+>
+  <div class="btn menu-elem" (click)="allerVers('')">Accueil</div>
+  <div class="btn menu-elem" (click)="allerVers('creer-match')">
+    Créer match
+  </div>
+  <div class="btn menu-elem" (click)="allerVers('matchs')">Matchs</div>
+  <div class="btn menu-elem" (click)="allerVers('poules')">Poules</div>
+  <div class="btn menu-elem" (click)="allerVers('combattants')">
+    Combattants
+  </div>
+  <div class="btn menu-elem" (click)="allerVers('clubs')">Clubs</div>
+  <div class="btn menu-elem" (click)="allerVers('referentiels')">
+    Référentiels
+  </div>
 </menu>

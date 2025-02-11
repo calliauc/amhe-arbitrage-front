@@ -112,6 +112,6 @@ export class CombattantEditerComponent implements OnInit, AfterViewInit {
   }
 
   verifierCombattant(combattant: Combattant): boolean {
-    return !!combattant.prenom && !!combattant.nom && !!combattant.pseudo;
+    return !!combattant.prenom && !!combattant.nom;
   }
 }

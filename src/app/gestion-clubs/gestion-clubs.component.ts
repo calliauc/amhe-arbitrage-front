@@ -34,6 +34,7 @@ export class GestionClubsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recupererClubs();
+    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
   modeAjout(): void {
@@ -71,12 +72,15 @@ export class GestionClubsComponent implements OnInit {
   deverouiller() {
     this.estLectureSeule = false;
     this.estModateSecuVisible = false;
+    localStorage.setItem('secu', 'unlocked');
   }
+
   annuler() {
     this.estModateSecuVisible = false;
   }
 
   stopModif() {
     this.estLectureSeule = true;
+    localStorage.clear();
   }
 }

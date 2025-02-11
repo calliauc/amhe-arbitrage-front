@@ -70,6 +70,7 @@ export class CreationMatchComponent implements OnInit {
   ngOnInit(): void {
     this.getDatas();
     this.initForm();
+    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
   getDatas() {
@@ -216,6 +217,7 @@ export class CreationMatchComponent implements OnInit {
   deverouiller() {
     this.estLectureSeule = false;
     this.estModateSecuVisible = false;
+    localStorage.setItem('secu', 'unlocked');
   }
   annuler() {
     this.estModateSecuVisible = false;
@@ -223,5 +225,6 @@ export class CreationMatchComponent implements OnInit {
 
   stopModif() {
     this.estLectureSeule = true;
+    localStorage.clear();
   }
 }

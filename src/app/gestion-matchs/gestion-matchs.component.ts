@@ -27,6 +27,7 @@ export class GestionMatchsComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshList();
+    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
   refreshList() {
@@ -73,6 +74,7 @@ export class GestionMatchsComponent implements OnInit {
 
   deverouiller() {
     this.estLectureSeule = false;
+    localStorage.setItem('secu', 'unlocked');
     this.estModateSecuVisible = false;
   }
   annuler() {
@@ -81,5 +83,6 @@ export class GestionMatchsComponent implements OnInit {
 
   stopModif() {
     this.estLectureSeule = true;
+    localStorage.clear();
   }
 }
