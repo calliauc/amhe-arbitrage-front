@@ -1,5 +1,4 @@
 <main>
-  <!-- <h3>Formulaire de création de match</h3> -->
   <app-login (loginEvent)="updateLogin($event)"></app-login>
   <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
     <div id="select-combattants">

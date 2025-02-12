@@ -94,14 +94,14 @@ export class CreationMatchComponent implements OnInit {
     this.rulesetChoisi = undefined;
     this.a = undefined;
     this.b = undefined;
-    this.colorA = undefined;
-    this.colorB = undefined;
+    this.colorA = couleurs[0].code;
+    this.colorB = couleurs[1].code;
 
     this.formCreerMatch = this.formBuilder.group({
       combattantA: null,
       combattantB: null,
-      couleurA: 'white',
-      couleurB: 'white',
+      couleurA: couleurs[0].code,
+      couleurB: couleurs[1].code,
       tags: null,
       ruleset: null,
     });
