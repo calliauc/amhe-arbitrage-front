@@ -12,6 +12,7 @@
           </option>
           }
         </select>
+        @if (false) {
         <div class="select-label">Couleur</div>
         <select class="select-field" name="" formControlName="couleurA">
           @for (couleur of couleurs; track $index){
@@ -21,8 +22,8 @@
           >
             {{ couleur.libelle }}
           </option>
-          }
-        </select>
+          }</select
+        >}
       </div>
       <div id="select-combattant">
         <div class="select-label">Combattant B</div>
@@ -33,6 +34,7 @@
           </option>
           }
         </select>
+        @if (false) {
         <div class="select-label">Couleur</div>
         <select class="select-field" name="" formControlName="couleurB">
           @for (couleur of couleurs; track $index){
@@ -44,6 +46,7 @@
           </option>
           }
         </select>
+        }
       </div>
       <div id="preview-combattants">
         @if (a) {
