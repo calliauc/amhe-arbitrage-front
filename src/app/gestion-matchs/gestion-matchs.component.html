@@ -1,17 +1,24 @@
 <main>
   <app-login (loginEvent)="updateLogin($event)"></app-login>
   @if (!estLectureSeule) {
-  <button
-    [disabled]="estLectureSeule"
-    id="btn-creation-match"
-    (click)="creerMatch()"
-  >
-    Creer un match
-  </button>
-  <button (click)="editerScores()">Editer scores</button>
-  @if (estScoresOk) {
-  <a target="_blank" href="{{ URL }}">Lien vers les scores</a>
-  } }
+  <div id="btns">
+    <button
+      [disabled]="estLectureSeule"
+      class="btn btn-creation-match"
+      (click)="creerMatch()"
+    >
+      Creer un match
+    </button>
+    <button class="btn btn-scores" (click)="editerScores()">
+      Editer scores
+    </button>
+    @if (estScoresOk) {
+    <a target="_blank" href="{{ URL }}"
+      ><button class="btn btn-scores">Lien vers les scores</button></a
+    >
+    }
+  </div>
+  }
   <h2>Nouveaux matchs</h2>
   @if (matchsNouveau.length==0) {
   <p>Pas de match à lancer</p>

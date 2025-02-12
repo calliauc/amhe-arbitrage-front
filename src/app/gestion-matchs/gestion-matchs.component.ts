@@ -81,8 +81,6 @@ export class GestionMatchsComponent implements OnInit {
   }
 
   editerScores() {
-    console.log('test');
-
     this.hemaRatingService
       .calculerResultats()
       .subscribe((_) => (this.estScoresOk = true));
