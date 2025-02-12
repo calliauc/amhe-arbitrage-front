@@ -30,6 +30,9 @@ export class HistoriqueCoupsComponent implements OnInit {
   }
 
   supprimerCoup(id: number) {
-    this.coupsService.supprimerCoup(id).subscribe((_) => this.refreshList());
+    this.coupsService.supprimerCoup(id).subscribe((_) => {
+      console.log("C'était ma cape 😎");
+      this.refreshList();
+    });
   }
 }

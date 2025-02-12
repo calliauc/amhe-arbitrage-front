@@ -3,17 +3,38 @@ main {
   flex-direction: column;
   align-items: center;
 }
-#creation-poule {
-  margin-inline: auto;
-  margin-block-start: 20px;
-  border: 1px solid rgb(50, 50, 50);
+
+.btn-poule {
+  padding-inline: 10px;
+  padding-block: 5px;
+  margin-top: 10px;
+  margin-inline: 10px;
+  text-align: center;
+  align-content: center;
+  font-size: 1.2em;
+  border: 2px solid #2fcc71;
+  border-radius: 10px;
+}
+
+#form-creation {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-evenly;
+}
+
+#nom-poule {
+  display: flex;
+  flex-direction: column;
+  margin-inline-start: 20px;
 }
 #input-nom {
-  margin: 3px;
+  margin: 5px;
+  height: 25px;
 }
 #liste-poules {
   display: flex;
   flex-wrap: wrap;
+  font-size: 1.2em;
 }
 .poule {
   border: 2px solid grey;
@@ -28,5 +49,9 @@ main {
     border-radius: 10px;
     width: 100%;
     margin: 10px;
+  }
+
+  #form-creation {
+    flex-direction: column;
   }
 }

@@ -4,21 +4,12 @@
   @if (!estLectureSeule) {
   <div id="bloc-creation">
     @if (!estModeCreation) {
-    <button (click)="entrerModeCreation()">Ajouter poule</button>
+    <button class="btn btn-poule" (click)="entrerModeCreation()">
+      Ajouter poule
+    </button>
     } @if (estModeCreation) {
     <div id="form-creation">
-      <label for="nomPoule">Nom</label>
-      <input
-        id="input-nom"
-        name="nomPoule"
-        type="text"
-        (change)="onNomChange($event)"
-      />
-      <button (click)="ajouterPoule()">Valider</button>
-      <button (click)="annulerAjout()">Annuler</button>
-
       <div id="select-tags">
-        <!-- <div id="tags-titre">Tags</div> -->
         @for (tag of tags; track $index) {
         <div>
           <input
@@ -30,6 +21,23 @@
           {{ tag.code }}
         </div>
         }
+      </div>
+      <div id="nom-poule">
+        <label for="nomPoule">Nom :</label>
+        <input
+          id="input-nom"
+          name="nomPoule"
+          type="text"
+          (change)="onNomChange($event)"
+        />
+        <div>
+          <button class="btn btn-poule" (click)="ajouterPoule()">
+            Valider
+          </button>
+          <button class="btn btn-poule" (click)="annulerAjout()">
+            Annuler
+          </button>
+        </div>
       </div>
     </div>
     }
