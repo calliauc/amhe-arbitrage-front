@@ -4,6 +4,8 @@ import { Match } from '../shared/models/match';
 import { Router } from '@angular/router';
 import { MatchAfficherComponent } from './match-afficher/match-afficher.component';
 import { LoginComponent } from '../login/login.component';
+import { HemaRatingService } from '../shared/services/hema-rating.sevice';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-gestion-matchs',
@@ -22,8 +24,15 @@ export class GestionMatchsComponent implements OnInit {
   idASupprimer?: number;
   estModateSecuVisible: boolean = false;
   estLectureSeule: boolean = true;
+  estScoresOk: boolean = false;
+  env = environment;
+  URL = `${this.env.baseUrl}/hema-rating/get-csv`;
 
-  constructor(private matchsService: MatchsService, private router: Router) {}
+  constructor(
+    private matchsService: MatchsService,
+    private hemaRatingService: HemaRatingService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.refreshList();
@@ -69,5 +78,13 @@ export class GestionMatchsComponent implements OnInit {
 
   annulerSuppression() {
     this.estModalVisible = false;
+  }
+
+  editerScores() {
+    console.log('test');
+
+    this.hemaRatingService
+      .calculerResultats()
+      .subscribe((_) => (this.estScoresOk = true));
   }
 }

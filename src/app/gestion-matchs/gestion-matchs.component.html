@@ -6,8 +6,12 @@
     id="btn-creation-match"
     (click)="creerMatch()"
   >
-    Creer un match</button
-  >}
+    Creer un match
+  </button>
+  <button (click)="editerScores()">Editer scores</button>
+  @if (estScoresOk) {
+  <a target="_blank" href="{{ URL }}">Lien vers les scores</a>
+  } }
   <h2>Nouveaux matchs</h2>
   @if (matchsNouveau.length==0) {
   <p>Pas de match à lancer</p>
