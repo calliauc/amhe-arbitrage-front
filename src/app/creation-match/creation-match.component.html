@@ -105,14 +105,9 @@
       }
     </div>
 
-    <button
-      [disabled]="estLectureSeule"
-      class="btn"
-      id="btn-creer-match"
-      type="submit"
-    >
-      Créer
-    </button>
+    @if (!estLectureSeule) {
+    <button class="btn" id="btn-creer-match" type="submit">Créer</button>
+    }
   </form>
   @if (estModalVisible){
   <app-creation-match-modal

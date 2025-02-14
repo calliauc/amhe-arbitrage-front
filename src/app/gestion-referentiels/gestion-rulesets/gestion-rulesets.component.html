@@ -26,13 +26,8 @@
     ></app-ruleset-editer>
     }
   </table>
-  @if (!estModeCreation) {
-  <button
-    class="btn"
-    id="ajouter-ruleset"
-    [disabled]="estLectureSeule"
-    (click)="modeAjout()"
-  >
+  @if (!estModeCreation && !estLectureSeule) {
+  <button class="btn" id="ajouter-ruleset" (click)="modeAjout()">
     Ajouter ruleset
   </button>
   }

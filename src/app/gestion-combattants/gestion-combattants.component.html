@@ -25,13 +25,8 @@
     ></app-combattant-editer>
     }
   </table>
-  @if (!estModeCreation) {
-  <button
-    class="btn"
-    id="ajouter-combattant"
-    [disabled]="estLectureSeule"
-    (click)="modeAjout()"
-  >
+  @if (!estModeCreation && !estLectureSeule) {
+  <button class="btn" id="ajouter-combattant" (click)="modeAjout()">
     Ajouter combattant
   </button>
   }

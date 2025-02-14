@@ -24,13 +24,8 @@
     ></app-club-editer>
     }
   </table>
-  @if (!estModeCreation) {
-  <button
-    class="btn"
-    id="ajouter-club"
-    [disabled]="estLectureSeule"
-    (click)="modeAjout()"
-  >
+  @if (!estModeCreation && !estLectureSeule) {
+  <button class="btn" id="ajouter-club" (click)="modeAjout()">
     Ajouter club
   </button>
   }

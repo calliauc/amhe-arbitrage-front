@@ -23,13 +23,8 @@
     ></app-vulnerant-editer>
     }
   </table>
-  @if (!estModeCreation) {
-  <button
-    class="btn"
-    id="ajouter-vulnerant"
-    [disabled]="estLectureSeule"
-    (click)="modeAjout()"
-  >
+  @if (!estModeCreation && !estLectureSeule) {
+  <button class="btn" id="ajouter-vulnerant" (click)="modeAjout()">
     Ajouter vulnerant
   </button>
   }

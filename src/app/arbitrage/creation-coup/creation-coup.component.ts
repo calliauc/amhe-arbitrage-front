@@ -79,10 +79,15 @@ export class CreationCoupComponent implements OnInit, OnChanges {
     this.nouveauCoup.vulnerant = {
       code: this.formSaisirCoup.value.vulnerant.code,
     } as RulesetRef;
-    if (this.nouveauCoup.vulnerant.code !== 'lutte')
+    if (this.nouveauCoup.vulnerant.code === 'lutte') {
+      this.nouveauCoup.cible = {
+        code: 'lutte',
+      } as RulesetRef;
+    } else {
       this.nouveauCoup.cible = {
         code: this.formSaisirCoup.value.cible.code,
       } as RulesetRef;
+    }
     this.nouveauCoup.doubleAtk = this.formSaisirCoup.value.doubleAtk;
     this.nouveauCoup.doubleDef = this.formSaisirCoup.value.doubleDef;
     this.nouveauCoup.afterblow = this.formSaisirCoup.value.afterblow;

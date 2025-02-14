@@ -21,13 +21,8 @@
     ></app-tag-editer>
     }
   </table>
-  @if (!estModeCreation) {
-  <button
-    class="btn"
-    id="ajouter-tag"
-    [disabled]="estLectureSeule"
-    (click)="modeAjout()"
-  >
+  @if (!estModeCreation && !estLectureSeule) {
+  <button class="btn" id="ajouter-tag" (click)="modeAjout()">
     Ajouter tag
   </button>
   }

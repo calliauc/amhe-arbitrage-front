@@ -9,13 +9,6 @@ import { couleurs, RulesetRef } from '../shared/models/ruleset-ref';
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css',
 })
-export class AccueilComponent implements OnInit {
+export class AccueilComponent {
   env = environment;
-  couleur = RulesetRef.getCodeByLibelle(couleurs, 'bleu');
-  date = new Date();
-
-  ngOnInit(): void {
-    console.log(RulesetRef.getCodeByLibelle(couleurs, 'bleu'));
-    console.log(new Date());
-  }
 }

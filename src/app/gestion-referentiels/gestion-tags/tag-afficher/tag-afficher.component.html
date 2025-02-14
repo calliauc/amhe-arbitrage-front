@@ -1,12 +1,9 @@
 <tr [ngClass]="{ lignePair: estPair }">
   <td class="col">{{ tag.code }}</td>
   <td class="col">
-    <button
-      class="btn btn-tags btn-editer-tag"
-      [disabled]="estLectureSeule"
-      (click)="editer()"
-    >
-      Editer
-    </button>
+    @if (!estLectureSeule) {
+    <button class="btn btn-tags btn-editer-tag" (click)="editer()">
+      Editer</button
+    >}
   </td>
 </tr>

@@ -9,12 +9,12 @@
     >
       Détails
     </button>
+    @if (!estLectureSeule) {
     <button
-      [disabled]="estLectureSeule"
       class="btn btn-combattants btn-editer-combattant"
       (click)="editer()"
     >
-      Editer
-    </button>
+      Editer</button
+    >}
   </td>
 </tr>

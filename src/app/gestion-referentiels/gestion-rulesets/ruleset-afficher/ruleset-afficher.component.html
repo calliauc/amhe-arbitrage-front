@@ -11,12 +11,9 @@
     <span> {{ ruleset.cibles | rulesetRefDisplay }}</span>
   </td>
   <td class="col">
-    <button
-      class="btn btn-rulesets btn-editer-ruleset"
-      [disabled]="estLectureSeule"
-      (click)="editer()"
-    >
-      Editer
-    </button>
+    @if (!estLectureSeule) {
+    <button class="btn btn-rulesets btn-editer-ruleset" (click)="editer()">
+      Editer</button
+    >}
   </td>
 </tr>

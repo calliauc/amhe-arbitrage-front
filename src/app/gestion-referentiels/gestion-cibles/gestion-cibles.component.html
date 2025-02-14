@@ -22,13 +22,8 @@
     ></app-cible-editer>
     }
   </table>
-  @if (!estModeCreation) {
-  <button
-    class="btn"
-    id="ajouter-cible"
-    [disabled]="estLectureSeule"
-    (click)="modeAjout()"
-  >
+  @if (!estModeCreation && !estLectureSeule) {
+  <button class="btn" id="ajouter-cible" (click)="modeAjout()">
     Ajouter cible
   </button>
   }
