@@ -3,7 +3,8 @@ import { Combattant } from '../models/combattant';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Tag } from '../models/tag';
+import { Tag, TagsFiltres } from '../models/tag';
+import { CombattantDetails } from '../models/combattant-details';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +29,21 @@ export class CombattantsService {
     return this.http.post<Combattant[]>(`${this.URL}/tags`, tagsId, {
       responseType: 'json',
     });
+  }
+
+  public getCombattantsDetails(
+    id: number,
+    tags: TagsFiltres
+  ): Observable<CombattantDetails> {
+    console.log(id);
+    console.log(tags);
+    return this.http.post<CombattantDetails>(
+      `${this.URL}/details/${id}`,
+      tags,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   public creerCombattant(combattantACreer: Combattant): Observable<Combattant> {

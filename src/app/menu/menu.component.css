@@ -60,3 +60,9 @@ menu {
     display: block;
   }
 }
+
+@media print {
+  :host {
+    display: none;
+  }
+}

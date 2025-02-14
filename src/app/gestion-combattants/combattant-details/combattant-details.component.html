@@ -1,4 +1,29 @@
-@if (combattant) {
-<p>{{ combattant | nomsDisplay : true }}</p>
-<p>Soon les stats ici</p>
+@if (details) {
+<div id="print">
+  <div id="bandeau">
+    <div>
+      <p>[{{ details.combattant | nomsDisplay : true }}. Soon les stats ici]</p>
+      <p>[Nombre de matchs joués : {{ details.matchs.length }}]</p>
+    </div>
+    <div>
+      <p>[Cumul de PV restants combattant : {{ details.pointsMarques }}]</p>
+      <p>[Cumul de PV restants adverses : {{ details.pointsPerdus }}]</p>
+    </div>
+  </div>
+  <div class="poule">
+    @for (match of details.matchs; track $index) {
+    <div class="match">
+      <div [style.color]="match.couleurA">
+        {{ match.infosA | nomsDisplay }}
+        {{ match.scoreA }}
+      </div>
+      <div [style.color]="match.couleurB">
+        {{ match.infosB | nomsDisplay }}
+        {{ match.scoreB }}
+      </div>
+    </div>
+    }
+  </div>
+  <div id="stats"></div>
+</div>
 }

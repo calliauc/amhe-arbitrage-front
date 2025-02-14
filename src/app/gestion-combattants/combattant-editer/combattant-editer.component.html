@@ -6,13 +6,21 @@
 >
   <tr [ngClass]="{ lignePair: estPair }">
     <td class="col">
-      <input type="text" formControlName="prenom" placeholder="Prénom" #focus />
+      <input
+        class="input-txt"
+        type="text"
+        formControlName="prenom"
+        placeholder="Prénom"
+        #focus
+      />
     </td>
     <td class="col">
-      <input type="text" formControlName="nom" placeholder="Nom" />
-    </td>
-    <td class="col">
-      <input type="text" formControlName="pseudo" placeholder="Pseudo" />
+      <input
+        class="input-txt"
+        type="text"
+        formControlName="nom"
+        placeholder="Nom"
+      />
     </td>
     <td class="col">
       <select name="club" formControlName="club">

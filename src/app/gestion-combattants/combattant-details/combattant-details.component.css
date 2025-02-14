@@ -1,14 +1,33 @@
-@page {
-  size: A4;
-  margin: 0;
-}
 @media print {
-  html,
-  body {
-    width: 210mm;
-    height: 297mm;
+  #print {
+    /* color: black; */
+    /* height: 21cm;
+    width: 29.7cm;
+    margin: 1cm; */
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  menu {
-    display: none;
+  #bandeau {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid black;
+  }
+  .poule {
+    display: flex;
+  }
+  .match {
+    width: 5cm;
+    height: 3cm;
+    margin: 2mm;
+    border: 2px solid black;
+    padding: 3px;
+    border-radius: 5px;
+  }
+
+  @page {
+    /* size: a4 landscape; */
   }
 }

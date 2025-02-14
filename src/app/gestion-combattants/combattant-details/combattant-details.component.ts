@@ -3,6 +3,8 @@ import { Combattant } from '../../shared/models/combattant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CombattantsService } from '../../shared/services/combattants.service';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
+import { TagsFiltres } from '../../shared/models/tag';
+import { CombattantDetails } from '../../shared/models/combattant-details';
 
 @Component({
   selector: 'app-combattant-details',
@@ -12,8 +14,36 @@ import { NomsPipe } from '../../shared/pipes/noms.pipe';
   styleUrl: './combattant-details.component.css',
 })
 export class CombattantDetailsComponent {
-  combattant!: Combattant;
+  details!: CombattantDetails;
   combattantId!: number;
+  tags: TagsFiltres = {
+    tagsRequis: [
+      {
+        id: 1,
+        code: 'B-CUP-25',
+      },
+      {
+        id: 2,
+        code: 'Epée',
+      },
+    ],
+    tagsOptions: [
+      {
+        id: 10,
+        code: 'Poule-11',
+      },
+      {
+        id: 11,
+        code: 'Poule-12',
+      },
+    ],
+    tagsExclus: [
+      {
+        id: 3,
+        code: 'Hache',
+      },
+    ],
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -22,11 +52,11 @@ export class CombattantDetailsComponent {
   ) {
     this.route.params.subscribe((params) => {
       this.combattantService
-        .getCombattantById(params['id'])
-        .subscribe((combattant) => {
-          if (combattant) {
-            this.combattant = combattant;
-            console.log(combattant);
+        .getCombattantsDetails(params['id'], this.tags)
+        .subscribe((details) => {
+          if (details) {
+            this.details = details;
+            console.log(details);
           } else {
             alert('Combattant introuvable');
             this.router.navigate(['combattants']);
