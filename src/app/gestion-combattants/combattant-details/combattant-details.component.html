@@ -27,8 +27,8 @@
       @for (match of details.matchs; track $index) {
       <div class="match">
         <div class="match-header">
-          <span class="tag">{{ this.filtreTags(match.tags).code }}</span>
-          <span class="tag">à {{ match.dateDebut | date : "H'h'mm" }}</span>
+          <span>{{ this.filtreTags(match.tags).code }}</span>
+          <span>à {{ match.dateDebut | date : "H'h'mm" }}</span>
         </div>
         @if (match.infosA.id == combattantId) {
         <div class="combattant-affichage">
@@ -49,11 +49,6 @@
           <span class="combattant-score"> {{ match.scoreA }} </span>
         </div>
         }
-        <!-- <div id="tags">
-          @for (tag of match.tags; track $index) {
-          <span class="tag">{{ tag.code }}</span>
-          }
-        </div> -->
       </div>
       }
     </div>
