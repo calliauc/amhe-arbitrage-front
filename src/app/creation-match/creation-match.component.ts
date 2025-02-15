@@ -114,6 +114,28 @@ export class CreationMatchComponent implements OnInit {
     });
   }
 
+  resetForm() {
+    this.a = undefined;
+    this.b = undefined;
+    this.colorA = couleurs[0].code;
+    this.colorB = couleurs[1].code;
+
+    this.formCreerMatch = this.formBuilder.group({
+      combattantA: null,
+      combattantB: null,
+      couleurA: couleurs[0].code,
+      couleurB: couleurs[1].code,
+      tags: null,
+    });
+    this.formCreerMatch.valueChanges.subscribe((values) => {
+      this.rulesetChoisi = values.ruleset;
+      this.a = this.combattantsListe.find((c) => c.id === values.combattantA);
+      this.b = this.combattantsListe.find((c) => c.id === values.combattantB);
+      this.colorA = values.couleurA;
+      this.colorB = values.couleurB;
+    });
+  }
+
   onChange($event: any) {
     const id = $event.target.value;
     const isChecked = $event.target.checked;
@@ -207,7 +229,7 @@ export class CreationMatchComponent implements OnInit {
             this.router.navigate(['arbitrage', matchCree.id]);
             break;
           case 'rester':
-            this.initForm();
+            this.resetForm();
             break;
         }
       });
