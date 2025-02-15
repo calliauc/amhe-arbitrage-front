@@ -36,6 +36,14 @@ export class CombattantDetailsComponent {
         id: 3,
         code: 'Hache',
       },
+      {
+        id: 16,
+        code: 'Finale-p',
+      },
+      {
+        id: 17,
+        code: 'Finale-g',
+      },
     ],
   };
 
