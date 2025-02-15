@@ -1,4 +1,19 @@
 <main>
+  @if (estLectureSeule) {
+  <h3>
+    Bienvenue sur l'application live de la première édition de la BURDIGALA CUP
+    !
+  </h3>
+  <div>
+    D'ici vous pouvez suivre les matchs, consulter vos poules et même certaines
+    statistiques de jeu 👀
+  </div>
+  <img
+    src="https://cdn.discordapp.com/attachments/982330763284467772/1340133553622487040/affiche.jpg?ex=67b14021&is=67afeea1&hm=1cd3f69b4d84ecfc6e32cc72c72beb2382feca80992afe066e933a36a1d2e1c7&"
+    alt="Affiche du tournoi"
+  />
+  <div></div>
+  } @else {
   <div id="raf">
     <p>Reste à faire :</p>
     <ul>
@@ -17,8 +32,8 @@
           <li class="ok">Export hema rating</li>
           <li class="ok">Fix bug url bloquée</li>
           <li class="ok">Algorithmes stats individuelles</li>
-          <li>Page stats individuelles</li>
-          <li>Impression stats individuelles</li>
+          <li class="ok">Page stats individuelles</li>
+          <li class="ok">Impression stats individuelles</li>
         </ul>
       </li>
       <br />
@@ -109,4 +124,5 @@
     </ul>
   </div>
   <p>Env : {{ env.baseUrl }}</p>
+  }
 </main>

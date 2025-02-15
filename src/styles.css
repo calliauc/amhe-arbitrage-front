@@ -68,11 +68,11 @@ a:visited {
   body {
     margin-top: 0.5cm;
     margin-inline: 0.5cm;
-    height: 20cm;
-    width: 28.7cm;
-    /* margin: 1cm; */
+    height: 19cm;
+    width: 27.7cm;
+    margin: 1cm;
     color: rgb(30, 30, 30);
-    background-color: aliceblue;
+    background-color: white;
     border: 1px solid violet;
   }
 }

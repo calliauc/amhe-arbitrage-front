@@ -1,29 +1,190 @@
-@if (details) {
-<div id="print">
-  <div id="bandeau">
-    <div>
-      <p>[{{ details.combattant | nomsDisplay : true }}. Soon les stats ici]</p>
-      <p>[Nombre de matchs joués : {{ details.matchs.length }}]</p>
+<main>
+  @if (details) {
+  <div id="print">
+    <div id="bandeau">
+      <div id="combattant">
+        <div>
+          {{ details.combattant | nomsDisplay : false }}
+        </div>
+        <div>
+          {{ details.combattant.club | clubDisplay : true }}
+        </div>
+      </div>
+      <div id="scores">
+        <!-- <div class="tag">
+          Nombre de matchs joués : {{ details.matchs.length }}
+        </div> -->
+        <div class="tag">
+          Score (Cumul des PV restants) : {{ details.pointsMarques }}
+        </div>
+        <div class="tag">
+          Cumul de PV restants adverses : {{ details.pointsPerdus }}
+        </div>
+      </div>
+      <div id="tournoi">BURDIGALA CUP 2025</div>
     </div>
-    <div>
-      <p>[Cumul de PV restants combattant : {{ details.pointsMarques }}]</p>
-      <p>[Cumul de PV restants adverses : {{ details.pointsPerdus }}]</p>
+    <div class="poule">
+      @for (match of details.matchs; track $index) {
+      <div class="match">
+        <div class="match-header">
+          <span class="tag">{{ this.filtreTags(match.tags).code }}</span>
+          <span class="tag">à {{ match.dateDebut | date : "H'h'mm" }}</span>
+        </div>
+        @if (match.infosA.id == combattantId) {
+        <div class="combattant-affichage">
+          <span class="combattant-nom">{{ match.infosA | nomsDisplay }} </span>
+          <span class="combattant-score"> {{ match.scoreA }} </span>
+        </div>
+        <div class="combattant-affichage">
+          <span class="combattant-nom">{{ match.infosB | nomsDisplay }} </span>
+          <span class="combattant-score"> {{ match.scoreB }} </span>
+        </div>
+        } @else {
+        <div class="combattant-affichage">
+          <span class="combattant-nom">{{ match.infosB | nomsDisplay }} </span>
+          <span class="combattant-score"> {{ match.scoreB }} </span>
+        </div>
+        <div class="combattant-affichage">
+          <span class="combattant-nom">{{ match.infosA | nomsDisplay }} </span>
+          <span class="combattant-score"> {{ match.scoreA }} </span>
+        </div>
+        }
+        <!-- <div id="tags">
+          @for (tag of match.tags; track $index) {
+          <span class="tag">{{ tag.code }}</span>
+          }
+        </div> -->
+      </div>
+      }
+    </div>
+    <div id="stats">
+      <div id="stats-coups-donnes">
+        <div class="description">Stats des coups portés</div>
+        <div id="vulnerants">
+          <table>
+            <thead>
+              <tr>
+                <th>Coups</th>
+                <th>Nombre</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (elem of details.coupsMarques.vulnerants; track $index) {
+              <tr class="ligne">
+                <td>{{ elem.code }}</td>
+                <td>{{ elem.valeur }}</td>
+                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div id="cibles">
+          <table>
+            <thead>
+              <tr>
+                <th>Cibles</th>
+                <th>Nombre</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (elem of details.coupsMarques.cibles; track $index) {
+              <tr class="ligne">
+                <td>{{ elem.code }}</td>
+                <td>{{ elem.valeur }}</td>
+                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div id="details">
+          <table>
+            <thead>
+              <tr>
+                <th>Contexte</th>
+                <th>Nombre</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (elem of details.coupsMarques.details; track $index) {
+              <tr class="ligne">
+                <td>{{ elem.code }}</td>
+                <td>{{ elem.valeur }}</td>
+                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="stats-coups-recus">
+        <div class="description">Stats des coups reçus</div>
+        <div id="vulnerants">
+          <table>
+            <thead>
+              <tr>
+                <th>Coups</th>
+                <th>Nombre</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (elem of details.coupsSubis.vulnerants; track $index) {
+              <tr class="ligne">
+                <td>{{ elem.code }}</td>
+                <td>{{ elem.valeur }}</td>
+                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div id="cibles">
+          <table>
+            <thead>
+              <tr>
+                <th>Cibles</th>
+                <th>Nombre</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (elem of details.coupsSubis.cibles; track $index) {
+              <tr class="ligne">
+                <td>{{ elem.code }}</td>
+                <td>{{ elem.valeur }}</td>
+                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div id="details">
+          <table>
+            <thead>
+              <tr>
+                <th>Contexte</th>
+                <th>Nombre</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (elem of details.coupsSubis.details; track $index) {
+              <tr class="ligne">
+                <td>{{ elem.code }}</td>
+                <td>{{ elem.valeur }}</td>
+                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="poule">
-    @for (match of details.matchs; track $index) {
-    <div class="match">
-      <div [style.color]="match.couleurA">
-        {{ match.infosA | nomsDisplay }}
-        {{ match.scoreA }}
-      </div>
-      <div [style.color]="match.couleurB">
-        {{ match.infosB | nomsDisplay }}
-        {{ match.scoreB }}
-      </div>
-    </div>
-    }
-  </div>
-  <div id="stats"></div>
-</div>
-}
+  }
+</main>

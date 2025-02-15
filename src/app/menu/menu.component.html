@@ -9,16 +9,20 @@
 }"
 >
   <div class="btn menu-elem" (click)="allerVers('')">Accueil</div>
+  @if (!estLectureSeule) {
   <div class="btn menu-elem" (click)="allerVers('creer-match')">
     Créer match
   </div>
+  }
   <div class="btn menu-elem" (click)="allerVers('matchs')">Matchs</div>
   <div class="btn menu-elem" (click)="allerVers('poules')">Poules</div>
   <div class="btn menu-elem" (click)="allerVers('combattants')">
     Combattants
   </div>
   <div class="btn menu-elem" (click)="allerVers('clubs')">Clubs</div>
+  @if (!estLectureSeule) {
   <div class="btn menu-elem" (click)="allerVers('referentiels')">
     Référentiels
   </div>
+  }
 </menu>

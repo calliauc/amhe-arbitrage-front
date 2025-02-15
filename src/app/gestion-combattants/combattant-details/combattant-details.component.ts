@@ -3,19 +3,22 @@ import { Combattant } from '../../shared/models/combattant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CombattantsService } from '../../shared/services/combattants.service';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
-import { TagsFiltres } from '../../shared/models/tag';
+import { Tag, TagsFiltres } from '../../shared/models/tag';
 import { CombattantDetails } from '../../shared/models/combattant-details';
+import { CommonModule, DatePipe } from '@angular/common';
+import { ClubPipe } from '../../shared/pipes/club.pipe';
 
 @Component({
   selector: 'app-combattant-details',
   standalone: true,
-  imports: [NomsPipe],
+  imports: [NomsPipe, DatePipe, ClubPipe, CommonModule],
   templateUrl: './combattant-details.component.html',
   styleUrl: './combattant-details.component.css',
 })
 export class CombattantDetailsComponent {
   details!: CombattantDetails;
   combattantId!: number;
+  tagPoule!: Tag;
   tags: TagsFiltres = {
     tagsRequis: [
       {
@@ -27,16 +30,7 @@ export class CombattantDetailsComponent {
         code: 'Epée',
       },
     ],
-    tagsOptions: [
-      {
-        id: 10,
-        code: 'Poule-11',
-      },
-      {
-        id: 11,
-        code: 'Poule-12',
-      },
-    ],
+    tagsOptions: [],
     tagsExclus: [
       {
         id: 3,
@@ -61,8 +55,22 @@ export class CombattantDetailsComponent {
             alert('Combattant introuvable');
             this.router.navigate(['combattants']);
           }
+          this.trieStats();
         });
       this.combattantId = params['id'];
     });
+  }
+
+  trieStats() {
+    this.details.coupsMarques.cibles?.sort((a, b) => b.valeur - a.valeur);
+    this.details.coupsMarques.vulnerants?.sort((a, b) => b.valeur - a.valeur);
+    this.details.coupsMarques.details?.sort((a, b) => b.valeur - a.valeur);
+    this.details.coupsSubis.cibles?.sort((a, b) => b.valeur - a.valeur);
+    this.details.coupsSubis.vulnerants?.sort((a, b) => b.valeur - a.valeur);
+    this.details.coupsSubis.details?.sort((a, b) => b.valeur - a.valeur);
+  }
+
+  filtreTags(tags: Tag[]): Tag {
+    return tags.filter((tag) => tag.code.startsWith('Poule'))[0];
   }
 }
