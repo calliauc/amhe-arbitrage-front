@@ -7,11 +7,10 @@ import { VulnerantEditerComponent } from './vulnerant-editer/vulnerant-editer.co
 import { RulesetRef } from '../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-gestion-vulnerants',
-  standalone: true,
-  imports: [VulnerantLigneComponent, VulnerantEditerComponent, CommonModule],
-  templateUrl: './gestion-vulnerants.component.html',
-  styleUrl: './gestion-vulnerants.component.css',
+    selector: 'app-gestion-vulnerants',
+    imports: [VulnerantLigneComponent, VulnerantEditerComponent, CommonModule],
+    templateUrl: './gestion-vulnerants.component.html',
+    styleUrl: './gestion-vulnerants.component.css'
 })
 export class GestionVulnerantsComponent implements OnInit {
   @Input() estLectureSeule!: boolean;

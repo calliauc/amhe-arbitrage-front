@@ -4,9 +4,9 @@
       id="ctrl-time"
       (click)="controlTimer()"
       [ngClass]="{
-        'chrono-play': !this.estDemarre || this.estEnPause,
-        'chrono-pause': this.estDemarre && !this.estEnPause,
-        'est-fini': this.estFini
+        'chrono-play': !estDemarre || estEnPause,
+        'chrono-pause': estDemarre && !estEnPause,
+        'est-fini': estFini
       }"
     ></div>
     <cd-timer

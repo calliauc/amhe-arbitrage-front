@@ -18,11 +18,10 @@ import { CombattantsService } from '../../shared/services/combattants.service';
 import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 
 @Component({
-  selector: 'app-combattant-editer',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
-  templateUrl: './combattant-editer.component.html',
-  styleUrl: './combattant-editer.component.css',
+    selector: 'app-combattant-editer',
+    imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
+    templateUrl: './combattant-editer.component.html',
+    styleUrl: './combattant-editer.component.css'
 })
 export class CombattantEditerComponent implements OnInit, AfterViewInit {
   @Input() combattant: Combattant = new Combattant();

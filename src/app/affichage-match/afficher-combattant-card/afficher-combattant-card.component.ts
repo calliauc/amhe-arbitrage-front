@@ -4,11 +4,10 @@ import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 
 @Component({
-  selector: 'app-afficher-combattant-card',
-  standalone: true,
-  imports: [ClubPipe, NomsPipe],
-  templateUrl: './afficher-combattant-card.component.html',
-  styleUrl: './afficher-combattant-card.component.css',
+    selector: 'app-afficher-combattant-card',
+    imports: [ClubPipe, NomsPipe],
+    templateUrl: './afficher-combattant-card.component.html',
+    styleUrl: './afficher-combattant-card.component.css'
 })
 export class AfficherCombattantCardComponent implements OnInit {
   @Input() combattant!: Combattant;

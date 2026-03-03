@@ -3,11 +3,10 @@ import { NgClass } from '@angular/common';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-vulnerant-afficher',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './vulnerant-afficher.component.html',
-  styleUrl: './vulnerant-afficher.component.css',
+    selector: 'app-vulnerant-afficher',
+    imports: [NgClass],
+    templateUrl: './vulnerant-afficher.component.html',
+    styleUrl: './vulnerant-afficher.component.css'
 })
 export class VulnerantAfficherComponent implements OnInit {
   @Input() vulnerant!: RulesetRef;

@@ -3,11 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css',
+    selector: 'app-menu',
+    imports: [CommonModule],
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
   estMenuVisible: boolean = false;

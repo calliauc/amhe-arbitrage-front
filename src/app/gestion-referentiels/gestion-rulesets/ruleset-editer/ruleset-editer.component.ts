@@ -25,11 +25,10 @@ import { VulnerantsService } from '../../../shared/services/vulnerants.service';
 import { CiblesService } from '../../../shared/services/cibles.service';
 
 @Component({
-  selector: 'app-ruleset-editer',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
-  templateUrl: './ruleset-editer.component.html',
-  styleUrl: './ruleset-editer.component.css',
+    selector: 'app-ruleset-editer',
+    imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
+    templateUrl: './ruleset-editer.component.html',
+    styleUrl: './ruleset-editer.component.css'
 })
 export class RulesetEditerComponent implements OnInit, AfterViewInit {
   @Input() ruleset: Ruleset = new Ruleset();

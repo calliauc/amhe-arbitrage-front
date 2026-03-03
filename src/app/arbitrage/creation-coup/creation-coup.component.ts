@@ -15,11 +15,10 @@ import { TitleCasePipe } from '@angular/common';
 import { RulesetRef } from '../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-creation-coup',
-  standalone: true,
-  imports: [ReactiveFormsModule, NomsPipe, TitleCasePipe],
-  templateUrl: './creation-coup.component.html',
-  styleUrl: './creation-coup.component.css',
+    selector: 'app-creation-coup',
+    imports: [ReactiveFormsModule, NomsPipe, TitleCasePipe],
+    templateUrl: './creation-coup.component.html',
+    styleUrl: './creation-coup.component.css'
 })
 export class CreationCoupComponent implements OnInit, OnChanges {
   @Input() match!: Match;

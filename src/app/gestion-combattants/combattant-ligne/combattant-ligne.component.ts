@@ -4,11 +4,10 @@ import { CombattantAfficherComponent } from '../combattant-afficher/combattant-a
 import { CombattantEditerComponent } from '../combattant-editer/combattant-editer.component';
 
 @Component({
-  selector: 'app-combattant-ligne',
-  standalone: true,
-  imports: [CombattantAfficherComponent, CombattantEditerComponent],
-  templateUrl: './combattant-ligne.component.html',
-  styleUrl: './combattant-ligne.component.css',
+    selector: 'app-combattant-ligne',
+    imports: [CombattantAfficherComponent, CombattantEditerComponent],
+    templateUrl: './combattant-ligne.component.html',
+    styleUrl: './combattant-ligne.component.css'
 })
 export class CombattantLigneComponent {
   @Input() combattant!: Combattant;

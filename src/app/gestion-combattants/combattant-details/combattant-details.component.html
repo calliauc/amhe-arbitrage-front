@@ -27,7 +27,7 @@
       @for (match of details.matchs; track $index) {
       <div class="match">
         <div class="match-header">
-          <span>{{ this.filtreTags(match.tags).code }}</span>
+          <span>{{ filtreTags(match.tags).code }}</span>
           <span>à {{ match.dateDebut | date : "H'h'mm" }}</span>
         </div>
         @if (match.infosA.id == combattantId) {

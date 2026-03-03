@@ -8,11 +8,10 @@ import { HemaRatingService } from '../shared/services/hema-rating.sevice';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-gestion-matchs',
-  standalone: true,
-  imports: [MatchAfficherComponent, LoginComponent],
-  templateUrl: './gestion-matchs.component.html',
-  styleUrl: './gestion-matchs.component.css',
+    selector: 'app-gestion-matchs',
+    imports: [MatchAfficherComponent, LoginComponent],
+    templateUrl: './gestion-matchs.component.html',
+    styleUrl: './gestion-matchs.component.css'
 })
 export class GestionMatchsComponent implements OnInit {
   matchsNouveau: Match[] = [];

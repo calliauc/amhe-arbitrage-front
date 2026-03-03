@@ -15,11 +15,10 @@ import { MatchsService } from '../../shared/services/matchs.service';
 import { TimerStatus } from '../../shared/models/timer-tick';
 
 @Component({
-  selector: 'app-gestion-match',
-  standalone: true,
-  imports: [ScoreCombattantComponent, ChronoComponent, CombattantComponent],
-  templateUrl: './suivi-match.component.html',
-  styleUrl: './suivi-match.component.css',
+    selector: 'app-gestion-match',
+    imports: [ScoreCombattantComponent, ChronoComponent, CombattantComponent],
+    templateUrl: './suivi-match.component.html',
+    styleUrl: './suivi-match.component.css'
 })
 export class SuiviMatchComponent implements OnChanges {
   @Input() match!: Match;

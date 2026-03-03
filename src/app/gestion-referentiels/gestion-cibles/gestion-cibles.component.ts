@@ -7,11 +7,10 @@ import { CibleEditerComponent } from './cible-editer/cible-editer.component';
 import { RulesetRef } from '../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-gestion-cibles',
-  standalone: true,
-  imports: [CibleLigneComponent, CibleEditerComponent, CommonModule],
-  templateUrl: './gestion-cibles.component.html',
-  styleUrl: './gestion-cibles.component.css',
+    selector: 'app-gestion-cibles',
+    imports: [CibleLigneComponent, CibleEditerComponent, CommonModule],
+    templateUrl: './gestion-cibles.component.html',
+    styleUrl: './gestion-cibles.component.css'
 })
 export class GestionCiblesComponent implements OnInit {
   @Input() estLectureSeule!: boolean;

@@ -8,11 +8,10 @@ import { PoulesService } from '../shared/services/poules.service';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
-  selector: 'app-gestion-poules',
-  standalone: true,
-  imports: [AffichagePouleComponent, LoginComponent],
-  templateUrl: './gestion-poules.component.html',
-  styleUrl: './gestion-poules.component.css',
+    selector: 'app-gestion-poules',
+    imports: [AffichagePouleComponent, LoginComponent],
+    templateUrl: './gestion-poules.component.html',
+    styleUrl: './gestion-poules.component.css'
 })
 export class GestionPoulesComponent implements OnInit {
   nom: string = '';

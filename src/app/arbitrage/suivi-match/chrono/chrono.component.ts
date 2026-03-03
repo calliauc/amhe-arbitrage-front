@@ -13,11 +13,10 @@ import { Match } from '../../../shared/models/match';
 import { MatchsService } from '../../../shared/services/matchs.service';
 
 @Component({
-  selector: 'app-chrono',
-  standalone: true,
-  imports: [CommonModule, CdTimerModule],
-  templateUrl: './chrono.component.html',
-  styleUrl: './chrono.component.css',
+    selector: 'app-chrono',
+    imports: [CommonModule, CdTimerModule],
+    templateUrl: './chrono.component.html',
+    styleUrl: './chrono.component.css'
 })
 export class ChronoComponent implements AfterViewInit {
   @Input() match!: Match;

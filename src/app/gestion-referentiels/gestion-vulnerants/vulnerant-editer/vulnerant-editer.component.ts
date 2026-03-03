@@ -15,11 +15,10 @@ import { VulnerantsService } from '../../../shared/services/vulnerants.service';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-vulnerant-editer',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
-  templateUrl: './vulnerant-editer.component.html',
-  styleUrl: './vulnerant-editer.component.css',
+    selector: 'app-vulnerant-editer',
+    imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
+    templateUrl: './vulnerant-editer.component.html',
+    styleUrl: './vulnerant-editer.component.css'
 })
 export class VulnerantEditerComponent implements OnInit, AfterViewInit {
   @Input() vulnerant: RulesetRef = new RulesetRef();

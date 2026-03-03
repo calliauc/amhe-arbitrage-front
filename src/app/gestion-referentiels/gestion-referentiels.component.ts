@@ -6,17 +6,16 @@ import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
-  selector: 'app-gestion-referentiels',
-  standalone: true,
-  imports: [
-    GestionCiblesComponent,
-    GestionVulnerantsComponent,
-    GestionRulesetsComponent,
-    GestionTagsComponent,
-    LoginComponent,
-  ],
-  templateUrl: './gestion-referentiels.component.html',
-  styleUrl: './gestion-referentiels.component.css',
+    selector: 'app-gestion-referentiels',
+    imports: [
+        GestionCiblesComponent,
+        GestionVulnerantsComponent,
+        GestionRulesetsComponent,
+        GestionTagsComponent,
+        LoginComponent,
+    ],
+    templateUrl: './gestion-referentiels.component.html',
+    styleUrl: './gestion-referentiels.component.css'
 })
 export class GestionReferentielsComponent implements OnInit {
   estModateSecuVisible: boolean = false;

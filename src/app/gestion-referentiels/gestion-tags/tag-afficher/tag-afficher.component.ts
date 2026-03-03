@@ -3,11 +3,10 @@ import { NgClass } from '@angular/common';
 import { Tag } from '../../../shared/models/tag';
 
 @Component({
-  selector: 'app-tag-afficher',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './tag-afficher.component.html',
-  styleUrl: './tag-afficher.component.css',
+    selector: 'app-tag-afficher',
+    imports: [NgClass],
+    templateUrl: './tag-afficher.component.html',
+    styleUrl: './tag-afficher.component.css'
 })
 export class TagAfficherComponent implements OnInit {
   @Input() tag!: Tag;

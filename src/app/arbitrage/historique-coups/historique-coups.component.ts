@@ -4,11 +4,10 @@ import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
 
 @Component({
-  selector: 'app-historique-coups',
-  standalone: true,
-  imports: [LigneCoupComponent],
-  templateUrl: './historique-coups.component.html',
-  styleUrl: './historique-coups.component.css',
+    selector: 'app-historique-coups',
+    imports: [LigneCoupComponent],
+    templateUrl: './historique-coups.component.html',
+    styleUrl: './historique-coups.component.css'
 })
 export class HistoriqueCoupsComponent implements OnInit {
   @Input() matchId!: number;

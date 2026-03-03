@@ -9,16 +9,15 @@ import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.comp
 import { LoginComponent } from '../login/login.component';
 
 @Component({
-  selector: 'app-gestion-clubs',
-  standalone: true,
-  imports: [
-    ClubLigneComponent,
-    ClubEditerComponent,
-    CommonModule,
-    LoginComponent,
-  ],
-  templateUrl: './gestion-clubs.component.html',
-  styleUrl: './gestion-clubs.component.css',
+    selector: 'app-gestion-clubs',
+    imports: [
+        ClubLigneComponent,
+        ClubEditerComponent,
+        CommonModule,
+        LoginComponent,
+    ],
+    templateUrl: './gestion-clubs.component.html',
+    styleUrl: './gestion-clubs.component.css'
 })
 export class GestionClubsComponent implements OnInit {
   clubsListe?: Club[];

@@ -9,18 +9,17 @@ import { Router, RouterLink } from '@angular/router';
 import { TimerPipe } from '../../shared/pipes/timer.pipe';
 
 @Component({
-  selector: 'app-match-afficher',
-  standalone: true,
-  imports: [
-    RouterLink,
-    ClubPipe,
-    NomsPipe,
-    ConfirmationModalComponent,
-    DatePipe,
-    TimerPipe,
-  ],
-  templateUrl: './match-afficher.component.html',
-  styleUrl: './match-afficher.component.css',
+    selector: 'app-match-afficher',
+    imports: [
+        RouterLink,
+        ClubPipe,
+        NomsPipe,
+        ConfirmationModalComponent,
+        DatePipe,
+        TimerPipe,
+    ],
+    templateUrl: './match-afficher.component.html',
+    styleUrl: './match-afficher.component.css'
 })
 export class MatchAfficherComponent {
   @Input() match!: Match;

@@ -26,20 +26,19 @@ import { TagsService } from '../shared/services/tags.service';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
-  selector: 'app-creation-match',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    NomsPipe,
-    TimerPipe,
-    RulsetRefPipe,
-    TimerReversePipe,
-    CreationMatchModalComponent,
-    LoginComponent,
-  ],
-  templateUrl: './creation-match.component.html',
-  styleUrl: './creation-match.component.css',
+    selector: 'app-creation-match',
+    imports: [
+        ReactiveFormsModule,
+        CommonModule,
+        NomsPipe,
+        TimerPipe,
+        RulsetRefPipe,
+        TimerReversePipe,
+        CreationMatchModalComponent,
+        LoginComponent,
+    ],
+    templateUrl: './creation-match.component.html',
+    styleUrl: './creation-match.component.css'
 })
 export class CreationMatchComponent implements OnInit {
   estModalVisible: boolean = false;

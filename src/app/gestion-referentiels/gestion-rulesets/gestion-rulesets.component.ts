@@ -7,11 +7,10 @@ import { Ruleset } from '../../shared/models/ruleset';
 import { RulesetsService } from '../../shared/services/rulesets.service';
 
 @Component({
-  selector: 'app-gestion-rulesets',
-  standalone: true,
-  imports: [RulesetLigneComponent, RulesetEditerComponent, CommonModule],
-  templateUrl: './gestion-rulesets.component.html',
-  styleUrl: './gestion-rulesets.component.css',
+    selector: 'app-gestion-rulesets',
+    imports: [RulesetLigneComponent, RulesetEditerComponent, CommonModule],
+    templateUrl: './gestion-rulesets.component.html',
+    styleUrl: './gestion-rulesets.component.css'
 })
 export class GestionRulesetsComponent implements OnInit {
   @Input() estLectureSeule!: boolean;

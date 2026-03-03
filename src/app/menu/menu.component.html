@@ -4,8 +4,8 @@
 <button class="btn-menu" (click)="masquerMenu()">Masquer</button>}
 <menu
   [ngClass]="{
-  'masque': !this.estMenuVisible,
-  'affiche': this.estMenuVisible,
+  'masque': !estMenuVisible,
+  'affiche': estMenuVisible,
 }"
 >
   <div class="btn menu-elem" (click)="allerVers('')">Accueil</div>

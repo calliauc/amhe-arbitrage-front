@@ -4,11 +4,10 @@ import { CibleEditerComponent } from '../cible-editer/cible-editer.component';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-cible-ligne',
-  standalone: true,
-  imports: [CibleAfficherComponent, CibleEditerComponent],
-  templateUrl: './cible-ligne.component.html',
-  styleUrl: './cible-ligne.component.css',
+    selector: 'app-cible-ligne',
+    imports: [CibleAfficherComponent, CibleEditerComponent],
+    templateUrl: './cible-ligne.component.html',
+    styleUrl: './cible-ligne.component.css'
 })
 export class CibleLigneComponent {
   @Input() cible!: RulesetRef;

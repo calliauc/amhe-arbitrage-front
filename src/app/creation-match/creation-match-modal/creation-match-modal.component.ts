@@ -2,11 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NouveauMatch } from '../../shared/models/nouveau-match';
 
 @Component({
-  selector: 'app-creation-match-modal',
-  standalone: true,
-  imports: [],
-  templateUrl: './creation-match-modal.component.html',
-  styleUrl: './creation-match-modal.component.css',
+    selector: 'app-creation-match-modal',
+    imports: [],
+    templateUrl: './creation-match-modal.component.html',
+    styleUrl: './creation-match-modal.component.css'
 })
 export class CreationMatchModalComponent {
   @Input() titre: string = "Confirmer l'action ?";

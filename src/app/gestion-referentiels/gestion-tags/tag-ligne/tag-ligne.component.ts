@@ -4,11 +4,10 @@ import { TagEditerComponent } from '../tag-editer/tag-editer.component';
 import { Tag } from '../../../shared/models/tag';
 
 @Component({
-  selector: 'app-tag-ligne',
-  standalone: true,
-  imports: [TagAfficherComponent, TagEditerComponent],
-  templateUrl: './tag-ligne.component.html',
-  styleUrl: './tag-ligne.component.css',
+    selector: 'app-tag-ligne',
+    imports: [TagAfficherComponent, TagEditerComponent],
+    templateUrl: './tag-ligne.component.html',
+    styleUrl: './tag-ligne.component.css'
 })
 export class TagLigneComponent {
   @Input() tag!: Tag;

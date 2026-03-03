@@ -3,11 +3,10 @@ import { NgClass } from '@angular/common';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-cible-afficher',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './cible-afficher.component.html',
-  styleUrl: './cible-afficher.component.css',
+    selector: 'app-cible-afficher',
+    imports: [NgClass],
+    templateUrl: './cible-afficher.component.html',
+    styleUrl: './cible-afficher.component.css'
 })
 export class CibleAfficherComponent implements OnInit {
   @Input() cible!: RulesetRef;

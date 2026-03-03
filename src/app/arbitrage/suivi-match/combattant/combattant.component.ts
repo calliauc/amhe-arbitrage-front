@@ -5,11 +5,10 @@ import { NomsPipe } from '../../../shared/pipes/noms.pipe';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-combattant',
-  standalone: true,
-  imports: [ClubPipe, NomsPipe, UpperCasePipe],
-  templateUrl: './combattant.component.html',
-  styleUrl: './combattant.component.css',
+    selector: 'app-combattant',
+    imports: [ClubPipe, NomsPipe],
+    templateUrl: './combattant.component.html',
+    styleUrl: './combattant.component.css'
 })
 export class CombattantComponent {
   @Input() combattant!: Combattant;

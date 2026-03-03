@@ -15,11 +15,10 @@ import { CiblesService } from '../../../shared/services/cibles.service';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-cible-editer',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
-  templateUrl: './cible-editer.component.html',
-  styleUrl: './cible-editer.component.css',
+    selector: 'app-cible-editer',
+    imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
+    templateUrl: './cible-editer.component.html',
+    styleUrl: './cible-editer.component.css'
 })
 export class CibleEditerComponent implements OnInit, AfterViewInit {
   @Input() cible: RulesetRef = new RulesetRef();

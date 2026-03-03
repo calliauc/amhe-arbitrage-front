@@ -2,11 +2,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [SecuModalComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+    selector: 'app-login',
+    imports: [SecuModalComponent],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
   estLectureSeule: boolean = true;

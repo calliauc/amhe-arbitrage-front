@@ -5,11 +5,10 @@ import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-combattant-afficher',
-  standalone: true,
-  imports: [NgClass, ClubPipe],
-  templateUrl: './combattant-afficher.component.html',
-  styleUrl: './combattant-afficher.component.css',
+    selector: 'app-combattant-afficher',
+    imports: [NgClass, ClubPipe],
+    templateUrl: './combattant-afficher.component.html',
+    styleUrl: './combattant-afficher.component.css'
 })
 export class CombattantAfficherComponent implements OnInit {
   @Input() combattant!: Combattant;

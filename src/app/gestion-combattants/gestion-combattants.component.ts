@@ -8,16 +8,15 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
-  selector: 'app-gestion-combattants',
-  standalone: true,
-  imports: [
-    CombattantLigneComponent,
-    CombattantEditerComponent,
-    CommonModule,
-    LoginComponent,
-  ],
-  templateUrl: './gestion-combattants.component.html',
-  styleUrl: './gestion-combattants.component.css',
+    selector: 'app-gestion-combattants',
+    imports: [
+        CombattantLigneComponent,
+        CombattantEditerComponent,
+        CommonModule,
+        LoginComponent,
+    ],
+    templateUrl: './gestion-combattants.component.html',
+    styleUrl: './gestion-combattants.component.css'
 })
 export class GestionCombattantsComponent implements OnInit {
   combattantsListe?: Combattant[];

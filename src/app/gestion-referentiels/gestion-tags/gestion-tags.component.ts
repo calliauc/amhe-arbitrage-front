@@ -7,11 +7,10 @@ import { TagEditerComponent } from './tag-editer/tag-editer.component';
 import { Tag } from '../../shared/models/tag';
 
 @Component({
-  selector: 'app-gestion-tags',
-  standalone: true,
-  imports: [TagLigneComponent, TagEditerComponent, CommonModule],
-  templateUrl: './gestion-tags.component.html',
-  styleUrl: './gestion-tags.component.css',
+    selector: 'app-gestion-tags',
+    imports: [TagLigneComponent, TagEditerComponent, CommonModule],
+    templateUrl: './gestion-tags.component.html',
+    styleUrl: './gestion-tags.component.css'
 })
 export class GestionTagsComponent implements OnInit {
   @Input() estLectureSeule!: boolean;

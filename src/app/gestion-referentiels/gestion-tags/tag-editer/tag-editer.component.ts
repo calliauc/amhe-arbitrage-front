@@ -15,11 +15,10 @@ import { TagsService } from '../../../shared/services/tags.service';
 import { Tag } from '../../../shared/models/tag';
 
 @Component({
-  selector: 'app-tag-editer',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
-  templateUrl: './tag-editer.component.html',
-  styleUrl: './tag-editer.component.css',
+    selector: 'app-tag-editer',
+    imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
+    templateUrl: './tag-editer.component.html',
+    styleUrl: './tag-editer.component.css'
 })
 export class TagEditerComponent implements OnInit, AfterViewInit {
   @Input() tag: Tag = new Tag();

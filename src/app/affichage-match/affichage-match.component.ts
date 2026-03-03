@@ -6,11 +6,10 @@ import { HistoriqueCoupsComponent } from '../arbitrage/historique-coups/historiq
 import { AfficherCombattantCardComponent } from './afficher-combattant-card/afficher-combattant-card.component';
 
 @Component({
-  selector: 'app-affichage-match',
-  standalone: true,
-  imports: [HistoriqueCoupsComponent, AfficherCombattantCardComponent],
-  templateUrl: './affichage-match.component.html',
-  styleUrl: './affichage-match.component.css',
+    selector: 'app-affichage-match',
+    imports: [HistoriqueCoupsComponent, AfficherCombattantCardComponent],
+    templateUrl: './affichage-match.component.html',
+    styleUrl: './affichage-match.component.css'
 })
 export class AffichageMatchComponent {
   match!: Match;

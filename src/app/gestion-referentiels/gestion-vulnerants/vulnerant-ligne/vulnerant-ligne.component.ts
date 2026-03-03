@@ -4,11 +4,10 @@ import { VulnerantEditerComponent } from '../vulnerant-editer/vulnerant-editer.c
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
 @Component({
-  selector: 'app-vulnerant-ligne',
-  standalone: true,
-  imports: [VulnerantAfficherComponent, VulnerantEditerComponent],
-  templateUrl: './vulnerant-ligne.component.html',
-  styleUrl: './vulnerant-ligne.component.css',
+    selector: 'app-vulnerant-ligne',
+    imports: [VulnerantAfficherComponent, VulnerantEditerComponent],
+    templateUrl: './vulnerant-ligne.component.html',
+    styleUrl: './vulnerant-ligne.component.css'
 })
 export class VulnerantLigneComponent {
   @Input() vulnerant!: RulesetRef;

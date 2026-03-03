@@ -12,11 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { Secu } from '../../models/secu';
 
 @Component({
-  selector: 'app-secu-modal',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './secu-modal.component.html',
-  styleUrl: './secu-modal.component.css',
+    selector: 'app-secu-modal',
+    imports: [FormsModule],
+    templateUrl: './secu-modal.component.html',
+    styleUrl: './secu-modal.component.css'
 })
 export class SecuModalComponent implements OnInit, AfterViewInit {
   @Input() code!: String;

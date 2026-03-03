@@ -14,11 +14,10 @@ import { Combattant } from '../../shared/models/combattant';
 import { SecuModalComponent } from '../../shared/modales/secu-modal/secu-modal.component';
 
 @Component({
-  selector: 'app-affichage-poule',
-  standalone: true,
-  imports: [NomsPipe, ClubPipe],
-  templateUrl: './affichage-poule.component.html',
-  styleUrl: './affichage-poule.component.css',
+    selector: 'app-affichage-poule',
+    imports: [NomsPipe, ClubPipe],
+    templateUrl: './affichage-poule.component.html',
+    styleUrl: './affichage-poule.component.css'
 })
 export class AffichagePouleComponent implements OnInit {
   @Input() poule!: Poule;

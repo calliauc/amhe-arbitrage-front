@@ -4,11 +4,10 @@ import { NgClass } from '@angular/common';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 
 @Component({
-  selector: 'app-club-afficher',
-  standalone: true,
-  imports: [NgClass, ClubPipe],
-  templateUrl: './club-afficher.component.html',
-  styleUrl: './club-afficher.component.css',
+    selector: 'app-club-afficher',
+    imports: [NgClass],
+    templateUrl: './club-afficher.component.html',
+    styleUrl: './club-afficher.component.css'
 })
 export class ClubAfficherComponent implements OnInit {
   @Input() club!: Club;

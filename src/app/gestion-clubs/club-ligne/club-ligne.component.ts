@@ -4,11 +4,10 @@ import { ClubAfficherComponent } from '../club-afficher/club-afficher.component'
 import { ClubEditerComponent } from '../club-editer/club-editer.component';
 
 @Component({
-  selector: 'app-club-ligne',
-  standalone: true,
-  imports: [ClubAfficherComponent, ClubEditerComponent],
-  templateUrl: './club-ligne.component.html',
-  styleUrl: './club-ligne.component.css',
+    selector: 'app-club-ligne',
+    imports: [ClubAfficherComponent, ClubEditerComponent],
+    templateUrl: './club-ligne.component.html',
+    styleUrl: './club-ligne.component.css'
 })
 export class ClubLigneComponent {
   @Input() club!: Club;

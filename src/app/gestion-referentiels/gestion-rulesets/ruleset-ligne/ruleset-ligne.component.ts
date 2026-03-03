@@ -4,11 +4,10 @@ import { RulesetEditerComponent } from '../ruleset-editer/ruleset-editer.compone
 import { Ruleset } from '../../../shared/models/ruleset';
 
 @Component({
-  selector: 'app-ruleset-ligne',
-  standalone: true,
-  imports: [RulesetAfficherComponent, RulesetEditerComponent],
-  templateUrl: './ruleset-ligne.component.html',
-  styleUrl: './ruleset-ligne.component.css',
+    selector: 'app-ruleset-ligne',
+    imports: [RulesetAfficherComponent, RulesetEditerComponent],
+    templateUrl: './ruleset-ligne.component.html',
+    styleUrl: './ruleset-ligne.component.css'
 })
 export class RulesetLigneComponent {
   @Input() ruleset!: Ruleset;

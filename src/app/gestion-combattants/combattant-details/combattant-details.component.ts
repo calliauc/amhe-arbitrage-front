@@ -9,11 +9,10 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 
 @Component({
-  selector: 'app-combattant-details',
-  standalone: true,
-  imports: [NomsPipe, DatePipe, ClubPipe, CommonModule],
-  templateUrl: './combattant-details.component.html',
-  styleUrl: './combattant-details.component.css',
+    selector: 'app-combattant-details',
+    imports: [NomsPipe, DatePipe, ClubPipe, CommonModule],
+    templateUrl: './combattant-details.component.html',
+    styleUrl: './combattant-details.component.css'
 })
 export class CombattantDetailsComponent {
   details!: CombattantDetails;

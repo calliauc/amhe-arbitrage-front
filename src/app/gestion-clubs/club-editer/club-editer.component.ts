@@ -15,11 +15,10 @@ import { ClubsService } from '../../shared/services/clubs.service';
 import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 
 @Component({
-  selector: 'app-club-editer',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
-  templateUrl: './club-editer.component.html',
-  styleUrl: './club-editer.component.css',
+    selector: 'app-club-editer',
+    imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
+    templateUrl: './club-editer.component.html',
+    styleUrl: './club-editer.component.css'
 })
 export class ClubEditerComponent implements OnInit, AfterViewInit {
   @Input() club: Club = new Club();
