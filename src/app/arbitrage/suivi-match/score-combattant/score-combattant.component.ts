@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'app-score-combattant',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './score-combattant.component.html',
     styleUrl: './score-combattant.component.css'
 })

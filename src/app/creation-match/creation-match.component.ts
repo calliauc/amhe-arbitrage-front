@@ -15,7 +15,7 @@ import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { NouveauMatch } from '../shared/models/nouveau-match';
 import { Ruleset } from '../shared/models/ruleset';
 import { RulesetsService } from '../shared/services/rulesets.service';
-import { CommonModule } from '@angular/common';
+
 import { TimerPipe } from '../shared/pipes/timer.pipe';
 import { RulsetRefPipe } from '../shared/pipes/ruleset-refs.pipe';
 import { TimerReversePipe } from '../shared/pipes/timerReverse.pipe';
@@ -28,15 +28,14 @@ import { LoginComponent } from '../login/login.component';
 @Component({
     selector: 'app-creation-match',
     imports: [
-        ReactiveFormsModule,
-        CommonModule,
-        NomsPipe,
-        TimerPipe,
-        RulsetRefPipe,
-        TimerReversePipe,
-        CreationMatchModalComponent,
-        LoginComponent,
-    ],
+    ReactiveFormsModule,
+    NomsPipe,
+    TimerPipe,
+    RulsetRefPipe,
+    TimerReversePipe,
+    CreationMatchModalComponent,
+    LoginComponent
+],
     templateUrl: './creation-match.component.html',
     styleUrl: './creation-match.component.css'
 })

@@ -5,17 +5,16 @@ import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
-import { CommonModule } from '@angular/common';
+
 import { LoginComponent } from '../login/login.component';
 
 @Component({
     selector: 'app-arbitrage',
     imports: [
-        CreationCoupComponent,
-        SuiviMatchComponent,
-        HistoriqueCoupsComponent,
-        CommonModule,
-    ],
+    CreationCoupComponent,
+    SuiviMatchComponent,
+    HistoriqueCoupsComponent
+],
     templateUrl: './arbitrage.component.html',
     styleUrl: './arbitrage.component.css'
 })
