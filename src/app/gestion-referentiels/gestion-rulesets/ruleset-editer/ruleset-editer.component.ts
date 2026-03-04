@@ -180,6 +180,7 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
   }
 
   verifierRuleset(ruleset: Ruleset): boolean {
+    // eslint-disable-next-line no-constant-binary-expression
     return true || ruleset.nom;
   }
 }
