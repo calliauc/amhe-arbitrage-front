@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { couleurs, RulesetRef } from '../shared/models/ruleset-ref';
 
 @Component({
     selector: 'app-accueil',
@@ -10,7 +9,7 @@ import { couleurs, RulesetRef } from '../shared/models/ruleset-ref';
 })
 export class AccueilComponent implements OnInit {
   env = environment;
-  estLectureSeule: boolean = true;
+  estLectureSeule= true;
 
   ngOnInit(): void {
     this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';

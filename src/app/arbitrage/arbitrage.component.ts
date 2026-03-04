@@ -6,8 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
 
-import { LoginComponent } from '../login/login.component';
-
 @Component({
     selector: 'app-arbitrage',
     imports: [
