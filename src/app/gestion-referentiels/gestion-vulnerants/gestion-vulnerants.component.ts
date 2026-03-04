@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { VulnerantsService } from '../../shared/services/vulnerants.service';
@@ -13,13 +13,15 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     styleUrl: './gestion-vulnerants.component.css'
 })
 export class GestionVulnerantsComponent implements OnInit {
+  private vulnerantsService = inject(VulnerantsService);
+
   @Input() estLectureSeule!: boolean;
 
   vulnerantsListe?: RulesetRef[];
   vulnerantsListe$?: Observable<RulesetRef[]>;
   estModeCreation: boolean;
   nouveauVulnerant: RulesetRef;
-  constructor(private vulnerantsService: VulnerantsService) {
+  constructor() {
     this.estModeCreation = false;
     this.nouveauVulnerant = new RulesetRef();
   }
@@ -40,16 +42,16 @@ export class GestionVulnerantsComponent implements OnInit {
     this.vulnerantsListe$ = this.vulnerantsService.getVulnerants();
   }
 
-  creerVulnerant(vulnerantCree: RulesetRef) {
+  creerVulnerant() {
     this.vulnerantsListe$ = this.vulnerantsListe$?.pipe(
-      tap((liste) => (this.estModeCreation = false))
+      tap(() => (this.estModeCreation = false))
     );
   }
 
   modifierVulnerant(vulnerantModifie: RulesetRef) {
     this.vulnerantsListe$ = this.vulnerantsService
       .modifierVulnerant(vulnerantModifie)
-      .pipe(switchMap((_) => this.vulnerantsService.getVulnerants()));
+      .pipe(switchMap(() => this.vulnerantsService.getVulnerants()));
   }
 
   supprimerVulnerant(code: string) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CreationCoupComponent } from './creation-coup/creation-coup.component';
 import { HistoriqueCoupsComponent } from './historique-coups/historique-coups.component';
 import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
@@ -16,15 +16,15 @@ import { MatchsService } from '../shared/services/matchs.service';
     templateUrl: './arbitrage.component.html',
     styleUrl: './arbitrage.component.css'
 })
-export class ArbitrageComponent implements OnInit {
+export class ArbitrageComponent {
+  private route = inject(ActivatedRoute);
+  private matchsService = inject(MatchsService);
+  private router = inject(Router);
+
   match!: Match;
   matchId!: number;
 
-  constructor(
-    private route: ActivatedRoute,
-    private matchsService: MatchsService,
-    private router: Router
-  ) {
+  constructor() {
     this.route.params.subscribe((params) => {
       this.matchsService.getMatchById(params['id']).subscribe((match) => {
         if (match) {
@@ -38,8 +38,6 @@ export class ArbitrageComponent implements OnInit {
       this.matchId = params['id'];
     });
   }
-
-  ngOnInit(): void {}
 
   refreshMatch() {
     this.matchsService.getMatchById(this.match.id).subscribe((match) => {

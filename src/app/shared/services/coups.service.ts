@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Coup } from '../models/coup';
 import { Observable, Subject } from 'rxjs';
 import { NouveauCoup } from '../models/nouveau-coup';
@@ -9,11 +9,12 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class CoupsService {
+  private http = inject(HttpClient);
+
   env = environment;
   URL = `${this.env.baseUrl}/coups`;
   notificationCoup = new Subject<boolean>();
   notification$ = this.notificationCoup.asObservable();
-  constructor(private http: HttpClient) {}
 
   public getCoups(): Observable<Coup[]> {
     return this.http.get<Coup[]>(this.URL, { responseType: 'json' });
@@ -47,14 +48,14 @@ export class CoupsService {
     );
   }
 
-  public supprimerCoup(id: number): Observable<Object> {
+  public supprimerCoup(id: number): Observable<object> {
     return this.http.delete(`${this.URL}/${id}`);
   }
 
   lireCoup(coup: Coup) {
     console.log(coup);
 
-    let coupStr: string = '';
+    let coupStr = '';
     if (coup) {
       coupStr += coup.attaquantCouleur;
       coupStr += coup.vulnerant?.libelle;

@@ -13,8 +13,8 @@ export class CombattantLigneComponent {
   @Input() combattant!: Combattant;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() supprimerCombattant: EventEmitter<number> = new EventEmitter();
-  @Output() modifierCombattant: EventEmitter<Combattant> = new EventEmitter();
+  @Output() supprimerCombattant = new EventEmitter<number>();
+  @Output() modifierCombattant = new EventEmitter<Combattant>();
   estModif: boolean;
 
   constructor() {

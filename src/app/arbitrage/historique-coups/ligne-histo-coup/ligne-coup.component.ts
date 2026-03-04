@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Coup } from '../../../shared/models/coup';
-import { CoupsService } from '../../../shared/services/coups.service';
 import { DatePipe } from '@angular/common';
 import { DetailsCoupPipe } from '../../../shared/pipes/details-coup.pipe';
 

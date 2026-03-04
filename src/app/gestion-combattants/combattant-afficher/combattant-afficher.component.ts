@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Combattant } from '../../shared/models/combattant';
 import { NgClass } from '@angular/common';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
     styleUrl: './combattant-afficher.component.css'
 })
 export class CombattantAfficherComponent implements OnInit {
+  private router = inject(Router);
+
   @Input() combattant!: Combattant;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() editerCombattant: EventEmitter<boolean> = new EventEmitter();
-
-  constructor(private router: Router) {}
+  @Output() editerCombattant = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     if (this.estPair) return;

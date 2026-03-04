@@ -12,7 +12,7 @@ export class VulnerantAfficherComponent implements OnInit {
   @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() editerVulnerant: EventEmitter<boolean> = new EventEmitter();
+  @Output() editerVulnerant = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     if (this.estPair) return;

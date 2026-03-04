@@ -8,13 +8,13 @@ export class Match {
   infosB!: Combattant;
   couleurA!: string;
   couleurB!: string;
-  scoreA: number = 0;
-  scoreB: number = 0;
+  scoreA = 0;
+  scoreB = 0;
   dateCreation?: Date;
   dateDebut?: Date;
   dateFin?: Date;
   statut!: string;
-  timer: number = 0;
+  timer = 0;
   tags: Tag[] = [];
   ruleset!: Ruleset;
 }

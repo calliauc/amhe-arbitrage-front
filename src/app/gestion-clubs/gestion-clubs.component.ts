@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ClubsService } from '../shared/services/clubs.service';
 import { Club } from '../shared/models/club';
 import { ClubLigneComponent } from './club-ligne/club-ligne.component';
 import { ClubEditerComponent } from './club-editer/club-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -20,14 +19,16 @@ import { LoginComponent } from '../login/login.component';
     styleUrl: './gestion-clubs.component.css'
 })
 export class GestionClubsComponent implements OnInit {
+  private clubsService = inject(ClubsService);
+
   clubsListe?: Club[];
   clubsListe$?: Observable<Club[]>;
   estModeCreation: boolean;
   nouveauClub: Club;
-  estModateSecuVisible: boolean = false;
-  estLectureSeule: boolean = true;
+  estModateSecuVisible = false;
+  estLectureSeule = true;
 
-  constructor(private clubsService: ClubsService) {
+  constructor() {
     this.estModeCreation = false;
     this.nouveauClub = new Club();
   }
@@ -51,16 +52,16 @@ export class GestionClubsComponent implements OnInit {
     this.clubsListe$ = this.clubsService.getClubs();
   }
 
-  creerClub(clubCree: Club) {
+  creerClub() {
     this.clubsListe$ = this.clubsListe$?.pipe(
-      tap((liste) => (this.estModeCreation = false))
+      tap(() => (this.estModeCreation = false))
     );
   }
 
   modifierClub(clubModifie: Club) {
     this.clubsListe$ = this.clubsService
       .modifierClub(clubModifie)
-      .pipe(switchMap((_) => this.clubsService.getClubs()));
+      .pipe(switchMap(() => this.clubsService.getClubs()));
   }
 
   supprimerClub(id: number) {

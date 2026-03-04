@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NouveauMatch } from '../../shared/models/nouveau-match';
 
 @Component({
     selector: 'app-creation-match-modal',
@@ -8,8 +7,8 @@ import { NouveauMatch } from '../../shared/models/nouveau-match';
     styleUrl: './creation-match-modal.component.css'
 })
 export class CreationMatchModalComponent {
-  @Input() titre: string = "Confirmer l'action ?";
-  @Input() texte: string = 'Pour de vrai de vrai ? Pinkie promesse ?';
+  @Input() titre = "Confirmer l'action ?";
+  @Input() texte = 'Pour de vrai de vrai ? Pinkie promesse ?';
   @Output() confirmer = new EventEmitter<string>();
   @Output() annuler = new EventEmitter<boolean>();
 

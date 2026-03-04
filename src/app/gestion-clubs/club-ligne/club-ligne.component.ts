@@ -13,8 +13,8 @@ export class ClubLigneComponent {
   @Input() club!: Club;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() supprimerClub: EventEmitter<number> = new EventEmitter();
-  @Output() modifierClub: EventEmitter<Club> = new EventEmitter();
+  @Output() supprimerClub = new EventEmitter<number>();
+  @Output() modifierClub = new EventEmitter<Club>();
   estModif: boolean;
 
   constructor() {

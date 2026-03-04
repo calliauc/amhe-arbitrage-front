@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Ruleset } from '../models/ruleset';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RulesetsService {
+  private http = inject(HttpClient);
+
   env = environment;
   URL = `${this.env.baseUrl}/rulesets`;
-
-  constructor(private http: HttpClient) {}
 
   public getRulesets(): Observable<Ruleset[]> {
     return this.http.get<Ruleset[]>(this.URL, { responseType: 'json' });
@@ -34,7 +34,7 @@ export class RulesetsService {
     );
   }
 
-  public supprimerRuleset(id: number): Observable<Object> {
+  public supprimerRuleset(id: number): Observable<object> {
     return this.http.delete(this.URL + '/' + id);
   }
 }

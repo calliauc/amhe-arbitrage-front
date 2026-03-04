@@ -1,17 +1,9 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Poule } from '../../shared/models/poule';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { CombattantsService } from '../../shared/services/combattants.service';
 import { Combattant } from '../../shared/models/combattant';
-import { SecuModalComponent } from '../../shared/modales/secu-modal/secu-modal.component';
 
 @Component({
     selector: 'app-affichage-poule',
@@ -20,12 +12,12 @@ import { SecuModalComponent } from '../../shared/modales/secu-modal/secu-modal.c
     styleUrl: './affichage-poule.component.css'
 })
 export class AffichagePouleComponent implements OnInit {
+  private combattantsService = inject(CombattantsService);
+
   @Input() poule!: Poule;
   @Input() estLectureSeule!: boolean;
   @Output() supprimer = new EventEmitter<number>();
   combattants!: Combattant[];
-
-  constructor(private combattantsService: CombattantsService) {}
 
   ngOnInit(): void {
     this.combattantsService

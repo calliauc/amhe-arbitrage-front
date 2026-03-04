@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { RulesetLigneComponent } from './ruleset-ligne/ruleset-ligne.component';
 import { RulesetEditerComponent } from './ruleset-editer/ruleset-editer.component';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Ruleset } from '../../shared/models/ruleset';
 import { RulesetsService } from '../../shared/services/rulesets.service';
@@ -13,13 +13,15 @@ import { RulesetsService } from '../../shared/services/rulesets.service';
     styleUrl: './gestion-rulesets.component.css'
 })
 export class GestionRulesetsComponent implements OnInit {
+  private rulesetsService = inject(RulesetsService);
+
   @Input() estLectureSeule!: boolean;
 
   rulesetsListe?: Ruleset[];
   rulesetsListe$?: Observable<Ruleset[]>;
   estModeCreation: boolean;
   nouveauRuleset: Ruleset;
-  constructor(private rulesetsService: RulesetsService) {
+  constructor() {
     this.estModeCreation = false;
     this.nouveauRuleset = new Ruleset();
   }
@@ -40,9 +42,9 @@ export class GestionRulesetsComponent implements OnInit {
     this.rulesetsListe$ = this.rulesetsService.getRulesets();
   }
 
-  creerRuleset(rulesetCree: Ruleset) {
+  creerRuleset() {
     this.rulesetsListe$ = this.rulesetsListe$?.pipe(
-      tap((liste) => (this.estModeCreation = false))
+      tap(() => (this.estModeCreation = false))
     );
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CibleLigneComponent } from './cible-ligne/cible-ligne.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,8 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     styleUrl: './gestion-cibles.component.css'
 })
 export class GestionCiblesComponent implements OnInit {
+  private ciblesService = inject(CiblesService);
+
   @Input() estLectureSeule!: boolean;
 
   ciblesListe?: RulesetRef[];
@@ -20,7 +22,7 @@ export class GestionCiblesComponent implements OnInit {
   estModeCreation: boolean;
   nouveauCible: RulesetRef;
 
-  constructor(private ciblesService: CiblesService) {
+  constructor() {
     this.estModeCreation = false;
     this.nouveauCible = new RulesetRef();
   }
@@ -41,16 +43,16 @@ export class GestionCiblesComponent implements OnInit {
     this.ciblesListe$ = this.ciblesService.getCibles();
   }
 
-  creerCible(cibleCree: RulesetRef) {
+  creerCible() {
     this.ciblesListe$ = this.ciblesListe$?.pipe(
-      tap((liste) => (this.estModeCreation = false))
+      tap(() => (this.estModeCreation = false))
     );
   }
 
   modifierCible(cibleModifie: RulesetRef) {
     this.ciblesListe$ = this.ciblesService
       .modifierCible(cibleModifie)
-      .pipe(switchMap((_) => this.ciblesService.getCibles()));
+      .pipe(switchMap(() => this.ciblesService.getCibles()));
   }
 
   supprimerCible(code: string) {

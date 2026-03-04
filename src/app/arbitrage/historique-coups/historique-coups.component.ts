@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { LigneCoupComponent } from './ligne-histo-coup/ligne-coup.component';
 import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
@@ -10,15 +10,15 @@ import { CoupsService } from '../../shared/services/coups.service';
     styleUrl: './historique-coups.component.css'
 })
 export class HistoriqueCoupsComponent implements OnInit {
+  private coupsService = inject(CoupsService);
+
   @Input() matchId!: number;
   @Input() estLectureSeule!: boolean;
   listeCoups?: Coup[];
 
-  constructor(private coupsService: CoupsService) {}
-
   ngOnInit(): void {
     this.refreshList();
-    this.coupsService.notification$.subscribe((coup) => this.refreshList());
+    this.coupsService.notification$.subscribe(() => this.refreshList());
   }
 
   refreshList() {
@@ -29,7 +29,7 @@ export class HistoriqueCoupsComponent implements OnInit {
   }
 
   supprimerCoup(id: number) {
-    this.coupsService.supprimerCoup(id).subscribe((_) => {
+    this.coupsService.supprimerCoup(id).subscribe(() => {
       console.log("C'était ma cape 😎");
       this.refreshList();
     });

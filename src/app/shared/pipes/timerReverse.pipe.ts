@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Club } from '../models/club';
 
 @Pipe({
   name: 'timerReverse',

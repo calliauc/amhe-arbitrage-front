@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
@@ -21,26 +12,26 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
     styleUrl: './vulnerant-editer.component.css'
 })
 export class VulnerantEditerComponent implements OnInit, AfterViewInit {
+  private formBuilder = inject(FormBuilder);
+  private vulnerantsService = inject(VulnerantsService);
+
   @Input() vulnerant: RulesetRef = new RulesetRef();
   @Input() estPair!: boolean;
-  @Input() estModeEdition: boolean = false;
-  @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
-  @Output() supprimerVulnerant: EventEmitter<string> = new EventEmitter();
-  @Output() validerEdition: EventEmitter<RulesetRef> = new EventEmitter();
-  @Output() validerCreation: EventEmitter<RulesetRef> = new EventEmitter();
+  @Input() estModeEdition = false;
+  @Output() annulerEditionCreation = new EventEmitter<boolean>();
+  @Output() supprimerVulnerant = new EventEmitter<string>();
+  @Output() validerEdition = new EventEmitter<RulesetRef>();
+  @Output() validerCreation = new EventEmitter<RulesetRef>();
   @ViewChild('focus') focusForm!: ElementRef;
 
   vulnerantsListe!: RulesetRef[];
   ereurSaisie: boolean;
-  estModalVisible: boolean = false;
-  titreModal: string = 'Confirmer la suppression ?';
-  texteModal: string = 'Cette action est définitive';
+  estModalVisible = false;
+  titreModal = 'Confirmer la suppression ?';
+  texteModal = 'Cette action est définitive';
   formEditerVulnerant!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private vulnerantsService: VulnerantsService
-  ) {
+  constructor() {
     this.ereurSaisie = false;
   }
 

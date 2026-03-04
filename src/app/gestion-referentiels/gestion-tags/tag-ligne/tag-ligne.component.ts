@@ -13,8 +13,8 @@ export class TagLigneComponent {
   @Input() tag!: Tag;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() supprimerTag: EventEmitter<number> = new EventEmitter();
-  @Output() modifierTag: EventEmitter<Tag> = new EventEmitter();
+  @Output() supprimerTag = new EventEmitter<number>();
+  @Output() modifierTag = new EventEmitter<Tag>();
   estModif: boolean;
 
   constructor() {

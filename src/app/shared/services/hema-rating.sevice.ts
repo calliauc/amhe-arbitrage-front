@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class HemaRatingService {
+  private http = inject(HttpClient);
+
   env = environment;
   URL = `${this.env.baseUrl}/hema-rating`;
-
-  constructor(private http: HttpClient) {}
 
   public calculerResultats(): Observable<boolean> {
     return this.http.get<boolean>(`${this.URL}/creer-csv`, {

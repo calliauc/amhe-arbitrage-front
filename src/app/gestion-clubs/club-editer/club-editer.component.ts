@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { Club } from '../../shared/models/club';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
@@ -21,25 +12,25 @@ import { ConfirmationModalComponent } from '../../shared/modales/confirmation-mo
     styleUrl: './club-editer.component.css'
 })
 export class ClubEditerComponent implements OnInit, AfterViewInit {
+  private formBuilder = inject(FormBuilder);
+  private clubsService = inject(ClubsService);
+
   @Input() club: Club = new Club();
   @Input() estPair!: boolean;
-  @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
-  @Output() supprimerClub: EventEmitter<number> = new EventEmitter();
-  @Output() validerEdition: EventEmitter<Club> = new EventEmitter();
-  @Output() validerCreation: EventEmitter<Club> = new EventEmitter();
+  @Output() annulerEditionCreation = new EventEmitter<boolean>();
+  @Output() supprimerClub = new EventEmitter<number>();
+  @Output() validerEdition = new EventEmitter<Club>();
+  @Output() validerCreation = new EventEmitter<Club>();
   @ViewChild('focus') focusForm!: ElementRef;
 
   clubsListe!: Club[];
   ereurSaisie: boolean;
-  estModalVisible: boolean = false;
-  titreModal: string = 'Confirmer la suppression ?';
-  texteModal: string = 'Cette action est définitive';
+  estModalVisible = false;
+  titreModal = 'Confirmer la suppression ?';
+  texteModal = 'Cette action est définitive';
   formEditerClub!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private clubsService: ClubsService
-  ) {
+  constructor() {
     this.ereurSaisie = false;
   }
 

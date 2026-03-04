@@ -13,8 +13,8 @@ export class VulnerantLigneComponent {
   @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() supprimerVulnerant: EventEmitter<string> = new EventEmitter();
-  @Output() modifierVulnerant: EventEmitter<RulesetRef> = new EventEmitter();
+  @Output() supprimerVulnerant = new EventEmitter<string>();
+  @Output() modifierVulnerant = new EventEmitter<RulesetRef>();
   estModif: boolean;
 
   constructor() {

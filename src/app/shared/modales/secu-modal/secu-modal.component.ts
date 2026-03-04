@@ -18,7 +18,7 @@ import { Secu } from '../../models/secu';
     styleUrl: './secu-modal.component.css'
 })
 export class SecuModalComponent implements OnInit, AfterViewInit {
-  @Input() code!: String;
+  @Input() code!: string;
   @Output() confirmer = new EventEmitter<Secu>();
   @Output() annuler = new EventEmitter<boolean>();
   @ViewChild('secret') secretFocus!: ElementRef;

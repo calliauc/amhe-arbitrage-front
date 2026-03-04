@@ -8,8 +8,8 @@ import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.comp
     styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  estLectureSeule: boolean = true;
-  estModateSecuVisible: boolean = false;
+  estLectureSeule = true;
+  estModateSecuVisible = false;
   @Output() loginEvent = new EventEmitter<boolean>();
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CombattantsService } from '../shared/services/combattants.service';
 import { Combattant } from '../shared/models/combattant';
 import { CombattantLigneComponent } from './combattant-ligne/combattant-ligne.component';
@@ -19,14 +19,16 @@ import { LoginComponent } from '../login/login.component';
     styleUrl: './gestion-combattants.component.css'
 })
 export class GestionCombattantsComponent implements OnInit {
+  private combattantsService = inject(CombattantsService);
+
   combattantsListe?: Combattant[];
   combattantsListe$?: Observable<Combattant[]>;
   estModeCreation: boolean;
   nouveauCombattant: Combattant;
-  estModateSecuVisible: boolean = false;
-  estLectureSeule: boolean = true;
+  estModateSecuVisible = false;
+  estLectureSeule = true;
 
-  constructor(private combattantsService: CombattantsService) {
+  constructor() {
     this.estModeCreation = false;
     this.nouveauCombattant = new Combattant();
   }
@@ -51,16 +53,16 @@ export class GestionCombattantsComponent implements OnInit {
     this.combattantsListe$ = this.combattantsService.getCombattants();
   }
 
-  creerCombattant(combattantCree: Combattant) {
+  creerCombattant() {
     this.combattantsListe$ = this.combattantsListe$?.pipe(
-      tap((liste) => (this.estModeCreation = false))
+      tap(() => (this.estModeCreation = false))
     );
   }
 
   modifierCombattant(combattantModifie: Combattant) {
     this.combattantsListe$ = this.combattantsService
       .modifierCombattant(combattantModifie)
-      .pipe(switchMap((_) => this.combattantsService.getCombattants()));
+      .pipe(switchMap(() => this.combattantsService.getCombattants()));
   }
 
   supprimerCombattant(id: number) {

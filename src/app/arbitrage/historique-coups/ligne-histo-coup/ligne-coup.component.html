@@ -5,7 +5,7 @@
     <span [style.color]="coup.attaquantCouleur"
       >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
     ><span>{{ coup.vulnerant.libelle }}</span>
-    @if (coup.vulnerant.code!="lutte") {
+    @if (coup.vulnerant.code!=="lutte") {
     <span>{{ coup.cible?.libelle }}</span
     >}
     <span [style.color]="coup.defenseurCouleur"

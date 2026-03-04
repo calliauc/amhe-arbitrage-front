@@ -4,7 +4,7 @@ export class Tag {
 }
 
 export class TagCb extends Tag {
-  checked: boolean = false;
+  checked = false;
 }
 
 export class TagsFiltres {

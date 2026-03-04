@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,16 +9,16 @@ import { Router } from '@angular/router';
     styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
-  estMenuVisible: boolean = false;
-  estLectureSeule: boolean = true;
+  private router = inject(Router);
 
-  constructor(private router: Router) {}
+  estMenuVisible = false;
+  estLectureSeule = true;
 
   ngOnInit(): void {
     this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
   }
 
-  allerVers(page: String) {
+  allerVers(page: string) {
     this.estMenuVisible = false;
     this.router.navigate([page]);
   }

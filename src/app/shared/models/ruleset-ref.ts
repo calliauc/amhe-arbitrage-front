@@ -1,7 +1,7 @@
 export class RulesetRef {
   public code!: string;
   public libelle?: string;
-  public checked: boolean = false;
+  public checked = false;
 
   static getCodeByLibelle(tab: RulesetRef[], lib: string): string | undefined {
     return tab.find((elem) => elem.libelle == lib)?.code;

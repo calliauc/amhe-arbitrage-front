@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-  viewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { Combattant } from '../../shared/models/combattant';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
@@ -24,26 +14,26 @@ import { ConfirmationModalComponent } from '../../shared/modales/confirmation-mo
     styleUrl: './combattant-editer.component.css'
 })
 export class CombattantEditerComponent implements OnInit, AfterViewInit {
+  private formBuilder = inject(FormBuilder);
+  private combattantsService = inject(CombattantsService);
+  private clubsService = inject(ClubsService);
+
   @Input() combattant: Combattant = new Combattant();
   @Input() estPair!: boolean;
-  @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
-  @Output() supprimerCombattant: EventEmitter<number> = new EventEmitter();
-  @Output() validerEdition: EventEmitter<Combattant> = new EventEmitter();
-  @Output() validerCreation: EventEmitter<Combattant> = new EventEmitter();
+  @Output() annulerEditionCreation = new EventEmitter<boolean>();
+  @Output() supprimerCombattant = new EventEmitter<number>();
+  @Output() validerEdition = new EventEmitter<Combattant>();
+  @Output() validerCreation = new EventEmitter<Combattant>();
   @ViewChild('focus') focusForm!: ElementRef;
 
   clubsListe!: Club[];
   ereurSaisie: boolean;
-  estModalVisible: boolean = false;
-  titreModal: string = 'Confirmer la suppression ?';
-  texteModal: string = 'Cette action est définitive';
+  estModalVisible = false;
+  titreModal = 'Confirmer la suppression ?';
+  texteModal = 'Cette action est définitive';
   formEditerCombattant!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private combattantsService: CombattantsService,
-    private clubsService: ClubsService
-  ) {
+  constructor() {
     this.ereurSaisie = false;
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
@@ -12,14 +12,14 @@ import { AfficherCombattantCardComponent } from './afficher-combattant-card/affi
     styleUrl: './affichage-match.component.css'
 })
 export class AffichageMatchComponent {
+  private route = inject(ActivatedRoute);
+  private matchsService = inject(MatchsService);
+  private router = inject(Router);
+
   match!: Match;
   matchId!: number;
 
-  constructor(
-    private route: ActivatedRoute,
-    private matchsService: MatchsService,
-    private router: Router
-  ) {
+  constructor() {
     this.route.params.subscribe((params) => {
       this.matchsService.getMatchById(params['id']).subscribe((match) => {
         if (match) {

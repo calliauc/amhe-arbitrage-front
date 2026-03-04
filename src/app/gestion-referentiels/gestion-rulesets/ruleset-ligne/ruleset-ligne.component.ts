@@ -13,8 +13,8 @@ export class RulesetLigneComponent {
   @Input() ruleset!: Ruleset;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() supprimerRuleset: EventEmitter<number> = new EventEmitter();
-  @Output() modifierRuleset: EventEmitter<Ruleset> = new EventEmitter();
+  @Output() supprimerRuleset = new EventEmitter<number>();
+  @Output() modifierRuleset = new EventEmitter<Ruleset>();
   estModif: boolean;
 
   constructor() {

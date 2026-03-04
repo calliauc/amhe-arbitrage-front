@@ -20,7 +20,7 @@
   </div>
   }
   <h2>Nouveaux matchs</h2>
-  @if (matchsNouveau.length==0) {
+  @if (matchsNouveau.length===0) {
   <p>Pas de match à lancer</p>
   }
   <div class="liste-matchs">
@@ -35,7 +35,7 @@
     }
   </div>
   <h2>Matchs en cours</h2>
-  @if (matchsEnCours.length==0) {
+  @if (matchsEnCours.length===0) {
   <p>Pas de match en cours</p>
   }
   <div class="liste-matchs">
@@ -50,7 +50,7 @@
     }
   </div>
   <h2>Matchs terminés</h2>
-  @if (matchsFinis.length==0) {
+  @if (matchsFinis.length===0) {
   <p>Pas de match terminé</p>
   }
   <div class="liste-matchs">

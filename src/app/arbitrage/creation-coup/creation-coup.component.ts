@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
@@ -20,7 +14,10 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     templateUrl: './creation-coup.component.html',
     styleUrl: './creation-coup.component.css'
 })
-export class CreationCoupComponent implements OnInit, OnChanges {
+export class CreationCoupComponent implements OnInit {
+  private coupsService = inject(CoupsService);
+  private formBuilder = inject(FormBuilder);
+
   @Input() match!: Match;
   borderA!: string;
   borderB!: string;
@@ -28,11 +25,6 @@ export class CreationCoupComponent implements OnInit, OnChanges {
   nouveauCoup: NouveauCoup = new NouveauCoup();
   formSaisirCoup!: FormGroup;
   coupStr?: string;
-
-  constructor(
-    private coupsService: CoupsService,
-    private formBuilder: FormBuilder
-  ) {}
 
   ngOnInit(): void {
     this.borderA = '2px solid ' + this.match.couleurA;
@@ -48,8 +40,6 @@ export class CreationCoupComponent implements OnInit, OnChanges {
       faute: false,
     });
   }
-
-  ngOnChanges(changes: SimpleChanges): void {}
 
   onSubmit() {
     this.validerCoupLongsword();
@@ -98,7 +88,9 @@ export class CreationCoupComponent implements OnInit, OnChanges {
       this.nouveauCoup.simultanee = this.formSaisirCoup.value.simultanee;
       this.nouveauCoup.faute = this.formSaisirCoup.value.faute;
       console.log(this.nouveauCoup);
-    } catch {}
+    } catch (e){
+      console.log(e);
+    }
   }
 
   estCoupValide() {
@@ -111,10 +103,10 @@ export class CreationCoupComponent implements OnInit, OnChanges {
   }
 
   enregistrerCoup(nouveauCoup: NouveauCoup) {
-    let date = new Date();
+    const date = new Date();
     console.log(date);
 
-    let coup = {
+    const coup = {
       matchId: nouveauCoup.matchId,
       attaquant: nouveauCoup.attaquant,
       attaquantCouleur: nouveauCoup.attaquantCouleur,
@@ -133,7 +125,7 @@ export class CreationCoupComponent implements OnInit, OnChanges {
     } as Coup;
     console.log(coup);
 
-    this.coupsService.creerCoup(coup).subscribe((coup) => {
+    this.coupsService.creerCoup(coup).subscribe(() => {
       this.coupsService.notificationCoup.next(true);
     });
   }

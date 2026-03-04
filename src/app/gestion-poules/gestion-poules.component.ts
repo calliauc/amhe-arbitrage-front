@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Poule } from '../shared/models/poule';
 import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
@@ -14,18 +14,16 @@ import { LoginComponent } from '../login/login.component';
     styleUrl: './gestion-poules.component.css'
 })
 export class GestionPoulesComponent implements OnInit {
-  nom: string = '';
+  private tagsService = inject(TagsService);
+  private poulesService = inject(PoulesService);
+
+  nom = '';
   tags: TagCb[] = [];
   poules: Poule[] = [];
   combattantsPoule: Combattant[] = [];
-  estModeCreation: boolean = false;
-  estModateSecuVisible: boolean = false;
-  estLectureSeule: boolean = true;
-
-  constructor(
-    private tagsService: TagsService,
-    private poulesService: PoulesService
-  ) {}
+  estModeCreation = false;
+  estModateSecuVisible = false;
+  estLectureSeule = true;
 
   ngOnInit(): void {
     this.chargerPoules();
@@ -68,16 +66,16 @@ export class GestionPoulesComponent implements OnInit {
   }
 
   ajouterPoule() {
-    let tagsPoule = this.tags.filter((tag) => tag.checked);
+    const tagsPoule = this.tags.filter((tag) => tag.checked);
     if (tagsPoule.length == 0 || this.nom.length == 0) {
       alert('Il manque des informations');
       return;
     }
-    let nouvellePoule = {
+    const nouvellePoule = {
       nom: this.nom,
       tags: tagsPoule,
     } as Poule;
-    this.poulesService.creerPoule(nouvellePoule).subscribe((_) => {
+    this.poulesService.creerPoule(nouvellePoule).subscribe(() => {
       this.chargerPoules();
       this.estModeCreation = false;
     });
@@ -86,7 +84,7 @@ export class GestionPoulesComponent implements OnInit {
   supprimerPoule(id: number) {
     this.poulesService
       .supprimerPoule(id)
-      .subscribe((_) => this.chargerPoules());
+      .subscribe(() => this.chargerPoules());
   }
 
   chargerPoules() {

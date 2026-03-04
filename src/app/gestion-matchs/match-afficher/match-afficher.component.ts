@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Match } from '../../shared/models/match';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
@@ -22,18 +22,18 @@ import { TimerPipe } from '../../shared/pipes/timer.pipe';
     styleUrl: './match-afficher.component.css'
 })
 export class MatchAfficherComponent {
+  private matchsService = inject(MatchsService);
+  private router = inject(Router);
+
   @Input() match!: Match;
   @Input() estLectureSeule!: boolean;
-  @Output() matchEvent: EventEmitter<null> = new EventEmitter();
+  @Output() matchEvent = new EventEmitter<null>();
 
-  estModalVisible: boolean = false;
-  titreModal: string = 'Confirmer la suppression ?';
-  texteModal: string = 'Cette action est définitive';
-  // tags = ['Poules', 'Poule-A', 'Poule-A', 'Poule-A', 'Poule-A'];
+  estModalVisible = false;
+  titreModal = 'Confirmer la suppression ?';
+  texteModal = 'Cette action est définitive';
 
-  constructor(private matchsService: MatchsService, private router: Router) {}
-
-  demanderSuppression(id: number): void {
+  demanderSuppression(): void {
     this.estModalVisible = true;
   }
 
@@ -41,7 +41,7 @@ export class MatchAfficherComponent {
     this.estModalVisible = false;
     this.matchsService
       .supprimerMatch(id as number)
-      .subscribe((_) => this.matchEvent.emit());
+      .subscribe(() => this.matchEvent.emit());
   }
 
   annulerSuppression() {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Combattant } from '../models/combattant';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,9 +10,10 @@ import { CombattantDetails } from '../models/combattant-details';
   providedIn: 'root',
 })
 export class CombattantsService {
+  private http = inject(HttpClient);
+
   env = environment;
   URL = `${this.env.baseUrl}/combattants`;
-  constructor(private http: HttpClient) {}
 
   public getCombattants(): Observable<Combattant[]> {
     return this.http.get<Combattant[]>(this.URL, { responseType: 'json' });
@@ -25,7 +26,7 @@ export class CombattantsService {
   }
 
   public getCombattantsByTagsMatchs(tags: Tag[]): Observable<Combattant[]> {
-    let tagsId = tags.map((tag) => tag.id);
+    const tagsId = tags.map((tag) => tag.id);
     return this.http.post<Combattant[]>(`${this.URL}/tags`, tagsId, {
       responseType: 'json',
     });
@@ -64,7 +65,7 @@ export class CombattantsService {
     );
   }
 
-  public supprimerCombattant(id: number): Observable<Object> {
+  public supprimerCombattant(id: number): Observable<object> {
     return this.http.delete(this.URL + '/' + id);
   }
 }

@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Club } from '../models/club';
 import { Combattant } from '../models/combattant';
 
 @Pipe({
@@ -9,7 +8,7 @@ import { Combattant } from '../models/combattant';
 export class NomsPipe implements PipeTransform {
   transform(
     combattant: Combattant | undefined,
-    complet: boolean = false
+    complet = false
   ): string {
     if (combattant && combattant.pseudo && complet)
       return `${combattant.prenom} ${combattant.nom} '${combattant.pseudo}'`;

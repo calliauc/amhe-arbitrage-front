@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Club } from '../../shared/models/club';
 import { NgClass } from '@angular/common';
-import { ClubPipe } from '../../shared/pipes/club.pipe';
 
 @Component({
     selector: 'app-club-afficher',
@@ -13,7 +12,7 @@ export class ClubAfficherComponent implements OnInit {
   @Input() club!: Club;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() editerClub: EventEmitter<boolean> = new EventEmitter();
+  @Output() editerClub = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     if (this.estPair) return;

@@ -12,7 +12,7 @@ export class TagAfficherComponent implements OnInit {
   @Input() tag!: Tag;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() editerTag: EventEmitter<boolean> = new EventEmitter();
+  @Output() editerTag = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     if (this.estPair) return;

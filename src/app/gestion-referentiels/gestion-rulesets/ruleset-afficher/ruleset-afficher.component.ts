@@ -15,7 +15,7 @@ export class RulesetAfficherComponent implements OnInit {
   @Input() ruleset!: Ruleset;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() editerRuleset: EventEmitter<boolean> = new EventEmitter();
+  @Output() editerRuleset = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     if (this.estPair) return;

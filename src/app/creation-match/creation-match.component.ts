@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
 import {
-  FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -40,7 +38,14 @@ import { LoginComponent } from '../login/login.component';
     styleUrl: './creation-match.component.css'
 })
 export class CreationMatchComponent implements OnInit {
-  estModalVisible: boolean = false;
+  private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+  private matchsService = inject(MatchsService);
+  private combattantsService = inject(CombattantsService);
+  private rulesetsService = inject(RulesetsService);
+  private tagsService = inject(TagsService);
+
+  estModalVisible = false;
   nouveauMatch?: NouveauMatch;
   formCreerMatch!: FormGroup;
   combattantsListe!: Combattant[];
@@ -53,17 +58,8 @@ export class CreationMatchComponent implements OnInit {
   colorB?: string;
   rechercheCombattantA?: string;
   couleurs = couleurs;
-  estModateSecuVisible: boolean = false;
-  estLectureSeule: boolean = true;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private matchsService: MatchsService,
-    private combattantsService: CombattantsService,
-    private rulesetsService: RulesetsService,
-    private tagsService: TagsService
-  ) {}
+  estModateSecuVisible = false;
+  estLectureSeule = true;
 
   ngOnInit(): void {
     this.getDatas();
@@ -167,8 +163,8 @@ export class CreationMatchComponent implements OnInit {
   }
 
   setRuleset(): Ruleset {
-    let vulnerants = this.rulesetChoisi!.vulnerants;
-    let cibles = this.rulesetChoisi!.cibles;
+    const vulnerants = this.rulesetChoisi!.vulnerants;
+    const cibles = this.rulesetChoisi!.cibles;
     return {
       id: this.rulesetChoisi!.id,
       nom: this.rulesetChoisi!.nom,

@@ -8,9 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     styleUrl: './score-combattant.component.css'
 })
 export class ScoreCombattantComponent {
-  @Input() score: number = 0;
+  @Input() score = 0;
   @Input() couleur!: string;
-  @Output() scoreEvent: EventEmitter<number> = new EventEmitter();
+  @Output() scoreEvent = new EventEmitter<number>();
 
   public modifScore(modif: number) {
     this.score += modif;

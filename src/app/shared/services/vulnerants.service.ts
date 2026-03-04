@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -8,9 +8,10 @@ import { RulesetRef } from '../models/ruleset-ref';
   providedIn: 'root',
 })
 export class VulnerantsService {
+  private http = inject(HttpClient);
+
   env = environment;
   URL = `${this.env.baseUrl}/vulnerants`;
-  constructor(private http: HttpClient) {}
 
   public getVulnerants(): Observable<RulesetRef[]> {
     return this.http.get<RulesetRef[]>(this.URL, { responseType: 'json' });
@@ -46,7 +47,7 @@ export class VulnerantsService {
     );
   }
 
-  public supprimerVulnerant(code: string): Observable<Object> {
+  public supprimerVulnerant(code: string): Observable<object> {
     return this.http.delete(this.URL + '/' + code);
   }
 }

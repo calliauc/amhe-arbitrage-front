@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
@@ -21,26 +12,26 @@ import { Tag } from '../../../shared/models/tag';
     styleUrl: './tag-editer.component.css'
 })
 export class TagEditerComponent implements OnInit, AfterViewInit {
+  private formBuilder = inject(FormBuilder);
+  private tagsService = inject(TagsService);
+
   @Input() tag: Tag = new Tag();
   @Input() estPair!: boolean;
-  @Input() estModeEdition: boolean = false;
-  @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
-  @Output() supprimerTag: EventEmitter<number> = new EventEmitter();
-  @Output() validerEdition: EventEmitter<Tag> = new EventEmitter();
-  @Output() validerCreation: EventEmitter<Tag> = new EventEmitter();
+  @Input() estModeEdition = false;
+  @Output() annulerEditionCreation = new EventEmitter<boolean>();
+  @Output() supprimerTag = new EventEmitter<number>();
+  @Output() validerEdition = new EventEmitter<Tag>();
+  @Output() validerCreation = new EventEmitter<Tag>();
   @ViewChild('focus') focusForm!: ElementRef;
 
   tagsListe!: Tag[];
   ereurSaisie: boolean;
-  estModalVisible: boolean = false;
-  titreModal: string = 'Confirmer la suppression ?';
-  texteModal: string = 'Cette action est définitive';
+  estModalVisible = false;
+  titreModal = 'Confirmer la suppression ?';
+  texteModal = 'Cette action est définitive';
   formEditerTag!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private tagsService: TagsService
-  ) {
+  constructor() {
     this.ereurSaisie = false;
   }
 

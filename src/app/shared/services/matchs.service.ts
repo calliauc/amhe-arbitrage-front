@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Match } from '../models/match';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NouveauMatch } from '../models/nouveau-match';
 import { environment } from '../../../environments/environment';
@@ -9,10 +9,11 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class MatchsService {
+  private http = inject(HttpClient);
+
   env = environment;
   URL = `${this.env.baseUrl}/matchs`;
   listeMatchs = [] as Match[];
-  constructor(private http: HttpClient) {}
 
   public getMatchs(): Observable<Match[]> {
     this.listeMatchs = [];
@@ -47,9 +48,9 @@ export class MatchsService {
   public modifierDateDebutMatch(
     id: number,
     dateDebut: Date
-  ): Observable<Object> {
+  ): Observable<object> {
     dateDebut.setHours(dateDebut.getHours() + 1);
-    let dateString = dateDebut.toISOString().slice(0, -5);
+    const dateString = dateDebut.toISOString().slice(0, -5);
     return this.http.put(
       `${this.URL}/partial/${id}?dateDebut=${dateString}&statut=en cours`,
       null
@@ -59,36 +60,36 @@ export class MatchsService {
   public modifierDateFinMatch(
     id: number,
     dateFin: Date,
-    timer: Number
-  ): Observable<Object> {
+    timer: number
+  ): Observable<object> {
     dateFin.setHours(dateFin.getHours() + 1);
-    let dateString = dateFin.toISOString().slice(0, -5);
+    const dateString = dateFin.toISOString().slice(0, -5);
     return this.http.put(
       `${this.URL}/partial/${id}?dateFin=${dateString}&timer=${timer}&statut=fini`,
       null
     );
   }
 
-  public modifierTimerMatch(id: number, timer: number): Observable<Object> {
+  public modifierTimerMatch(id: number, timer: number): Observable<object> {
     return this.http.put(
       `${this.URL}/partial/${id}?timer=${timer}&statut=en cours`,
       null
     );
   }
 
-  public modifierScoreAMatch(id: number, scoreA: number): Observable<Object> {
+  public modifierScoreAMatch(id: number, scoreA: number): Observable<object> {
     return this.http.put(`${this.URL}/partial/${id}?scoreA=${scoreA}`, null);
   }
 
-  public modifierScoreBMatch(id: number, scoreB: number): Observable<Object> {
+  public modifierScoreBMatch(id: number, scoreB: number): Observable<object> {
     return this.http.put(`${this.URL}/partial/${id}?scoreB=${scoreB}`, null);
   }
 
-  public modifierStatutMatch(id: number, statut: string): Observable<Object> {
+  public modifierStatutMatch(id: number, statut: string): Observable<object> {
     return this.http.put(`${this.URL}/partial/${id}?statut=${statut}`, null);
   }
 
-  public supprimerMatch(id: number): Observable<Object> {
+  public supprimerMatch(id: number): Observable<object> {
     return this.http.delete(`${this.URL}/${id}`);
   }
 }

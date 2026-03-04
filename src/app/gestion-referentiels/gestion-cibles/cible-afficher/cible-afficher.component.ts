@@ -12,7 +12,7 @@ export class CibleAfficherComponent implements OnInit {
   @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() editerCible: EventEmitter<boolean> = new EventEmitter();
+  @Output() editerCible = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     if (this.estPair) return;

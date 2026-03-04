@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-  viewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -31,28 +21,28 @@ import { CiblesService } from '../../../shared/services/cibles.service';
     styleUrl: './ruleset-editer.component.css'
 })
 export class RulesetEditerComponent implements OnInit, AfterViewInit {
+  private formBuilder = inject(FormBuilder);
+  private rulesetsService = inject(RulesetsService);
+  private vulnerantsService = inject(VulnerantsService);
+  private ciblesService = inject(CiblesService);
+
   @Input() ruleset: Ruleset = new Ruleset();
   @Input() estPair!: boolean;
-  @Output() annulerEditionCreation: EventEmitter<boolean> = new EventEmitter();
-  @Output() supprimerRuleset: EventEmitter<number> = new EventEmitter();
-  @Output() validerEdition: EventEmitter<Ruleset> = new EventEmitter();
-  @Output() validerCreation: EventEmitter<Ruleset> = new EventEmitter();
+  @Output() annulerEditionCreation = new EventEmitter<boolean>();
+  @Output() supprimerRuleset = new EventEmitter<number>();
+  @Output() validerEdition = new EventEmitter<Ruleset>();
+  @Output() validerCreation = new EventEmitter<Ruleset>();
   @ViewChild('focus') focusForm!: ElementRef;
 
   ereurSaisie: boolean;
-  estModalVisible: boolean = false;
-  estListeVulnerantsVisible: boolean = false;
-  estListeCiblesVisible: boolean = false;
-  titreModal: string = 'Confirmer la suppression ?';
-  texteModal: string = 'Cette action est définitive';
+  estModalVisible = false;
+  estListeVulnerantsVisible = false;
+  estListeCiblesVisible = false;
+  titreModal = 'Confirmer la suppression ?';
+  texteModal = 'Cette action est définitive';
   formEditerRuleset!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private rulesetsService: RulesetsService,
-    private vulnerantsService: VulnerantsService,
-    private ciblesService: CiblesService
-  ) {
+  constructor() {
     this.ereurSaisie = false;
   }
 
@@ -82,7 +72,7 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     if (!this.ruleset.id) {
       this.vulnerantsService.getVulnerants().subscribe((vs) => {
         vs.forEach((v) => {
-          let ref = {
+          const ref = {
             code: v.code,
             libelle: v.libelle,
             checked: false,
@@ -109,7 +99,7 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     if (!this.ruleset.id) {
       this.ciblesService.getCibles().subscribe((cs) => {
         cs.forEach((c) => {
-          let ref = {
+          const ref = {
             code: c.code,
             libelle: c.libelle,
             checked: false,

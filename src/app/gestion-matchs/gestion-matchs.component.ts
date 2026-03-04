@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
 import { Router } from '@angular/router';
@@ -14,24 +14,22 @@ import { environment } from '../../environments/environment';
     styleUrl: './gestion-matchs.component.css'
 })
 export class GestionMatchsComponent implements OnInit {
+  private matchsService = inject(MatchsService);
+  private hemaRatingService = inject(HemaRatingService);
+  private router = inject(Router);
+
   matchsNouveau: Match[] = [];
   matchsEnCours: Match[] = [];
   matchsFinis: Match[] = [];
-  estModalVisible: boolean = false;
-  titreModal: string = 'Confirmer la suppression ?';
-  texteModal: string = 'Cette action est définitive';
+  estModalVisible = false;
+  titreModal = 'Confirmer la suppression ?';
+  texteModal = 'Cette action est définitive';
   idASupprimer?: number;
-  estModateSecuVisible: boolean = false;
-  estLectureSeule: boolean = true;
-  estScoresOk: boolean = false;
+  estModateSecuVisible = false;
+  estLectureSeule = true;
+  estScoresOk = false;
   env = environment;
   URL = `${this.env.baseUrl}/hema-rating/get-csv`;
-
-  constructor(
-    private matchsService: MatchsService,
-    private hemaRatingService: HemaRatingService,
-    private router: Router
-  ) {}
 
   ngOnInit(): void {
     this.refreshList();
@@ -72,7 +70,7 @@ export class GestionMatchsComponent implements OnInit {
     this.estModalVisible = false;
     this.matchsService
       .supprimerMatch(id as number)
-      .subscribe((_) => this.refreshList());
+      .subscribe(() => this.refreshList());
   }
 
   annulerSuppression() {
@@ -82,6 +80,6 @@ export class GestionMatchsComponent implements OnInit {
   editerScores() {
     this.hemaRatingService
       .calculerResultats()
-      .subscribe((_) => (this.estScoresOk = true));
+      .subscribe(() => (this.estScoresOk = true));
   }
 }

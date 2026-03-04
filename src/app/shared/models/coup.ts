@@ -11,11 +11,11 @@ export class Coup {
   attaquantScore!: number;
   defenseurScore!: number;
   timecode!: Date;
-  doubleAtk: boolean = false;
-  doubleDef: boolean = false;
-  afterblow: boolean = false;
-  simultanee: boolean = false;
-  faute: boolean = false;
+  doubleAtk = false;
+  doubleDef = false;
+  afterblow = false;
+  simultanee = false;
+  faute = false;
   vulnerant!: RulesetRef;
   cible?: RulesetRef;
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Poule } from '../models/poule';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PoulesService {
+  private http = inject(HttpClient);
+
   env = environment;
   URL = `${this.env.baseUrl}/poules`;
-
-  constructor(private http: HttpClient) {}
 
   public getPoules(): Observable<Poule[]> {
     return this.http.get<Poule[]>(this.URL, { responseType: 'json' });
@@ -34,7 +34,7 @@ export class PoulesService {
     );
   }
 
-  public supprimerPoule(id: number): Observable<Object> {
+  public supprimerPoule(id: number): Observable<object> {
     return this.http.delete(this.URL + '/' + id);
   }
 }

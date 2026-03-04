@@ -13,8 +13,8 @@ export class CibleLigneComponent {
   @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
   @Input() estLectureSeule!: boolean;
-  @Output() supprimerCible: EventEmitter<string> = new EventEmitter();
-  @Output() modifierCible: EventEmitter<RulesetRef> = new EventEmitter();
+  @Output() supprimerCible = new EventEmitter<string>();
+  @Output() modifierCible = new EventEmitter<RulesetRef>();
   estModif: boolean;
 
   constructor() {

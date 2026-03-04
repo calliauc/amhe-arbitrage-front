@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GestionCiblesComponent } from './gestion-cibles/gestion-cibles.component';
 import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnerants.component';
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
@@ -17,11 +17,10 @@ import { LoginComponent } from '../login/login.component';
     templateUrl: './gestion-referentiels.component.html',
     styleUrl: './gestion-referentiels.component.css'
 })
-export class GestionReferentielsComponent implements OnInit {
-  estModateSecuVisible: boolean = false;
-  estLectureSeule: boolean = true;
+export class GestionReferentielsComponent {
+  estModateSecuVisible = false;
+  estLectureSeule = true;
 
-  ngOnInit(): void {}
   updateLogin(lock: boolean) {
     this.estLectureSeule = lock;
   }

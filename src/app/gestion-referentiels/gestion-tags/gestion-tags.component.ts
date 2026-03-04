@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { TagLigneComponent } from './tag-ligne/tag-ligne.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,8 @@ import { Tag } from '../../shared/models/tag';
     styleUrl: './gestion-tags.component.css'
 })
 export class GestionTagsComponent implements OnInit {
+  private tagsService = inject(TagsService);
+
   @Input() estLectureSeule!: boolean;
 
   tagsListe?: Tag[];
@@ -20,7 +22,7 @@ export class GestionTagsComponent implements OnInit {
   estModeCreation: boolean;
   nouveauTag: Tag;
 
-  constructor(private tagsService: TagsService) {
+  constructor() {
     this.estModeCreation = false;
     this.nouveauTag = new Tag();
   }
@@ -41,16 +43,16 @@ export class GestionTagsComponent implements OnInit {
     this.tagsListe$ = this.tagsService.getTags();
   }
 
-  creerTag(tagCree: Tag) {
+  creerTag() {
     this.tagsListe$ = this.tagsListe$?.pipe(
-      tap((liste) => (this.estModeCreation = false))
+      tap(() => (this.estModeCreation = false))
     );
   }
 
   modifierTag(tagModifie: Tag) {
     this.tagsListe$ = this.tagsService
       .modifierTag(tagModifie)
-      .pipe(switchMap((_) => this.tagsService.getTags()));
+      .pipe(switchMap(() => this.tagsService.getTags()));
   }
 
   supprimerTag(id: number) {

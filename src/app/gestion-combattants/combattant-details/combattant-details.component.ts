@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Combattant } from '../../shared/models/combattant';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CombattantsService } from '../../shared/services/combattants.service';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
@@ -15,6 +14,10 @@ import { ClubPipe } from '../../shared/pipes/club.pipe';
     styleUrl: './combattant-details.component.css'
 })
 export class CombattantDetailsComponent {
+  private route = inject(ActivatedRoute);
+  private combattantService = inject(CombattantsService);
+  private router = inject(Router);
+
   details!: CombattantDetails;
   combattantId!: number;
   tagPoule!: Tag;
@@ -46,11 +49,7 @@ export class CombattantDetailsComponent {
     ],
   };
 
-  constructor(
-    private route: ActivatedRoute,
-    private combattantService: CombattantsService,
-    private router: Router
-  ) {
+  constructor() {
     this.route.params.subscribe((params) => {
       this.combattantService
         .getCombattantsDetails(params['id'], this.tags)
