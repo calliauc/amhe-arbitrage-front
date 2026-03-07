@@ -25,6 +25,13 @@ export class CombattantsService {
     });
   }
 
+  public getCombattantByName(nom: string): Observable<Combattant[]> {
+    return this.http.get<Combattant[]>(`${this.URL}/recherche/${nom}`, {
+      responseType: 'json',
+    });
+  }
+
+
   public getCombattantsByTagsMatchs(tags: Tag[]): Observable<Combattant[]> {
     const tagsId = tags.map((tag) => tag.id);
     return this.http.post<Combattant[]>(`${this.URL}/tags`, tagsId, {

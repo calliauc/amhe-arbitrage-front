@@ -1,4 +1,12 @@
 <main>
+  <!-- <p>Form status : {{combattantForm.status}}</p> -->
+  <form [formGroup]="combattantForm">
+    <label for="combattant">Name: </label>
+    <input id="combattant" type="text" formControlName="combattant" />
+  </form>
+  @for (c of combattants; track $index) {
+    <span>{{c.prenom}} - {{c.nom}}</span>
+  }
   @if (estLectureSeule) {
   <h3>
     Bienvenue sur l'application live de la première édition de la BURDIGALA CUP
