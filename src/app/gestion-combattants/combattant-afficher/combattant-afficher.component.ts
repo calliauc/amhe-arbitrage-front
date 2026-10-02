@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Combattant } from '../../shared/models/combattant';
 import { NgClass } from '@angular/common';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
     selector: 'app-combattant-afficher',
     imports: [NgClass, ClubPipe],
     templateUrl: './combattant-afficher.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './combattant-afficher.component.css'
 })
 export class CombattantAfficherComponent implements OnInit {

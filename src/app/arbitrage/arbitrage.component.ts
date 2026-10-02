@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CreationCoupComponent } from './creation-coup/creation-coup.component';
 import { HistoriqueCoupsComponent } from './historique-coups/historique-coups.component';
 import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
@@ -14,6 +14,7 @@ import { MatchsService } from '../shared/services/matchs.service';
     HistoriqueCoupsComponent
 ],
     templateUrl: './arbitrage.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './arbitrage.component.css'
 })
 export class ArbitrageComponent {

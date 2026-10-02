@@ -1,10 +1,11 @@
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-score-combattant',
     imports: [],
     templateUrl: './score-combattant.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './score-combattant.component.css'
 })
 export class ScoreCombattantComponent {

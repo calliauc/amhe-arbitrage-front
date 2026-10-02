@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CibleAfficherComponent } from '../cible-afficher/cible-afficher.component';
 import { CibleEditerComponent } from '../cible-editer/cible-editer.component';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
@@ -7,6 +7,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
     selector: 'app-cible-ligne',
     imports: [CibleAfficherComponent, CibleEditerComponent],
     templateUrl: './cible-ligne.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './cible-ligne.component.css'
 })
 export class CibleLigneComponent {

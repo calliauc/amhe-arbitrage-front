@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TagLigneComponent } from './tag-ligne/tag-ligne.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { Tag } from '../../shared/models/tag';
     selector: 'app-gestion-tags',
     imports: [TagLigneComponent, TagEditerComponent, CommonModule],
     templateUrl: './gestion-tags.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-tags.component.css'
 })
 export class GestionTagsComponent implements OnInit {

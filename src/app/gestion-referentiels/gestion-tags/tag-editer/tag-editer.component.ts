@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
@@ -9,6 +9,7 @@ import { Tag } from '../../../shared/models/tag';
     selector: 'app-tag-editer',
     imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
     templateUrl: './tag-editer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './tag-editer.component.css'
 })
 export class TagEditerComponent implements OnInit, AfterViewInit {

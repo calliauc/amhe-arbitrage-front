@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-creation-match-modal',
     imports: [],
     templateUrl: './creation-match-modal.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './creation-match-modal.component.css'
 })
 export class CreationMatchModalComponent {

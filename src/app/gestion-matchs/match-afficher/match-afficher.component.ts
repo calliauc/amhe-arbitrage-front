@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Match } from '../../shared/models/match';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
@@ -19,6 +19,7 @@ import { TimerPipe } from '../../shared/pipes/timer.pipe';
         TimerPipe,
     ],
     templateUrl: './match-afficher.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './match-afficher.component.css'
 })
 export class MatchAfficherComponent {

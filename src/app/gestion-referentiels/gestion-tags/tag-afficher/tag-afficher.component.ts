@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Tag } from '../../../shared/models/tag';
 
@@ -6,6 +6,7 @@ import { Tag } from '../../../shared/models/tag';
     selector: 'app-tag-afficher',
     imports: [NgClass],
     templateUrl: './tag-afficher.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './tag-afficher.component.css'
 })
 export class TagAfficherComponent implements OnInit {

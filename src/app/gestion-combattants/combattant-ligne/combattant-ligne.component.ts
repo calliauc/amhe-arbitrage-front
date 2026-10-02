@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Combattant } from '../../shared/models/combattant';
 import { CombattantAfficherComponent } from '../combattant-afficher/combattant-afficher.component';
 import { CombattantEditerComponent } from '../combattant-editer/combattant-editer.component';
@@ -7,6 +7,7 @@ import { CombattantEditerComponent } from '../combattant-editer/combattant-edite
     selector: 'app-combattant-ligne',
     imports: [CombattantAfficherComponent, CombattantEditerComponent],
     templateUrl: './combattant-ligne.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './combattant-ligne.component.css'
 })
 export class CombattantLigneComponent {

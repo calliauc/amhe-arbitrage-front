@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
@@ -9,6 +9,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
     selector: 'app-cible-editer',
     imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
     templateUrl: './cible-editer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './cible-editer.component.css'
 })
 export class CibleEditerComponent implements OnInit, AfterViewInit {

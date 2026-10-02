@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 import { TimerStatus } from '../../../shared/models/timer-tick';
 import { Match } from '../../../shared/models/match';
@@ -9,6 +9,7 @@ import { MatchsService } from '../../../shared/services/matchs.service';
     selector: 'app-chrono',
     imports: [CommonModule, CdTimerModule],
     templateUrl: './chrono.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './chrono.component.css'
 })
 export class ChronoComponent implements AfterViewInit {

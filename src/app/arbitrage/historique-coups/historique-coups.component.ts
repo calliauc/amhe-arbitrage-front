@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { LigneCoupComponent } from './ligne-histo-coup/ligne-coup.component';
 import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
@@ -7,6 +7,7 @@ import { CoupsService } from '../../shared/services/coups.service';
     selector: 'app-historique-coups',
     imports: [LigneCoupComponent],
     templateUrl: './historique-coups.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './historique-coups.component.css'
 })
 export class HistoriqueCoupsComponent implements OnInit {

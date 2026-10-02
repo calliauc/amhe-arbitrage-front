@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
@@ -12,6 +12,7 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     selector: 'app-creation-coup',
     imports: [ReactiveFormsModule, NomsPipe, TitleCasePipe],
     templateUrl: './creation-coup.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './creation-coup.component.css'
 })
 export class CreationCoupComponent implements OnInit {

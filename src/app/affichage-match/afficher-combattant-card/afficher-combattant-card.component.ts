@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Combattant } from '../../shared/models/combattant';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
@@ -7,6 +7,7 @@ import { NomsPipe } from '../../shared/pipes/noms.pipe';
     selector: 'app-afficher-combattant-card',
     imports: [ClubPipe, NomsPipe],
     templateUrl: './afficher-combattant-card.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './afficher-combattant-card.component.css'
 })
 export class AfficherCombattantCardComponent implements OnInit {

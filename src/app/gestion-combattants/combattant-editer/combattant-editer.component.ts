@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Combattant } from '../../shared/models/combattant';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
@@ -11,6 +11,7 @@ import { ConfirmationModalComponent } from '../../shared/modales/confirmation-mo
     selector: 'app-combattant-editer',
     imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
     templateUrl: './combattant-editer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './combattant-editer.component.css'
 })
 export class CombattantEditerComponent implements OnInit, AfterViewInit {

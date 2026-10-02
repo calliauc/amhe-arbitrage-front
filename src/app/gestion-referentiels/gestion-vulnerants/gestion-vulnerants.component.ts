@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { VulnerantsService } from '../../shared/services/vulnerants.service';
@@ -10,6 +10,7 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     selector: 'app-gestion-vulnerants',
     imports: [VulnerantLigneComponent, VulnerantEditerComponent, CommonModule],
     templateUrl: './gestion-vulnerants.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-vulnerants.component.css'
 })
 export class GestionVulnerantsComponent implements OnInit {

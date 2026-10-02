@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Combattant } from '../shared/models/combattant';
@@ -8,6 +8,7 @@ import { CombattantsService } from '../shared/services/combattants.service';
     selector: 'app-accueil',
     imports: [ReactiveFormsModule],
     templateUrl: './accueil.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './accueil.component.css'
 })
 export class AccueilComponent implements OnInit {

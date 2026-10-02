@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { GestionCiblesComponent } from './gestion-cibles/gestion-cibles.component';
 import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnerants.component';
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
@@ -15,6 +15,7 @@ import { LoginComponent } from '../login/login.component';
         LoginComponent,
     ],
     templateUrl: './gestion-referentiels.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-referentiels.component.css'
 })
 export class GestionReferentielsComponent {

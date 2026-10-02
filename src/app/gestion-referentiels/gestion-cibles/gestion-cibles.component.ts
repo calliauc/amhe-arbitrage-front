@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CibleLigneComponent } from './cible-ligne/cible-ligne.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     selector: 'app-gestion-cibles',
     imports: [CibleLigneComponent, CibleEditerComponent, CommonModule],
     templateUrl: './gestion-cibles.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-cibles.component.css'
 })
 export class GestionCiblesComponent implements OnInit {

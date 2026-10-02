@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
@@ -9,6 +9,7 @@ import { AfficherCombattantCardComponent } from './afficher-combattant-card/affi
     selector: 'app-affichage-match',
     imports: [HistoriqueCoupsComponent, AfficherCombattantCardComponent],
     templateUrl: './affichage-match.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './affichage-match.component.css'
 })
 export class AffichageMatchComponent {

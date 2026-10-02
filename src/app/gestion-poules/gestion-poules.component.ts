@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Poule } from '../shared/models/poule';
 import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
@@ -11,6 +11,7 @@ import { LoginComponent } from '../login/login.component';
     selector: 'app-gestion-poules',
     imports: [AffichagePouleComponent, LoginComponent],
     templateUrl: './gestion-poules.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-poules.component.css'
 })
 export class GestionPoulesComponent implements OnInit {

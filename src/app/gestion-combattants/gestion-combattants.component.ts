@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CombattantsService } from '../shared/services/combattants.service';
 import { Combattant } from '../shared/models/combattant';
 import { CombattantLigneComponent } from './combattant-ligne/combattant-ligne.component';
@@ -16,6 +16,7 @@ import { LoginComponent } from '../login/login.component';
         LoginComponent,
     ],
     templateUrl: './gestion-combattants.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-combattants.component.css'
 })
 export class GestionCombattantsComponent implements OnInit {

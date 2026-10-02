@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
 
@@ -6,6 +6,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
     selector: 'app-vulnerant-afficher',
     imports: [NgClass],
     templateUrl: './vulnerant-afficher.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './vulnerant-afficher.component.css'
 })
 export class VulnerantAfficherComponent implements OnInit {

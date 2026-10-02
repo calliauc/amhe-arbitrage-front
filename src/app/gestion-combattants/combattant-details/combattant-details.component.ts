@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CombattantsService } from '../../shared/services/combattants.service';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
@@ -11,6 +11,7 @@ import { ClubPipe } from '../../shared/pipes/club.pipe';
     selector: 'app-combattant-details',
     imports: [NomsPipe, DatePipe, ClubPipe, CommonModule],
     templateUrl: './combattant-details.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './combattant-details.component.css'
 })
 export class CombattantDetailsComponent {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RulesetLigneComponent } from './ruleset-ligne/ruleset-ligne.component';
 import { RulesetEditerComponent } from './ruleset-editer/ruleset-editer.component';
 import { Observable, tap } from 'rxjs';
@@ -10,6 +10,7 @@ import { RulesetsService } from '../../shared/services/rulesets.service';
     selector: 'app-gestion-rulesets',
     imports: [RulesetLigneComponent, RulesetEditerComponent, CommonModule],
     templateUrl: './gestion-rulesets.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-rulesets.component.css'
 })
 export class GestionRulesetsComponent implements OnInit {

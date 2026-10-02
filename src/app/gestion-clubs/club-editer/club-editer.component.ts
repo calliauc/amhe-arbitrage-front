@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Club } from '../../shared/models/club';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
@@ -9,6 +9,7 @@ import { ConfirmationModalComponent } from '../../shared/modales/confirmation-mo
     selector: 'app-club-editer',
     imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
     templateUrl: './club-editer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './club-editer.component.css'
 })
 export class ClubEditerComponent implements OnInit, AfterViewInit {

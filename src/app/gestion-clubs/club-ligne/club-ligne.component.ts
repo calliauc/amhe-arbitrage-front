@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Club } from '../../shared/models/club';
 import { ClubAfficherComponent } from '../club-afficher/club-afficher.component';
 import { ClubEditerComponent } from '../club-editer/club-editer.component';
@@ -7,6 +7,7 @@ import { ClubEditerComponent } from '../club-editer/club-editer.component';
     selector: 'app-club-ligne',
     imports: [ClubAfficherComponent, ClubEditerComponent],
     templateUrl: './club-ligne.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './club-ligne.component.css'
 })
 export class ClubLigneComponent {

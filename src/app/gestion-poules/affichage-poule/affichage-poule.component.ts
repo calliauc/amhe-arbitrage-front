@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Poule } from '../../shared/models/poule';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
@@ -9,6 +9,7 @@ import { Combattant } from '../../shared/models/combattant';
     selector: 'app-affichage-poule',
     imports: [NomsPipe, ClubPipe],
     templateUrl: './affichage-poule.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './affichage-poule.component.css'
 })
 export class AffichagePouleComponent implements OnInit {

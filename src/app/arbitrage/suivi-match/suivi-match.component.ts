@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input,Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ScoreCombattantComponent } from './score-combattant/score-combattant.component';
 import { ChronoComponent } from './chrono/chrono.component';
 import { Match } from '../../shared/models/match';
@@ -9,6 +9,7 @@ import { MatchsService } from '../../shared/services/matchs.service';
     selector: 'app-gestion-match',
     imports: [ScoreCombattantComponent, ChronoComponent, CombattantComponent],
     templateUrl: './suivi-match.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './suivi-match.component.css'
 })
 export class SuiviMatchComponent {

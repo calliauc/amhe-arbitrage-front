@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ClubsService } from '../shared/services/clubs.service';
 import { Club } from '../shared/models/club';
 import { ClubLigneComponent } from './club-ligne/club-ligne.component';
@@ -16,6 +16,7 @@ import { LoginComponent } from '../login/login.component';
         LoginComponent,
     ],
     templateUrl: './gestion-clubs.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-clubs.component.css'
 })
 export class GestionClubsComponent implements OnInit {

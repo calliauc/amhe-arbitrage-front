@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -18,6 +18,7 @@ import { CiblesService } from '../../../shared/services/cibles.service';
     selector: 'app-ruleset-editer',
     imports: [ReactiveFormsModule, NgClass, ConfirmationModalComponent],
     templateUrl: './ruleset-editer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './ruleset-editer.component.css'
 })
 export class RulesetEditerComponent implements OnInit, AfterViewInit {

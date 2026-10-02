@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
     selector: 'app-gestion-matchs',
     imports: [MatchAfficherComponent, LoginComponent],
     templateUrl: './gestion-matchs.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-matchs.component.css'
 })
 export class GestionMatchsComponent implements OnInit {

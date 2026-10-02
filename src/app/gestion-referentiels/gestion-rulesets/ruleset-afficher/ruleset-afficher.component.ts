@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Ruleset } from '../../../shared/models/ruleset';
 import { TimerReversePipe } from '../../../shared/pipes/timerReverse.pipe';
@@ -9,6 +9,7 @@ import { RulsetRefPipe } from '../../../shared/pipes/ruleset-refs.pipe';
     selector: 'app-ruleset-afficher',
     imports: [NgClass, TimerReversePipe, TimerPipe, RulsetRefPipe],
     templateUrl: './ruleset-afficher.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './ruleset-afficher.component.css'
 })
 export class RulesetAfficherComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { TagAfficherComponent } from '../tag-afficher/tag-afficher.component';
 import { TagEditerComponent } from '../tag-editer/tag-editer.component';
 import { Tag } from '../../../shared/models/tag';
@@ -7,6 +7,7 @@ import { Tag } from '../../../shared/models/tag';
     selector: 'app-tag-ligne',
     imports: [TagAfficherComponent, TagEditerComponent],
     templateUrl: './tag-ligne.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './tag-ligne.component.css'
 })
 export class TagLigneComponent {

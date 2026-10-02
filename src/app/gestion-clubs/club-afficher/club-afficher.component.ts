@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Club } from '../../shared/models/club';
 import { NgClass } from '@angular/common';
 
@@ -6,6 +6,7 @@ import { NgClass } from '@angular/common';
     selector: 'app-club-afficher',
     imports: [NgClass],
     templateUrl: './club-afficher.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './club-afficher.component.css'
 })
 export class ClubAfficherComponent implements OnInit {

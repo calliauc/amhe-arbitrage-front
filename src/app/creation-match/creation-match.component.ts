@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
@@ -35,6 +35,7 @@ import { LoginComponent } from '../login/login.component';
     LoginComponent
 ],
     templateUrl: './creation-match.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './creation-match.component.css'
 })
 export class CreationMatchComponent implements OnInit {

@@ -7,6 +7,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Secu } from '../../models/secu';
@@ -15,6 +16,7 @@ import { Secu } from '../../models/secu';
     selector: 'app-secu-modal',
     imports: [FormsModule],
     templateUrl: './secu-modal.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './secu-modal.component.css'
 })
 export class SecuModalComponent implements OnInit, AfterViewInit {
