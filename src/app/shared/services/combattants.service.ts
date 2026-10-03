@@ -25,8 +25,8 @@ export class CombattantsService {
     });
   }
 
-  public getCombattantByName(nom: string): Observable<Combattant[]> {
-    return this.http.get<Combattant[]>(`${this.URL}/recherche/${nom}`, {
+  public searchCombattantByName(nom: string): Observable<Combattant[]> {
+    return this.http.post<Combattant[]>(`${this.URL}/recherche/nom`, nom, {
       responseType: 'json',
     });
   }

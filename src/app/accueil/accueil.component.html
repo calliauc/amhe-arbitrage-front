@@ -1,20 +1,31 @@
 <main>
-  <h3>TEST RECHERCHE</h3>
-  <form [formGroup]="combattantForm">
-    <label for="combattant">Name: </label>
-    <input id="combattant" type="text" formControlName="combattant" />
+  
+  <h3>TEST AUTOCOMPLETE</h3>
+
+  <form [formGroup]="combattantCompleteForm">
+    <input 
+    ngui-auto-complete 
+    formControlName="combattantComplete" 
+    [source]="combattants" 
+    [itemTemplate]="row" 
+    [display-with]="formatName"
+    (valueSelected)="onPick($event)"/>
+
+    <ng-template #row let-item let-i="index">
+      <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
+    </ng-template>
+
   </form>
-  @for (c of combattants; track $index) {
-    <span>{{c.prenom}} - {{c.nom}}</span>
-  }
+
+
   <h3>TEST LOGIN</h3>
-  <form action="/j_security_check" method="post">
-    <label>Username</label>
-    <input type="text" placeholder="Username" name="j_username" required>
-    <label>Password</label>
-    <input type="password" placeholder="Password" name="j_password" required>
-    <button type="submit">Login</button>
-</form>
+    <form action="/j_security_check" method="post">
+      <label>Username</label>
+      <input type="text" placeholder="Username" name="j_username" required>
+      <label>Password</label>
+      <input type="password" placeholder="Password" name="j_password" required>
+      <button type="submit">Login</button>
+    </form>
   @if (estLectureSeule) {
   <h3>
     Bienvenue sur l'application live de la première édition de la BURDIGALA CUP
