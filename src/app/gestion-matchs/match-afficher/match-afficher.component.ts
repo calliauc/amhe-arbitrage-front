@@ -35,7 +35,7 @@ export class MatchAfficherComponent implements OnInit {
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
-  url = 'http://192.168.1.48:4200/match/';
+  url = 'https://amhe.makhai.fr/match/';
 
   ngOnInit(): void {
     this.url += this.match.id;
