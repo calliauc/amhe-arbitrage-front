@@ -1,6 +1,10 @@
 <main>
   
   <h3>TEST AUTOCOMPLETE</h3>
+  
+  <ng-template #row let-item let-i="index">
+    <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
+  </ng-template>
 
   <form [formGroup]="combattantCompleteForm">
     <input 
@@ -9,14 +13,13 @@
     [source]="combattants" 
     [itemTemplate]="row" 
     [display-with]="formatName"
-    (valueSelected)="onPick($event)"/>
-
-    <ng-template #row let-item let-i="index">
-      <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
-    </ng-template>
-
+    (valueSelected)="onPick($event)"
+    />
   </form>
 
+
+
+  <!-- <div>{{selected?.nom}}</div> -->
 
   <h3>TEST LOGIN</h3>
     <form action="/j_security_check" method="post">

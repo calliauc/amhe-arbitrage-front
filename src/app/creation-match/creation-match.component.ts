@@ -22,11 +22,13 @@ import { CreationMatchModalComponent } from './creation-match-modal/creation-mat
 import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
 import { LoginComponent } from '../login/login.component';
+import { NguiAutoCompleteDirective, NguiAutoCompleteSelection } from '@ngui/auto-complete';
 
 @Component({
     selector: 'app-creation-match',
     imports: [
     ReactiveFormsModule,
+    NguiAutoCompleteDirective,
     NomsPipe,
     TimerPipe,
     RulsetRefPipe,
@@ -62,9 +64,17 @@ export class CreationMatchComponent implements OnInit {
   estModateSecuVisible = false;
   estLectureSeule = true;
 
+  /**
+   * Initialisation données et formulaire
+   */
+
   ngOnInit(): void {
     this.getDatas();
     this.initForm();
+  }
+
+  updateLogin(lock: boolean) {
+    this.estLectureSeule = lock;
   }
 
   getDatas() {
@@ -86,7 +96,6 @@ export class CreationMatchComponent implements OnInit {
   }
 
   initForm() {
-    this.rulesetChoisi = undefined;
     this.a = undefined;
     this.b = undefined;
     this.colorA = couleurs[0].code;
@@ -98,18 +107,26 @@ export class CreationMatchComponent implements OnInit {
       couleurA: couleurs[0].code,
       couleurB: couleurs[1].code,
       tags: null,
-      ruleset: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
-      this.rulesetChoisi = values.ruleset;
-      this.a = this.combattantsListe.find((c) => c.id === values.combattantA);
-      this.b = this.combattantsListe.find((c) => c.id === values.combattantB);
+      this.rulesetChoisi = undefined;
+      this.a = values.combattantA;
+      this.b = values.combattantB;
       this.colorA = values.couleurA;
       this.colorB = values.couleurB;
     });
   }
 
-  onChange($event: any) {
+  /**
+   * Interractions formulaire
+   */
+
+  formatName(item: Combattant): string {
+    // return `${item.prenom} ${item.nom} (${item.club?.nomCourt})`;
+    return `${item.prenom}`;
+  }
+
+  onCheckTag($event: any) {
     const id = $event.target.value;
     const isChecked = $event.target.checked;
     this.tags.forEach((tag) => {
@@ -119,9 +136,9 @@ export class CreationMatchComponent implements OnInit {
     });
   }
 
-  updateLogin(lock: boolean) {
-    this.estLectureSeule = lock;
-  }
+  /**
+   * Etapes de création du match
+   */
 
   creerMatch() {
     if (this.estIncomplet()) {
@@ -130,8 +147,8 @@ export class CreationMatchComponent implements OnInit {
       alert('Les champs sont mal remplis');
     } else {
       this.nouveauMatch = new NouveauMatch(
-        this.formCreerMatch.value.combattantA,
-        this.formCreerMatch.value.combattantB,
+        this.formCreerMatch.value.combattantA.id,
+        this.formCreerMatch.value.combattantB.id,
         this.formCreerMatch.value.couleurA,
         this.formCreerMatch.value.couleurB,
         0,
@@ -150,8 +167,7 @@ export class CreationMatchComponent implements OnInit {
       this.formCreerMatch.value.combattantA &&
       this.formCreerMatch.value.combattantB &&
       this.formCreerMatch.value.couleurA &&
-      this.formCreerMatch.value.couleurB &&
-      this.rulesetChoisi
+      this.formCreerMatch.value.couleurB
     );
   }
 
@@ -164,6 +180,7 @@ export class CreationMatchComponent implements OnInit {
   }
 
   setRuleset(): Ruleset {
+    this.rulesetChoisi = this.rulesets![0];
     const vulnerants = this.rulesetChoisi!.vulnerants;
     const cibles = this.rulesetChoisi!.cibles;
     return {
@@ -185,10 +202,9 @@ export class CreationMatchComponent implements OnInit {
     return match;
   }
 
-  annulerCreation() {
-    this.estModalVisible = false;
-  }
-
+  /**
+   * Fin de la création du match
+   */
   confirmerCreation(suite: string) {
     this.matchsService
       .creerMatch(this.nouveauMatch!)
@@ -206,5 +222,9 @@ export class CreationMatchComponent implements OnInit {
             break;
         }
       });
+  }
+
+  annulerCreation() {
+    this.estModalVisible = false;
   }
 }
