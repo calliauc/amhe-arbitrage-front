@@ -26,7 +26,6 @@ export class GestionCombattantsComponent implements OnInit {
   combattantsListe$?: Observable<Combattant[]>;
   estModeCreation: boolean;
   nouveauCombattant: Combattant;
-  estModateSecuVisible = false;
   estLog = false;
 
   constructor() {

@@ -1,4 +1,35 @@
 <main>
+  <ng-template #row let-item let-i="index">
+    <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
+  </ng-template>
+
+  <form [formGroup]="formFiltrage">
+      <div id="select-combattant">
+        <input
+          ngui-auto-complete 
+          formControlName="combattantFiltre"
+          blank-option-text="Voir tout les matchs"
+          [source]="combattantsListe"
+          [itemTemplate]="row" 
+          [display-with]="formatName"
+        />
+      </div>
+      <div id="select-tags">
+      @for (tag of tagsFiltreListe; track $index) {
+      <div>
+        <input
+          type="checkbox"
+          [value]="tag.id"
+          [checked]="tag.checked"
+          (change)="onCheckTag($event)"
+        />
+        {{ tag.code }}
+      </div>
+      }
+    </div>
+
+    </form>
+
    @if (estLog) {
   <div id="btns">
     <button
@@ -12,7 +43,7 @@
       Editer scores
     </button>
     @if (estScoresOk) {
-    <a target="_blank" href="{{ URL }}"
+    <a target="_blank" href="{{ URL_HEMA_RATING }}"
       ><button class="btn btn-scores">Lien vers les scores</button></a
     >
     }
@@ -28,7 +59,7 @@
       <app-match-afficher
         [match]="match"
         [estLog]="estLog"
-        (matchEvent)="refreshList()"
+        (matchEvent)="getMatchs()"
       ></app-match-afficher>
     </div>
     }
@@ -43,7 +74,7 @@
       <app-match-afficher
         [match]="match"
         [estLog]="estLog"
-        (matchEvent)="refreshList()"
+        (matchEvent)="getMatchs()"
       ></app-match-afficher>
     </div>
     }
@@ -58,7 +89,7 @@
       <app-match-afficher
         [match]="match"
         [estLog]="estLog"
-        (matchEvent)="refreshList()"
+        (matchEvent)="getMatchs()"
       ></app-match-afficher>
     </div>
     }

@@ -13,8 +13,8 @@ import { CombattantDetailsComponent } from './gestion-combattants/combattant-det
 export const routes: Routes = [
   { path: 'creer-match', component: CreationMatchComponent },
   { path: 'matchs', component: GestionMatchsComponent },
-  { path: 'arbitrage/:id', component: ArbitrageComponent },
-  { path: 'match/:id', component: AffichageMatchComponent },
+  { path: 'match/:id/arbitrage', component: ArbitrageComponent },
+  { path: 'match/:id/details', component: AffichageMatchComponent },
   { path: 'poules', component: GestionPoulesComponent },
   { path: 'combattants', component: GestionCombattantsComponent },
   { path: 'combattant/:id', component: CombattantDetailsComponent },

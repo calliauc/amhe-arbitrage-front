@@ -17,7 +17,7 @@ import { couleurs } from '../shared/models/ruleset-ref';
 import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
 import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
-import { NguiAutoCompleteDirective, NguiAutoCompleteSelection } from '@ngui/auto-complete';
+import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { LogService } from '../shared/services/log.service';
 
 @Component({
@@ -53,7 +53,6 @@ export class CreationMatchComponent implements OnInit {
   colorB?: string;
   rechercheCombattantA?: string;
   couleurs = couleurs;
-  estModateSecuVisible = false;
   estLog = false;
 
   /**

@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Match } from '../../shared/models/match';
 import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { DatePipe } from '@angular/common';
 import { MatchsService } from '../../shared/services/matchs.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TimerPipe } from '../../shared/pipes/timer.pipe';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 @Component({
     selector: 'app-match-afficher',
@@ -17,14 +18,15 @@ import { TimerPipe } from '../../shared/pipes/timer.pipe';
         ConfirmationModalComponent,
         DatePipe,
         TimerPipe,
+        QRCodeComponent,
     ],
     templateUrl: './match-afficher.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './match-afficher.component.css'
 })
-export class MatchAfficherComponent {
+export class MatchAfficherComponent implements OnInit {
+
   private matchsService = inject(MatchsService);
-  private router = inject(Router);
 
   @Input() match!: Match;
   @Input() estLog!: boolean;
@@ -33,6 +35,16 @@ export class MatchAfficherComponent {
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
+  url = 'http://192.168.1.48:4200/match/';
+
+  ngOnInit(): void {
+    this.url += this.match.id;
+    if (this.estLog){
+      this.url +="/arbitrage";
+    } else {
+      this.url +="/details";
+    }
+  }
 
   demanderSuppression(): void {
     this.estModalVisible = true;

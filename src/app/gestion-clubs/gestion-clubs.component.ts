@@ -26,7 +26,6 @@ export class GestionClubsComponent implements OnInit {
   clubsListe$?: Observable<Club[]>;
   estModeCreation: boolean;
   nouveauClub: Club;
-  estModateSecuVisible = false;
   estLog = false;
 
   constructor() {

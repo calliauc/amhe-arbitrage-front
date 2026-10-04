@@ -10,13 +10,40 @@
 }
 
 #top-card {
+  display: flex;
+  flex-direction: column;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
   background-color: rgb(30, 30, 30);
   padding-top: 3px;
   height: 80px;
-  /* border: 1px solid red; */
 }
+
+#intro-top-card {
+  width: 100%;
+  display: flex;
+}
+
+#infos-top-card {
+  width: 80%;
+}
+
+#button-supprimer {
+  width: 20%;
+  /* width: 32px;
+  height: 32px; */
+  border: none;
+  color: rgb(30, 30, 30);
+  background-color: rgb(163, 71, 71);
+  border-top-right-radius: 7px;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+#horodatage-top-card {
+  width: 100%;
+}
+
 
 #middle-card {
   display: flex;
@@ -72,7 +99,7 @@
 }
 
 #button-details {
-  width: 300px;
+  width: 235px;
   height: 46px;
   border: 5px outset rgb(50, 50, 50);
   /* border: none; */
@@ -84,7 +111,7 @@
 }
 
 #button-arbitrer {
-  width: 250px;
+  width: 235px;
   height: 46px;
   border: 5px outset rgb(50, 50, 50);
   /* border: none; */
@@ -92,17 +119,6 @@
   font-size: 1em;
   border-bottom-left-radius: 7px;
   background-color: rgb(30, 30, 30);
-}
-
-#button-supprimer {
-  width: 50px;
-  height: 46px;
-  border: none;
-  color: rgb(30, 30, 30);
-  background-color: rgb(163, 71, 71);
-  border-bottom-right-radius: 7px;
-  font-weight: 600;
-  font-size: 1em;
 }
 
 #button-arbitrer:hover {
@@ -118,4 +134,10 @@
 #button-supprimer:disabled {
   background-color: rgb(100, 70, 70);
   cursor: not-allowed;
+}
+
+#qrcode{
+  position: relative;
+  margin-top: -20px;
+  border-bottom-right-radius: 7px;
 }

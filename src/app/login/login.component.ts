@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject, AfterContentChecked, AfterViewInit } from '@angular/core';
 import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
 import { LogService } from '../shared/services/log.service';
 
@@ -9,19 +9,15 @@ import { LogService } from '../shared/services/log.service';
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   estLog = false;
   estModateSecuVisible = false;
   private logService = inject(LogService);
 
-  ngOnInit(): void {
-    console.log(this.estLog);
+  constructor() {
     this.estLog = JSON.parse(localStorage.getItem('estLog') as string)||false;
-    console.log(this.estLog);
     this.logService.notificationLog.next(this.estLog)
-    console.log(this.estLog);
     this.logService.notification$.subscribe(e => this.estLog = e)
-    console.log(this.estLog);
   }
 
   ouvrirModaleSecu() {

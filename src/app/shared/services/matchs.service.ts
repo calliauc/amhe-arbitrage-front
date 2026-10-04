@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NouveauMatch } from '../models/nouveau-match';
 import { environment } from '../../../environments/environment';
+import { CriteresRechercheMatch } from '../models/criteresRechercheMatch';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,8 @@ export class MatchsService {
 
   env = environment;
   URL = `${this.env.baseUrl}/matchs`;
-  listeMatchs = [] as Match[];
 
   public getMatchs(): Observable<Match[]> {
-    this.listeMatchs = [];
     return this.http.get<Match[]>(this.URL, { responseType: 'json' });
   }
 
@@ -26,6 +25,14 @@ export class MatchsService {
     });
   }
 
+  public rechercherMatch(criteres: CriteresRechercheMatch): Observable<Match[]> {
+    console.log('Recherche de match : ' + criteres);
+    return this.http.post<Match[]>(`${this.URL}/recherche`, criteres, {
+      responseType: 'json',
+    });
+  }
+
+
   public creerMatch(matchACreer: NouveauMatch): Observable<Match> {
     matchACreer.dateCreation.setHours(matchACreer.dateCreation.getHours() + 1);
     console.log('Service creation : ' + matchACreer.dateCreation);
@@ -33,17 +40,6 @@ export class MatchsService {
       responseType: 'json',
     });
   }
-
-  // public modifierMatch(matchAModifier: Match): Observable<Match> {
-  //   console.log('Modif match', matchAModifier);
-  //   return this.http.put<Match>(
-  //     `${this.URL}/${matchAModifier.id}`,
-  //     matchAModifier,
-  //     {
-  //       responseType: 'json',
-  //     }
-  //   );
-  // }
 
   public modifierDateDebutMatch(
     id: number,

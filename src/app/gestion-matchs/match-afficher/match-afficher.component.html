@@ -1,10 +1,20 @@
 <div class="match-wrapper">
   <div id="top-card">
-    <div>
-      <span>Match {{ match.id }} </span>
-      <span>({{ match.statut }})</span>
-    </div>
-    <div>
+    <div id="intro-top-card">
+      <div id="infos-top-card">
+        <span>Match {{ match.id }} </span>
+        <span>({{ match.statut }})</span>
+      </div>
+      @if (estLog) {
+        <button
+        id="button-supprimer"
+        class="btn-match"
+        (click)="demanderSuppression()"
+        >
+        X</button
+        >}
+      </div>
+      <div id="horodatage-top-card">
       @if (match.statut==="nouveau") {
       <p>
         Créé le {{ match.dateCreation | date : "dd/MM/yyyy" }} à
@@ -52,19 +62,15 @@
   </div>
   <div id="bottom-card">
       @if (!estLog) {
-    <a routerLink="/match/{{ match.id }}"
+    <a routerLink="/match/{{ match.id }}/details"
       ><button id="button-details" class="btn-match">Détails</button></a
     >
     } @else {
-    <a routerLink="/arbitrage/{{ match.id }}"
+    <a routerLink="/match/{{ match.id }}/arbitrage"
       ><button id="button-arbitrer" class="btn-match">Arbitrer</button></a
-    ><button
-      id="button-supprimer"
-      class="btn-match"
-      (click)="demanderSuppression()"
-    >
-      X</button
     >}
+  <qrcode id="qrcode" [qrdata]="url" [width]="64" [errorCorrectionLevel]="'M'"></qrcode>
+
   </div>
   @if (estModalVisible){
   <app-confirmation-modal
