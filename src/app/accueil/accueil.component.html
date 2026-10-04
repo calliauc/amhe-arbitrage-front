@@ -1,15 +1,5 @@
 <main>
-  @if (false) {
-  <h3>TEST LOGIN</h3>
-    <form action="/j_security_check" method="post">
-      <label>Username</label>
-      <input type="text" placeholder="Username" name="j_username" required>
-      <label>Password</label>
-      <input type="password" placeholder="Password" name="j_password" required>
-      <button type="submit">Login</button>
-    </form>
-  }
-  @if (!estLog) {
+
   <h3>
     Bienvenue sur l'application live de la première édition de la BURDIGALA CUP !
   </h3>
@@ -22,8 +12,19 @@
     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F720%2F408%2Foriginal%2Fcrossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg&f=1&nofb=1&ipt=d46f1a3182e85e702e4a2de57ae111f162d95895eee9f0629a77d2418d8adadf&ipo=images"
     alt="Image à ajouter"
   />
-  <div></div>
-  } @else {
+
+  @if (false) {
+  <h3>TEST LOGIN</h3>
+    <form action="/j_security_check" method="post">
+      <label>Username</label>
+      <input type="text" placeholder="Username" name="j_username" required>
+      <label>Password</label>
+      <input type="password" placeholder="Password" name="j_password" required>
+      <button type="submit">Login</button>
+    </form>
+  }
+
+  @if (false) {
   <div id="raf">
     <p>Reste à faire :</p>
     <ul>
