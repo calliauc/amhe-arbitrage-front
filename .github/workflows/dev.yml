@@ -1,4 +1,4 @@
-name: ci-stable
+name: ci-dev
 
 on:
   push:
