@@ -203,7 +203,7 @@ export class CreationMatchComponent implements OnInit {
             this.router.navigate(['matchs']);
             break;
           case 'arbitrer':
-            this.router.navigate(['matchs', matchCree.id, 'arbitrage']);
+            this.router.navigate(['match', matchCree.id, 'arbitrage']);
             break;
           case 'rester':
             this.initForm();
