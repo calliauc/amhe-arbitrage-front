@@ -5,16 +5,17 @@ import { TagsService } from '../shared/services/tags.service';
 import { Combattant } from '../shared/models/combattant';
 import { AffichagePouleComponent } from './affichage-poule/affichage-poule.component';
 import { PoulesService } from '../shared/services/poules.service';
-import { LoginComponent } from '../login/login.component';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-gestion-poules',
-    imports: [AffichagePouleComponent, LoginComponent],
+    imports: [AffichagePouleComponent],
     templateUrl: './gestion-poules.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-poules.component.css'
 })
 export class GestionPoulesComponent implements OnInit {
+  private logService = inject(LogService);
   private tagsService = inject(TagsService);
   private poulesService = inject(PoulesService);
 
@@ -24,9 +25,10 @@ export class GestionPoulesComponent implements OnInit {
   combattantsPoule: Combattant[] = [];
   estModeCreation = false;
   estModateSecuVisible = false;
-  estLectureSeule = true;
+  estLog = false;
 
   ngOnInit(): void {
+    this.logService.notification$.subscribe(e => this.estLog = e);
     this.chargerPoules();
     this.tagsService.getTags().subscribe((tags) => {
       tags.forEach((tag) =>
@@ -37,11 +39,7 @@ export class GestionPoulesComponent implements OnInit {
         })
       );
     });
-    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
-  }
-
-  updateLogin(lock: boolean) {
-    this.estLectureSeule = lock;
+    this.estLog = localStorage.getItem('secu') !== 'unlocked';
   }
 
   entrerModeCreation() {

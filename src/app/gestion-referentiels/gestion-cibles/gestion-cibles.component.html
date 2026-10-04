@@ -11,7 +11,7 @@
     <app-cible-ligne
       (supprimerCible)="supprimerCible($event)"
       (modifierCible)="modifierCible($event)"
-      [estLectureSeule]="estLectureSeule"
+      [estLog]="estLog"
       [estPair]="estPair"
       [cible]="cible"
     ></app-cible-ligne>
@@ -22,7 +22,7 @@
     ></app-cible-editer>
     }
   </table>
-  @if (!estModeCreation && !estLectureSeule) {
+  @if (!estModeCreation && !estLog) {
   <button class="btn" id="ajouter-cible" (click)="modeAjout()">
     Ajouter cible
   </button>

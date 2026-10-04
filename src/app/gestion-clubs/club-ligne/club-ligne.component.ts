@@ -13,7 +13,7 @@ import { ClubEditerComponent } from '../club-editer/club-editer.component';
 export class ClubLigneComponent {
   @Input() club!: Club;
   @Input() estPair!: boolean;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() supprimerClub = new EventEmitter<number>();
   @Output() modifierClub = new EventEmitter<Club>();
   estModif: boolean;

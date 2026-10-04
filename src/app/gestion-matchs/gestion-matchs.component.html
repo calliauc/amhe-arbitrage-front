@@ -1,9 +1,8 @@
 <main>
-  <app-login (loginEvent)="updateLogin($event)"></app-login>
-  @if (!estLectureSeule) {
+   @if (estLog) {
   <div id="btns">
     <button
-      [disabled]="estLectureSeule"
+      [disabled]="!estLog"
       class="btn btn-creation-match"
       (click)="creerMatch()"
     >
@@ -28,7 +27,7 @@
     <div class="match">
       <app-match-afficher
         [match]="match"
-        [estLectureSeule]="estLectureSeule"
+        [estLog]="estLog"
         (matchEvent)="refreshList()"
       ></app-match-afficher>
     </div>
@@ -43,7 +42,7 @@
     <div class="match">
       <app-match-afficher
         [match]="match"
-        [estLectureSeule]="estLectureSeule"
+        [estLog]="estLog"
         (matchEvent)="refreshList()"
       ></app-match-afficher>
     </div>
@@ -58,7 +57,7 @@
     <div class="match">
       <app-match-afficher
         [match]="match"
-        [estLectureSeule]="estLectureSeule"
+        [estLog]="estLog"
         (matchEvent)="refreshList()"
       ></app-match-afficher>
     </div>

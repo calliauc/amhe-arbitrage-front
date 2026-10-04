@@ -16,7 +16,7 @@ import { Tag } from '../../shared/models/tag';
 export class GestionTagsComponent implements OnInit {
   private tagsService = inject(TagsService);
 
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
 
   tagsListe?: Tag[];
   tagsListe$?: Observable<Tag[]>;

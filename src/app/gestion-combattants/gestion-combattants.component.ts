@@ -5,7 +5,7 @@ import { CombattantLigneComponent } from './combattant-ligne/combattant-ligne.co
 import { CombattantEditerComponent } from './combattant-editer/combattant-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from '../login/login.component';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-gestion-combattants',
@@ -13,13 +13,13 @@ import { LoginComponent } from '../login/login.component';
         CombattantLigneComponent,
         CombattantEditerComponent,
         CommonModule,
-        LoginComponent,
     ],
     templateUrl: './gestion-combattants.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-combattants.component.css'
 })
 export class GestionCombattantsComponent implements OnInit {
+  private logService = inject(LogService);
   private combattantsService = inject(CombattantsService);
 
   combattantsListe?: Combattant[];
@@ -27,7 +27,7 @@ export class GestionCombattantsComponent implements OnInit {
   estModeCreation: boolean;
   nouveauCombattant: Combattant;
   estModateSecuVisible = false;
-  estLectureSeule = true;
+  estLog = false;
 
   constructor() {
     this.estModeCreation = false;
@@ -35,11 +35,8 @@ export class GestionCombattantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.logService.notification$.subscribe(e => this.estLog = e)
     this.recupererCombattants();
-  }
-
-  updateLogin(lock: boolean) {
-    this.estLectureSeule = lock;
   }
 
   modeAjout(): void {

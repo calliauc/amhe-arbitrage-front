@@ -3,18 +3,19 @@ import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
 import { Router } from '@angular/router';
 import { MatchAfficherComponent } from './match-afficher/match-afficher.component';
-import { LoginComponent } from '../login/login.component';
 import { HemaRatingService } from '../shared/services/hema-rating.sevice';
 import { environment } from '../../environments/environment';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-gestion-matchs',
-    imports: [MatchAfficherComponent, LoginComponent],
+    imports: [MatchAfficherComponent ],
     templateUrl: './gestion-matchs.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-matchs.component.css'
 })
 export class GestionMatchsComponent implements OnInit {
+  private logService = inject(LogService);
   private matchsService = inject(MatchsService);
   private hemaRatingService = inject(HemaRatingService);
   private router = inject(Router);
@@ -27,17 +28,14 @@ export class GestionMatchsComponent implements OnInit {
   texteModal = 'Cette action est définitive';
   idASupprimer?: number;
   estModateSecuVisible = false;
-  estLectureSeule = true;
+  estLog = false;
   estScoresOk = false;
   env = environment;
   URL = `${this.env.baseUrl}/hema-rating/get-csv`;
 
   ngOnInit(): void {
+    this.logService.notification$.subscribe(e => this.estLog = e)
     this.refreshList();
-  }
-
-  updateLogin(lock: boolean) {
-    this.estLectureSeule = lock;
   }
 
   refreshList() {

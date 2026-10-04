@@ -15,7 +15,7 @@
     <app-ruleset-ligne
       (supprimerRuleset)="supprimerRuleset($event)"
       (modifierRuleset)="recupererRulesets()"
-      [estLectureSeule]="estLectureSeule"
+      [estLog]="estLog"
       [estPair]="estPair"
       [ruleset]="ruleset"
     ></app-ruleset-ligne>
@@ -26,7 +26,7 @@
     ></app-ruleset-editer>
     }
   </table>
-  @if (!estModeCreation && !estLectureSeule) {
+  @if (!estModeCreation && !estLog) {
   <button class="btn" id="ajouter-ruleset" (click)="modeAjout()">
     Ajouter ruleset
   </button>

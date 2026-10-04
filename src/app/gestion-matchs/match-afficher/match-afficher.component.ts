@@ -27,7 +27,7 @@ export class MatchAfficherComponent {
   private router = inject(Router);
 
   @Input() match!: Match;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() matchEvent = new EventEmitter<null>();
 
   estModalVisible = false;

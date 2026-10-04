@@ -51,7 +51,7 @@
     </div>
   </div>
   <div id="bottom-card">
-    @if (estLectureSeule) {
+      @if (!estLog) {
     <a routerLink="/match/{{ match.id }}"
       ><button id="button-details" class="btn-match">Détails</button></a
     >

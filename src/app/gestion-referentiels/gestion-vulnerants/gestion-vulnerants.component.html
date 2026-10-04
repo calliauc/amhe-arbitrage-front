@@ -12,7 +12,7 @@
     <app-vulnerant-ligne
       (supprimerVulnerant)="supprimerVulnerant($event)"
       (modifierVulnerant)="modifierVulnerant($event)"
-      [estLectureSeule]="estLectureSeule"
+      [estLog]="estLog"
       [estPair]="estPair"
       [vulnerant]="vulnerant"
     ></app-vulnerant-ligne>
@@ -23,7 +23,7 @@
     ></app-vulnerant-editer>
     }
   </table>
-  @if (!estModeCreation && !estLectureSeule) {
+  @if (!estModeCreation && !estLog) {
   <button class="btn" id="ajouter-vulnerant" (click)="modeAjout()">
     Ajouter vulnerant
   </button>

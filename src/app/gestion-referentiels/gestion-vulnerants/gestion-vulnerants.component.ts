@@ -16,7 +16,7 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
 export class GestionVulnerantsComponent implements OnInit {
   private vulnerantsService = inject(VulnerantsService);
 
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
 
   vulnerantsListe?: RulesetRef[];
   vulnerantsListe$?: Observable<RulesetRef[]>;

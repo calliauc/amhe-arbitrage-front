@@ -23,27 +23,29 @@ form {
   order: 1;
   width: 75%;
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
-#select-combattants {
-  width: 100%;
+.combattant {
+  order: 1;
+  width: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  border: 1px solid black;
+  min-height: 200px;
+}
+
+.select-label {
+  margin-block: 10px;
 }
 
 .select-combattant {
-  display: flex;
-  width: 49%;
-  flex-direction: column;
-  align-items: center;
+  margin-block: 10px;
 }
 
-#preview-combattants {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+.preview-combattant {
+  text-align: center;
 }
 
 #select-tags {

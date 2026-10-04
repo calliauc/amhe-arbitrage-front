@@ -9,7 +9,7 @@
 }"
 >
   <div class="btn menu-elem" (click)="allerVers('')">Accueil</div>
-  @if (!estLectureSeule) {
+    @if (estLog) {
   <div class="btn menu-elem" (click)="allerVers('creer-match')">
     Créer match
   </div>
@@ -20,9 +20,12 @@
     Combattants
   </div>
   <div class="btn menu-elem" (click)="allerVers('clubs')">Clubs</div>
-  @if (!estLectureSeule) {
+    @if (estLog) {
   <div class="btn menu-elem" (click)="allerVers('referentiels')">
     Référentiels
   </div>
   }
+  <div class="btn menu-elem">
+    <app-login></app-login>
+  </div>
 </menu>

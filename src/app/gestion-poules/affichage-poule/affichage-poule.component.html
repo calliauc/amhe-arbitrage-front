@@ -1,7 +1,7 @@
 <div id="poule">
   <div id="titre-poule">
     <h3>{{ poule.nom }}</h3>
-    @if (!estLectureSeule) {
+     @if (estLog) {
     <button class="btn" id="btn-supprimer" (click)="onSupprimer()">X</button>}
   </div>
   <h4 id="liste-tags">

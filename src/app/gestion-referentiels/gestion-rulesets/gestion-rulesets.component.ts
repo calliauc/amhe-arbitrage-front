@@ -16,7 +16,7 @@ import { RulesetsService } from '../../shared/services/rulesets.service';
 export class GestionRulesetsComponent implements OnInit {
   private rulesetsService = inject(RulesetsService);
 
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
 
   rulesetsListe?: Ruleset[];
   rulesetsListe$?: Observable<Ruleset[]>;

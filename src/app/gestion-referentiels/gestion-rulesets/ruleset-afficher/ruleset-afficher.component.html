@@ -11,7 +11,7 @@
     <span> {{ ruleset.cibles | rulesetRefDisplay }}</span>
   </td>
   <td class="col">
-    @if (!estLectureSeule) {
+     @if (estLog) {
     <button class="btn btn-rulesets btn-editer-ruleset" (click)="editer()">
       Editer</button
     >}

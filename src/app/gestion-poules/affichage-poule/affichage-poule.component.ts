@@ -16,7 +16,7 @@ export class AffichagePouleComponent implements OnInit {
   private combattantsService = inject(CombattantsService);
 
   @Input() poule!: Poule;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() supprimer = new EventEmitter<number>();
   combattants!: Combattant[];
 

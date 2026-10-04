@@ -16,7 +16,7 @@ export class CombattantAfficherComponent implements OnInit {
 
   @Input() combattant!: Combattant;
   @Input() estPair!: boolean;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() editerCombattant = new EventEmitter<boolean>();
 
   ngOnInit(): void {

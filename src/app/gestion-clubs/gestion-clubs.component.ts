@@ -5,7 +5,7 @@ import { ClubLigneComponent } from './club-ligne/club-ligne.component';
 import { ClubEditerComponent } from './club-editer/club-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from '../login/login.component';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-gestion-clubs',
@@ -13,13 +13,13 @@ import { LoginComponent } from '../login/login.component';
         ClubLigneComponent,
         ClubEditerComponent,
         CommonModule,
-        LoginComponent,
     ],
     templateUrl: './gestion-clubs.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-clubs.component.css'
 })
 export class GestionClubsComponent implements OnInit {
+  private logService = inject(LogService);
   private clubsService = inject(ClubsService);
 
   clubsListe?: Club[];
@@ -27,7 +27,7 @@ export class GestionClubsComponent implements OnInit {
   estModeCreation: boolean;
   nouveauClub: Club;
   estModateSecuVisible = false;
-  estLectureSeule = true;
+  estLog = false;
 
   constructor() {
     this.estModeCreation = false;
@@ -35,12 +35,10 @@ export class GestionClubsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.logService.notification$.subscribe(e => this.estLog = e)
     this.recupererClubs();
   }
 
-  updateLogin(lock: boolean) {
-    this.estLectureSeule = lock;
-  }
   modeAjout(): void {
     this.estModeCreation = true;
   }

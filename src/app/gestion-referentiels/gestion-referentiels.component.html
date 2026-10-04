@@ -1,12 +1,8 @@
-<div id="header">
-  <app-login (loginEvent)="updateLogin($event)"></app-login>
-</div>
-
 <app-gestion-vulnerants
-  [estLectureSeule]="estLectureSeule"
+  [estLog]="estLog"
 ></app-gestion-vulnerants>
-<app-gestion-cibles [estLectureSeule]="estLectureSeule"></app-gestion-cibles>
-<app-gestion-tags [estLectureSeule]="estLectureSeule"></app-gestion-tags>
+<app-gestion-cibles [estLog]="estLog"></app-gestion-cibles>
+<app-gestion-tags [estLog]="estLog"></app-gestion-tags>
 <app-gestion-rulesets
-  [estLectureSeule]="estLectureSeule"
+  [estLog]="estLog"
 ></app-gestion-rulesets>

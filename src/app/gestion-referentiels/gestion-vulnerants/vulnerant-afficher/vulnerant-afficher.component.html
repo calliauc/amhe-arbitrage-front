@@ -2,7 +2,7 @@
   <td class="col">{{ vulnerant.code }}</td>
   <td class="col">{{ vulnerant.libelle }}</td>
   <td class="col">
-    @if (!estLectureSeule) {
+     @if (estLog) {
     <button class="btn btn-vulnerants btn-editer-vulnerant" (click)="editer()">
       Editer</button
     >}

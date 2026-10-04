@@ -12,7 +12,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class VulnerantAfficherComponent implements OnInit {
   @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() editerVulnerant = new EventEmitter<boolean>();
 
   ngOnInit(): void {

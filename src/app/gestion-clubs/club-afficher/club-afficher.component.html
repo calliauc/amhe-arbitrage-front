@@ -4,7 +4,7 @@
   <td class="col">{{ club.nomComplet }}</td>
   <td class="col">
     <button class="btn btn-clubs btn-afficher-details" disabled>Détails</button>
-    @if (!estLectureSeule) {
+     @if (estLog) {
     <button class="btn btn-clubs btn-editer-club" (click)="editer()">
       Editer</button
     >}

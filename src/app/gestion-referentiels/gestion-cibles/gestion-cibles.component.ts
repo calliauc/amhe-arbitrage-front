@@ -16,7 +16,7 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
 export class GestionCiblesComponent implements OnInit {
   private ciblesService = inject(CiblesService);
 
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
 
   ciblesListe?: RulesetRef[];
   ciblesListe$?: Observable<RulesetRef[]>;

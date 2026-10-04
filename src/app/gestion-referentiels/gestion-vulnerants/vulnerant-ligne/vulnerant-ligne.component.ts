@@ -13,7 +13,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class VulnerantLigneComponent {
   @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() supprimerVulnerant = new EventEmitter<string>();
   @Output() modifierVulnerant = new EventEmitter<RulesetRef>();
   estModif: boolean;

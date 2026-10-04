@@ -13,7 +13,7 @@ import { Tag } from '../../../shared/models/tag';
 export class TagLigneComponent {
   @Input() tag!: Tag;
   @Input() estPair!: boolean;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() supprimerTag = new EventEmitter<number>();
   @Output() modifierTag = new EventEmitter<Tag>();
   estModif: boolean;

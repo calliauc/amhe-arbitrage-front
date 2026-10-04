@@ -1,5 +1,4 @@
 <main>
-  <app-login (loginEvent)="updateLogin($event)"></app-login>
   <table>
     <thead>
       <tr>
@@ -16,7 +15,7 @@
       (modifierCombattant)="modifierCombattant($event)"
       [estPair]="estPair"
       [combattant]="combattant"
-      [estLectureSeule]="estLectureSeule"
+      [estLog]="estLog"
     ></app-combattant-ligne>
     } @if (estModeCreation) {
     <app-combattant-editer
@@ -25,7 +24,7 @@
     ></app-combattant-editer>
     }
   </table>
-  @if (!estModeCreation && !estLectureSeule) {
+  @if (!estModeCreation && estLog) {
   <button class="btn" id="ajouter-combattant" (click)="modeAjout()">
     Ajouter combattant
   </button>

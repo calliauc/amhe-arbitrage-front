@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-login',
@@ -9,31 +10,36 @@ import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.comp
     styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  estLectureSeule = true;
+  estLog = false;
   estModateSecuVisible = false;
-  @Output() loginEvent = new EventEmitter<boolean>();
+  private logService = inject(LogService);
 
   ngOnInit(): void {
-    this.estLectureSeule = localStorage.getItem('secu') !== 'unlocked';
-    this.loginEvent.emit(this.estLectureSeule);
+    console.log(this.estLog);
+    this.estLog = JSON.parse(localStorage.getItem('estLog') as string)||false;
+    console.log(this.estLog);
+    this.logService.notificationLog.next(this.estLog)
+    console.log(this.estLog);
+    this.logService.notification$.subscribe(e => this.estLog = e)
+    console.log(this.estLog);
   }
-  ouvrirSecu() {
+
+  ouvrirModaleSecu() {
     this.estModateSecuVisible = true;
   }
 
-  deverouiller() {
-    this.estLectureSeule = false;
-    this.estModateSecuVisible = false;
-    localStorage.setItem('secu', 'unlocked');
-    this.loginEvent.emit(this.estLectureSeule);
-  }
-  annuler() {
+  fermerModaleSecu() {
     this.estModateSecuVisible = false;
   }
 
-  stopModif() {
-    this.estLectureSeule = true;
-    localStorage.clear();
-    this.loginEvent.emit(this.estLectureSeule);
+  deverouiller() {
+    this.estModateSecuVisible = false;
+    this.logService.notificationLog.next(true)
+    localStorage.setItem('estLog', "true")
+  }
+
+  verouiller() {
+    this.logService.notificationLog.next(false)
+    localStorage.setItem('estLog', "false")
   }
 }

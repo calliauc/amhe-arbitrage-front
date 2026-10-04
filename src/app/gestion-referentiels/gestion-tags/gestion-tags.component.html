@@ -10,7 +10,7 @@
     <app-tag-ligne
       (supprimerTag)="supprimerTag($event)"
       (modifierTag)="modifierTag($event)"
-      [estLectureSeule]="estLectureSeule"
+      [estLog]="estLog"
       [estPair]="estPair"
       [tag]="tag"
     ></app-tag-ligne>
@@ -21,7 +21,7 @@
     ></app-tag-editer>
     }
   </table>
-  @if (!estModeCreation && !estLectureSeule) {
+  @if (!estModeCreation && !estLog) {
   <button class="btn" id="ajouter-tag" (click)="modeAjout()">
     Ajouter tag
   </button>

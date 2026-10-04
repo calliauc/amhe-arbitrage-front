@@ -12,7 +12,7 @@ import { Tag } from '../../../shared/models/tag';
 export class TagAfficherComponent implements OnInit {
   @Input() tag!: Tag;
   @Input() estPair!: boolean;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() editerTag = new EventEmitter<boolean>();
 
   ngOnInit(): void {

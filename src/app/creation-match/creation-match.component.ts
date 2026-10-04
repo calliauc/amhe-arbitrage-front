@@ -9,38 +9,30 @@ import {
 } from '@angular/forms';
 import { CombattantsService } from '../shared/services/combattants.service';
 import { Combattant } from '../shared/models/combattant';
-import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { NouveauMatch } from '../shared/models/nouveau-match';
 import { Ruleset } from '../shared/models/ruleset';
 import { RulesetsService } from '../shared/services/rulesets.service';
 
-import { TimerPipe } from '../shared/pipes/timer.pipe';
-import { RulsetRefPipe } from '../shared/pipes/ruleset-refs.pipe';
-import { TimerReversePipe } from '../shared/pipes/timerReverse.pipe';
 import { couleurs } from '../shared/models/ruleset-ref';
 import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
 import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
-import { LoginComponent } from '../login/login.component';
 import { NguiAutoCompleteDirective, NguiAutoCompleteSelection } from '@ngui/auto-complete';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-creation-match',
     imports: [
     ReactiveFormsModule,
     NguiAutoCompleteDirective,
-    NomsPipe,
-    TimerPipe,
-    RulsetRefPipe,
-    TimerReversePipe,
     CreationMatchModalComponent,
-    LoginComponent
 ],
     templateUrl: './creation-match.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './creation-match.component.css'
 })
 export class CreationMatchComponent implements OnInit {
+  private logService = inject(LogService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private matchsService = inject(MatchsService);
@@ -62,19 +54,16 @@ export class CreationMatchComponent implements OnInit {
   rechercheCombattantA?: string;
   couleurs = couleurs;
   estModateSecuVisible = false;
-  estLectureSeule = true;
+  estLog = false;
 
   /**
    * Initialisation données et formulaire
    */
 
   ngOnInit(): void {
+    this.logService.notification$.subscribe(e => this.estLog = e);
     this.getDatas();
     this.initForm();
-  }
-
-  updateLogin(lock: boolean) {
-    this.estLectureSeule = lock;
   }
 
   getDatas() {

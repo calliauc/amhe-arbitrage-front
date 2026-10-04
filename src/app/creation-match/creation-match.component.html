@@ -1,25 +1,37 @@
 <main>
-  <app-login (loginEvent)="updateLogin($event)"></app-login>
-
   <ng-template #row let-item let-i="index">
     <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
   </ng-template>
 
   <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
     <div id="combattants">
-      <div id="select-combattants">
+
+      <div class="combattant">
+        <div class="select-label">Coté BLEU</div>
         <div class="select-combattant">
-          <div class="select-label">Combattant A</div>
           <input 
             ngui-auto-complete 
             formControlName="combattantA" 
+            [select-on-blur]="true"
             [source]="combattantsListe"
             [itemTemplate]="row" 
             [display-with]="formatName"
           />
         </div>
+
+        <div class="preview-combattant">
+          @if (this.formCreerMatch.value.combattantA; as c) {
+          <div [style.color]="colorA">
+            <div>{{ c.prenom }} {{ c.nom }}</div>
+            <div>{{ c.club?.nomComplet }} ({{ c.club?.ville }})</div>
+          </div>
+        }
+        </div>
+      </div>
+
+      <div class="combattant">
+        <div class="select-label">Coté JAUNE</div>
         <div class="select-combattant">
-          <div class="select-label">Combattant B</div>
           <input 
             ngui-auto-complete 
             formControlName="combattantB" 
@@ -29,22 +41,17 @@
           />
         </div>
 
-        </div>
-        <div id="preview-combattants">
-          @if (this.formCreerMatch.value.combattantA; as a) {
-          <div [style.color]="colorA">
-            <div>{{ a.prenom }} {{ a.nom }}</div>
-            <div>{{ a.club?.nomComplet }} ({{ a.club?.ville }})</div>
-          </div>
-          } @if (this.formCreerMatch.value.combattantB; as b) {
+        <div class="preview-combattant">
+          @if (this.formCreerMatch.value.combattantB; as c) {
           <div [style.color]="colorB">
-            <div>{{ b.prenom }} {{ b.nom }}</div>
-            <div>{{ b.club?.nomComplet }} ({{ b.club?.ville }})</div>
+            <div>{{ c.prenom }} {{ c.nom }}</div>
+            <div>{{ c.club?.nomComplet }} ({{ c.club?.ville }})</div>
           </div>
-          }
+        }
         </div>
-    </div>
+      </div>
 
+    </div>
     <div id="select-tags">
       <div id="tags-titre">Tags</div>
       @for (tag of tags; track $index) {
@@ -60,7 +67,7 @@
       }
     </div>
 
-    @if (!estLectureSeule) {
+     @if (estLog) {
     <button class="btn" id="btn-creer-match" type="submit">Créer</button>
     }
   </form>

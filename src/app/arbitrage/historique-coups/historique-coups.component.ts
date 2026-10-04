@@ -14,7 +14,7 @@ export class HistoriqueCoupsComponent implements OnInit {
   private coupsService = inject(CoupsService);
 
   @Input() matchId!: number;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   listeCoups?: Coup[];
 
   ngOnInit(): void {

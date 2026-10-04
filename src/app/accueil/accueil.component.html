@@ -1,26 +1,5 @@
 <main>
-  
-  <h3>TEST AUTOCOMPLETE</h3>
-  
-  <ng-template #row let-item let-i="index">
-    <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
-  </ng-template>
-
-  <form [formGroup]="combattantCompleteForm">
-    <input 
-    ngui-auto-complete 
-    formControlName="combattantComplete" 
-    [source]="combattants" 
-    [itemTemplate]="row" 
-    [display-with]="formatName"
-    (valueSelected)="onPick($event)"
-    />
-  </form>
-
-
-
-  <!-- <div>{{selected?.nom}}</div> -->
-
+  @if (false) {
   <h3>TEST LOGIN</h3>
     <form action="/j_security_check" method="post">
       <label>Username</label>
@@ -29,18 +8,19 @@
       <input type="password" placeholder="Password" name="j_password" required>
       <button type="submit">Login</button>
     </form>
-  @if (estLectureSeule) {
+  }
+  @if (!estLog) {
   <h3>
-    Bienvenue sur l'application live de la première édition de la BURDIGALA CUP
-    !
+    Bienvenue sur l'application live de la première édition de la BURDIGALA CUP !
   </h3>
   <div>
     D'ici vous pouvez suivre les matchs, consulter vos poules et même certaines
     statistiques de jeu 👀
   </div>
   <img
-    src="https://cdn.discordapp.com/attachments/982330763284467772/1340133553622487040/affiche.jpg?ex=67b14021&is=67afeea1&hm=1cd3f69b4d84ecfc6e32cc72c72beb2382feca80992afe066e933a36a1d2e1c7&"
-    alt="Affiche du tournoi"
+    width="200px"
+    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F720%2F408%2Foriginal%2Fcrossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg&f=1&nofb=1&ipt=d46f1a3182e85e702e4a2de57ae111f162d95895eee9f0629a77d2418d8adadf&ipo=images"
+    alt="Image à ajouter"
   />
   <div></div>
   } @else {

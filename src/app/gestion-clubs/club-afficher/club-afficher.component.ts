@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common';
 export class ClubAfficherComponent implements OnInit {
   @Input() club!: Club;
   @Input() estPair!: boolean;
-  @Input() estLectureSeule!: boolean;
+  @Input() estLog!: boolean;
   @Output() editerClub = new EventEmitter<boolean>();
 
   ngOnInit(): void {

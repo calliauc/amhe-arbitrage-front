@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core';
 import { GestionCiblesComponent } from './gestion-cibles/gestion-cibles.component';
 import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnerants.component';
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
 import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
-import { LoginComponent } from '../login/login.component';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-gestion-referentiels',
@@ -12,17 +12,16 @@ import { LoginComponent } from '../login/login.component';
         GestionVulnerantsComponent,
         GestionRulesetsComponent,
         GestionTagsComponent,
-        LoginComponent,
     ],
     templateUrl: './gestion-referentiels.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-referentiels.component.css'
 })
-export class GestionReferentielsComponent {
-  estModateSecuVisible = false;
-  estLectureSeule = true;
+export class GestionReferentielsComponent implements OnInit {
+  private logService = inject(LogService);
+  estLog = false;
 
-  updateLogin(lock: boolean) {
-    this.estLectureSeule = lock;
+  ngOnInit(): void {
+    this.logService.notification$.subscribe(e => this.estLog = e)
   }
 }

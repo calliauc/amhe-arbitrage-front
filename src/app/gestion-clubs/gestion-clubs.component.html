@@ -1,5 +1,4 @@
 <main>
-  <app-login (loginEvent)="updateLogin($event)"></app-login>
   <table>
     <thead>
       <tr>
@@ -15,7 +14,7 @@
       (modifierClub)="modifierClub($event)"
       [estPair]="estPair"
       [club]="club"
-      [estLectureSeule]="estLectureSeule"
+      [estLog]="estLog"
     ></app-club-ligne>
     } @if (estModeCreation) {
     <app-club-editer
@@ -24,7 +23,7 @@
     ></app-club-editer>
     }
   </table>
-  @if (!estModeCreation && !estLectureSeule) {
+  @if (!estModeCreation && estLog) {
   <button class="btn" id="ajouter-club" (click)="modeAjout()">
     Ajouter club
   </button>

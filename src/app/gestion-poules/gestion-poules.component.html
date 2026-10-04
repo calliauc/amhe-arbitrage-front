@@ -1,7 +1,5 @@
 <main>
-  <app-login (loginEvent)="updateLogin($event)"></app-login>
-
-  @if (!estLectureSeule) {
+   @if (estLog) {
   <div id="bloc-creation">
     @if (!estModeCreation) {
     <button class="btn btn-poule" (click)="entrerModeCreation()">
@@ -48,7 +46,7 @@
     <div class="poule">
       <app-affichage-poule
         [poule]="poule"
-        [estLectureSeule]="estLectureSeule"
+        [estLog]="estLog"
         (supprimer)="supprimerPoule($event)"
       ></app-affichage-poule>
     </div>
