@@ -3,11 +3,12 @@
     <button id="btn-lock" class="btn-login" (click)="verouiller()"></button>
   } @else {
     <button id="btn-unlock" class="btn-login" (click)="ouvrirModaleSecu()"></button>
-  } @if (estModateSecuVisible) {
-  <app-secu-modal
+  }
+</div>
+@if (estModateSecuVisible) {
+  <app-password-modal
     [code]="'refs'"
     (confirmer)="deverouiller()"
     (annuler)="fermerModaleSecu()"
-  ></app-secu-modal>
-  }
-</div>
+  ></app-password-modal>
+}

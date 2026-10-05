@@ -47,4 +47,8 @@ export class AffichageMatchComponent implements OnInit {
       this.match = match;
     });
   }
+
+  arbitrerMatch() {
+    this.router.navigate(['match', this.matchId, 'arbitrage']);
+  }
 }

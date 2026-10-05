@@ -1,9 +1,16 @@
 <main>
   @if (match) {
   <div id="status">Statut du match : {{ match.statut }}</div>
+  <div>
   <button class="btn" id="btn-refresh" (click)="refreshMatch()">
     Actualiser affichage
   </button>
+  @if (estLog) {
+    <button class="btn" id="btn-arbitrage" (click)="arbitrerMatch()">
+      Arbitrer le match
+    </button>
+  }
+  </div>
   <div id="combattants">
     <app-afficher-combattant-card
       [combattant]="match.infosA"
@@ -17,7 +24,7 @@
     ></app-afficher-combattant-card>
   </div>
   <app-historique-coups
-    [estLog]="estLog"
+    [estLog]=false
     [matchId]="matchId"
   ></app-historique-coups>
   } @else {

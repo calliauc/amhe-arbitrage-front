@@ -6,16 +6,17 @@
     border: none;
     font-size: 1em;
 }
+
 #btn-lock::after {
-    content: "🔓" !important;
+    content: "🔓";
 }
 #btn-lock:hover::after {
-    content: "🔒" !important;
+    content: "🔒";
 }
 
 #btn-unlock::after {
-    content: "🔒" !important;
+    content: "🔒";
 }
 #btn-unlock:hover::after {
-    content: "🔓" !important;
+    content: "🔓";
 }

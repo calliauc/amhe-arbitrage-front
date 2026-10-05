@@ -16,7 +16,7 @@ menu {
   display: flex;
 }
 
-.menu-elem {
+.menu-elem, #login {
   padding-inline: 10px;
   padding-block: 5px;
   border-radius: 5px;
@@ -48,9 +48,6 @@ menu {
 
   .masque {
     display: none;
-  }
-
-  .menu-elem {
   }
 
   .btn-menu {

@@ -1,13 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject, AfterContentChecked, AfterViewInit } from '@angular/core';
-import { SecuModalComponent } from '../shared/modales/secu-modal/secu-modal.component';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { PasswordModalComponent } from '../shared/modales/password-modal/password-modal.component';
 import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-login',
-    imports: [SecuModalComponent],
+    imports: [PasswordModalComponent],
     templateUrl: './login.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    styleUrl: './login.component.css'
+    styleUrl: './login.component.css',
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class LoginComponent {
   estLog = false;

@@ -1,9 +1,18 @@
 #combattant {
   border-radius: 20px;
-  width: 300px;
+  min-width: 300px;
+  max-width: 500px;
   text-align: center;
   margin-inline: 10px;
   font-size: 1.3em;
+}
+
+#score {
+  padding-bottom: 5px;
+  font-size: 1.5em;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 @media screen and (max-width: 1099px) {

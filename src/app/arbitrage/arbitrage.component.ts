@@ -1,10 +1,11 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CreationCoupComponent } from './creation-coup/creation-coup.component';
 import { HistoriqueCoupsComponent } from './historique-coups/historique-coups.component';
 import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
+import { LogService } from '../shared/services/log.service';
 
 @Component({
     selector: 'app-arbitrage',
@@ -20,6 +21,7 @@ import { MatchsService } from '../shared/services/matchs.service';
 export class ArbitrageComponent {
   private route = inject(ActivatedRoute);
   private matchsService = inject(MatchsService);
+  private logService = inject(LogService);
   private router = inject(Router);
 
   match!: Match;
@@ -38,6 +40,11 @@ export class ArbitrageComponent {
       });
       this.matchId = params['id'];
     });
+    this.logService.notification$.subscribe(e => {
+      if (!e){
+        this.router.navigate(['match', this.matchId, 'details']);
+      }
+    })
   }
 
   refreshMatch() {

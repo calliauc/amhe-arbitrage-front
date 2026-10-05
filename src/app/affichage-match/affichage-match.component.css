@@ -12,13 +12,20 @@ main {
   font-size: 1.2em;
 }
 
-#btn-refresh {
+.btn {
   width: 200px;
   height: 40px;
-  margin-bottom: 10px;
+  margin: 10px;
   font-size: 1.2em;
-  border: 2px solid #2fcc71;
   border-radius: 10px;
+}
+
+#btn-refresh {
+  border: 2px solid #2fcc71;
+}
+
+#btn-arbitrage {
+  border: 2px solid #cc2f2f;
 }
 
 @media screen and (max-width: 1099px) {
