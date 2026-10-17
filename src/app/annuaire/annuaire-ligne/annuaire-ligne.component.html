@@ -1,0 +1,16 @@
+@if (estModif) {
+<app-annuaire-editer
+  [estPair]="estPair"
+  [individu]="individu"
+  (annulerEditionCreation)="modifIndividuAnnulee()"
+  (supprimerIndividu)="suppressionIndividu($event)"
+  (validerEdition)="modifIndividuTerminee($event)"
+></app-annuaire-editer>
+} @else {
+<app-annuaire-afficher
+  [estPair]="estPair"
+  [individu]="individu"
+  [estLog]="estLog"
+  (editerIndividu)="lancerEdition()"
+></app-annuaire-afficher>
+}

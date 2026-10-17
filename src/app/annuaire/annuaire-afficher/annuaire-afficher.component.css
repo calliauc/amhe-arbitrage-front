@@ -1,0 +1,63 @@
+tr {
+  display: flex;
+  height: 25px;
+  width: 100%;
+  padding-bottom: 2px;
+  /* border: 1px solid green; */
+}
+
+.lignePair {
+  background-color: rgb(60, 60, 60);
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  padding-left: 1%;
+}
+
+.col-club {
+  justify-content: center;
+  align-items: center;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  scrollbar-width: 1px;
+  scrollbar-color: red;
+}
+
+.btn-individus {
+  width: 60px;
+  text-align: center;
+  align-content: center;
+  height: 22px;
+  padding-inline: 10px;
+  margin-inline: 5px;
+  border-radius: 50px;
+  border: 1px solid black;
+  font-size: 0.9em;
+}
+
+.btn-individu:hover {
+  cursor: pointer;
+  border: none;
+  padding-inline: 9px;
+}
+
+.btn-afficher-details {
+  background-color: #2fcc71;
+}
+
+.btn-editer-individu {
+  background-color: rgb(129, 129, 0);
+}
+
+@media screen and (max-width: 1099px) {
+  tr {
+    height: auto;
+  }
+}

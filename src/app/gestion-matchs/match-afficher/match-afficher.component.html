@@ -12,7 +12,8 @@
         (click)="demanderSuppression()"
         >
         X</button
-        >}
+        >
+      }
       </div>
       <div id="horodatage-top-card">
       @if (match.statut==="nouveau") {
@@ -31,27 +32,32 @@
     </div>
   </div>
   <div id="middle-card">
+  @if (qrCodeVisible) {
+    <div (click)="masquerQrCode()">
+      <qrcode id="qrcode" [margin]="2" [qrdata]="url" [width]="180" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+  } @else {
     @if (match.statut === "en cours") {
     <div id="chrono">Chrono : {{ match.timer | timer }}</div>
     }
-    <div class="ligne-combattant" [style.color]="match.couleurA">
-      <div class="combattant">
+    <div class="ligne-inscrit" [style.color]="match.couleurA">
+      <div class="inscrit">
         <span>{{ match.infosA | nomsDisplay }}</span>
-        <br />
-        <span>{{ match.infosA.club | clubDisplay }}</span>
+        <!-- <br />
+        <span>{{ match.infosA.club | clubDisplay }}</span> -->
       </div>
       @if(match.statut!=="nouveau") {
-      <div class="score-combattant">{{ match.scoreA }}</div>
+      <div class="score-inscrit">{{ match.scoreA }}</div>
       }
     </div>
-    <div class="ligne-combattant" [style.color]="match.couleurB">
-      <div class="combattant">
-        <span>{{ match.infosB | nomsDisplay }}</span
-        ><br />
-        <span>{{ match.infosB.club | clubDisplay }}</span>
+    <div class="ligne-inscrit" [style.color]="match.couleurB">
+      <div class="inscrit">
+        <span>{{ match.infosB | nomsDisplay }}</span>
+        <!-- <br /> -->
+        <!-- <span>{{ match.infosB.club | clubDisplay }}</span> -->
       </div>
       @if(match.statut!=="nouveau") {
-      <div class="score-combattant">{{ match.scoreB }}</div>
+      <div class="score-inscrit">{{ match.scoreB }}</div>
       }
     </div>
     <div id="tags">
@@ -59,6 +65,7 @@
       <span class="tag">{{ tag.code }}</span>
       }
     </div>
+  }
   </div>
   <div id="bottom-card">
       @if (!estLog) {
@@ -69,8 +76,15 @@
     <a routerLink="/match/{{ match.id }}/arbitrage"
       ><button id="button-arbitrer" class="btn-match">Arbitrer</button></a
     >}
-  <qrcode id="qrcode" [qrdata]="url" [width]="64" [errorCorrectionLevel]="'M'"></qrcode>
-
+    @if (!qrCodeVisible) {
+      <div (click)="afficherQrCode()">
+        <qrcode id="qrcode" [qrdata]="url" [width]="42" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+    } @else () {
+      <div (click)="masquerQrCode()">
+        <qrcode id="qrcode" [qrdata]="url" [width]="42" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+    }
   </div>
   @if (estModalVisible){
   <app-confirmation-modal

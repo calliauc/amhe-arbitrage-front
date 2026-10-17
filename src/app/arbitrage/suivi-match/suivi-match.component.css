@@ -1,5 +1,5 @@
 /* SCORE */
-.combattant {
+.inscrit {
   text-align: center;
   margin: auto;
 }
@@ -25,11 +25,11 @@
     width: 100%;
   }
 
-  #combattant-a {
+  #inscrit-a {
     width: 45%;
     order: 2;
   }
-  #combattant-b {
+  #inscrit-b {
     width: 45%;
     order: 3;
   }

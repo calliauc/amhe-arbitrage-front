@@ -58,18 +58,18 @@
   margin-bottom: 5px;
 }
 
-.ligne-combattant {
+.ligne-inscrit {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   /* border: 1px solid blue; */
 }
 
-.combattant {
+.inscrit {
   width: 90%;
 }
 
-.score-combattant {
+.score-inscrit {
   width: 10%;
 }
 

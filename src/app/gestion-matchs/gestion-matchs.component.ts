@@ -8,11 +8,11 @@ import { environment } from '../../environments/environment';
 import { LogService } from '../shared/services/log.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Combattant } from '../shared/models/combattant';
-import { CombattantsService } from '../shared/services/combattants.service';
+import { InscritsService } from '../shared/services/inscrits.service';
 import { TagsService } from '../shared/services/tags.service';
 import { Tag, TagCb } from '../shared/models/tag';
 import { CriteresRechercheMatch } from '../shared/models/criteresRechercheMatch';
+import { Inscrit } from '../shared/models/inscrit';
 
 @Component({
     selector: 'app-gestion-matchs',
@@ -29,7 +29,7 @@ export class GestionMatchsComponent implements OnInit {
   private logService = inject(LogService);
   private matchsService = inject(MatchsService);
   private hemaRatingService = inject(HemaRatingService);
-  private combattantsService = inject(CombattantsService);
+  private inscritsService = inject(InscritsService);
   private tagsService = inject(TagsService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
@@ -39,8 +39,8 @@ export class GestionMatchsComponent implements OnInit {
   matchsFinis: Match[] = [];
 
   formFiltrage!: FormGroup;
-  combattantFiltre: Combattant = new Combattant;
-  combattantsListe: Combattant[] = [];
+  inscritFiltre: Inscrit = new Inscrit;
+  inscritsListe: Inscrit[] = [];
   tagsFiltreListe: TagCb[] = [];
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
 
@@ -63,8 +63,8 @@ export class GestionMatchsComponent implements OnInit {
   }
 
   initData(){
-    this.combattantsService.getCombattants().subscribe((liste) => {
-      this.combattantsListe = liste;
+    this.inscritsService.getInscrits().subscribe((liste) => {
+      this.inscritsListe = liste;
     });
     this.tagsService.getTags().subscribe((tags) => {
       tags.forEach((tag) =>
@@ -104,15 +104,15 @@ export class GestionMatchsComponent implements OnInit {
 
   initForm() {
     this.formFiltrage = this.formBuilder.group({
-      combattantFiltre: null,
+      inscritFiltre: null,
       tagsFiltre:null,
     });
     this.formFiltrage.valueChanges.subscribe((values) => {
-      console.log("id recherché : " + values.combattantFiltre.id);
-      if (values.combattantFiltre.id){
-        this.criteres.idCombattant = values.combattantFiltre.id;
+      console.log("id recherché : " + values.inscritFiltre.id);
+      if (values.inscritFiltre.id){
+        this.criteres.idinscrit = values.inscritFiltre.id;
       } else {
-        this.criteres.idCombattant = undefined;
+        this.criteres.idinscrit = undefined;
       }
       this.chercherMatchs(this.criteres)
     });
@@ -130,7 +130,7 @@ export class GestionMatchsComponent implements OnInit {
     this.chercherMatchs(this.criteres);
   }
 
-  formatName(item: Combattant): string {
+  formatName(item: Inscrit): string {
     // return `${item.prenom} ${item.nom} (${item.club?.nomCourt})`;
     return `${item.prenom}`;
   }

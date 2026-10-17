@@ -7,8 +7,8 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CombattantsService } from '../shared/services/combattants.service';
-import { Combattant } from '../shared/models/combattant';
+import { InscritsService } from '../shared/services/inscrits.service';
+import { Inscrit } from '../shared/models/inscrit';
 import { NouveauMatch } from '../shared/models/nouveau-match';
 import { Ruleset } from '../shared/models/ruleset';
 import { RulesetsService } from '../shared/services/rulesets.service';
@@ -36,22 +36,22 @@ export class CreationMatchComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private matchsService = inject(MatchsService);
-  private combattantsService = inject(CombattantsService);
+  private inscritsService = inject(InscritsService);
   private rulesetsService = inject(RulesetsService);
   private tagsService = inject(TagsService);
 
   estModalVisible = false;
   nouveauMatch?: NouveauMatch;
   formCreerMatch!: FormGroup;
-  combattantsListe!: Combattant[];
+  inscritsListe!: Inscrit[];
   rulesets?: Ruleset[];
   tags: TagCb[] = [];
   rulesetChoisi?: Ruleset;
-  a?: Combattant;
-  b?: Combattant;
+  a?: Inscrit;
+  b?: Inscrit;
   colorA?: string;
   colorB?: string;
-  rechercheCombattantA?: string;
+  rechercheinscritA?: string;
   couleurs = couleurs;
   estLog = false;
 
@@ -66,8 +66,8 @@ export class CreationMatchComponent implements OnInit {
   }
 
   getDatas() {
-    this.combattantsService.getCombattants().subscribe((liste) => {
-      this.combattantsListe = liste;
+    this.inscritsService.getInscrits().subscribe((liste) => {
+      this.inscritsListe = liste;
     });
     this.rulesetsService.getRulesets().subscribe((rulesets) => {
       this.rulesets = rulesets;
@@ -90,16 +90,16 @@ export class CreationMatchComponent implements OnInit {
     this.colorB = couleurs[1].code;
 
     this.formCreerMatch = this.formBuilder.group({
-      combattantA: null,
-      combattantB: null,
+      inscritA: null,
+      inscritB: null,
       couleurA: couleurs[0].code,
       couleurB: couleurs[1].code,
       tags: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
       this.rulesetChoisi = undefined;
-      this.a = values.combattantA;
-      this.b = values.combattantB;
+      this.a = values.inscritA;
+      this.b = values.inscritB;
       this.colorA = values.couleurA;
       this.colorB = values.couleurB;
     });
@@ -109,7 +109,7 @@ export class CreationMatchComponent implements OnInit {
    * Interractions formulaire
    */
 
-  formatName(item: Combattant): string {
+  formatName(item: Inscrit): string {
     // return `${item.prenom} ${item.nom} (${item.club?.nomCourt})`;
     return `${item.prenom}`;
   }
@@ -135,8 +135,8 @@ export class CreationMatchComponent implements OnInit {
       alert('Les champs sont mal remplis');
     } else {
       this.nouveauMatch = new NouveauMatch(
-        this.formCreerMatch.value.combattantA.id,
-        this.formCreerMatch.value.combattantB.id,
+        this.formCreerMatch.value.inscritA.id,
+        this.formCreerMatch.value.inscritB.id,
         this.formCreerMatch.value.couleurA,
         this.formCreerMatch.value.couleurB,
         0,
@@ -152,8 +152,8 @@ export class CreationMatchComponent implements OnInit {
 
   estIncomplet(): boolean {
     return !(
-      this.formCreerMatch.value.combattantA &&
-      this.formCreerMatch.value.combattantB &&
+      this.formCreerMatch.value.inscritA &&
+      this.formCreerMatch.value.inscritB &&
       this.formCreerMatch.value.couleurA &&
       this.formCreerMatch.value.couleurB
     );
@@ -161,8 +161,8 @@ export class CreationMatchComponent implements OnInit {
 
   estIncorrect(): boolean {
     return (
-      this.formCreerMatch.value.combattantA ===
-        this.formCreerMatch.value.combattantB ||
+      this.formCreerMatch.value.inscritA ===
+        this.formCreerMatch.value.inscritB ||
       this.formCreerMatch.value.couleurA === this.formCreerMatch.value.couleurB
     );
   }

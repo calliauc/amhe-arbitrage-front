@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Secu } from '../../models/secu';
@@ -23,24 +23,25 @@ export class PasswordModalComponent implements OnInit, AfterViewInit {
   @Input() code!: string;
   @Output() confirmer = new EventEmitter<Secu>();
   @Output() annuler = new EventEmitter<boolean>();
-  @ViewChild('secret') secretFocus!: ElementRef;
+  @ViewChild('passwordInput') passwordInput!: ElementRef;
 
-  secu!: Secu;
+  password!: Secu;
 
   ngOnInit(): void {
-    this.secu = {
+    this.password = {
       code: this.code,
     } as Secu;
   }
 
   ngAfterViewInit(): void {
-    this.secretFocus.nativeElement.focus();
+    this.passwordInput.nativeElement.focus();
   }
 
   verifierPassword() {
-    if (this.secu.secret === 'secret') this.confirmer.emit(this.secu);
+    if (this.password.secret === 'secret') this.confirmer.emit(this.password);
     else alert('Nope');
   }
+
   fermerModale(): void {
     this.annuler.emit(true);
   }

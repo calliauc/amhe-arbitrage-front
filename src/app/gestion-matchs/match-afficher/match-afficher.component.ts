@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Match } from '../../shared/models/match';
-import { ClubPipe } from '../../shared/pipes/club.pipe';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { DatePipe } from '@angular/common';
@@ -13,7 +12,6 @@ import { QRCodeComponent } from 'angularx-qrcode';
     selector: 'app-match-afficher',
     imports: [
         RouterLink,
-        ClubPipe,
         NomsPipe,
         ConfirmationModalComponent,
         DatePipe,
@@ -36,6 +34,7 @@ export class MatchAfficherComponent implements OnInit {
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
   url = 'https://amhe.makhai.fr/match/';
+  qrCodeVisible = false;
 
   ngOnInit(): void {
     this.url += this.match.id;
@@ -59,5 +58,13 @@ export class MatchAfficherComponent implements OnInit {
 
   annulerSuppression() {
     this.estModalVisible = false;
+  }
+
+  afficherQrCode(){
+    this.qrCodeVisible = true;
+  }
+
+  masquerQrCode(){
+    this.qrCodeVisible = false;
   }
 }

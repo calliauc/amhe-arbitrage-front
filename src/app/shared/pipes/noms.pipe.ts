@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Combattant } from '../models/combattant';
+import { Inscrit } from '../models/inscrit';
 
 @Pipe({
   name: 'nomsDisplay',
@@ -7,12 +7,12 @@ import { Combattant } from '../models/combattant';
 })
 export class NomsPipe implements PipeTransform {
   transform(
-    combattant: Combattant | undefined,
+    inscrit: Inscrit | undefined,
     complet = false
   ): string {
-    if (combattant && combattant.pseudo && complet)
-      return `${combattant.prenom} ${combattant.nom} '${combattant.pseudo}'`;
-    if (combattant) return `${combattant.prenom} ${combattant.nom}`;
+    if (inscrit && inscrit.pseudo && complet)
+      return `${inscrit.prenom} ${inscrit.nom} '${inscrit.pseudo}'`;
+    if (inscrit) return `${inscrit.prenom} ${inscrit.nom}`;
     return 'Pas de nom';
   }
 }

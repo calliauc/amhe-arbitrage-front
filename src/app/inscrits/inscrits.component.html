@@ -1,0 +1,33 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <!-- <th class="col">Evenement</th> -->
+        <th class="col">Prénom</th>
+        <th class="col">Nom</th>
+        <th class="col">Club/Ville</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (inscrit of inscritsListe$ | async; track $index; let estPair =
+    $even) {
+    <app-inscrit-ligne
+      (supprimerInscrit)="supprimerInscrit($event)"
+      (modifierInscrit)="modifierInscrit($event)"
+      [estPair]="estPair"
+      [inscrit]="inscrit"
+      [estLog]="estLog"
+    ></app-inscrit-ligne>
+    } @if (estModeCreation) {
+    <app-inscrit-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerInscrit()"
+    ></app-inscrit-editer>
+    }
+  </table>
+  @if (!estModeCreation && estLog) {
+  <button class="btn" id="ajouter-inscrit" (click)="modeAjout()">
+    Ajouter inscrit
+  </button>
+  }
+</main>

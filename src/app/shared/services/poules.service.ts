@@ -17,6 +17,14 @@ export class PoulesService {
     return this.http.get<Poule[]>(this.URL, { responseType: 'json' });
   }
 
+  public getPouleById(id:number): Observable<Poule[]> {
+    return this.http.get<Poule[]>(`${this.URL}/${id}`, { responseType: 'json' });
+  }
+
+  public getPoulesByEvent(id:number): Observable<Poule[]> {
+    return this.http.get<Poule[]>(`${this.URL}/event/${id}`, { responseType: 'json' });
+  }
+
   public creerPoule(pouleACreer: Poule): Observable<Poule> {
     console.log(pouleACreer);
     return this.http.post<Poule>(this.URL, pouleACreer, {
@@ -33,6 +41,19 @@ export class PoulesService {
       }
     );
   }
+
+  public modifierInscrits(poules: Poule[]): Observable<Poule[]> {
+    console.log(poules);
+    
+    return this.http.patch<Poule[]>(
+      `${this.URL}/update-inscrits`,
+      poules,
+      {
+        responseType: 'json',
+      }
+    );
+  }
+
 
   public supprimerPoule(id: number): Observable<object> {
     return this.http.delete(this.URL + '/' + id);

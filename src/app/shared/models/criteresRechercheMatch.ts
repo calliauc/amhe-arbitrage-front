@@ -1,4 +1,4 @@
 export class CriteresRechercheMatch {
-  idCombattant?: number;
+  idinscrit?: number;
   idTags?: number[]
 }

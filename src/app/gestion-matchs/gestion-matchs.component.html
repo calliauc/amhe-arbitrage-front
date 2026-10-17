@@ -4,12 +4,12 @@
   </ng-template>
 
   <form [formGroup]="formFiltrage">
-      <div id="select-combattant">
+      <div id="select-inscrit">
         <input
           ngui-auto-complete 
-          formControlName="combattantFiltre"
+          formControlName="inscritFiltre"
           blank-option-text="Voir tout les matchs"
-          [source]="combattantsListe"
+          [source]="inscritsListe"
           [itemTemplate]="row" 
           [display-with]="formatName"
         />

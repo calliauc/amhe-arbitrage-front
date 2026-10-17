@@ -1,0 +1,22 @@
+<tr [ngClass]="{ lignePair: estPair }">
+  <td class="col">{{ evenement.nom }}</td>
+  <td class="col">{{ evenement.description }}</td>
+  <td class="col">{{ evenement.inscrits?.length }}</td>
+  <td class="col">{{ evenement.dateDebut  | date:'shortDate' }} - {{ evenement.dateFin | date:'shortDate' }}</td>
+  <td class="col">{{ evenement.ruleset?.nom }}</td>
+  <td class="col">
+    <button
+      class="btn btn-evenements btn-afficher-details"
+      (click)="onDetails(evenement.id!)"
+    >
+      Charger
+    </button>
+     @if (estLog) {
+    <button
+      class="btn btn-evenements btn-editer-evenement"
+      (click)="editer()"
+    >
+      Editer</button
+    >}
+  </td>
+</tr>

@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy } from '@angular/core';
-import { ScoreCombattantComponent } from './score-combattant/score-combattant.component';
 import { ChronoComponent } from './chrono/chrono.component';
 import { Match } from '../../shared/models/match';
-import { CombattantComponent } from './combattant/combattant.component';
 import { MatchsService } from '../../shared/services/matchs.service';
+import { ScoreInscritMatchComponent } from './score-inscrit-match/score-inscrit-match.component';
+import { InscritMatchComponent } from './inscrit-match/inscrit-match.component';
 
 @Component({
     selector: 'app-gestion-match',
-    imports: [ScoreCombattantComponent, ChronoComponent, CombattantComponent],
+    imports: [ScoreInscritMatchComponent, ChronoComponent, InscritMatchComponent],
     templateUrl: './suivi-match.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './suivi-match.component.css'

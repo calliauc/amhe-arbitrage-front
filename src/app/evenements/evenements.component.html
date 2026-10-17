@@ -1,0 +1,34 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">Nom</th>
+        <th class="col">Description</th>
+        <th class="col">Inscrits</th>
+        <th class="col">Dates</th>
+        <th class="col">Règles</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (evenement of evenementsListe$ | async; track $index; let estPair =
+    $even) {
+    <app-evenement-ligne
+      (supprimerEvenement)="supprimerEvenement($event)"
+      (modifierEvenement)="modifierEvenement($event)"
+      [estPair]="estPair"
+      [evenement]="evenement"
+      [estLog]="estLog"
+    ></app-evenement-ligne>
+    } @if (estModeCreation) {
+    <app-evenement-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerEvenement()"
+    ></app-evenement-editer>
+    }
+  </table>
+  @if (!estModeCreation && estLog) {
+  <button class="btn" id="ajouter-evenement" (click)="modeAjout()">
+    Ajouter evenement
+  </button>
+  }
+</main>

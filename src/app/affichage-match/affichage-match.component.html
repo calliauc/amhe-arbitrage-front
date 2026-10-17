@@ -11,17 +11,17 @@
     </button>
   }
   </div>
-  <div id="combattants">
-    <app-afficher-combattant-card
-      [combattant]="match.infosA"
+  <div id="inscrits">
+    <app-afficher-inscrit-card
+      [inscrit]="match.infosA"
       [couleur]="match.couleurA"
       [score]="match.scoreA"
-    ></app-afficher-combattant-card>
-    <app-afficher-combattant-card
-      [combattant]="match.infosB"
+    ></app-afficher-inscrit-card>
+    <app-afficher-inscrit-card
+      [inscrit]="match.infosB"
       [couleur]="match.couleurB"
       [score]="match.scoreB"
-    ></app-afficher-combattant-card>
+    ></app-afficher-inscrit-card>
   </div>
   <app-historique-coups
     [estLog]=false

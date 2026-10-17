@@ -1,0 +1,16 @@
+@if (estModif) {
+<app-evenement-editer
+  [estPair]="estPair"
+  [evenement]="evenement"
+  (annulerEditionCreation)="modifEvenementAnnulee()"
+  (supprimerEvenement)="suppressionEvenement($event)"
+  (validerEdition)="modifEvenementTerminee($event)"
+></app-evenement-editer>
+} @else {
+<app-evenement-afficher
+  [estPair]="estPair"
+  [evenement]="evenement"
+  [estLog]="estLog"
+  (editerEvenement)="lancerEdition()"
+></app-evenement-afficher>
+}

@@ -9,21 +9,16 @@
 }"
 >
   <div class="btn menu-elem" (click)="allerVers('')">Accueil</div>
-    @if (estLog) {
-  <div class="btn menu-elem" (click)="allerVers('creer-match')">
-    Créer match
-  </div>
-  }
-  <div class="btn menu-elem" (click)="allerVers('matchs')">Matchs</div>
+  <div class="btn menu-elem" (click)="allerVers('evenement')">Evenement</div>
+  <!-- <div class="btn menu-elem" (click)="allerVers('evenements')">Evenements</div> -->
+  <div class="btn menu-elem" (click)="allerVers('inscrits')">Inscrits</div>
   <div class="btn menu-elem" (click)="allerVers('poules')">Poules</div>
-  <div class="btn menu-elem" (click)="allerVers('combattants')">
-    Combattants
-  </div>
-  <div class="btn menu-elem" (click)="allerVers('clubs')">Clubs</div>
+  <div class="btn menu-elem" (click)="allerVers('matchs')">Matchs</div>
     @if (estLog) {
-  <div class="btn menu-elem" (click)="allerVers('referentiels')">
-    Référentiels
-  </div>
+  <div>|</div>
+  <div class="btn menu-elem" (click)="allerVers('annuaire')">Annuaire</div>
+  <div class="btn menu-elem" (click)="allerVers('clubs')">Clubs</div>
+  <div class="btn menu-elem" (click)="allerVers('referentiels')">Référentiels</div>
   }
   <div class="btn" id="login">
     <app-login></app-login>

@@ -1,16 +1,16 @@
 <section id="section-suivi">
-  <app-combattant
-    id="combattant-a"
-    class="combattant"
-    [combattant]="match.infosA"
+  <app-inscrit-match
+    id="inscrit-a"
+    class="inscrit"
+    [inscrit]="match.infosA"
     [couleur]="match.couleurA"
-  ></app-combattant>
-  <app-score-combattant
+  ></app-inscrit-match>
+  <app-score-inscrit-match
     id="score-a"
     [score]="match.scoreA"
     [couleur]="match.couleurA"
     (scoreEvent)="updateScoreA($event)"
-  ></app-score-combattant>
+  ></app-score-inscrit-match>
   <app-chrono
     id="chrono"
     [match]="match"
@@ -18,16 +18,16 @@
     (timerDebutEvent)="setDebutMatch()"
     (timerFinEvent)="setFinMatch($event)"
   ></app-chrono>
-  <app-score-combattant
+  <app-score-inscrit-match
     id="score-b"
     [score]="match.scoreB"
     [couleur]="match.couleurB"
     (scoreEvent)="updateScoreB($event)"
-  ></app-score-combattant>
-  <app-combattant
-    id="combattant-b"
-    class="combattant"
-    [combattant]="match.infosB"
+  ></app-score-inscrit-match>
+  <app-inscrit-match
+    id="inscrit-b"
+    class="inscrit"
+    [inscrit]="match.infosB"
     [couleur]="match.couleurB"
-  ></app-combattant>
+  ></app-inscrit-match>
 </section>

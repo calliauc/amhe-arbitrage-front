@@ -1,0 +1,16 @@
+@if (estModif) {
+<app-inscrit-editer
+  [estPair]="estPair"
+  [inscrit]="inscrit"
+  (annulerEditionCreation)="modifInscritAnnulee()"
+  (supprimerInscrit)="suppressionInscrit($event)"
+  (validerEdition)="modifInscritTerminee($event)"
+></app-inscrit-editer>
+} @else {
+<app-inscrit-afficher
+  [estPair]="estPair"
+  [inscrit]="inscrit"
+  [estLog]="estLog"
+  (editerInscrit)="lancerEdition()"
+></app-inscrit-afficher>
+}

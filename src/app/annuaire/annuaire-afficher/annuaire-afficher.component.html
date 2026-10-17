@@ -1,0 +1,20 @@
+<tr [ngClass]="{ lignePair: estPair }">
+  <td class="col">{{ individu.prenom }}</td>
+  <td class="col">{{ individu.nom }}</td>
+  <td class="col col-club">{{ individu.club | clubDisplay }}</td>
+  <td class="col">
+    <button
+      class="btn btn-individus btn-afficher-details"
+      (click)="onDetails(individu.id!)"
+    >
+      Détails
+    </button>
+     @if (estLog) {
+    <button
+      class="btn btn-individus btn-editer-individu"
+      (click)="editer()"
+    >
+      Editer</button
+    >}
+  </td>
+</tr>

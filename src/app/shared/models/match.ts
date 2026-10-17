@@ -1,11 +1,11 @@
-import { Combattant } from './combattant';
+import { Inscrit } from './inscrit';
 import { Ruleset } from './ruleset';
 import { Tag } from './tag';
 
 export class Match {
   id!: number;
-  infosA!: Combattant;
-  infosB!: Combattant;
+  infosA!: Inscrit;
+  infosB!: Inscrit;
   couleurA!: string;
   couleurB!: string;
   scoreA = 0;

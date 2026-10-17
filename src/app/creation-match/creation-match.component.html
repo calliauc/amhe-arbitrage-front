@@ -4,22 +4,22 @@
   </ng-template>
 
   <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
-    <div id="combattants">
+    <div id="inscrits">
 
-      <div class="combattant">
+      <div class="inscrit">
         <div class="select-label">Coté BLEU</div>
-        <div class="select-combattant">
+        <div class="select-inscrit">
           <input 
             ngui-auto-complete 
-            formControlName="combattantA" 
-            [source]="combattantsListe"
+            formControlName="inscritA" 
+            [source]="inscritsListe"
             [itemTemplate]="row" 
             [display-with]="formatName"
           />
         </div>
 
-        <div class="preview-combattant">
-          @if (this.formCreerMatch.value.combattantA; as c) {
+        <div class="preview-inscrit">
+          @if (this.formCreerMatch.value.inscritA; as c) {
           <div [style.color]="colorA">
             <div>{{ c.prenom }} {{ c.nom }}</div>
             <div>{{ c.club?.nomComplet }} ({{ c.club?.ville }})</div>
@@ -28,20 +28,20 @@
         </div>
       </div>
 
-      <div class="combattant">
+      <div class="inscrit">
         <div class="select-label">Coté JAUNE</div>
-        <div class="select-combattant">
+        <div class="select-inscrit">
           <input 
             ngui-auto-complete 
-            formControlName="combattantB" 
-            [source]="combattantsListe"
+            formControlName="inscritB" 
+            [source]="inscritsListe"
             [itemTemplate]="row" 
             [display-with]="formatName"
           />
         </div>
 
-        <div class="preview-combattant">
-          @if (this.formCreerMatch.value.combattantB; as c) {
+        <div class="preview-inscrit">
+          @if (this.formCreerMatch.value.inscritB; as c) {
           <div [style.color]="colorB">
             <div>{{ c.prenom }} {{ c.nom }}</div>
             <div>{{ c.club?.nomComplet }} ({{ c.club?.ville }})</div>

@@ -1,0 +1,32 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">Prénom</th>
+        <th class="col">Nom</th>
+        <th class="col">Club/Ville</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (individu of individusListe$ | async; track $index; let estPair =
+    $even) {
+    <app-annuaire-ligne
+      (supprimerIndividu)="supprimerIndividu($event)"
+      (modifierIndividu)="modifierIndividu($event)"
+      [estPair]="estPair"
+      [individu]="individu"
+      [estLog]="estLog"
+    ></app-annuaire-ligne>
+    } @if (estModeCreation) {
+    <app-annuaire-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerIndividu()"
+    ></app-annuaire-editer>
+    }
+  </table>
+  @if (!estModeCreation && estLog) {
+  <button class="btn" id="ajouter-individu" (click)="modeAjout()">
+    Ajouter individu
+  </button>
+  }
+</main>

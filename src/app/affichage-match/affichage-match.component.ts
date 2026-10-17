@@ -3,12 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
 import { HistoriqueCoupsComponent } from '../arbitrage/historique-coups/historique-coups.component';
-import { AfficherCombattantCardComponent } from './afficher-combattant-card/afficher-combattant-card.component';
 import { LogService } from '../shared/services/log.service';
+import { AfficherinscritCardComponent } from './afficher-inscrit-card/afficher-inscrit-card.component';
 
 @Component({
     selector: 'app-affichage-match',
-    imports: [HistoriqueCoupsComponent, AfficherCombattantCardComponent],
+    imports: [HistoriqueCoupsComponent, AfficherinscritCardComponent],
     templateUrl: './affichage-match.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './affichage-match.component.css'
