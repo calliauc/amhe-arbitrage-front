@@ -44,7 +44,7 @@ export class GestionMatchsComponent implements OnInit {
   tagsFiltreListe: TagCb[] = [];
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
 
-  estModalVisible = false;  
+  estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
 
@@ -56,7 +56,7 @@ export class GestionMatchsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.logService.notification$.subscribe(e => this.estLog = e)
+    this.logService.notificationLog$.subscribe(e => this.estLog = e)
     this.initData();
     this.chercherMatchs(this.criteres);
     this.initForm();
@@ -117,7 +117,7 @@ export class GestionMatchsComponent implements OnInit {
       this.chercherMatchs(this.criteres)
     });
   }
-  
+
   onCheckTag($event: any) {
     const id = $event.target.value;
     const isChecked = $event.target.checked;

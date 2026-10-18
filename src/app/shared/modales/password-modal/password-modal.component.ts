@@ -7,21 +7,20 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Secu } from '../../models/secu';
+import { RolesNames } from '../../models/roles';
 
 @Component({
     selector: 'app-password-modal',
     imports: [FormsModule],
     templateUrl: './password-modal.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './password-modal.component.css'
 })
 export class PasswordModalComponent implements OnInit, AfterViewInit {
   @Input() code!: string;
-  @Output() confirmer = new EventEmitter<Secu>();
+  @Output() confirmer = new EventEmitter<RolesNames>();
   @Output() annuler = new EventEmitter<boolean>();
   @ViewChild('passwordInput') passwordInput!: ElementRef;
 
@@ -38,8 +37,17 @@ export class PasswordModalComponent implements OnInit, AfterViewInit {
   }
 
   verifierPassword() {
-    if (this.password.secret === 'secret') this.confirmer.emit(this.password);
-    else alert('Nope');
+    switch (this.password.secret) {
+      case "arbitre":
+        this.confirmer.emit("arbitre");
+        break;
+      case "admin":
+        this.confirmer.emit("admin");
+        break;
+      default:
+        alert('Nope');
+        break;
+    }
   }
 
   fermerModale(): void {

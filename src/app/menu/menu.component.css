@@ -17,9 +17,11 @@ menu {
 }
 
 .menu-elem, #login {
-  padding-inline: 10px;
+  padding-inline: 15px;
   padding-block: 5px;
   border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .menu-elem:hover {

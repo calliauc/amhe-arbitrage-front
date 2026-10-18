@@ -36,7 +36,7 @@ export class GestionPoulesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logService.notification$.subscribe(e => this.estLog = e);
+    this.logService.notificationLog$.subscribe(e => this.estLog = e);
     if (this.id)
       this.poulesService.getPoulesByEvent(this.id).subscribe(poules => {
     console.log(poules);

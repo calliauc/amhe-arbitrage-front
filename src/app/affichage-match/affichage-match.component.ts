@@ -39,7 +39,7 @@ export class AffichageMatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logService.notification$.subscribe(e => this.estLog = e)
+    this.logService.notificationLog$.subscribe(e => this.estLog = e)
   }
 
   refreshMatch() {

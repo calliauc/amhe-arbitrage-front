@@ -1,24 +1,25 @@
 @if (!estMenuVisible) {
-<button class="btn-menu" (click)="afficherMenu()">Menu</button>} @if
-(estMenuVisible) {
-<button class="btn-menu" (click)="masquerMenu()">Masquer</button>}
+  <button class="btn-menu" (click)="afficherMenu()">Menu</button>
+} @if (estMenuVisible) {
+  <button class="btn-menu" (click)="masquerMenu()">Masquer</button>
+}
 <menu
   [ngClass]="{
   'masque': !estMenuVisible,
   'affiche': estMenuVisible,
 }"
 >
-  <div class="btn menu-elem" (click)="allerVers('')">Accueil</div>
+  <!-- <div class="btn menu-elem" (click)="allerVers('')">Accueil</div> -->
   <div class="btn menu-elem" (click)="allerVers('evenement')">Evenement</div>
   <!-- <div class="btn menu-elem" (click)="allerVers('evenements')">Evenements</div> -->
   <div class="btn menu-elem" (click)="allerVers('inscrits')">Inscrits</div>
   <div class="btn menu-elem" (click)="allerVers('poules')">Poules</div>
   <div class="btn menu-elem" (click)="allerVers('matchs')">Matchs</div>
-    @if (estLog) {
-  <div>|</div>
-  <div class="btn menu-elem" (click)="allerVers('annuaire')">Annuaire</div>
-  <div class="btn menu-elem" (click)="allerVers('clubs')">Clubs</div>
-  <div class="btn menu-elem" (click)="allerVers('referentiels')">Référentiels</div>
+  @if (role=='admin') {
+    <div>|</div>
+    <div class="btn menu-elem" (click)="allerVers('annuaire')">Annuaire</div>
+    <div class="btn menu-elem" (click)="allerVers('clubs')">Clubs</div>
+    <div class="btn menu-elem" (click)="allerVers('referentiels')">Référentiels</div>
   }
   <div class="btn" id="login">
     <app-login></app-login>

@@ -17,7 +17,7 @@ export const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
   { path: 'evenement/:id', component: EvenementComponent },
   { path: 'evenements', component: EvenementsComponent },
-  { path: 'creer-match', component: CreationMatchComponent },
+  // { path: 'creer-match', component: CreationMatchComponent },
   { path: 'matchs', component: GestionMatchsComponent },
   { path: 'match/:id/arbitrage', component: ArbitrageComponent },
   { path: 'match/:id/details', component: AffichageMatchComponent },
@@ -27,6 +27,6 @@ export const routes: Routes = [
   { path: 'clubs', component: GestionClubsComponent },
   { path: 'referentiels', component: GestionReferentielsComponent },
   { path: 'annuaire', component: AnnuaireComponent },
-  { path: 'accueil', component: AccueilComponent },
-  { path: '**', component: AccueilComponent },
+  // { path: 'accueil', component: AccueilComponent },
+  { path: '**', component: EvenementComponent },
 ];

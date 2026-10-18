@@ -1,6 +1,7 @@
 <div id="login">
-    @if (estLog) {
-    <button id="btn-lock" class="btn-login" (click)="verouiller()"></button>
+    @if (role!='guest') {
+      <button id="btn-lock" class="btn-login" (click)="verouiller()"></button>
+      <span>Accès {{role}}</span>
   } @else {
     <button id="btn-unlock" class="btn-login" (click)="ouvrirModaleSecu()"></button>
   }
@@ -8,7 +9,7 @@
 @if (estModateSecuVisible) {
   <app-password-modal
     [code]="'refs'"
-    (confirmer)="deverouiller()"
+    (confirmer)="deverouiller($event)"
     (annuler)="fermerModaleSecu()"
   ></app-password-modal>
 }

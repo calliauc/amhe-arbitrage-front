@@ -40,7 +40,7 @@ export class ArbitrageComponent {
       });
       this.matchId = params['id'];
     });
-    this.logService.notification$.subscribe(e => {
+    this.logService.notificationLog$.subscribe(e => {
       if (!e){
         this.router.navigate(['match', this.matchId, 'details']);
       }

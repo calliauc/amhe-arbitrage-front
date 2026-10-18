@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LogService } from '../shared/services/log.service';
 import { LoginComponent } from '../login/login.component';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-menu',
     imports: [CommonModule, LoginComponent],
     templateUrl: './menu.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
@@ -16,10 +16,10 @@ export class MenuComponent implements OnInit {
   private router = inject(Router);
 
   estMenuVisible = false;
-  estLog = false;
+  role!: RolesNames;
 
   ngOnInit(): void {
-    this.logService.notification$.subscribe(e => this.estLog = e)
+    this.logService.notificationRole$.subscribe(e => this.role = e)
   }
 
   allerVers(page: string) {
