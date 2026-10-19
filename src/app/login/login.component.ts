@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { PasswordModalComponent } from '../shared/modales/password-modal/password-modal.component';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
 
 @Component({
@@ -11,20 +11,16 @@ import { RolesNames } from '../shared/models/roles';
 })
 
 export class LoginComponent {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   estModateSecuVisible = false;
-  role: RolesNames | null;
-  estLog: boolean | null;
+  role!: RolesNames;
+  estLog!: boolean;
 
   constructor() {
-    this.estLog = Boolean(localStorage.getItem('estLog'));
-    if (!this.estLog)
-      this.logService.notificationLog$.subscribe(e => this.estLog = e);
+    this.logService.notificationLog$.subscribe(e => this.estLog = e);
     this.logService.notificationLog.next(this.estLog);
 
-    this.role = localStorage.getItem('role') as RolesNames;
-    if (!this.role)
-      this.logService.notificationRole$.subscribe(e => this.role = e);
+    this.logService.notificationRole$.subscribe(e => this.role = e);
     this.logService.notificationRole.next(this.role);
   }
 

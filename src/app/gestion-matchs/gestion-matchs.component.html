@@ -30,7 +30,7 @@
 
     </form>
 
-   @if (estLog) {
+   @if (Auth.estAdmin(role)) {
   <div id="btns">
     <button
       [disabled]="!estLog"

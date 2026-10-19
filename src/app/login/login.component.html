@@ -1,15 +1,20 @@
-<div id="login">
-    @if (role!='guest') {
-      <button id="btn-lock" class="btn-login" (click)="verouiller()"></button>
-      <span>Accès {{role}}</span>
+<!-- <div id="login"> -->
+  @if (!role || role=='guest') {
+    <button type="button" id="btn-unlock" class="btn-login" (click)="ouvrirModaleSecu()" aria-label="login button">
+      <img class="icon" src="https://cdn-icons-png.flaticon.com/128/1828/1828503.png" alt="">
+      <!-- <span class="role">Accès {{role}}</span> -->
+    </button>
   } @else {
-    <button id="btn-unlock" class="btn-login" (click)="ouvrirModaleSecu()"></button>
-  }
-</div>
+  <button type="button" id="btn-lock" class="btn-login" (click)="verouiller()" aria-label="logout button">
+    <span class="role">{{role}}</span>
+    <img class="icon" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F483%2F483343.png&f=1&nofb=1&ipt=07e57820e8eaded8b8c8179b45c66bc1d588b1c259483ae69f805945d88a3150&ipo=images" alt="">
+  </button>
+}
+<!-- </div> -->
 @if (estModateSecuVisible) {
-  <app-password-modal
-    [code]="'refs'"
-    (confirmer)="deverouiller($event)"
-    (annuler)="fermerModaleSecu()"
-  ></app-password-modal>
+<app-password-modal
+  [code]="'refs'"
+  (confirmer)="deverouiller($event)"
+  (annuler)="fermerModaleSecu()"
+></app-password-modal>
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { LoginComponent } from '../login/login.component';
 import { RolesNames } from '../shared/models/roles';
 
@@ -12,7 +12,7 @@ import { RolesNames } from '../shared/models/roles';
     styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private router = inject(Router);
 
   estMenuVisible = false;

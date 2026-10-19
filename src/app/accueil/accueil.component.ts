@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-accueil',
@@ -9,7 +9,7 @@ import { LogService } from '../shared/services/log.service';
     styleUrl: './accueil.component.css'
 })
 export class AccueilComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
 
   env = environment;
   estLog = false;

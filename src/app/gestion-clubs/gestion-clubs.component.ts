@@ -5,7 +5,7 @@ import { ClubLigneComponent } from './club-ligne/club-ligne.component';
 import { ClubEditerComponent } from './club-editer/club-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-gestion-clubs',
@@ -19,7 +19,7 @@ import { LogService } from '../shared/services/log.service';
     styleUrl: './gestion-clubs.component.css'
 })
 export class GestionClubsComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private clubsService = inject(ClubsService);
 
   clubsListe?: Club[];

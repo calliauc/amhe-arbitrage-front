@@ -3,7 +3,7 @@ import { IndividuService } from '../shared/services/individus.service';
 import { Individu } from '../shared/models/individu';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { AnnuaireLigneComponent } from './annuaire-ligne/annuaire-ligne.component';
 import { AnnuaireEditerComponent } from './annuaire-editer/annuaire-editer.component';
 
@@ -19,7 +19,7 @@ import { AnnuaireEditerComponent } from './annuaire-editer/annuaire-editer.compo
     styleUrl: './annuaire.component.css'
 })
 export class AnnuaireComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private individuService = inject(IndividuService);
 
   individusListe?: Individu[];

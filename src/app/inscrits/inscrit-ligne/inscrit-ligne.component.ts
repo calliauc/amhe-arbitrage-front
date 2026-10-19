@@ -20,6 +20,8 @@ export class InscritLigneComponent {
 
   constructor() {
     this.estModif = false;
+    console.log(this.inscrit);
+    
   }
 
   lancerEdition(): void {

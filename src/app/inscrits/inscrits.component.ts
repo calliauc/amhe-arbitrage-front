@@ -5,37 +5,57 @@ import { InscritLigneComponent } from './inscrit-ligne/inscrit-ligne.component';
 import { InscritEditerComponent } from './inscrit-editer/inscrit-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { Evenement } from '../shared/models/evenement';
+import { EvenementsService } from '../shared/services/evenements.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-inscrits',
     imports: [
         InscritLigneComponent,
         InscritEditerComponent,
-        CommonModule,
+        CommonModule
     ],
     templateUrl: './inscrits.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './inscrits.component.css'
 })
 export class InscritsComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private inscritsService = inject(InscritsService);
+  private evenementsService = inject(EvenementsService);
+  private router = inject(Router);
 
-  inscritsListe?: Inscrit[];
+  evenement!:Evenement;
   inscritsListe$?: Observable<Inscrit[]>;
-  estModeCreation: boolean;
-  nouveauInscrit: Inscrit;
-  estLog = false;
+  estModeCreation = false;
+  nouveauInscrit= new Inscrit();
+  role = 'guest';
 
   constructor() {
-    this.estModeCreation = false;
-    this.nouveauInscrit = new Inscrit();
+    this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;
+    console.log(this.evenement);    
+    if(!this.evenement.id){
+      localStorage.setItem('origin-page', 'inscrits');
+      this.router.navigate(['evenements']);
+    }
   }
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e)
+    this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
     this.recupererInscrits();
+    this.logService.notificationRole$.subscribe(e => this.role = e)
+  }
+
+  recupererInscrits() {
+    this.inscritsListe$ = this.inscritsService.getInscritsByEvent(this.evenement.id);
+  }
+
+  creerInscrit() {
+    this.inscritsListe$ = this.inscritsListe$?.pipe(
+      tap(() => (this.estModeCreation = false))
+    );
   }
 
   modeAjout(): void {
@@ -44,16 +64,6 @@ export class InscritsComponent implements OnInit {
 
   annulerEdition() {
     this.estModeCreation = false;
-  }
-
-  recupererInscrits() {
-    this.inscritsListe$ = this.inscritsService.getInscrits();
-  }
-
-  creerInscrit() {
-    this.inscritsListe$ = this.inscritsListe$?.pipe(
-      tap(() => (this.estModeCreation = false))
-    );
   }
 
   modifierInscrit(inscritModifie: Inscrit) {

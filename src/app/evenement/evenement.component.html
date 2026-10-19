@@ -1,26 +1,18 @@
 @if (evenement) {
-<div id="head">
-    <h1>{{ evenement.nom }}</h1>
-    <h2>
-      <span>Du </span>
-      <span>{{ evenement.dateDebut | date:'shortDate' }}</span>
-      <span> au </span>
-      <span>{{ evenement.dateFin | date:'shortDate' }}</span>
-    </h2>
-    <div>
-      <button class="btn" (click)="onListeEvenements()">
-        Voir la liste des événements
-      </button>
+  <main>
+    <div id="head">
+      <h1>{{ evenement.nom }}</h1>
+      <h2>
+        <span>Du </span>
+        <span>{{ evenement.dateDebut | date:'shortDate' }}</span>
+        <span> au </span>
+        <span>{{ evenement.dateFin | date:'shortDate' }}</span>
+      </h2>
+      <div>
+        <button type="button" class="btn" (click)="onListeEvenements()">
+          Voir la liste des événements
+        </button>
+      </div>
     </div>
-  </div>
-  <div id="corps">
-    <div>
-      <h2>Matchs</h2>
-      <app-gestion-matchs></app-gestion-matchs>
-    </div>
-    <div>
-      <h2>Inscrits</h2>
-        <app-inscrits></app-inscrits>
-    </div>
-  </div>
+  </main>
 }

@@ -1,0 +1,13 @@
+@if (evenement) {
+  <div id="head">
+    <h1>{{ evenement.nom }}</h1>
+    <div class="date">
+      <span>Du </span>
+      <span>{{ evenement.dateDebut | date:'shortDate' }}</span>
+      <span> au </span>
+      <span>{{ evenement.dateFin | date:'shortDate' }}</span>
+    </div>
+  </div>
+} @else {
+  <div>Aucun event chargé</div>
+}

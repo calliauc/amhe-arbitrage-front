@@ -5,7 +5,7 @@ import { EvenementLigneComponent } from './evenement-ligne/evenement-ligne.compo
 import { EvenementEditerComponent } from './evenement-editer/evenement-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-evenements',
@@ -19,7 +19,7 @@ import { LogService } from '../shared/services/log.service';
     styleUrl: './evenements.component.css'
 })
 export class EvenementsComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private evenementsService = inject(EvenementsService);
 
   evenementsListe?: Evenement[];

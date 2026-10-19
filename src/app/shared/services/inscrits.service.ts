@@ -31,6 +31,11 @@ export class InscritsService {
     });
   }
 
+  public getInscritsByEvent(idEvent: number): Observable<Inscrit[]> {
+    return this.http.get<Inscrit[]>(`${this.URL}/event/${idEvent}`, {
+      responseType: 'json',
+    });
+  }
 
   public getInscritsByTagsMatchs(tags: Tag[]): Observable<Inscrit[]> {
     const tagsId = tags.map((tag) => tag.id);

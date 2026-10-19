@@ -3,7 +3,7 @@ import { GestionCiblesComponent } from './gestion-cibles/gestion-cibles.componen
 import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnerants.component';
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
 import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-gestion-referentiels',
@@ -18,7 +18,7 @@ import { LogService } from '../shared/services/log.service';
     styleUrl: './gestion-referentiels.component.css'
 })
 export class GestionReferentielsComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   estLog = false;
 
   ngOnInit(): void {

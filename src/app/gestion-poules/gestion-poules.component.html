@@ -41,12 +41,9 @@
     }
   </div>
   }
-  @if (id) {
-    <div>{{id}}</div>
+  @if (evenement.id) {
+    <div>{{evenement.id}}</div>
   }
-
-
-
 
   <div id="liste-poules" cdkDropListGroup>
     @for (poule of poules; track $index) {
@@ -80,7 +77,6 @@
           }
         </table>
       </div>
-        
       </div>
     </div>
     }

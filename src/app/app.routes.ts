@@ -15,14 +15,15 @@ import { EvenementComponent } from './evenement/evenement.component';
 
 export const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
-  { path: 'evenement/:id', component: EvenementComponent },
   { path: 'evenements', component: EvenementsComponent },
-  // { path: 'creer-match', component: CreationMatchComponent },
+
   { path: 'matchs', component: GestionMatchsComponent },
-  { path: 'match/:id/arbitrage', component: ArbitrageComponent },
-  { path: 'match/:id/details', component: AffichageMatchComponent },
   { path: 'poules', component: GestionPoulesComponent },
   { path: 'inscrits', component: InscritsComponent },
+
+  // { path: 'creer-match', component: CreationMatchComponent },
+  { path: 'match/:id/arbitrage', component: ArbitrageComponent },
+  { path: 'match/:id/details', component: AffichageMatchComponent },
   { path: 'inscrit/:id', component: InscritDetailsComponent },
   { path: 'clubs', component: GestionClubsComponent },
   { path: 'referentiels', component: GestionReferentielsComponent },

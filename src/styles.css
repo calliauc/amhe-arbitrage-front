@@ -7,12 +7,17 @@
   --ngui-ac-selected-background: rgba(255, 255, 255, 0.16);
 }
 
+header{
+  height: 40px;
+  color: beige;
+}
+
 body {
   width: 70%;
-  margin-top: 50px;
+  margin-top: 40px;
   margin-inline: 15%;
   background-color: rgb(30, 30, 30);
-  color: aliceblue;
+  color: beige;
 }
 
 h1 {
@@ -21,8 +26,9 @@ h1 {
 }
 
 main {
-  border-radius: 30px;
   padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   background-color: rgb(50, 50, 50);
   margin-bottom: 20px;
 }

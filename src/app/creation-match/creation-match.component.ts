@@ -18,7 +18,7 @@ import { CreationMatchModalComponent } from './creation-match-modal/creation-mat
 import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-creation-match',
@@ -32,7 +32,7 @@ import { LogService } from '../shared/services/log.service';
     styleUrl: './creation-match.component.css'
 })
 export class CreationMatchComponent implements OnInit {
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private matchsService = inject(MatchsService);

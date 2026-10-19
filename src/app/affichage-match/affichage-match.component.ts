@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatchsService } from '../shared/services/matchs.service';
 import { Match } from '../shared/models/match';
 import { HistoriqueCoupsComponent } from '../arbitrage/historique-coups/historique-coups.component';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { AfficherinscritCardComponent } from './afficher-inscrit-card/afficher-inscrit-card.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { AfficherinscritCardComponent } from './afficher-inscrit-card/afficher-i
 export class AffichageMatchComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private matchsService = inject(MatchsService);
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private router = inject(Router);
 
   estLog = false;

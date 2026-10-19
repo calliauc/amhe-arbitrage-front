@@ -1,0 +1,14 @@
+#head{
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+}
+
+h1{
+  margin: 0px;
+}
+
+.date{
+  align-self: center;
+}
+

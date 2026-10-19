@@ -5,7 +5,7 @@ import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-arbitrage',
@@ -21,7 +21,7 @@ import { LogService } from '../shared/services/log.service';
 export class ArbitrageComponent {
   private route = inject(ActivatedRoute);
   private matchsService = inject(MatchsService);
-  private logService = inject(LogService);
+  private logService = inject(AuthV1Service);
   private router = inject(Router);
 
   match!: Match;

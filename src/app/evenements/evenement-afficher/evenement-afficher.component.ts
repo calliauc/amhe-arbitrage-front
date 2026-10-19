@@ -27,7 +27,10 @@ export class EvenementAfficherComponent implements OnInit {
     this.editerEvenement.emit();
   }
 
-  onDetails(id: number) {
-    this.router.navigate(['evenement', id]);
+  onDetails(event: Evenement) {
+    localStorage.setItem('event', JSON.stringify(event))
+    let origin = localStorage.getItem('origin-page')|| 'evenement';
+    localStorage.removeItem('origin-page');
+    this.router.navigate([origin]);
   }
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Tag, TagsFiltres } from '../models/tag';
 import { Evenement } from '../models/evenement';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',

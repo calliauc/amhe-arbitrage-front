@@ -5,14 +5,17 @@ import { Router } from '@angular/router';
 import { MatchAfficherComponent } from './match-afficher/match-afficher.component';
 import { HemaRatingService } from '../shared/services/hema-rating.sevice';
 import { environment } from '../../environments/environment';
-import { LogService } from '../shared/services/log.service';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InscritsService } from '../shared/services/inscrits.service';
 import { TagsService } from '../shared/services/tags.service';
-import { Tag, TagCb } from '../shared/models/tag';
+import { TagCb } from '../shared/models/tag';
 import { CriteresRechercheMatch } from '../shared/models/criteresRechercheMatch';
 import { Inscrit } from '../shared/models/inscrit';
+import { Evenement } from '../shared/models/evenement';
+import { EvenementsService } from '../shared/services/evenements.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-gestion-matchs',
@@ -26,13 +29,15 @@ import { Inscrit } from '../shared/models/inscrit';
     styleUrl: './gestion-matchs.component.css'
 })
 export class GestionMatchsComponent implements OnInit {
-  private logService = inject(LogService);
+  private Auth = AuthV1Service;
+  private logService = inject(AuthV1Service);
   private matchsService = inject(MatchsService);
   private hemaRatingService = inject(HemaRatingService);
   private inscritsService = inject(InscritsService);
   private tagsService = inject(TagsService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
+  private evenementsService = inject(EvenementsService);
 
   matchsNouveau: Match[] = [];
   matchsEnCours: Match[] = [];
@@ -53,10 +58,22 @@ export class GestionMatchsComponent implements OnInit {
   estScoresOk = false;
   env = environment;
   URL_HEMA_RATING = `${this.env.baseUrl}/hema-rating/get-csv`;
+  evenement!:Evenement;
+  role:RolesNames = 'guest';
 
+  constructor(private _auth: AuthV1Service) {
+    this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;
+    console.log(this.evenement);    
+    if(!this.evenement.id){
+      localStorage.setItem('origin-page', 'matchs');
+      this.router.navigate(['evenements']);
+    }
+  }
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e)
+    this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
+    this.logService.notificationRole$.subscribe(e => this.role = e)
+    this.criteres.idEvenement = this.evenement.id;
     this.initData();
     this.chercherMatchs(this.criteres);
     this.initForm();

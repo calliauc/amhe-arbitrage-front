@@ -3,9 +3,11 @@ import { Poule } from '../shared/models/poule';
 import { Inscrit } from '../shared/models/inscrit';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { PoulesService } from '../shared/services/poules.service';
-import { LogService } from '../shared/services/log.service';
-import { ActivatedRoute } from '@angular/router';
+import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NomsPipe } from '../shared/pipes/noms.pipe';
+import { Evenement } from '../shared/models/evenement';
+import { EvenementsService } from '../shared/services/evenements.service';
 
 @Component({
     selector: 'app-gestion-poules',
@@ -15,40 +17,38 @@ import { NomsPipe } from '../shared/pipes/noms.pipe';
     styleUrl: './gestion-poules.component.css'
 })
 export class GestionPoulesComponent implements OnInit {
-  private logService = inject(LogService);
-  // private tagsService = inject(TagsService);
+  private logService = inject(AuthV1Service);
   private poulesService = inject(PoulesService);
-  private route = inject(ActivatedRoute);
+  private evenementsService = inject(EvenementsService);
+  private router = inject(Router);
 
-  id!:number;
+  evenement!: Evenement;
   poules: Poule[] = [];
   estModeCreation = false;
   estLog = false;
+  role = 'guest';
 
-    constructor() {
-    this.route.params.subscribe((params) => {
-      if (params['id'])
-        this.id = params['id']
-      else {
-        this.id = JSON.parse(localStorage.getItem('event') as string)||false;
-      }
-    });
-  }
-
-  ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e);
-    if (this.id)
-      this.poulesService.getPoulesByEvent(this.id).subscribe(poules => {
-    console.log(poules);
-    this.poules = poules;
-  console.log(this.poules);
-  });
-    else {
-      this.poulesService.getPoules().subscribe(poules => this.poules = poules);
+constructor() {
+    this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;
+    console.log(this.evenement);    
+    if(!this.evenement.id){
+      localStorage.setItem('origin-page', 'poules');
+      this.router.navigate(['evenements']);
     }
   }
 
-  entrerModeCreation() {
+  ngOnInit(): void {
+    this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
+    this.recupererPoules();
+    this.logService.notificationRole$.subscribe(e => this.role = e)
+  }
+
+  recupererPoules() {
+    this.poulesService.getPoulesByEvent(this.evenement.id).subscribe((poules) => {
+      this.poules = poules;
+    });
+  }
+    entrerModeCreation() {
     this.estModeCreation = true;
   }
 
@@ -89,13 +89,7 @@ export class GestionPoulesComponent implements OnInit {
   supprimerPoule(id: number) {
     this.poulesService
       .supprimerPoule(id)
-      .subscribe(() => this.chargerPoules());
-  }
-
-  chargerPoules() {
-    this.poulesService.getPoulesByEvent(this.id).subscribe((poules) => {
-      this.poules = poules;
-    });
+      .subscribe(() => this.recupererPoules());
   }
 
 
