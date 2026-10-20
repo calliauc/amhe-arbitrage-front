@@ -20,6 +20,9 @@ import { TagsService } from '../shared/services/tags.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
+import { Evenement } from '../shared/models/evenement';
+import { PoulesService } from '../shared/services/poules.service';
+import { Poule } from '../shared/models/poule';
 
 @Component({
     selector: 'app-creation-match',
@@ -39,18 +42,21 @@ export class CreationMatchComponent implements OnInit {
   private router = inject(Router);
   private matchsService = inject(MatchsService);
   private inscritsService = inject(InscritsService);
-  private rulesetsService = inject(RulesetsService);
+  private poulesService = inject(PoulesService);
+  // private rulesetsService = inject(RulesetsService);
   private tagsService = inject(TagsService);
 
   estModalVisible = false;
+  evenement!: Evenement;
   nouveauMatch?: NouveauMatch;
   formCreerMatch!: FormGroup;
   inscritsListe!: Inscrit[];
-  rulesets?: Ruleset[];
+  poulesListe!: Poule[];
+  // rulesets?: Ruleset[];
   tags: TagCb[] = [];
   rulesetChoisi?: Ruleset;
-  a?: Inscrit;
-  b?: Inscrit;
+  inscritA?: Inscrit;
+  inscritB?: Inscrit;
   colorA?: string;
   colorB?: string;
   rechercheinscritA?: string;
@@ -60,19 +66,27 @@ export class CreationMatchComponent implements OnInit {
   /**
    * Initialisation données et formulaire
    */
+  constructor(){
+    this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;
+  }
 
   ngOnInit(): void {
+    if (this.evenement.id == 0){
+      localStorage.setItem('origin-page', 'creer-match');
+      this.router.navigate(['evenements']);
+    }
     this.logService.notificationRole$.subscribe(e => this.role = e);
-    this.getDatas();
+    this.getDatas(this.evenement.id);
     this.initForm();
   }
 
-  getDatas() {
-    this.inscritsService.getInscrits().subscribe((liste) => {
+  getDatas(idEvent: number) {
+    this.inscritsService.getInscritsByEvent(idEvent).subscribe((liste) => {
       this.inscritsListe = liste;
+      
     });
-    this.rulesetsService.getRulesets().subscribe((rulesets) => {
-      this.rulesets = rulesets;
+    this.poulesService.getPoulesByEvent(idEvent).subscribe((liste) => {
+      this.poulesListe = liste;
     });
     this.tagsService.getTags().subscribe((tags) => {
       tags.forEach((tag) =>
@@ -86,24 +100,24 @@ export class CreationMatchComponent implements OnInit {
   }
 
   initForm() {
-    this.a = undefined;
-    this.b = undefined;
-    this.colorA = couleurs[0].code;
-    this.colorB = couleurs[1].code;
+    this.inscritA = undefined;
+    this.inscritB = undefined;
+    // this.colorA = couleurs[0].code;
+    // this.colorB = couleurs[1].code;
 
     this.formCreerMatch = this.formBuilder.group({
       inscritA: null,
       inscritB: null,
-      couleurA: couleurs[0].code,
-      couleurB: couleurs[1].code,
+      // couleurA: couleurs[0].code,
+      // couleurB: couleurs[1].code,
       tags: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
       this.rulesetChoisi = undefined;
-      this.a = values.inscritA;
-      this.b = values.inscritB;
-      this.colorA = values.couleurA;
-      this.colorB = values.couleurB;
+      this.inscritA = values.inscritA;
+      this.inscritB = values.inscritB;
+      // this.colorA = values.couleurA;
+      // this.colorB = values.couleurB;
     });
   }
 
@@ -139,10 +153,9 @@ export class CreationMatchComponent implements OnInit {
       this.nouveauMatch = new NouveauMatch(
         this.formCreerMatch.value.inscritA.id,
         this.formCreerMatch.value.inscritB.id,
-        this.formCreerMatch.value.couleurA,
-        this.formCreerMatch.value.couleurB,
+        this.formCreerMatch.value.couleurA, // evenement
+        this.formCreerMatch.value.couleurB, // poule
         0,
-        new Date(),
         this.tags.filter((tag) => tag.checked),
         this.setRuleset()
       );
@@ -170,7 +183,7 @@ export class CreationMatchComponent implements OnInit {
   }
 
   setRuleset(): Ruleset {
-    this.rulesetChoisi = this.rulesets![0];
+    this.rulesetChoisi = this.evenement.ruleset;
     const vulnerants = this.rulesetChoisi!.vulnerants;
     const cibles = this.rulesetChoisi!.cibles;
     return {

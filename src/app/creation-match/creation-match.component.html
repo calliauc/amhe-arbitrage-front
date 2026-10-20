@@ -1,6 +1,6 @@
 <main>
   <ng-template #row let-item let-i="index">
-    <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
+    <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club }})
   </ng-template>
 
   <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
@@ -22,7 +22,7 @@
           @if (this.formCreerMatch.value.inscritA; as c) {
           <div [style.color]="colorA">
             <div>{{ c.prenom }} {{ c.nom }}</div>
-            <div>{{ c.club?.nomComplet }} ({{ c.club?.ville }})</div>
+            <div>{{ c.club }}</div>
           </div>
         }
         </div>
@@ -44,7 +44,7 @@
           @if (this.formCreerMatch.value.inscritB; as c) {
           <div [style.color]="colorB">
             <div>{{ c.prenom }} {{ c.nom }}</div>
-            <div>{{ c.club?.nomComplet }} ({{ c.club?.ville }})</div>
+            <div>{{ c.club }}</div>
           </div>
         }
         </div>

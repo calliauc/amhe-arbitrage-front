@@ -29,10 +29,12 @@ export class EvenementComponent {
     this.logService.notificationRole$.subscribe(e => {
       this.role = e
     });
-    this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;
+    this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;
     console.log(this.evenement);    
-    if(!this.evenement)
+    if(this.evenement.id == 0){
+      localStorage.removeItem('origin-page');
       this.router.navigate(['evenements']);
+    }
   }
 
   onListeEvenements() {

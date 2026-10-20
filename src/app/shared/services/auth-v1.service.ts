@@ -12,10 +12,12 @@ export class AuthV1Service {
   public static noAuth(role: RolesNames):boolean{
     return auth[role]==0;
   }
+
   public static estArbitre(role: RolesNames):boolean{
-    return auth[role]<=1;
+    return auth[role]>=1;
   }
+
   public static estAdmin(role: RolesNames):boolean{
-    return auth[role]<=2;
+    return auth[role]>=2;
   }
 }

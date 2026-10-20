@@ -34,8 +34,6 @@ export class MatchsService {
 
 
   public creerMatch(matchACreer: NouveauMatch): Observable<Match> {
-    matchACreer.dateCreation.setHours(matchACreer.dateCreation.getHours() + 1);
-    console.log('Service creation : ' + matchACreer.dateCreation);
     return this.http.post<Match>(this.URL, matchACreer, {
       responseType: 'json',
     });

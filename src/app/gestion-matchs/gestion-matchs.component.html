@@ -33,7 +33,6 @@
    @if (Auth.estAdmin(role)) {
   <div id="btns">
     <button
-      [disabled]="!Auth.estAdmin(role)"
       class="btn btn-creation-match"
       (click)="creerMatch()"
     >

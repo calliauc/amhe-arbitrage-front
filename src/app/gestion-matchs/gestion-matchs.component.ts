@@ -61,9 +61,9 @@ export class GestionMatchsComponent implements OnInit {
   role:RolesNames = 'guest';
 
   constructor(private _auth: AuthV1Service) {
-    this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;
+    this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;
     console.log(this.evenement);    
-    if(!this.evenement.id){
+    if(this.evenement.id == 0){
       localStorage.setItem('origin-page', 'matchs');
       this.router.navigate(['evenements']);
     }

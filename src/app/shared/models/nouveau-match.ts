@@ -2,35 +2,36 @@ import { Ruleset } from './ruleset';
 import { Tag } from './tag';
 
 export class NouveauMatch {
-  infosA: {
+  inscritA: {
     id: number;
   };
-  infosB: {
+  inscritB: {
     id: number;
   };
-  couleurA: string;
-  couleurB: string;
+  evenement: {
+    id: number;
+  };
+  poule: {
+    id: number;
+  };
   timer: number;
-  dateCreation!: Date;
   tags: Tag[] = [];
   ruleset: Ruleset;
 
   constructor(
-    a: number,
-    b: number,
-    couleurA: string,
-    couleurB: string,
+    inscritA: number,
+    inscritB: number,
+    evenement: number,
+    poule: number,
     timer: number,
-    dateCreation: Date,
     tags: Tag[],
-    ruleset: Ruleset
+    ruleset: Ruleset,
   ) {
-    this.infosA = { id: a };
-    this.infosB = { id: b };
-    this.couleurA = couleurA;
-    this.couleurB = couleurB;
+    this.inscritA = { id: inscritA };
+    this.inscritB = { id: inscritB };
+    this.evenement = { id: evenement };
+    this.poule = { id: poule };
     this.timer = timer;
-    this.dateCreation = dateCreation;
     this.tags = tags;
     this.ruleset = ruleset;
   }

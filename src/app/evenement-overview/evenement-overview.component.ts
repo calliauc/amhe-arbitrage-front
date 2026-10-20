@@ -18,6 +18,6 @@ export class EvenementOverviewComponent implements OnInit {
   evenement?: Evenement;
 
   ngOnInit() {
-    this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;
+    this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;    
   }
 }

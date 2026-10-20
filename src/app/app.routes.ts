@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'poules', component: GestionPoulesComponent },
   { path: 'inscrits', component: InscritsComponent },
 
-  // { path: 'creer-match', component: CreationMatchComponent },
+  { path: 'creer-match', component: CreationMatchComponent },
   { path: 'match/:id/arbitrage', component: ArbitrageComponent },
   { path: 'match/:id/details', component: AffichageMatchComponent },
   { path: 'inscrit/:id', component: InscritDetailsComponent },
