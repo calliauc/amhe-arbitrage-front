@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { TagAfficherComponent } from '../tag-afficher/tag-afficher.component';
 import { TagEditerComponent } from '../tag-editer/tag-editer.component';
 import { Tag } from '../../../shared/models/tag';
+import { RolesNames } from '../../../shared/models/roles';
 
 @Component({
     selector: 'app-tag-ligne',
@@ -13,7 +14,7 @@ import { Tag } from '../../../shared/models/tag';
 export class TagLigneComponent {
   @Input() tag!: Tag;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerTag = new EventEmitter<number>();
   @Output() modifierTag = new EventEmitter<Tag>();
   estModif: boolean;

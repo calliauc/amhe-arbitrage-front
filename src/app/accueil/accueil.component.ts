@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-accueil',
@@ -12,10 +13,10 @@ export class AccueilComponent implements OnInit {
   private logService = inject(AuthV1Service);
 
   env = environment;
-  estLog = false;
+  role:RolesNames = 'guest';
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e)
+    this.logService.notificationRole$.subscribe(e => this.role = e);
   }
 
   constructor(){

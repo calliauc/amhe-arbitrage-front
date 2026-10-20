@@ -4,6 +4,7 @@ import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnera
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
 import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-gestion-referentiels',
@@ -19,9 +20,9 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
 })
 export class GestionReferentielsComponent implements OnInit {
   private logService = inject(AuthV1Service);
-  estLog = false;
+  role:RolesNames = 'guest';
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e)
+    this.logService.notificationRole$.subscribe(e => this.role = e)
   }
 }

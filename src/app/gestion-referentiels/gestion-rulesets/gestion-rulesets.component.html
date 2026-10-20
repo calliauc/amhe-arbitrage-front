@@ -15,7 +15,7 @@
     <app-ruleset-ligne
       (supprimerRuleset)="supprimerRuleset($event)"
       (modifierRuleset)="recupererRulesets()"
-      [estLog]="estLog"
+      [role]="role"
       [estPair]="estPair"
       [ruleset]="ruleset"
     ></app-ruleset-ligne>
@@ -26,7 +26,7 @@
     ></app-ruleset-editer>
     }
   </table>
-  @if (!estModeCreation && !estLog) {
+  @if (!estModeCreation && Auth.estAdmin(role)) {
   <button class="btn" id="ajouter-ruleset" (click)="modeAjout()">
     Ajouter ruleset
   </button>

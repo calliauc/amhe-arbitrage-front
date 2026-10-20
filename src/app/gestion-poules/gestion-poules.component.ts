@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { Evenement } from '../shared/models/evenement';
 import { EvenementsService } from '../shared/services/evenements.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-gestion-poules',
@@ -21,12 +22,12 @@ export class GestionPoulesComponent implements OnInit {
   private poulesService = inject(PoulesService);
   private evenementsService = inject(EvenementsService);
   private router = inject(Router);
+  private Auth = AuthV1Service;
 
   evenement!: Evenement;
   poules: Poule[] = [];
   estModeCreation = false;
-  estLog = false;
-  role = 'guest';
+  role:RolesNames = 'guest';
 
 constructor() {
     this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;

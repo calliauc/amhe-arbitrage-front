@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { VulnerantAfficherComponent } from '../vulnerant-afficher/vulnerant-afficher.component';
 import { VulnerantEditerComponent } from '../vulnerant-editer/vulnerant-editer.component';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { RolesNames } from '../../../shared/models/roles';
 
 @Component({
     selector: 'app-vulnerant-ligne',
@@ -13,7 +14,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class VulnerantLigneComponent {
   @Input() vulnerant!: RulesetRef;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerVulnerant = new EventEmitter<string>();
   @Output() modifierVulnerant = new EventEmitter<RulesetRef>();
   estModif: boolean;

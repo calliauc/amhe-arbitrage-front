@@ -5,7 +5,7 @@
         <span>Match {{ match.id }} </span>
         <span>({{ match.statut }})</span>
       </div>
-      @if (estLog) {
+      @if (Auth.estAdmin(role)) {
         <button
         id="button-supprimer"
         class="btn-match"
@@ -68,14 +68,15 @@
   }
   </div>
   <div id="bottom-card">
-      @if (!estLog) {
-    <a routerLink="/match/{{ match.id }}/details"
-      ><button id="button-details" class="btn-match">Détails</button></a
-    >
-    } @else {
-    <a routerLink="/match/{{ match.id }}/arbitrage"
-      ><button id="button-arbitrer" class="btn-match">Arbitrer</button></a
-    >}
+      @if (Auth.estArbitre(role)) {
+        <a routerLink="/match/{{ match.id }}/arbitrage">
+          <button id="button-arbitrer" class="btn-match">Arbitrer</button>
+          </a>
+        } @else {
+      <a routerLink="/match/{{ match.id }}/details">
+        <button id="button-details" class="btn-match">Détails</button>
+        </a>
+      }
     @if (!qrCodeVisible) {
       <div (click)="afficherQrCode()">
         <qrcode id="qrcode" [qrdata]="url" [width]="42" [errorCorrectionLevel]="'M'"></qrcode>

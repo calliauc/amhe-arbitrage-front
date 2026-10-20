@@ -5,7 +5,7 @@
   <button class="btn" id="btn-refresh" (click)="refreshMatch()">
     Actualiser affichage
   </button>
-  @if (estLog) {
+  @if (Auth.estArbitre(role)) {
     <button class="btn" id="btn-arbitrage" (click)="arbitrerMatch()">
       Arbitrer le match
     </button>
@@ -24,7 +24,7 @@
     ></app-afficher-inscrit-card>
   </div>
   <app-historique-coups
-    [estLog]=false
+    [role]=role
     [matchId]="matchId"
   ></app-historique-coups>
   } @else {

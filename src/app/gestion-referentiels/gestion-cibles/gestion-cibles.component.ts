@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { CiblesService } from '../../shared/services/cibles.service';
 import { CibleEditerComponent } from './cible-editer/cible-editer.component';
 import { RulesetRef } from '../../shared/models/ruleset-ref';
+import { RolesNames } from '../../shared/models/roles';
+import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-gestion-cibles',
@@ -14,9 +16,10 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     styleUrl: './gestion-cibles.component.css'
 })
 export class GestionCiblesComponent implements OnInit {
+  private Auth = AuthV1Service;
   private ciblesService = inject(CiblesService);
 
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
 
   ciblesListe?: RulesetRef[];
   ciblesListe$?: Observable<RulesetRef[]>;

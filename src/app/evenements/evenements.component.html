@@ -17,7 +17,7 @@
       (modifierEvenement)="modifierEvenement($event)"
       [estPair]="estPair"
       [evenement]="evenement"
-      [estLog]="estLog"
+      [role]="role"
     ></app-evenement-ligne>
     } @if (estModeCreation) {
     <app-evenement-editer
@@ -26,7 +26,7 @@
     ></app-evenement-editer>
     }
   </table>
-  @if (!estModeCreation && estLog) {
+  @if (!estModeCreation && Auth.estAdmin(role)) {
   <button class="btn" id="ajouter-evenement" (click)="modeAjout()">
     Ajouter evenement
   </button>

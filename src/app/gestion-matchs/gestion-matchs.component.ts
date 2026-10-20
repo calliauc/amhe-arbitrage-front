@@ -54,7 +54,6 @@ export class GestionMatchsComponent implements OnInit {
   texteModal = 'Cette action est définitive';
 
   idASupprimer?: number;
-  estLog = false;
   estScoresOk = false;
   env = environment;
   URL_HEMA_RATING = `${this.env.baseUrl}/hema-rating/get-csv`;
@@ -72,7 +71,7 @@ export class GestionMatchsComponent implements OnInit {
 
   ngOnInit(): void {
     this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
-    this.logService.notificationRole$.subscribe(e => this.role = e)
+    this.logService.notificationRole$.subscribe(e => this.role = e);
     this.criteres.idEvenement = this.evenement.id;
     this.initData();
     this.chercherMatchs(this.criteres);

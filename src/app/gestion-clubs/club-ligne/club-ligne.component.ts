@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { Club } from '../../shared/models/club';
 import { ClubAfficherComponent } from '../club-afficher/club-afficher.component';
 import { ClubEditerComponent } from '../club-editer/club-editer.component';
+import { RolesNames } from '../../shared/models/roles';
 
 @Component({
     selector: 'app-club-ligne',
@@ -13,7 +14,7 @@ import { ClubEditerComponent } from '../club-editer/club-editer.component';
 export class ClubLigneComponent {
   @Input() club!: Club;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerClub = new EventEmitter<number>();
   @Output() modifierClub = new EventEmitter<Club>();
   estModif: boolean;

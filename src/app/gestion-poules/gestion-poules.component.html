@@ -1,5 +1,5 @@
 <main>
-   @if (estLog) {
+   @if (Auth.estAdmin(role)) {
   <div id="bloc-creation">
     @if (!estModeCreation) {
     <button class="btn btn-poule" (click)="entrerModeCreation()">
@@ -51,7 +51,7 @@
       <div id="poule">
         <div id="titre-poule">
           <h3>{{ poule.nom }}</h3>
-          @if (estLog && poule.id) {
+          @if (Auth.estAdmin(role) && poule.id) {
             <button class="btn" id="btn-supprimer" (click)="supprimerPoule(poule.id)">X</button>
           }
         </div>
@@ -69,7 +69,7 @@
         >
         <table id="liste-inscrits">
           @for (i of poule.inscrits; track i) {
-            <tr class="inscrit" cdkDrag [cdkDragDisabled]="!estLog">
+            <tr class="inscrit" cdkDrag [cdkDragDisabled]="Auth.noAuth(role)">
               <td class="nom">{{ i | nomsDisplay }}</td>
               <td>-</td>
               <td class="club">{{ i.club }}</td>

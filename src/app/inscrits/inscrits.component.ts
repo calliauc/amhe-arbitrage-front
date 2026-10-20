@@ -9,6 +9,7 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { Evenement } from '../shared/models/evenement';
 import { EvenementsService } from '../shared/services/evenements.service';
 import { Router } from '@angular/router';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-inscrits',
@@ -31,7 +32,7 @@ export class InscritsComponent implements OnInit {
   inscritsListe$?: Observable<Inscrit[]>;
   estModeCreation = false;
   nouveauInscrit= new Inscrit();
-  role = 'guest';
+  role:RolesNames = 'guest';
 
   constructor() {
     this.evenement = JSON.parse(localStorage.getItem('event') || '{}') as Evenement;

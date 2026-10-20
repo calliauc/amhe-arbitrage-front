@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { Individu } from '../../shared/models/individu';
 import { AnnuaireAfficherComponent } from '../annuaire-afficher/annuaire-afficher.component';
 import { AnnuaireEditerComponent } from '../annuaire-editer/annuaire-editer.component';
+import { RolesNames } from '../../shared/models/roles';
 
 @Component({
     selector: 'app-annuaire-ligne',
@@ -13,7 +14,7 @@ import { AnnuaireEditerComponent } from '../annuaire-editer/annuaire-editer.comp
 export class AnnuaireLigneComponent {
   @Input() individu!: Individu;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerIndividu = new EventEmitter<number>();
   @Output() modifierIndividu = new EventEmitter<Individu>();
   estModif: boolean;

@@ -19,6 +19,7 @@ import { TagCb } from '../shared/models/tag';
 import { TagsService } from '../shared/services/tags.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-creation-match',
@@ -32,6 +33,7 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
     styleUrl: './creation-match.component.css'
 })
 export class CreationMatchComponent implements OnInit {
+  private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
@@ -53,14 +55,14 @@ export class CreationMatchComponent implements OnInit {
   colorB?: string;
   rechercheinscritA?: string;
   couleurs = couleurs;
-  estLog = false;
+  role:RolesNames = 'guest';
 
   /**
    * Initialisation données et formulaire
    */
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e);
+    this.logService.notificationRole$.subscribe(e => this.role = e);
     this.getDatas();
     this.initForm();
   }

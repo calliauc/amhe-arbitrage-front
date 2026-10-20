@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output, inject, ChangeDetection
 import { Inscrit } from '../../shared/models/inscrit';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import { RolesNames } from '../../shared/models/roles';
+import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-inscrit-afficher',
@@ -12,10 +14,11 @@ import { Router } from '@angular/router';
 })
 export class InscritAfficherComponent implements OnInit {
   private router = inject(Router);
+  private Auth = AuthV1Service;
 
   @Input() inscrit!: Inscrit;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() editerInscrit = new EventEmitter<boolean>();
 
   ngOnInit(): void {

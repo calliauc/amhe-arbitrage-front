@@ -4,6 +4,8 @@ import { Ruleset } from '../../../shared/models/ruleset';
 import { TimerReversePipe } from '../../../shared/pipes/timerReverse.pipe';
 import { TimerPipe } from '../../../shared/pipes/timer.pipe';
 import { RulsetRefPipe } from '../../../shared/pipes/ruleset-refs.pipe';
+import { RolesNames } from '../../../shared/models/roles';
+import { AuthV1Service } from '../../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-ruleset-afficher',
@@ -13,9 +15,11 @@ import { RulsetRefPipe } from '../../../shared/pipes/ruleset-refs.pipe';
     styleUrl: './ruleset-afficher.component.css'
 })
 export class RulesetAfficherComponent implements OnInit {
+  private Auth = AuthV1Service;
+
   @Input() ruleset!: Ruleset;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() editerRuleset = new EventEmitter<boolean>();
 
   ngOnInit(): void {

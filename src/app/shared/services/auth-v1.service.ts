@@ -6,11 +6,12 @@ import { auth, RolesNames } from '../models/roles';
   providedIn: 'root',
 })
 export class AuthV1Service {
-  notificationLog = new BehaviorSubject<boolean>(Boolean(localStorage.getItem('estLog')));
-  notificationLog$ = this.notificationLog.asObservable();
   notificationRole = new BehaviorSubject<RolesNames>(localStorage.getItem('role') as RolesNames);
   notificationRole$ = this.notificationRole.asObservable();
 
+  public static noAuth(role: RolesNames):boolean{
+    return auth[role]==0;
+  }
   public static estArbitre(role: RolesNames):boolean{
     return auth[role]<=1;
   }

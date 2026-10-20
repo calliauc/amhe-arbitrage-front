@@ -6,6 +6,7 @@ import { EvenementEditerComponent } from './evenement-editer/evenement-editer.co
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-evenements',
@@ -19,6 +20,7 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
     styleUrl: './evenements.component.css'
 })
 export class EvenementsComponent implements OnInit {
+  private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private evenementsService = inject(EvenementsService);
 
@@ -26,7 +28,7 @@ export class EvenementsComponent implements OnInit {
   evenementsListe$?: Observable<Evenement[]>;
   estModeCreation: boolean;
   nouveauEvenement: Evenement;
-  estLog = false;
+  role:RolesNames = 'guest';
 
   constructor() {
     this.estModeCreation = false;
@@ -34,7 +36,7 @@ export class EvenementsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e)
+    this.logService.notificationRole$.subscribe(e => this.role = e)
     this.recupererEvenements();
   }
 

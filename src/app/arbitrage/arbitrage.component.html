@@ -8,7 +8,7 @@
   <div id="separateur"></div>
   <app-creation-coup [match]="match"></app-creation-coup>
   <app-historique-coups
-  [estLog]=true
+  [role]="role"
   [matchId]="match.id"></app-historique-coups>
   } @else {
   <div>Chargement du match</div>

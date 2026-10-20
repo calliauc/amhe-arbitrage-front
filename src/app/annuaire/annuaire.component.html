@@ -15,7 +15,7 @@
       (modifierIndividu)="modifierIndividu($event)"
       [estPair]="estPair"
       [individu]="individu"
-      [estLog]="estLog"
+      [role]="role"
     ></app-annuaire-ligne>
     } @if (estModeCreation) {
     <app-annuaire-editer
@@ -24,7 +24,7 @@
     ></app-annuaire-editer>
     }
   </table>
-  @if (!estModeCreation && estLog) {
+  @if (!estModeCreation && Auth.estAdmin(role)) {
   <button class="btn" id="ajouter-individu" (click)="modeAjout()">
     Ajouter individu
   </button>

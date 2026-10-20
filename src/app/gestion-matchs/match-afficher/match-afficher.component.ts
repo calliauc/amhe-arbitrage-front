@@ -7,6 +7,8 @@ import { MatchsService } from '../../shared/services/matchs.service';
 import { RouterLink } from '@angular/router';
 import { TimerPipe } from '../../shared/pipes/timer.pipe';
 import { QRCodeComponent } from 'angularx-qrcode';
+import { RolesNames } from '../../shared/models/roles';
+import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-match-afficher',
@@ -23,11 +25,11 @@ import { QRCodeComponent } from 'angularx-qrcode';
     styleUrl: './match-afficher.component.css'
 })
 export class MatchAfficherComponent implements OnInit {
-
+  private Auth = AuthV1Service;
   private matchsService = inject(MatchsService);
 
   @Input() match!: Match;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() matchEvent = new EventEmitter<null>();
 
   estModalVisible = false;
@@ -38,7 +40,7 @@ export class MatchAfficherComponent implements OnInit {
 
   ngOnInit(): void {
     this.url += this.match.id;
-    if (this.estLog){
+    if (this.Auth.estArbitre(this.role)){
       this.url +="/arbitrage";
     } else {
       this.url +="/details";

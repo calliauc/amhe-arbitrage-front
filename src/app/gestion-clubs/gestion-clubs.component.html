@@ -14,7 +14,7 @@
       (modifierClub)="modifierClub($event)"
       [estPair]="estPair"
       [club]="club"
-      [estLog]="estLog"
+      [role]="role"
     ></app-club-ligne>
     } @if (estModeCreation) {
     <app-club-editer
@@ -23,7 +23,7 @@
     ></app-club-editer>
     }
   </table>
-  @if (!estModeCreation && estLog) {
+  @if (!estModeCreation && Auth.estAdmin(role)) {
   <button class="btn" id="ajouter-club" (click)="modeAjout()">
     Ajouter club
   </button>

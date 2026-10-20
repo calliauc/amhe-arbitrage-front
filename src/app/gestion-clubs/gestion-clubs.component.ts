@@ -6,6 +6,7 @@ import { ClubEditerComponent } from './club-editer/club-editer.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-gestion-clubs',
@@ -19,6 +20,7 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
     styleUrl: './gestion-clubs.component.css'
 })
 export class GestionClubsComponent implements OnInit {
+  private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private clubsService = inject(ClubsService);
 
@@ -26,7 +28,7 @@ export class GestionClubsComponent implements OnInit {
   clubsListe$?: Observable<Club[]>;
   estModeCreation: boolean;
   nouveauClub: Club;
-  estLog = false;
+  role:RolesNames = 'guest';
 
   constructor() {
     this.estModeCreation = false;
@@ -34,7 +36,7 @@ export class GestionClubsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e)
+    this.logService.notificationRole$.subscribe(e => this.role = e)
     this.recupererClubs();
   }
 

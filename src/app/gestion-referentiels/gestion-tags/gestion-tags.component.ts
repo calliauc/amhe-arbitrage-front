@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { TagsService } from '../../shared/services/tags.service';
 import { TagEditerComponent } from './tag-editer/tag-editer.component';
 import { Tag } from '../../shared/models/tag';
+import { RolesNames } from '../../shared/models/roles';
+import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-gestion-tags',
@@ -14,9 +16,10 @@ import { Tag } from '../../shared/models/tag';
     styleUrl: './gestion-tags.component.css'
 })
 export class GestionTagsComponent implements OnInit {
+  private Auth = AuthV1Service;
   private tagsService = inject(TagsService);
 
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
 
   tagsListe?: Tag[];
   tagsListe$?: Observable<Tag[]>;

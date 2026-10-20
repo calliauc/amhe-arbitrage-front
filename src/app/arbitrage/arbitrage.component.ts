@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-arbitrage',
@@ -18,7 +19,7 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './arbitrage.component.css'
 })
-export class ArbitrageComponent {
+export class ArbitrageComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private matchsService = inject(MatchsService);
   private logService = inject(AuthV1Service);
@@ -26,6 +27,7 @@ export class ArbitrageComponent {
 
   match!: Match;
   matchId!: number;
+  role:RolesNames="guest";
 
   constructor() {
     this.route.params.subscribe((params) => {
@@ -40,11 +42,15 @@ export class ArbitrageComponent {
       });
       this.matchId = params['id'];
     });
-    this.logService.notificationLog$.subscribe(e => {
-      if (!e){
+  }
+
+  ngOnInit(): void {
+    this.logService.notificationRole$.subscribe(e => {
+      if (AuthV1Service.noAuth(e)){
         this.router.navigate(['match', this.matchId, 'details']);
       }
-    })
+      this.role = e;
+    });
   }
 
   refreshMatch() {

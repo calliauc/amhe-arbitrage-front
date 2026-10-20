@@ -11,7 +11,7 @@
     >
       Charger
     </button>
-     @if (estLog) {
+     @if (Auth.estAdmin(role)) {
     <button
       class="btn btn-evenements btn-editer-evenement"
       (click)="editer()"

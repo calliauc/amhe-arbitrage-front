@@ -10,7 +10,7 @@
     >
       Détails
     </button>
-     @if (estLog) {
+     @if (Auth.estAdmin(role)) {
     <button
       class="btn btn-inscrits btn-editer-inscrit"
       (click)="editer()"

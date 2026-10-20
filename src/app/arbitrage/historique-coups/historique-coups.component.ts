@@ -2,6 +2,8 @@ import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angu
 import { LigneCoupComponent } from './ligne-histo-coup/ligne-coup.component';
 import { Coup } from '../../shared/models/coup';
 import { CoupsService } from '../../shared/services/coups.service';
+import { RolesNames } from '../../shared/models/roles';
+import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-historique-coups',
@@ -11,10 +13,11 @@ import { CoupsService } from '../../shared/services/coups.service';
     styleUrl: './historique-coups.component.css'
 })
 export class HistoriqueCoupsComponent implements OnInit {
+  private Auth = AuthV1Service;
   private coupsService = inject(CoupsService);
 
   @Input() matchId!: number;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   listeCoups?: Coup[];
 
   ngOnInit(): void {

@@ -33,7 +33,7 @@
    @if (Auth.estAdmin(role)) {
   <div id="btns">
     <button
-      [disabled]="!estLog"
+      [disabled]="!Auth.estAdmin(role)"
       class="btn btn-creation-match"
       (click)="creerMatch()"
     >
@@ -58,7 +58,7 @@
     <div class="match">
       <app-match-afficher
         [match]="match"
-        [estLog]="estLog"
+        [role]="role"
         (matchEvent)="getMatchs()"
       ></app-match-afficher>
     </div>
@@ -73,7 +73,7 @@
     <div class="match">
       <app-match-afficher
         [match]="match"
-        [estLog]="estLog"
+        [role]="role"
         (matchEvent)="getMatchs()"
       ></app-match-afficher>
     </div>
@@ -88,7 +88,7 @@
     <div class="match">
       <app-match-afficher
         [match]="match"
-        [estLog]="estLog"
+        [role]="role"
         (matchEvent)="getMatchs()"
       ></app-match-afficher>
     </div>

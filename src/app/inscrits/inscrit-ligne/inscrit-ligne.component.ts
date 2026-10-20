@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { Inscrit } from '../../shared/models/inscrit';
 import { InscritAfficherComponent } from '../inscrit-afficher/inscrit-afficher.component';
 import { InscritEditerComponent } from '../inscrit-editer/inscrit-editer.component';
+import { RolesNames } from '../../shared/models/roles';
 
 @Component({
     selector: 'app-inscrit-ligne',
@@ -13,7 +14,7 @@ import { InscritEditerComponent } from '../inscrit-editer/inscrit-editer.compone
 export class InscritLigneComponent {
   @Input() inscrit!: Inscrit;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerInscrit = new EventEmitter<number>();
   @Output() modifierInscrit = new EventEmitter<Inscrit>();
   estModif: boolean;

@@ -1,7 +1,8 @@
 .btn-login {
     border: none;
-    border-radius: 5px;
-    text-transform: uppercase;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+      text-transform: uppercase;
     background-color: #0000;
     font-size: 0.8em;
     font-weight: 500;

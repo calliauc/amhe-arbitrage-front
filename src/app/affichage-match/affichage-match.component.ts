@@ -5,6 +5,7 @@ import { Match } from '../shared/models/match';
 import { HistoriqueCoupsComponent } from '../arbitrage/historique-coups/historique-coups.component';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { AfficherinscritCardComponent } from './afficher-inscrit-card/afficher-inscrit-card.component';
+import { RolesNames } from '../shared/models/roles';
 
 @Component({
     selector: 'app-affichage-match',
@@ -14,12 +15,13 @@ import { AfficherinscritCardComponent } from './afficher-inscrit-card/afficher-i
     styleUrl: './affichage-match.component.css'
 })
 export class AffichageMatchComponent implements OnInit {
+  private Auth = AuthV1Service;
   private route = inject(ActivatedRoute);
   private matchsService = inject(MatchsService);
   private logService = inject(AuthV1Service);
   private router = inject(Router);
 
-  estLog = false;
+  role:RolesNames = 'guest';
   match!: Match;
   matchId!: number;
 
@@ -39,7 +41,7 @@ export class AffichageMatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e)
+    this.logService.notificationRole$.subscribe(e => this.role = e)
   }
 
   refreshMatch() {

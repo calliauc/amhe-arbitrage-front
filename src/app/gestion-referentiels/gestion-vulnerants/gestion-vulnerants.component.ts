@@ -5,6 +5,8 @@ import { VulnerantsService } from '../../shared/services/vulnerants.service';
 import { VulnerantLigneComponent } from './vulnerant-ligne/vulnerant-ligne.component';
 import { VulnerantEditerComponent } from './vulnerant-editer/vulnerant-editer.component';
 import { RulesetRef } from '../../shared/models/ruleset-ref';
+import { RolesNames } from '../../shared/models/roles';
+import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-gestion-vulnerants',
@@ -14,9 +16,10 @@ import { RulesetRef } from '../../shared/models/ruleset-ref';
     styleUrl: './gestion-vulnerants.component.css'
 })
 export class GestionVulnerantsComponent implements OnInit {
+  private Auth = AuthV1Service;
   private vulnerantsService = inject(VulnerantsService);
 
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
 
   vulnerantsListe?: RulesetRef[];
   vulnerantsListe$?: Observable<RulesetRef[]>;

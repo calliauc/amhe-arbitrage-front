@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { RulesetAfficherComponent } from '../ruleset-afficher/ruleset-afficher.component';
 import { RulesetEditerComponent } from '../ruleset-editer/ruleset-editer.component';
 import { Ruleset } from '../../../shared/models/ruleset';
+import { RolesNames } from '../../../shared/models/roles';
 
 @Component({
     selector: 'app-ruleset-ligne',
@@ -13,7 +14,7 @@ import { Ruleset } from '../../../shared/models/ruleset';
 export class RulesetLigneComponent {
   @Input() ruleset!: Ruleset;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerRuleset = new EventEmitter<number>();
   @Output() modifierRuleset = new EventEmitter<Ruleset>();
   estModif: boolean;

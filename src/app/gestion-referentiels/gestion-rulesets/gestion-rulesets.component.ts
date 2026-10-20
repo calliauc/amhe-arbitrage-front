@@ -5,6 +5,8 @@ import { Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Ruleset } from '../../shared/models/ruleset';
 import { RulesetsService } from '../../shared/services/rulesets.service';
+import { RolesNames } from '../../shared/models/roles';
+import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
 @Component({
     selector: 'app-gestion-rulesets',
@@ -15,8 +17,9 @@ import { RulesetsService } from '../../shared/services/rulesets.service';
 })
 export class GestionRulesetsComponent implements OnInit {
   private rulesetsService = inject(RulesetsService);
+  private Auth = AuthV1Service;
 
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
 
   rulesetsListe?: Ruleset[];
   rulesetsListe$?: Observable<Ruleset[]>;

@@ -14,12 +14,8 @@ export class LoginComponent {
   private logService = inject(AuthV1Service);
   estModateSecuVisible = false;
   role!: RolesNames;
-  estLog!: boolean;
 
   constructor() {
-    this.logService.notificationLog$.subscribe(e => this.estLog = e);
-    this.logService.notificationLog.next(this.estLog);
-
     this.logService.notificationRole$.subscribe(e => this.role = e);
     this.logService.notificationRole.next(this.role);
   }
@@ -34,16 +30,12 @@ export class LoginComponent {
 
   deverouiller(role: RolesNames) {
     this.estModateSecuVisible = false;
-    this.logService.notificationLog.next(true)
     this.logService.notificationRole.next(role);
-    localStorage.setItem('estLog', "true")
     localStorage.setItem('role', role)
   }
 
   verouiller() {
-    this.logService.notificationLog.next(false)
     this.logService.notificationRole.next('guest')
-    localStorage.removeItem('estLog')
     localStorage.removeItem('role');
   }
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { CibleAfficherComponent } from '../cible-afficher/cible-afficher.component';
 import { CibleEditerComponent } from '../cible-editer/cible-editer.component';
 import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { RolesNames } from '../../../shared/models/roles';
 
 @Component({
     selector: 'app-cible-ligne',
@@ -13,7 +14,7 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 export class CibleLigneComponent {
   @Input() cible!: RulesetRef;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerCible = new EventEmitter<string>();
   @Output() modifierCible = new EventEmitter<RulesetRef>();
   estModif: boolean;

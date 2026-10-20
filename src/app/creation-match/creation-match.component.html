@@ -66,7 +66,7 @@
       }
     </div>
 
-     @if (estLog) {
+     @if (Auth.estAdmin(role)) {
     <button class="btn" id="btn-creer-match" type="submit">Créer</button>
     }
   </form>

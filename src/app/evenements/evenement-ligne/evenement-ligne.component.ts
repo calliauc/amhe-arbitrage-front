@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 import { Evenement } from '../../shared/models/evenement';
 import { EvenementAfficherComponent } from '../evenement-afficher/evenement-afficher.component';
 import { EvenementEditerComponent } from '../evenement-editer/evenement-editer.component';
+import { RolesNames } from '../../shared/models/roles';
 
 @Component({
     selector: 'app-evenement-ligne',
@@ -13,7 +14,7 @@ import { EvenementEditerComponent } from '../evenement-editer/evenement-editer.c
 export class EvenementLigneComponent {
   @Input() evenement!: Evenement;
   @Input() estPair!: boolean;
-  @Input() estLog!: boolean;
+  @Input() role!: RolesNames;
   @Output() supprimerEvenement = new EventEmitter<number>();
   @Output() modifierEvenement = new EventEmitter<Evenement>();
   estModif: boolean;
