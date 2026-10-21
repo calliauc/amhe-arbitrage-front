@@ -57,17 +57,17 @@ export class CreationCoupComponent implements OnInit {
     try {
       this.nouveauCoup.matchId = this.match.id;
       if (this.formSaisirCoup.value.attaquant == 'b') {
-        this.nouveauCoup.attaquant = this.match.infosB;
+        this.nouveauCoup.attaquant = this.match.inscritB;
         this.nouveauCoup.attaquantCouleur = this.match.couleurB;
         this.nouveauCoup.attaquantScore = this.match.scoreB;
-        this.nouveauCoup.defenseur = this.match.infosA;
+        this.nouveauCoup.defenseur = this.match.inscritA;
         this.nouveauCoup.defenseurCouleur = this.match.couleurA;
         this.nouveauCoup.defenseurScore = this.match.scoreA;
       } else if (this.formSaisirCoup.value.attaquant == 'a') {
-        this.nouveauCoup.attaquant = this.match.infosA;
+        this.nouveauCoup.attaquant = this.match.inscritA;
         this.nouveauCoup.attaquantCouleur = this.match.couleurA;
         this.nouveauCoup.attaquantScore = this.match.scoreA;
-        this.nouveauCoup.defenseur = this.match.infosB;
+        this.nouveauCoup.defenseur = this.match.inscritB;
         this.nouveauCoup.defenseurCouleur = this.match.couleurB;
         this.nouveauCoup.defenseurScore = this.match.scoreB;
       }

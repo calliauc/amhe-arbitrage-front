@@ -1,81 +1,105 @@
 <main>
-  <ng-template #row let-item let-i="index">
-    <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club }})
-  </ng-template>
+  @if (Auth.estAdmin(role)) {
+    <ng-template #inscritLigne let-item let-i="index">
+      {{ item.nom }} {{ item.prenom }}
+    </ng-template>
 
-  <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
-    <div id="inscrits">
+    <ng-template #pouleLigne let-item let-i="index">{{ item.nom }}</ng-template>
 
-      <div class="inscrit">
-        <div class="select-label">Coté BLEU</div>
-        <div class="select-inscrit">
-          <input 
-            ngui-auto-complete 
-            formControlName="inscritA" 
-            [source]="inscritsListe"
-            [itemTemplate]="row" 
-            [display-with]="formatName"
-          />
-        </div>
+    <form [formGroup]="formCreerMatch" (ngSubmit)="creerMatch()">
 
-        <div class="preview-inscrit">
-          @if (this.formCreerMatch.value.inscritA; as c) {
-          <div [style.color]="colorA">
-            <div>{{ c.prenom }} {{ c.nom }}</div>
-            <div>{{ c.club }}</div>
+      <div id="inscrits">
+        <div class="elemForm autocomplete">
+          <div class="select-label">Coté BLEU</div>
+          <div class="select-inscrit">
+            <input 
+              ngui-auto-complete 
+              formControlName="inscritA" 
+              [source]="inscritsListe"
+              [itemTemplate]="inscritLigne" 
+              [display-with]="formatName"
+            />
           </div>
-        }
-        </div>
-      </div>
 
-      <div class="inscrit">
-        <div class="select-label">Coté JAUNE</div>
-        <div class="select-inscrit">
-          <input 
-            ngui-auto-complete 
-            formControlName="inscritB" 
-            [source]="inscritsListe"
-            [itemTemplate]="row" 
-            [display-with]="formatName"
-          />
-        </div>
-
-        <div class="preview-inscrit">
-          @if (this.formCreerMatch.value.inscritB; as c) {
-          <div [style.color]="colorB">
-            <div>{{ c.prenom }} {{ c.nom }}</div>
-            <div>{{ c.club }}</div>
+          <div class="preview-inscrit">
+            @if (this.formCreerMatch.value.inscritA; as c) {
+            <div [style.color]="couleurs[0].code">
+              <div>{{ c.prenom }} {{ c.nom }}</div>
+              <div>{{ c.club }}</div>
+            </div>
+          }
           </div>
-        }
+        </div>
+
+        <div class="elemForm autocomplete">
+          <div class="select-label">Coté JAUNE</div>
+          <div class="select-inscrit">
+            <input 
+              ngui-auto-complete 
+              formControlName="inscritB" 
+              [source]="inscritsListe"
+              [itemTemplate]="inscritLigne" 
+              [display-with]="formatName"
+            />
+          </div>
+
+          <div class="preview-inscrit">
+            @if (this.formCreerMatch.value.inscritB; as c) {
+            <div [style.color]="couleurs[1].code">
+              <div>{{ c.prenom }} {{ c.nom }}</div>
+              <div>{{ c.club }}</div>
+            </div>
+          }
+          </div>
+        </div>
+
+        <div class="elemForm autocomplete">
+          <div class="select-label">Associer à une poule ?</div>
+          <div class="select-inscrit">
+            <input 
+              ngui-auto-complete 
+              formControlName="poule"
+              [source]="poulesListe"
+              [itemTemplate]="pouleLigne"
+              [display-with]="affichePoule"
+              blank-option-text="Aucune"
+            />
+          </div>
+  
+          <div class="preview-inscrit">
+            @if (this.formCreerMatch.value.poule; as p) {
+            <div>
+              <div>{{ p.nom }}</div>
+            </div>
+          }
+          </div>
         </div>
       </div>
 
-    </div>
-    <div id="select-tags">
-      <div id="tags-titre">Tags</div>
-      @for (tag of tags; track $index) {
-      <div>
-        <input
-          type="checkbox"
-          [value]="tag.id"
-          [checked]="tag.checked"
-          (change)="onCheckTag($event)"
-        />
-        {{ tag.code }}
+      <div class="elemForm" id="select-tags">
+        <div class="select-label">Tags</div>
+        @for (tag of tags; track $index) {
+        <div>
+          <input
+            type="checkbox"
+            [value]="tag.id"
+            [checked]="tag.checked"
+            (change)="onCheckTag($event)"
+          />
+          {{ tag.code }}
+        </div>
+        }
       </div>
-      }
-    </div>
 
-     @if (Auth.estAdmin(role)) {
-    <button class="btn" id="btn-creer-match" type="submit">Créer</button>
+      <button class="btn" id="btn-creer-match" type="submit">Créer</button>
+      </form>
+    @if (estModalVisible){
+    <app-creation-match-modal
+      titre="Confirmer la creation d'un match"
+      texte="Que faire après avoir créé ce match ?"
+      (annuler)="annulerCreation()"
+      (confirmer)="confirmerCreation($event)"
+    ></app-creation-match-modal>
     }
-  </form>
-  @if (estModalVisible){
-  <app-creation-match-modal
-    titre="Confirmer la creation d'un match"
-    texte="Que faire après avoir créé ce match ?"
-    (annuler)="annulerCreation()"
-    (confirmer)="confirmerCreation($event)"
-  ></app-creation-match-modal>
   }
 </main>

@@ -11,28 +11,32 @@ export class NouveauMatch {
   evenement: {
     id: number;
   };
-  poule: {
-    id: number;
+  poule?: {
+    id?: number;
   };
   timer: number;
   tags: Tag[] = [];
-  ruleset: Ruleset;
+  ruleset?: Ruleset;
 
   constructor(
-    inscritA: number,
-    inscritB: number,
-    evenement: number,
-    poule: number,
+    idInscritA: number,
+    idInscritB: number,
+    idEvenement: number,
+    idPoule: number,
     timer: number,
     tags: Tag[],
-    ruleset: Ruleset,
+    idRuleset?: number,
   ) {
-    this.inscritA = { id: inscritA };
-    this.inscritB = { id: inscritB };
-    this.evenement = { id: evenement };
-    this.poule = { id: poule };
+    this.inscritA = { id: idInscritA };
+    this.inscritB = { id: idInscritB };
+    this.evenement = { id: idEvenement };
+    if (idPoule){
+      this.poule = { id: idPoule };
+    }
     this.timer = timer;
     this.tags = tags;
-    this.ruleset = ruleset;
+    if (idRuleset){
+      this.ruleset = { id: idRuleset };
+    }
   }
 }

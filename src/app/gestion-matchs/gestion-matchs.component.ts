@@ -32,7 +32,6 @@ export class GestionMatchsComponent implements OnInit {
   private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private matchsService = inject(MatchsService);
-  private hemaRatingService = inject(HemaRatingService);
   private inscritsService = inject(InscritsService);
   private tagsService = inject(TagsService);
   private formBuilder = inject(FormBuilder);
@@ -54,9 +53,6 @@ export class GestionMatchsComponent implements OnInit {
   texteModal = 'Cette action est définitive';
 
   idASupprimer?: number;
-  estScoresOk = false;
-  env = environment;
-  URL_HEMA_RATING = `${this.env.baseUrl}/hema-rating/get-csv`;
   evenement!:Evenement;
   role:RolesNames = 'guest';
 
@@ -126,9 +122,9 @@ export class GestionMatchsComponent implements OnInit {
     this.formFiltrage.valueChanges.subscribe((values) => {
       console.log("id recherché : " + values.inscritFiltre.id);
       if (values.inscritFiltre.id){
-        this.criteres.idinscrit = values.inscritFiltre.id;
+        this.criteres.idInscrit = values.inscritFiltre.id;
       } else {
-        this.criteres.idinscrit = undefined;
+        this.criteres.idInscrit = undefined;
       }
       this.chercherMatchs(this.criteres)
     });
@@ -169,11 +165,5 @@ export class GestionMatchsComponent implements OnInit {
 
   annulerSuppression() {
     this.estModalVisible = false;
-  }
-
-  editerScores() {
-    this.hemaRatingService
-      .calculerResultats()
-      .subscribe(() => (this.estScoresOk = true));
   }
 }

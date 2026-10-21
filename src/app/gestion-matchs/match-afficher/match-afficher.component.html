@@ -40,26 +40,27 @@
     @if (match.statut === "en cours") {
     <div id="chrono">Chrono : {{ match.timer | timer }}</div>
     }
-    <div class="ligne-inscrit" [style.color]="match.couleurA">
+    <div class="ligne-inscrit" [style.color]="couleurs[0].code">
       <div class="inscrit">
-        <span>{{ match.infosA | nomsDisplay }}</span>
-        <!-- <br />
-        <span>{{ match.infosA.club | clubDisplay }}</span> -->
+        <span>{{ match.inscritA | nomsDisplay }}</span>
+        <br />
+        <span>({{ match.inscritA.club }})</span>
       </div>
       @if(match.statut!=="nouveau") {
       <div class="score-inscrit">{{ match.scoreA }}</div>
       }
     </div>
-    <div class="ligne-inscrit" [style.color]="match.couleurB">
+    <div class="ligne-inscrit" [style.color]="couleurs[1].code">
       <div class="inscrit">
-        <span>{{ match.infosB | nomsDisplay }}</span>
-        <!-- <br /> -->
-        <!-- <span>{{ match.infosB.club | clubDisplay }}</span> -->
+        <span>{{ match.inscritB | nomsDisplay }}</span>
+        <br />
+        <span>({{ match.inscritB.club }})</span>
       </div>
       @if(match.statut!=="nouveau") {
       <div class="score-inscrit">{{ match.scoreB }}</div>
       }
     </div>
+    <div>{{match.poule?.nom}}</div>
     <div id="tags">
       @for (tag of match.tags; track $index) {
       <span class="tag">{{ tag.code }}</span>

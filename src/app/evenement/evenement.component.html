@@ -8,6 +8,18 @@
         <span> au </span>
         <span>{{ evenement.dateFin | date:'shortDate' }}</span>
       </h2>
+      @if (Auth.estAdmin(role)) {
+        <div>
+          <button class="btn" (click)="editerScores()">
+            Resultats HemaRating
+          </button>
+          @if (estScoresOk) {
+          <a target="_blank" href="{{ URL_HEMA_RATING }}"
+            ><button class="btn">Lien vers les scores</button></a
+          >
+          }
+        </div>
+      }
       <div>
         <button type="button" class="btn" (click)="onListeEvenements()">
           Voir la liste des événements

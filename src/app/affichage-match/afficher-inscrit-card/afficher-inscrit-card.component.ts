@@ -17,5 +17,7 @@ export class AfficherinscritCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.border = `3px solid ${this.couleur}`;
+    console.log(this.inscrit);
+    
   }
 }

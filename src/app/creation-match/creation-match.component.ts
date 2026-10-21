@@ -49,6 +49,7 @@ export class CreationMatchComponent implements OnInit {
   estModalVisible = false;
   evenement!: Evenement;
   nouveauMatch?: NouveauMatch;
+  matchCree?: Match;
   formCreerMatch!: FormGroup;
   inscritsListe!: Inscrit[];
   poulesListe!: Poule[];
@@ -62,6 +63,7 @@ export class CreationMatchComponent implements OnInit {
   rechercheinscritA?: string;
   couleurs = couleurs;
   role:RolesNames = 'guest';
+  inscritEnDouble= false;
 
   /**
    * Initialisation données et formulaire
@@ -83,7 +85,7 @@ export class CreationMatchComponent implements OnInit {
   getDatas(idEvent: number) {
     this.inscritsService.getInscritsByEvent(idEvent).subscribe((liste) => {
       this.inscritsListe = liste;
-      
+      this.inscritsListe.sort((a, b)=> a.nom<b.nom?-1:1);
     });
     this.poulesService.getPoulesByEvent(idEvent).subscribe((liste) => {
       this.poulesListe = liste;
@@ -100,22 +102,24 @@ export class CreationMatchComponent implements OnInit {
   }
 
   initForm() {
-    this.inscritA = undefined;
-    this.inscritB = undefined;
+    // this.inscritA = undefined;
+    // this.inscritB = undefined;
     // this.colorA = couleurs[0].code;
     // this.colorB = couleurs[1].code;
 
     this.formCreerMatch = this.formBuilder.group({
       inscritA: null,
       inscritB: null,
+      poule: null,
       // couleurA: couleurs[0].code,
       // couleurB: couleurs[1].code,
       tags: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
-      this.rulesetChoisi = undefined;
-      this.inscritA = values.inscritA;
-      this.inscritB = values.inscritB;
+      console.log(values);
+      this.inscritEnDouble = values.inscritA?.id == values.inscritB?.id;
+      
+      // this.rulesetChoisi = undefined;
       // this.colorA = values.couleurA;
       // this.colorB = values.couleurB;
     });
@@ -129,6 +133,11 @@ export class CreationMatchComponent implements OnInit {
     // return `${item.prenom} ${item.nom} (${item.club?.nomCourt})`;
     return `${item.prenom}`;
   }
+
+  affichePoule(item: Poule): string {
+    return `${item.nom}`;
+  }
+
 
   onCheckTag($event: any) {
     const id = $event.target.value;
@@ -153,13 +162,12 @@ export class CreationMatchComponent implements OnInit {
       this.nouveauMatch = new NouveauMatch(
         this.formCreerMatch.value.inscritA.id,
         this.formCreerMatch.value.inscritB.id,
-        this.formCreerMatch.value.couleurA, // evenement
-        this.formCreerMatch.value.couleurB, // poule
+        this.evenement.id, // evenement
+        this.formCreerMatch.value.poule.id,
         0,
         this.tags.filter((tag) => tag.checked),
-        this.setRuleset()
+        this.evenement.ruleset?.id
       );
-      this.nouveauMatch = this.setTimer(this.nouveauMatch);
       console.log(this.nouveauMatch);
       this.estModalVisible = true;
     }
@@ -168,41 +176,18 @@ export class CreationMatchComponent implements OnInit {
   estIncomplet(): boolean {
     return !(
       this.formCreerMatch.value.inscritA &&
-      this.formCreerMatch.value.inscritB &&
-      this.formCreerMatch.value.couleurA &&
-      this.formCreerMatch.value.couleurB
+      this.formCreerMatch.value.inscritB 
+      // this.formCreerMatch.value.couleurA &&
+      // this.formCreerMatch.value.couleurB
     );
   }
 
   estIncorrect(): boolean {
     return (
       this.formCreerMatch.value.inscritA ===
-        this.formCreerMatch.value.inscritB ||
-      this.formCreerMatch.value.couleurA === this.formCreerMatch.value.couleurB
+        this.formCreerMatch.value.inscritB
+      // this.formCreerMatch.value.couleurA === this.formCreerMatch.value.couleurB
     );
-  }
-
-  setRuleset(): Ruleset {
-    this.rulesetChoisi = this.evenement.ruleset;
-    const vulnerants = this.rulesetChoisi!.vulnerants;
-    const cibles = this.rulesetChoisi!.cibles;
-    return {
-      id: this.rulesetChoisi!.id,
-      nom: this.rulesetChoisi!.nom,
-      description: this.rulesetChoisi!.description,
-      timerLimite: this.rulesetChoisi!.timerLimite,
-      timerReverse: this.rulesetChoisi!.timerReverse,
-      vulnerants: vulnerants,
-      cibles: cibles,
-    } as Ruleset;
-  }
-
-  setTimer(match: NouveauMatch): NouveauMatch {
-    if (this.rulesetChoisi!.timerReverse) {
-      match.timer = match.ruleset.timerLimite!;
-      match.ruleset.timerLimite = 0;
-    }
-    return match;
   }
 
   /**

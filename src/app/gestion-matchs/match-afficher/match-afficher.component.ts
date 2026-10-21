@@ -9,6 +9,7 @@ import { TimerPipe } from '../../shared/pipes/timer.pipe';
 import { QRCodeComponent } from 'angularx-qrcode';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
+import { couleurs } from '../../shared/models/ruleset-ref';
 
 @Component({
     selector: 'app-match-afficher',
@@ -37,6 +38,8 @@ export class MatchAfficherComponent implements OnInit {
   texteModal = 'Cette action est définitive';
   url = 'https://amhe.makhai.fr/match/';
   qrCodeVisible = false;
+  couleurs = couleurs;
+  
 
   ngOnInit(): void {
     this.url += this.match.id;

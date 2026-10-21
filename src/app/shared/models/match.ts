@@ -1,11 +1,15 @@
+import { Evenement } from './evenement';
 import { Inscrit } from './inscrit';
+import { Poule } from './poule';
 import { Ruleset } from './ruleset';
 import { Tag } from './tag';
 
 export class Match {
   id!: number;
-  infosA!: Inscrit;
-  infosB!: Inscrit;
+  evenement!: Evenement;
+  poule?: Poule;
+  inscritA!: Inscrit;
+  inscritB!: Inscrit;
   couleurA!: string;
   couleurB!: string;
   scoreA = 0;

@@ -7,12 +7,13 @@ import { Inscrit } from '../models/inscrit';
 })
 export class NomsPipe implements PipeTransform {
   transform(
-    inscrit: Inscrit | undefined,
+    inscrit: Inscrit,
     complet = false
   ): string {
     if (inscrit && inscrit.pseudo && complet)
       return `${inscrit.prenom} ${inscrit.nom} '${inscrit.pseudo}'`;
-    if (inscrit) return `${inscrit.prenom} ${inscrit.nom}`;
+    if (inscrit) 
+      return `${inscrit.prenom} ${inscrit.nom}`;
     return 'Pas de nom';
   }
 }

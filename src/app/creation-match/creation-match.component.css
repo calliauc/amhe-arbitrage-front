@@ -14,43 +14,74 @@ form {
   margin-inline: auto;
   width: 80%;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
-  font-size: 1.1em;
+  font-size: 1.3em;
+  /* border: 1px solid red; */
+}
+
+.elemForm {
+  /* width: 50%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid black; */
+  /* border: 1px solid red; */
+  flex-direction: column;
+  min-height: 200px;
+  width: 100%;
+}
+
+.autocomplete {
+  min-height: 150px;
+  width: 100%;
+  /* border: 1px solid red; */
 }
 
 #inscrits {
-  order: 1;
-  width: 75%;
-  display: flex;
-  align-items: center;
-}
-
-.inscrit {
   order: 1;
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
-  min-height: 200px;
-}
-
-.select-label {
-  margin-block: 10px;
-}
-
-.select-inscrit {
-  margin-block: 10px;
-}
-
-.preview-inscrit {
-  text-align: center;
+  /* border: 1px solid red; */
 }
 
 #select-tags {
   order: 2;
-  width: 20%;
+  flex-direction: column;
+  align-items: start;
+  justify-items: center;
+  height: 20%;
+  width: 40%;
+  padding-left: 30px;
+  border: 1px solid green;
+}
+
+#btn-creer-match {
+  order: 3;
+  padding-inline: 10px;
+  padding-block: 5px;
+  /* margin-top: 10px; */
+  margin: auto;
+  height: 40px;
+  text-align: center;
+  align-content: center;
+  font-size: 1.2em;
+  border: 2px solid #2fcc71;
+  border-radius: 10px;
+}
+
+.select-label {
+  margin-top: 10px;
+}
+
+.select-inscrit {
+  padding-block: 5px;
+}
+
+.preview-inscrit {
+  text-align: center;
 }
 
 #tags-titre {
@@ -64,18 +95,6 @@ select {
   margin-bottom: 10px;
 }
 
-#btn-creer-match {
-  order: 6;
-  padding-inline: 10px;
-  padding-block: 5px;
-  margin-top: 10px;
-  margin-inline: auto;
-  text-align: center;
-  align-content: center;
-  font-size: 1.2em;
-  border: 2px solid #2fcc71;
-  border-radius: 10px;
-}
 
 @media screen and (max-width: 1099px) {
   form {
