@@ -11,13 +11,13 @@
         </div>
       </div>
       <div id="scores">
-        <!-- <div class="tag">
+        <!-- <div class="item">
           Nombre de matchs joués : {{ details.matchs.length }}
         </div> -->
-        <div class="tag">
+        <div class="item">
           Score (Cumul des PV restants) : {{ details.pointsMarques }}
         </div>
-        <div class="tag">
+        <div class="item">
           Cumul de PV restants adverses : {{ details.pointsPerdus }}
         </div>
       </div>
@@ -27,25 +27,25 @@
       @for (match of details.matchs; track $index) {
       <div class="match">
         <div class="match-header">
-          <span>{{ filtreTags(match.tags).code }}</span>
+          <span>{{ filtreItems(match.items).code }}</span>
           <span>à {{ match.dateDebut | date : "H'h'mm" }}</span>
         </div>
-        @if (match.infosA.id === evenementId) {
+        @if (match.inscritA.id === evenementId) {
         <div class="evenement-affichage">
-          <span class="evenement-nom">{{ match.infosA | nomsDisplay }} </span>
+          <span class="evenement-nom">{{ match.inscritA | nomsDisplay }} </span>
           <span class="evenement-score"> {{ match.scoreA }} </span>
         </div>
         <div class="evenement-affichage">
-          <span class="evenement-nom">{{ match.infosB | nomsDisplay }} </span>
+          <span class="evenement-nom">{{ match.inscritB | nomsDisplay }} </span>
           <span class="evenement-score"> {{ match.scoreB }} </span>
         </div>
         } @else {
         <div class="evenement-affichage">
-          <span class="evenement-nom">{{ match.infosB | nomsDisplay }} </span>
+          <span class="evenement-nom">{{ match.inscritB | nomsDisplay }} </span>
           <span class="evenement-score"> {{ match.scoreB }} </span>
         </div>
         <div class="evenement-affichage">
-          <span class="evenement-nom">{{ match.infosA | nomsDisplay }} </span>
+          <span class="evenement-nom">{{ match.inscritA | nomsDisplay }} </span>
           <span class="evenement-score"> {{ match.scoreA }} </span>
         </div>
         }
@@ -69,7 +69,7 @@
               <tr class="ligne">
                 <td>{{ elem.code }}</td>
                 <td>{{ elem.valeur }}</td>
-                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+                <td>{{ elem.pourceniteme | number : "1.0-0" }} %</td>
               </tr>
               }
             </tbody>
@@ -89,7 +89,7 @@
               <tr class="ligne">
                 <td>{{ elem.code }}</td>
                 <td>{{ elem.valeur }}</td>
-                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+                <td>{{ elem.pourceniteme | number : "1.0-0" }} %</td>
               </tr>
               }
             </tbody>
@@ -109,7 +109,7 @@
               <tr class="ligne">
                 <td>{{ elem.code }}</td>
                 <td>{{ elem.valeur }}</td>
-                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+                <td>{{ elem.pourceniteme | number : "1.0-0" }} %</td>
               </tr>
               }
             </tbody>
@@ -132,7 +132,7 @@
               <tr class="ligne">
                 <td>{{ elem.code }}</td>
                 <td>{{ elem.valeur }}</td>
-                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+                <td>{{ elem.pourceniteme | number : "1.0-0" }} %</td>
               </tr>
               }
             </tbody>
@@ -152,7 +152,7 @@
               <tr class="ligne">
                 <td>{{ elem.code }}</td>
                 <td>{{ elem.valeur }}</td>
-                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+                <td>{{ elem.pourceniteme | number : "1.0-0" }} %</td>
               </tr>
               }
             </tbody>
@@ -172,7 +172,7 @@
               <tr class="ligne">
                 <td>{{ elem.code }}</td>
                 <td>{{ elem.valeur }}</td>
-                <td>{{ elem.pourcentage | number : "1.0-0" }} %</td>
+                <td>{{ elem.pourceniteme | number : "1.0-0" }} %</td>
               </tr>
               }
             </tbody>

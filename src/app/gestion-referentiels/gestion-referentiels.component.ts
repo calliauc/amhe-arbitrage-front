@@ -2,9 +2,9 @@ import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/cor
 import { GestionCiblesComponent } from './gestion-cibles/gestion-cibles.component';
 import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnerants.component';
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
-import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
+import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
 
 @Component({
     selector: 'app-gestion-referentiels',

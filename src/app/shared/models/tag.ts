@@ -1,14 +1,7 @@
-export class Tag {
-  id!: number;
-  code!: string;
-}
+import { Item } from "./item";
 
-export class TagCb extends Tag {
-  checked = false;
-}
-
-export class TagsFiltres {
-  tagsRequis!: Tag[];
-  tagsOptions!: Tag[];
-  tagsExclus!: Tag[];
+export class TagFiltres {
+  itemsRequis!: Item[];
+  itemsOptions!: Item[];
+  itemsExclus!: Item[];
 }

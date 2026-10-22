@@ -44,7 +44,7 @@
 </form>
 @if (estModalVisible && estModeEdition){
 <app-confirmation-modal
-  [id]="cible.code"
+  [id]="cible.id"
   [titre]="titreModal"
   [texte]="texteModal"
   (confirmer)="confirmerSuppression($event)"

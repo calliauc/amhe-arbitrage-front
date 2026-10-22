@@ -1,5 +1,5 @@
 import { Inscrit } from './inscrit';
-import { RulesetRef } from './ruleset-ref';
+import { Item } from './item';
 
 export class NouveauCoup {
   matchId!: number;
@@ -9,8 +9,8 @@ export class NouveauCoup {
   defenseurCouleur!: string;
   attaquantScore!: number;
   defenseurScore!: number;
-  vulnerant!: RulesetRef;
-  cible?: RulesetRef;
+  vulnerant!: Item;
+  cible?: Item;
   doubleAtk!: boolean;
   doubleDef!: boolean;
   afterblow!: boolean;

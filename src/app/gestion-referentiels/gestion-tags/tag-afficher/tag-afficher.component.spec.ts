@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagAfficherComponent } from './tag-afficher.component';
+import { ItemAfficherComponent } from './item-afficher.component';
 
-describe('TagAfficherComponent', () => {
-  let component: TagAfficherComponent;
-  let fixture: ComponentFixture<TagAfficherComponent>;
+describe('ItemAfficherComponent', () => {
+  let component: ItemAfficherComponent;
+  let fixture: ComponentFixture<ItemAfficherComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TagAfficherComponent],
+      imports: [ItemAfficherComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TagAfficherComponent);
+    fixture = TestBed.createComponent(ItemAfficherComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

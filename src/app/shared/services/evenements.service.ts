@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Tag, TagsFiltres } from '../models/tag';
+import { Item } from '../models/item';
 import { Evenement } from '../models/evenement';
 import { Params } from '@angular/router';
 
@@ -32,9 +32,9 @@ export class EvenementsService {
   }
 
 
-  public getEvenementsByTagsMatchs(tags: Tag[]): Observable<Evenement[]> {
-    const tagsId = tags.map((tag) => tag.id);
-    return this.http.post<Evenement[]>(`${this.URL}/tags`, tagsId, {
+  public getEvenementsByItemsMatchs(items: Item[]): Observable<Evenement[]> {
+    const itemsId = items.map((item) => item.id);
+    return this.http.post<Evenement[]>(`${this.URL}/items`, itemsId, {
       responseType: 'json',
     });
   }

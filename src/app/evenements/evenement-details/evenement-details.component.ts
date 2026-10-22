@@ -2,7 +2,7 @@
 // import { ActivatedRoute, Router } from '@angular/router';
 // import { EvenementsService } from '../../shared/services/evenements.service';
 // import { NomsPipe } from '../../shared/pipes/noms.pipe';
-// import { Tag, TagsFiltres } from '../../shared/models/tag';
+// import { Item, TagFiltres } from '../../shared/models/item';
 // import { CommonModule, DatePipe } from '@angular/common';
 // import { ClubPipe } from '../../shared/pipes/club.pipe';
 
@@ -20,9 +20,9 @@
 
 //   details!: EvenementDetails;
 //   evenementId!: number;
-//   tagPoule!: Tag;
-//   tags: TagsFiltres = {
-//     tagsRequis: [
+//   itemPoule!: Item;
+//   items: TagFiltres = {
+//     itemsRequis: [
 //       {
 //         id: 1,
 //         code: 'B-CUP-25',
@@ -32,8 +32,8 @@
 //         code: 'Epée',
 //       },
 //     ],
-//     tagsOptions: [],
-//     tagsExclus: [
+//     itemsOptions: [],
+//     itemsExclus: [
 //       {
 //         id: 3,
 //         code: 'Hache',
@@ -52,7 +52,7 @@
 //   constructor() {
 //     this.route.params.subscribe((params) => {
 //       this.evenementService
-//         .getEvenementsDetails(params['id'], this.tags)
+//         .getEvenementsDetails(params['id'], this.items)
 //         .subscribe((details) => {
 //           if (details) {
 //             this.details = details;
@@ -76,7 +76,7 @@
 //     this.details.coupsSubis.details?.sort((a, b) => b.valeur - a.valeur);
 //   }
 
-//   filtreTags(tags: Tag[]): Tag {
-//     return tags.filter((tag) => tag.code.startsWith('Poule'))[0];
+//   filtreItems(items: Item[]): Item {
+//     return items.filter((item) => item.code.startsWith('Poule'))[0];
 //   }
 // }

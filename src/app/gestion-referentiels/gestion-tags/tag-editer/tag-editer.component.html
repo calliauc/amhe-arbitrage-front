@@ -1,5 +1,5 @@
 <form
-  [formGroup]="formEditerTag"
+  [formGroup]="formEditerItem"
   (ngSubmit)="confirmer()"
   (keypress.enter)="confirmer()"
   (keydown.escape)="annuler()"
@@ -9,12 +9,12 @@
       <input type="text" formControlName="code" placeholder="Code" #focus />
     </td>
     <td class="col">
-      <button class="btn btn-tags btn-enregistrer-edition" type="submit">
+      <button class="btn btn-items btn-enregistrer-edition" type="submit">
         Enregistrer
       </button>
       <button
         type="button"
-        class="btn btn-tags btn-annuler-edition"
+        class="btn btn-items btn-annuler-edition"
         (click)="annuler()"
       >
         Annuler
@@ -22,7 +22,7 @@
       @if (estModeEdition){
       <button
         type="button"
-        class="btn btn-tags btn-suppression"
+        class="btn btn-items btn-suppression"
         (click)="demanderSuppression()"
       >
         X</button

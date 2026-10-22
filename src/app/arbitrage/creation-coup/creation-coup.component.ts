@@ -6,7 +6,7 @@ import { NouveauCoup } from '../../shared/models/nouveau-coup';
 import { Match } from '../../shared/models/match';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { TitleCasePipe } from '@angular/common';
-import { RulesetRef } from '../../shared/models/ruleset-ref';
+import { Item } from '../../shared/models/item';
 
 @Component({
     selector: 'app-creation-coup',
@@ -73,15 +73,15 @@ export class CreationCoupComponent implements OnInit {
       }
       this.nouveauCoup.vulnerant = {
         code: this.formSaisirCoup.value.vulnerant.code,
-      } as RulesetRef;
+      } as Item;
       if (this.nouveauCoup.vulnerant.code === 'lutte') {
         this.nouveauCoup.cible = {
           code: 'lutte',
-        } as RulesetRef;
+        } as Item;
       } else {
         this.nouveauCoup.cible = {
           code: this.formSaisirCoup.value.cible.code,
-        } as RulesetRef;
+        } as Item;
       }
       this.nouveauCoup.doubleAtk = this.formSaisirCoup.value.doubleAtk;
       this.nouveauCoup.doubleDef = this.formSaisirCoup.value.doubleDef;

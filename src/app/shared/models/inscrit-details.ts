@@ -1,11 +1,11 @@
 import { Inscrit } from './inscrit';
 import { Match } from './match';
-import { TagsFiltres } from './tag';
+import { TagFiltres } from './tag';
 
 export class InscritDetails {
   inscrit!: Inscrit;
   matchs!: Match[];
-  tags!: TagsFiltres;
+  items!: TagFiltres;
   pointsMarques!: number;
   pointsPerdus!: number;
   coupsSubis!: InscritDetailsCoups;
@@ -22,5 +22,5 @@ export class InscritDetailsCoups {
 export class DetailsCoupsListeElem {
   code!: string;
   valeur!: number;
-  pourcentage!: number;
+  pourceniteme!: number;
 }

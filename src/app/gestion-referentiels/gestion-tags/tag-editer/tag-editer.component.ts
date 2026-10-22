@@ -2,8 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Outp
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
-import { TagsService } from '../../../shared/services/tags.service';
-import { Tag } from '../../../shared/models/tag';
+import { Item } from '../../../shared/models/item';
 
 @Component({
     selector: 'app-tag-editer',
@@ -14,30 +13,30 @@ import { Tag } from '../../../shared/models/tag';
 })
 export class TagEditerComponent implements OnInit, AfterViewInit {
   private formBuilder = inject(FormBuilder);
-  private tagsService = inject(TagsService);
+  // private itemsService = inject(ItemsService);
 
-  @Input() tag: Tag = new Tag();
+  @Input() tag: Item = new Item();
   @Input() estPair!: boolean;
   @Input() estModeEdition = false;
   @Output() annulerEditionCreation = new EventEmitter<boolean>();
   @Output() supprimerTag = new EventEmitter<number>();
-  @Output() validerEdition = new EventEmitter<Tag>();
-  @Output() validerCreation = new EventEmitter<Tag>();
+  @Output() validerEdition = new EventEmitter<Item>();
+  @Output() validerCreation = new EventEmitter<Item>();
   @ViewChild('focus') focusForm!: ElementRef;
 
-  tagsListe!: Tag[];
+  itemsListe!: Item[];
   ereurSaisie: boolean;
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
-  formEditerTag!: FormGroup;
+  formEditerItem!: FormGroup;
 
   constructor() {
     this.ereurSaisie = false;
   }
 
   ngOnInit(): void {
-    this.formEditerTag = this.formBuilder.group({
+    this.formEditerItem = this.formBuilder.group({
       id: this.tag.id,
       code: this.tag.code,
     });
@@ -66,7 +65,7 @@ export class TagEditerComponent implements OnInit, AfterViewInit {
 
   confirmer(): void {
     this.ereurSaisie = false;
-    this.tag = this.formEditerTag.value;
+    this.tag = this.formEditerItem.value;
     if (this.verifierTag(this.tag)) {
       this.enregistrer();
     } else {
@@ -79,17 +78,17 @@ export class TagEditerComponent implements OnInit, AfterViewInit {
 
   enregistrer() {
     if (this.estModeEdition) {
-      this.tagsService.modifierTag(this.tag).subscribe((result) => {
-        this.validerEdition.emit(result);
-      });
+      // this.itemsService.modifierItem(this.item).subscribe((result) => {
+      //   this.validerEdition.emit(result);
+      // });
     } else {
-      this.tagsService.creerTag(this.tag).subscribe((tagCree) => {
-        this.validerCreation.emit(tagCree);
-      });
+      // this.itemsService.creerItem(this.item).subscribe((itemCree) => {
+      //   this.validerCreation.emit(itemCree);
+      // });
     }
   }
 
-  verifierTag(tag: Tag): boolean {
+  verifierTag(tag: Item): boolean {
     return !!tag.code;
   }
 }

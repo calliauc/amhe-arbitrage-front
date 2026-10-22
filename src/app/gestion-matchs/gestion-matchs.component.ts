@@ -9,8 +9,6 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InscritsService } from '../shared/services/inscrits.service';
-import { TagsService } from '../shared/services/tags.service';
-import { TagCb } from '../shared/models/tag';
 import { CriteresRechercheMatch } from '../shared/models/criteresRechercheMatch';
 import { Inscrit } from '../shared/models/inscrit';
 import { Evenement } from '../shared/models/evenement';
@@ -33,7 +31,7 @@ export class GestionMatchsComponent implements OnInit {
   private logService = inject(AuthV1Service);
   private matchsService = inject(MatchsService);
   private inscritsService = inject(InscritsService);
-  private tagsService = inject(TagsService);
+  // private itemsService = inject(ItemsService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private evenementsService = inject(EvenementsService);
@@ -45,7 +43,6 @@ export class GestionMatchsComponent implements OnInit {
   formFiltrage!: FormGroup;
   inscritFiltre: Inscrit = new Inscrit;
   inscritsListe: Inscrit[] = [];
-  tagsFiltreListe: TagCb[] = [];
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
 
   estModalVisible = false;
@@ -78,15 +75,15 @@ export class GestionMatchsComponent implements OnInit {
     this.inscritsService.getInscrits().subscribe((liste) => {
       this.inscritsListe = liste;
     });
-    this.tagsService.getTags().subscribe((tags) => {
-      tags.forEach((tag) =>
-        this.tagsFiltreListe.push({
-          id: tag.id,
-          code: tag.code,
-          checked: false,
-        })
-      );
-    });
+    // this.itemsService.getItems().subscribe((items) => {
+    //   items.forEach((tag) =>
+    //     this.itemsFiltreListe.push({
+    //       id: item.id,
+    //       code: item.code,
+    //       checked: false,
+    //     })
+    //   );
+    // });
   }
 
   getMatchs() {
@@ -117,7 +114,7 @@ export class GestionMatchsComponent implements OnInit {
   initForm() {
     this.formFiltrage = this.formBuilder.group({
       inscritFiltre: null,
-      tagsFiltre:null,
+      itemsFiltre:null,
     });
     this.formFiltrage.valueChanges.subscribe((values) => {
       console.log("id recherché : " + values.inscritFiltre.id);
@@ -130,15 +127,15 @@ export class GestionMatchsComponent implements OnInit {
     });
   }
 
-  onCheckTag($event: any) {
+  onCheckItem($event: any) {
     const id = $event.target.value;
     const isChecked = $event.target.checked;
-    this.tagsFiltreListe.forEach((tag) => {
-      if (tag.id == id) {
-        tag.checked = isChecked;
-      }
-    });
-    this.criteres.idTags = this.tagsFiltreListe.filter(tag => tag.checked).map(tag => tag.id);
+    // this.tagsFiltreListe.forEach((tag) => {
+    //   if (tag.id == id) {
+    //     tag.checked = isChecked;
+    //   }
+    // });
+    // this.criteres.idItems = this.itemsFiltreListe.filter(item => item.checked).map(item => item.id);
     this.chercherMatchs(this.criteres);
   }
 

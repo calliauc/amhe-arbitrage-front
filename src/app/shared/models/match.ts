@@ -2,7 +2,7 @@ import { Evenement } from './evenement';
 import { Inscrit } from './inscrit';
 import { Poule } from './poule';
 import { Ruleset } from './ruleset';
-import { Tag } from './tag';
+import { Item } from './item';
 
 export class Match {
   id!: number;
@@ -19,6 +19,6 @@ export class Match {
   dateFin?: Date;
   statut!: string;
   timer = 0;
-  tags: Tag[] = [];
+  items: Item[] = [];
   ruleset!: Ruleset;
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { Item } from '../../../shared/models/item';
 import { RolesNames } from '../../../shared/models/roles';
 import { AuthV1Service } from '../../../shared/services/auth-v1.service';
 
@@ -14,7 +14,7 @@ import { AuthV1Service } from '../../../shared/services/auth-v1.service';
 export class VulnerantAfficherComponent implements OnInit {
   private Auth = AuthV1Service;
   
-  @Input() vulnerant!: RulesetRef;
+  @Input() vulnerant!: Item;
   @Input() estPair!: boolean;
   @Input() role!: RolesNames;
   @Output() editerVulnerant = new EventEmitter<boolean>();

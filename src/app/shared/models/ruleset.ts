@@ -1,4 +1,4 @@
-import { RulesetRef } from './ruleset-ref';
+import { Item } from './item';
 
 export class Ruleset {
   id?: number;
@@ -6,6 +6,6 @@ export class Ruleset {
   description?: string;
   timerLimite?: number;
   timerReverse?: boolean;
-  vulnerants?: RulesetRef[];
-  cibles?: RulesetRef[];
+  vulnerants?: Item[];
+  cibles?: Item[];
 }

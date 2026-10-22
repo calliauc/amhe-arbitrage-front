@@ -78,13 +78,13 @@
   width: 10%;
 }
 
-#tags {
+#items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.tag {
+.item {
   border: 1px solid grey;
   background-color: rgb(30, 30, 30);
   border-radius: 13px;
@@ -148,7 +148,7 @@ td {
     margin-block: 2mm;
   }
 
-  .tag {
+  .item {
     font-size: 0.9em;
     border: 1px solid grey;
     background-color: white;

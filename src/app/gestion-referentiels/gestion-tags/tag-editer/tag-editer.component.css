@@ -23,7 +23,7 @@ input {
   text-align: center;
 }
 
-.btn-tags {
+.btn-items {
   width: 75px;
   text-align: center;
   align-content: center;
@@ -35,7 +35,7 @@ input {
   font-size: 0.9em;
 }
 
-.btn-tags:hover {
+.btn-items:hover {
   cursor: pointer;
   border: none;
   padding-inline: 4px;

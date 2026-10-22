@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { VulnerantsService } from '../../shared/services/vulnerants.service';
 import { VulnerantLigneComponent } from './vulnerant-ligne/vulnerant-ligne.component';
 import { VulnerantEditerComponent } from './vulnerant-editer/vulnerant-editer.component';
-import { RulesetRef } from '../../shared/models/ruleset-ref';
+import { Item } from '../../shared/models/item';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
+import { ItemsService } from '../../shared/services/items.service';
 
 @Component({
     selector: 'app-gestion-vulnerants',
@@ -17,17 +17,17 @@ import { AuthV1Service } from '../../shared/services/auth-v1.service';
 })
 export class GestionVulnerantsComponent implements OnInit {
   private Auth = AuthV1Service;
-  private vulnerantsService = inject(VulnerantsService);
+  private itemsService = inject(ItemsService);
 
   @Input() role!: RolesNames;
 
-  vulnerantsListe?: RulesetRef[];
-  vulnerantsListe$?: Observable<RulesetRef[]>;
+  vulnerantsListe?: Item[];
+  vulnerantsListe$?: Observable<Item[]>;
   estModeCreation: boolean;
-  nouveauVulnerant: RulesetRef;
+  nouveauVulnerant: Item;
   constructor() {
     this.estModeCreation = false;
-    this.nouveauVulnerant = new RulesetRef();
+    this.nouveauVulnerant = new Item();
   }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class GestionVulnerantsComponent implements OnInit {
   }
 
   recupererVulnerants() {
-    this.vulnerantsListe$ = this.vulnerantsService.getVulnerants();
+    this.vulnerantsListe$ = this.itemsService.getItems("vulnerant");
   }
 
   creerVulnerant() {
@@ -52,15 +52,15 @@ export class GestionVulnerantsComponent implements OnInit {
     );
   }
 
-  modifierVulnerant(vulnerantModifie: RulesetRef) {
-    this.vulnerantsListe$ = this.vulnerantsService
-      .modifierVulnerant(vulnerantModifie)
-      .pipe(switchMap(() => this.vulnerantsService.getVulnerants()));
+  modifierVulnerant(vulnerantModifie: Item) {
+    this.vulnerantsListe$ = this.itemsService
+      .modifierItem(vulnerantModifie)
+      .pipe(switchMap(() => this.itemsService.getItems("vulnerant")));
   }
 
-  supprimerVulnerant(code: string) {
-    this.vulnerantsService
-      .supprimerVulnerant(code)
+  supprimerVulnerant(id: number) {
+    this.itemsService
+      .supprimerItem(id)
       .subscribe(() => this.recupererVulnerants());
   }
 }

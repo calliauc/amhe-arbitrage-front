@@ -1,7 +1,7 @@
 import { Evenement } from './evenement';
 import { Inscrit } from './inscrit';
 import { Match } from './match';
-import { Tag } from './tag';
+import { Item } from './item';
 
 export class Poule {
   id?: number;
@@ -10,5 +10,5 @@ export class Poule {
   evenement!: Evenement;
   inscrits: Inscrit[] = [];
   matchs: Match[] = [];
-  tags: Tag[] = [];
+  items: Item[] = [];
 }

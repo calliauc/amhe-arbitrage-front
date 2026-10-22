@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Outp
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
-import { CiblesService } from '../../../shared/services/cibles.service';
-import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { Item } from '../../../shared/models/item';
+import { ItemsService } from '../../../shared/services/items.service';
 
 @Component({
     selector: 'app-cible-editer',
@@ -14,18 +14,18 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 })
 export class CibleEditerComponent implements OnInit, AfterViewInit {
   private formBuilder = inject(FormBuilder);
-  private ciblesService = inject(CiblesService);
+  private itemsService = inject(ItemsService);
 
-  @Input() cible: RulesetRef = new RulesetRef();
+  @Input() cible: Item = new Item();
   @Input() estPair!: boolean;
   @Input() estModeEdition = false;
   @Output() annulerEditionCreation = new EventEmitter<boolean>();
-  @Output() supprimerCible = new EventEmitter<string>();
-  @Output() validerEdition = new EventEmitter<RulesetRef>();
-  @Output() validerCreation = new EventEmitter<RulesetRef>();
+  @Output() supprimerCible = new EventEmitter<number>();
+  @Output() validerEdition = new EventEmitter<Item>();
+  @Output() validerCreation = new EventEmitter<Item>();
   @ViewChild('focus') focusForm!: ElementRef;
 
-  ciblesListe!: RulesetRef[];
+  ciblesListe!: Item[];
   ereurSaisie: boolean;
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
@@ -55,9 +55,9 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(code: string | number) {
+  confirmerSuppression(id: number) {
     this.estModalVisible = false;
-    this.supprimerCible.emit(code as string);
+    this.supprimerCible.emit(id);
   }
 
   annulerSuppression() {
@@ -79,17 +79,17 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
 
   enregistrer() {
     if (this.estModeEdition) {
-      this.ciblesService.modifierCible(this.cible).subscribe((result) => {
+      this.itemsService.modifierItem(this.cible).subscribe((result) => {
         this.validerEdition.emit(result);
       });
     } else {
-      this.ciblesService.creerCible(this.cible).subscribe((cibleCree) => {
+      this.itemsService.creerItem(this.cible).subscribe((cibleCree) => {
         this.validerCreation.emit(cibleCree);
       });
     }
   }
 
-  verifierCible(cible: RulesetRef): boolean {
+  verifierCible(cible: Item): boolean {
     return !!cible.code && !!cible.libelle;
   }
 }

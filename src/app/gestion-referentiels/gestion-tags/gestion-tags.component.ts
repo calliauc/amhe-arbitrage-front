@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
-import { TagLigneComponent } from './tag-ligne/tag-ligne.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { TagsService } from '../../shared/services/tags.service';
-import { TagEditerComponent } from './tag-editer/tag-editer.component';
-import { Tag } from '../../shared/models/tag';
+import { Item } from '../../shared/models/item';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
+import { TagEditerComponent } from './tag-editer/tag-editer.component';
+import { TagLigneComponent } from './tag-ligne/tag-ligne.component';
+import { ItemsService } from '../../shared/services/items.service';
 
 @Component({
     selector: 'app-gestion-tags',
@@ -17,18 +17,18 @@ import { AuthV1Service } from '../../shared/services/auth-v1.service';
 })
 export class GestionTagsComponent implements OnInit {
   private Auth = AuthV1Service;
-  private tagsService = inject(TagsService);
+  private itemsService = inject(ItemsService);
 
   @Input() role!: RolesNames;
 
-  tagsListe?: Tag[];
-  tagsListe$?: Observable<Tag[]>;
+  tagsListe?: Item[];
+  tagsListe$?: Observable<Item[]>;
   estModeCreation: boolean;
-  nouveauTag: Tag;
+  nouveauTag: Item;
 
   constructor() {
     this.estModeCreation = false;
-    this.nouveauTag = new Tag();
+    this.nouveauTag = new Item();
   }
 
   ngOnInit(): void {
@@ -44,7 +44,7 @@ export class GestionTagsComponent implements OnInit {
   }
 
   recupererTags() {
-    this.tagsListe$ = this.tagsService.getTags();
+    this.tagsListe$ = this.itemsService.getItems("tag");
   }
 
   creerTag() {
@@ -53,13 +53,13 @@ export class GestionTagsComponent implements OnInit {
     );
   }
 
-  modifierTag(tagModifie: Tag) {
-    this.tagsListe$ = this.tagsService
-      .modifierTag(tagModifie)
-      .pipe(switchMap(() => this.tagsService.getTags()));
+  modifierTag(tagModifie: Item) {
+    this.tagsListe$ = this.itemsService
+      .modifierItem(tagModifie)
+      .pipe(switchMap(() => this.itemsService.getItems("tag")));
   }
 
   supprimerTag(id: number) {
-    this.tagsService.supprimerTag(id).subscribe(() => this.recupererTags());
+    this.itemsService.supprimerItem(id).subscribe(() => this.recupererTags());
   }
 }

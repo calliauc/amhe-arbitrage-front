@@ -57,12 +57,12 @@ constructor() {
     // this.nom = $event.target.value;
   }
 
-  onTagsChange($event: any) {
+  onItemsChange($event: any) {
     // const id = $event.target.value;
     // const isChecked = $event.target.checked;
-    // this.tags.forEach((tag) => {
-    //   if (tag.id == id) {
-    //     tag.checked = isChecked;
+    // this.items.forEach((item) => {
+    //   if (item.id == id) {
+    //     item.checked = isChecked;
     //   }
     // });
   }
@@ -72,14 +72,14 @@ constructor() {
   }
 
   ajouterPoule() {
-    // const tagsPoule = this.tags.filter((tag) => tag.checked);
-    // if (tagsPoule.length == 0 || this.nom.length == 0) {
+    // const itemsPoule = this.items.filter((item) => item.checked);
+    // if (itemsPoule.length == 0 || this.nom.length == 0) {
     //   alert('Il manque des informations');
     //   return;
     // }
     // const nouvellePoule = {
     //   nom: this.nom,
-    //   tags: tagsPoule,
+    //   items: itemsPoule,
     // } as Poule;
     // this.poulesService.creerPoule(nouvellePoule).subscribe(() => {
     //   this.chargerPoules();

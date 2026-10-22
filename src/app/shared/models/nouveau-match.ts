@@ -1,5 +1,5 @@
 import { Ruleset } from './ruleset';
-import { Tag } from './tag';
+import { Item } from './item';
 
 export class NouveauMatch {
   inscritA: {
@@ -15,7 +15,7 @@ export class NouveauMatch {
     id?: number;
   };
   timer: number;
-  tags: Tag[] = [];
+  items: Item[] = [];
   ruleset?: Ruleset;
 
   constructor(
@@ -24,7 +24,7 @@ export class NouveauMatch {
     idEvenement: number,
     idPoule: number,
     timer: number,
-    tags: Tag[],
+    items: Item[],
     idRuleset?: number,
   ) {
     this.inscritA = { id: idInscritA };
@@ -34,7 +34,7 @@ export class NouveauMatch {
       this.poule = { id: idPoule };
     }
     this.timer = timer;
-    this.tags = tags;
+    this.items = items;
     if (idRuleset){
       this.ruleset = { id: idRuleset };
     }

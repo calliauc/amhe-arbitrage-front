@@ -2,7 +2,8 @@ import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InscritsService } from '../../shared/services/inscrits.service';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
-import { Tag, TagsFiltres } from '../../shared/models/tag';
+import { Item } from '../../shared/models/item';
+import { TagFiltres } from '../../shared/models/tag';
 import { CommonModule, DatePipe } from '@angular/common';
 import { InscritDetails } from '../../shared/models/inscrit-details';
 
@@ -20,9 +21,9 @@ export class InscritDetailsComponent {
 
   details!: InscritDetails;
   inscritId!: number;
-  tagPoule!: Tag;
-  tags: TagsFiltres = {
-    tagsRequis: [
+  itemPoule!: Item;
+  items: TagFiltres = {
+    itemsRequis: [
       {
         id: 1,
         code: 'B-CUP-25',
@@ -32,8 +33,8 @@ export class InscritDetailsComponent {
         code: 'Epée',
       },
     ],
-    tagsOptions: [],
-    tagsExclus: [
+    itemsOptions: [],
+    itemsExclus: [
       {
         id: 3,
         code: 'Hache',
@@ -52,7 +53,7 @@ export class InscritDetailsComponent {
   constructor() {
     this.route.params.subscribe((params) => {
       this.inscritService
-        .getInscritsDetails(params['id'], this.tags)
+        .getInscritsDetails(params['id'], this.items)
         .subscribe((details) => {
           if (details) {
             this.details = details;
@@ -76,7 +77,7 @@ export class InscritDetailsComponent {
     this.details.coupsSubis.details?.sort((a, b) => b.valeur - a.valeur);
   }
 
-  filtreTags(tags: Tag[]): Tag {
-    return tags.filter((tag) => tag.code.startsWith('Poule'))[0];
+  filtreItems(items: Item[]): Item {
+    return items.filter((item) => item.code.startsWith('Poule'))[0];
   }
 }

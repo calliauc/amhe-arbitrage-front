@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Outp
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
-import { VulnerantsService } from '../../../shared/services/vulnerants.service';
-import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { Item } from '../../../shared/models/item';
+import { ItemsService } from '../../../shared/services/items.service';
 
 @Component({
     selector: 'app-vulnerant-editer',
@@ -14,18 +14,18 @@ import { RulesetRef } from '../../../shared/models/ruleset-ref';
 })
 export class VulnerantEditerComponent implements OnInit, AfterViewInit {
   private formBuilder = inject(FormBuilder);
-  private vulnerantsService = inject(VulnerantsService);
+  private itemsService = inject(ItemsService);
 
-  @Input() vulnerant: RulesetRef = new RulesetRef();
+  @Input() vulnerant: Item = new Item();
   @Input() estPair!: boolean;
   @Input() estModeEdition = false;
   @Output() annulerEditionCreation = new EventEmitter<boolean>();
-  @Output() supprimerVulnerant = new EventEmitter<string>();
-  @Output() validerEdition = new EventEmitter<RulesetRef>();
-  @Output() validerCreation = new EventEmitter<RulesetRef>();
+  @Output() supprimerVulnerant = new EventEmitter<number>();
+  @Output() validerEdition = new EventEmitter<Item>();
+  @Output() validerCreation = new EventEmitter<Item>();
   @ViewChild('focus') focusForm!: ElementRef;
 
-  vulnerantsListe!: RulesetRef[];
+  vulnerantsListe!: Item[];
   ereurSaisie: boolean;
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
@@ -55,9 +55,9 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
     this.estModalVisible = true;
   }
 
-  confirmerSuppression(code: string | number) {
+  confirmerSuppression(id: number) {
     this.estModalVisible = false;
-    this.supprimerVulnerant.emit(code as string);
+    this.supprimerVulnerant.emit(id);
   }
 
   annulerSuppression() {
@@ -79,21 +79,21 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
 
   enregistrer() {
     if (this.estModeEdition) {
-      this.vulnerantsService
-        .modifierVulnerant(this.vulnerant)
+      this.itemsService
+        .modifierItem(this.vulnerant)
         .subscribe((result) => {
           this.validerEdition.emit(result);
         });
     } else {
-      this.vulnerantsService
-        .creerVulnerant(this.vulnerant)
+      this.itemsService
+        .creerItem(this.vulnerant)
         .subscribe((vulnerantCree) => {
           this.validerCreation.emit(vulnerantCree);
         });
     }
   }
 
-  verifierVulnerant(vulnerant: RulesetRef): boolean {
+  verifierVulnerant(vulnerant: Item): boolean {
     return !!vulnerant.code && !!vulnerant.libelle;
   }
 }

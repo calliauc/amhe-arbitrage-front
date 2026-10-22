@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Tag } from '../../../shared/models/tag';
+import { Item } from '../../../shared/models/item';
 import { RolesNames } from '../../../shared/models/roles';
 import { AuthV1Service } from '../../../shared/services/auth-v1.service';
 
@@ -14,7 +14,7 @@ import { AuthV1Service } from '../../../shared/services/auth-v1.service';
 export class TagAfficherComponent implements OnInit {
   private Auth = AuthV1Service;
   
-  @Input() tag!: Tag;
+  @Input() tag!: Item;
   @Input() estPair!: boolean;
   @Input() role!: RolesNames;
   @Output() editerTag = new EventEmitter<boolean>();

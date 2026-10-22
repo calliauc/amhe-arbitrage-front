@@ -13,10 +13,8 @@ import { NouveauMatch } from '../shared/models/nouveau-match';
 import { Ruleset } from '../shared/models/ruleset';
 import { RulesetsService } from '../shared/services/rulesets.service';
 
-import { couleurs } from '../shared/models/ruleset-ref';
+import { couleurs } from '../shared/models/item';
 import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
-import { TagCb } from '../shared/models/tag';
-import { TagsService } from '../shared/services/tags.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
@@ -44,7 +42,7 @@ export class CreationMatchComponent implements OnInit {
   private inscritsService = inject(InscritsService);
   private poulesService = inject(PoulesService);
   // private rulesetsService = inject(RulesetsService);
-  private tagsService = inject(TagsService);
+  // private itemsService = inject(ItemsService);
 
   estModalVisible = false;
   evenement!: Evenement;
@@ -53,8 +51,6 @@ export class CreationMatchComponent implements OnInit {
   formCreerMatch!: FormGroup;
   inscritsListe!: Inscrit[];
   poulesListe!: Poule[];
-  // rulesets?: Ruleset[];
-  tags: TagCb[] = [];
   rulesetChoisi?: Ruleset;
   inscritA?: Inscrit;
   inscritB?: Inscrit;
@@ -90,15 +86,15 @@ export class CreationMatchComponent implements OnInit {
     this.poulesService.getPoulesByEvent(idEvent).subscribe((liste) => {
       this.poulesListe = liste;
     });
-    this.tagsService.getTags().subscribe((tags) => {
-      tags.forEach((tag) =>
-        this.tags.push({
-          id: tag.id,
-          code: tag.code,
-          checked: false,
-        })
-      );
-    });
+    // this.itemsService.getItems().subscribe((items) => {
+    //   items.forEach((item) =>
+    //     this.items.push({
+    //       id: item.id,
+    //       code: item.code,
+    //       checked: false,
+    //     })
+    //   );
+    // });
   }
 
   initForm() {
@@ -113,7 +109,7 @@ export class CreationMatchComponent implements OnInit {
       poule: null,
       // couleurA: couleurs[0].code,
       // couleurB: couleurs[1].code,
-      tags: null,
+      items: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
       console.log(values);
@@ -139,14 +135,14 @@ export class CreationMatchComponent implements OnInit {
   }
 
 
-  onCheckTag($event: any) {
+  onCheckItem($event: any) {
     const id = $event.target.value;
     const isChecked = $event.target.checked;
-    this.tags.forEach((tag) => {
-      if (tag.id == id) {
-        tag.checked = isChecked;
-      }
-    });
+    // this.items.forEach((item) => {
+    //   if (item.id == id) {
+    //     item.checked = isChecked;
+    //   }
+    // });
   }
 
   /**
@@ -165,7 +161,8 @@ export class CreationMatchComponent implements OnInit {
         this.evenement.id, // evenement
         this.formCreerMatch.value.poule.id,
         0,
-        this.tags.filter((tag) => tag.checked),
+        [],
+        // this.items.filter((item) => item.checked),
         this.evenement.ruleset?.id
       );
       console.log(this.nouveauMatch);

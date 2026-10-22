@@ -9,7 +9,7 @@ import { TimerPipe } from '../../shared/pipes/timer.pipe';
 import { QRCodeComponent } from 'angularx-qrcode';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
-import { couleurs } from '../../shared/models/ruleset-ref';
+import { couleurs } from '../../shared/models/item';
 
 @Component({
     selector: 'app-match-afficher',

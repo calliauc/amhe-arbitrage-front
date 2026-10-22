@@ -7,16 +7,16 @@
     </button>
     } @if (estModeCreation) {
     <!-- <div id="form-creation">
-      <div id="select-tags">
-        @for (tag of tags; track $index) {
+      <div id="select-items">
+        @for (item of items; track $index) {
         <div>
           <input
             type="checkbox"
-            [value]="tag.id"
-            [checked]="tag.checked"
-            (change)="onTagsChange($event)"
+            [value]="item.id"
+            [checked]="item.checked"
+            (change)="onItemsChange($event)"
           />
-          {{ tag.code }}
+          {{ item.code }}
         </div>
         }
       </div>
@@ -55,10 +55,10 @@
             <button class="btn" id="btn-supprimer" (click)="supprimerPoule(poule.id)">X</button>
           }
         </div>
-        @if (poule.tags) {
-          <h4 id="liste-tags">
-            @for (tag of poule.tags; track $index) {
-            <span class="tag">{{ tag.code }}</span>
+        @if (poule.items) {
+          <h4 id="liste-items">
+            @for (item of poule.items; track $index) {
+            <span class="item">{{ item.code }}</span>
             }
           </h4>
         }

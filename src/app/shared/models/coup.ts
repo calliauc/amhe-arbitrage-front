@@ -1,5 +1,5 @@
 import { Inscrit } from './inscrit';
-import { RulesetRef } from './ruleset-ref';
+import { Item } from './item';
 
 export class Coup {
   id!: number;
@@ -16,6 +16,6 @@ export class Coup {
   afterblow = false;
   simultanee = false;
   faute = false;
-  vulnerant!: RulesetRef;
-  cible?: RulesetRef;
+  vulnerant!: Item;
+  cible?: Item;
 }

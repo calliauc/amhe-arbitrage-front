@@ -76,20 +76,20 @@
         </div>
       </div>
 
-      <div class="elemForm" id="select-tags">
-        <div class="select-label">Tags</div>
+      <!-- <div class="elemForm" id="select-items">
+        <div class="select-label">Items</div>
         @for (tag of tags; track $index) {
         <div>
           <input
             type="checkbox"
             [value]="tag.id"
             [checked]="tag.checked"
-            (change)="onCheckTag($event)"
+            (change)="onCheckItem($event)"
           />
           {{ tag.code }}
         </div>
         }
-      </div>
+      </div> -->
 
       <button class="btn" id="btn-creer-match" type="submit">Créer</button>
       </form>

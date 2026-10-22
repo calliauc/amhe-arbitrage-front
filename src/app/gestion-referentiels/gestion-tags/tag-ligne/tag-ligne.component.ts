@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
-import { TagAfficherComponent } from '../tag-afficher/tag-afficher.component';
-import { TagEditerComponent } from '../tag-editer/tag-editer.component';
-import { Tag } from '../../../shared/models/tag';
+import { Item } from '../../../shared/models/item';
 import { RolesNames } from '../../../shared/models/roles';
+import { TagEditerComponent } from '../tag-editer/tag-editer.component';
+import { TagAfficherComponent } from '../tag-afficher/tag-afficher.component';
 
 @Component({
     selector: 'app-tag-ligne',
@@ -12,11 +12,11 @@ import { RolesNames } from '../../../shared/models/roles';
     styleUrl: './tag-ligne.component.css'
 })
 export class TagLigneComponent {
-  @Input() tag!: Tag;
+  @Input() tag!: Item;
   @Input() estPair!: boolean;
   @Input() role!: RolesNames;
   @Output() supprimerTag = new EventEmitter<number>();
-  @Output() modifierTag = new EventEmitter<Tag>();
+  @Output() modifierTag = new EventEmitter<Item>();
   estModif: boolean;
 
   constructor() {
@@ -27,7 +27,7 @@ export class TagLigneComponent {
     this.estModif = true;
   }
 
-  modifTagAnnulee() {
+  modifItemAnnulee() {
     this.estModif = false;
   }
 
@@ -36,7 +36,7 @@ export class TagLigneComponent {
     this.supprimerTag.emit(id);
   }
 
-  modifTagTerminee(tagModifie: Tag) {
+  modifTagTerminee(tagModifie: Item) {
     this.modifierTag.emit(tagModifie);
     this.estModif = false;
   }

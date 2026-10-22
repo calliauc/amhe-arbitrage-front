@@ -3,8 +3,9 @@ import { Inscrit } from '../models/inscrit';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Tag, TagsFiltres } from '../models/tag';
+import { Item } from '../models/item';
 import { InscritDetails } from '../models/inscrit-details';
+import { TagFiltres } from '../models/tag';
 
 @Injectable({
   providedIn: 'root',
@@ -37,16 +38,16 @@ export class InscritsService {
     });
   }
 
-  public getInscritsByTagsMatchs(tags: Tag[]): Observable<Inscrit[]> {
-    const tagsId = tags.map((tag) => tag.id);
-    return this.http.post<Inscrit[]>(`${this.URL}/tags`, tagsId, {
+  public getInscritsByItemsMatchs(items: Item[]): Observable<Inscrit[]> {
+    const itemsId = items.map((item) => item.id);
+    return this.http.post<Inscrit[]>(`${this.URL}/items`, itemsId, {
       responseType: 'json',
     });
   }
 
   public getInscritsDetails(
     id: number,
-    tags: TagsFiltres
+    tags: TagFiltres
   ): Observable<InscritDetails> {
     console.log(id);
     console.log(tags);

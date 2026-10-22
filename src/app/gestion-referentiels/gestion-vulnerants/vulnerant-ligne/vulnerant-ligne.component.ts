@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { VulnerantAfficherComponent } from '../vulnerant-afficher/vulnerant-afficher.component';
 import { VulnerantEditerComponent } from '../vulnerant-editer/vulnerant-editer.component';
-import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { Item } from '../../../shared/models/item';
 import { RolesNames } from '../../../shared/models/roles';
 
 @Component({
@@ -12,11 +12,11 @@ import { RolesNames } from '../../../shared/models/roles';
     styleUrl: './vulnerant-ligne.component.css'
 })
 export class VulnerantLigneComponent {
-  @Input() vulnerant!: RulesetRef;
+  @Input() vulnerant!: Item;
   @Input() estPair!: boolean;
   @Input() role!: RolesNames;
-  @Output() supprimerVulnerant = new EventEmitter<string>();
-  @Output() modifierVulnerant = new EventEmitter<RulesetRef>();
+  @Output() supprimerVulnerant = new EventEmitter<number>();
+  @Output() modifierVulnerant = new EventEmitter<Item>();
   estModif: boolean;
 
   constructor() {
@@ -31,12 +31,12 @@ export class VulnerantLigneComponent {
     this.estModif = false;
   }
 
-  suppressionVulnerant(code: string) {
+  suppressionVulnerant(id: number) {
     this.estModif = false;
-    this.supprimerVulnerant.emit(code);
+    this.supprimerVulnerant.emit(id);
   }
 
-  modifVulnerantTerminee(vulnerantModifie: RulesetRef) {
+  modifVulnerantTerminee(vulnerantModifie: Item) {
     this.modifierVulnerant.emit(vulnerantModifie);
     this.estModif = false;
   }

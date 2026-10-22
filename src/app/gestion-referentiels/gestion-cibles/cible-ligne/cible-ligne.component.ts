@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CibleAfficherComponent } from '../cible-afficher/cible-afficher.component';
 import { CibleEditerComponent } from '../cible-editer/cible-editer.component';
-import { RulesetRef } from '../../../shared/models/ruleset-ref';
+import { Item } from '../../../shared/models/item';
 import { RolesNames } from '../../../shared/models/roles';
 
 @Component({
@@ -12,11 +12,11 @@ import { RolesNames } from '../../../shared/models/roles';
     styleUrl: './cible-ligne.component.css'
 })
 export class CibleLigneComponent {
-  @Input() cible!: RulesetRef;
+  @Input() cible!: Item;
   @Input() estPair!: boolean;
   @Input() role!: RolesNames;
-  @Output() supprimerCible = new EventEmitter<string>();
-  @Output() modifierCible = new EventEmitter<RulesetRef>();
+  @Output() supprimerCible = new EventEmitter<number>();
+  @Output() modifierCible = new EventEmitter<Item>();
   estModif: boolean;
 
   constructor() {
@@ -31,12 +31,12 @@ export class CibleLigneComponent {
     this.estModif = false;
   }
 
-  suppressionCible(code: string) {
+  suppressionCible(id: number) {
     this.estModif = false;
-    this.supprimerCible.emit(code);
+    this.supprimerCible.emit(id);
   }
 
-  modifCibleTerminee(cibleModifie: RulesetRef) {
+  modifCibleTerminee(cibleModifie: Item) {
     this.modifierCible.emit(cibleModifie);
     this.estModif = false;
   }

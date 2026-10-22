@@ -10,9 +10,8 @@ import { NgClass } from '@angular/common';
 import { ConfirmationModalComponent } from '../../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { Ruleset } from '../../../shared/models/ruleset';
 import { RulesetsService } from '../../../shared/services/rulesets.service';
-import { RulesetRef } from '../../../shared/models/ruleset-ref';
-import { VulnerantsService } from '../../../shared/services/vulnerants.service';
-import { CiblesService } from '../../../shared/services/cibles.service';
+import { Item } from '../../../shared/models/item';
+import { ItemsService } from '../../../shared/services/items.service';
 
 @Component({
     selector: 'app-ruleset-editer',
@@ -24,8 +23,7 @@ import { CiblesService } from '../../../shared/services/cibles.service';
 export class RulesetEditerComponent implements OnInit, AfterViewInit {
   private formBuilder = inject(FormBuilder);
   private rulesetsService = inject(RulesetsService);
-  private vulnerantsService = inject(VulnerantsService);
-  private ciblesService = inject(CiblesService);
+  private itemsService = inject(ItemsService);
 
   @Input() ruleset: Ruleset = new Ruleset();
   @Input() estPair!: boolean;
@@ -71,13 +69,13 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
 
   initVulnerantsForm() {
     if (!this.ruleset.id) {
-      this.vulnerantsService.getVulnerants().subscribe((vs) => {
+      this.itemsService.getItems("vulnerant").subscribe((vs) => {
         vs.forEach((v) => {
           const ref = {
             code: v.code,
             libelle: v.libelle,
             checked: false,
-          } as RulesetRef;
+          } as Item;
           this.ruleset.vulnerants?.push(ref);
         });
       });
@@ -98,13 +96,13 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
 
   initCiblesForm() {
     if (!this.ruleset.id) {
-      this.ciblesService.getCibles().subscribe((cs) => {
+      this.itemsService.getItems("cible").subscribe((cs) => {
         cs.forEach((c) => {
           const ref = {
             code: c.code,
             libelle: c.libelle,
             checked: false,
-          } as RulesetRef;
+          } as Item;
           this.ruleset.cibles?.push(ref);
         });
       });

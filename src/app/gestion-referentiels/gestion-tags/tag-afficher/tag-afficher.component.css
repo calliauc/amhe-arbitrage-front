@@ -19,7 +19,7 @@ tr {
   /* border: 1px solid red; */
 }
 
-.col-tag {
+.col-item {
   justify-content: left;
   overflow-x: scroll;
   white-space: nowrap;
@@ -30,7 +30,7 @@ tr {
   scrollbar-color: red;
 }
 
-.btn-tags {
+.btn-items {
   width: 60px;
   text-align: center;
   align-content: center;
@@ -42,7 +42,7 @@ tr {
   font-size: 0.9em;
 }
 
-.btn-tags:hover {
+.btn-items:hover {
   cursor: pointer;
   border: none;
   padding-inline: 9px;
@@ -52,6 +52,6 @@ tr {
   background-color: #2fcc71;
 }
 
-.btn-editer-tag {
+.btn-editer-item {
   background-color: rgb(129, 129, 0);
 }

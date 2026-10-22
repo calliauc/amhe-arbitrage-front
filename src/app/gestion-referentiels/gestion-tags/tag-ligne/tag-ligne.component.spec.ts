@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagLigneComponent } from './tag-ligne.component';
+import { ItemLigneComponent } from './item-ligne.component';
 
-describe('TagLigneComponent', () => {
-  let component: TagLigneComponent;
-  let fixture: ComponentFixture<TagLigneComponent>;
+describe('ItemLigneComponent', () => {
+  let component: ItemLigneComponent;
+  let fixture: ComponentFixture<ItemLigneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TagLigneComponent],
+      imports: [ItemLigneComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TagLigneComponent);
+    fixture = TestBed.createComponent(ItemLigneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

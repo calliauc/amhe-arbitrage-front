@@ -2,11 +2,11 @@ import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angu
 import { CibleLigneComponent } from './cible-ligne/cible-ligne.component';
 import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { CiblesService } from '../../shared/services/cibles.service';
 import { CibleEditerComponent } from './cible-editer/cible-editer.component';
-import { RulesetRef } from '../../shared/models/ruleset-ref';
+import { Item } from '../../shared/models/item';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
+import { ItemsService } from '../../shared/services/items.service';
 
 @Component({
     selector: 'app-gestion-cibles',
@@ -17,18 +17,18 @@ import { AuthV1Service } from '../../shared/services/auth-v1.service';
 })
 export class GestionCiblesComponent implements OnInit {
   private Auth = AuthV1Service;
-  private ciblesService = inject(CiblesService);
+  private itemsService = inject(ItemsService);
 
   @Input() role!: RolesNames;
 
-  ciblesListe?: RulesetRef[];
-  ciblesListe$?: Observable<RulesetRef[]>;
+  ciblesListe?: Item[];
+  ciblesListe$?: Observable<Item[]>;
   estModeCreation: boolean;
-  nouveauCible: RulesetRef;
+  nouveauCible: Item;
 
   constructor() {
     this.estModeCreation = false;
-    this.nouveauCible = new RulesetRef();
+    this.nouveauCible = new Item();
   }
 
   ngOnInit(): void {
@@ -44,7 +44,7 @@ export class GestionCiblesComponent implements OnInit {
   }
 
   recupererCibles() {
-    this.ciblesListe$ = this.ciblesService.getCibles();
+    this.ciblesListe$ = this.itemsService.getItems("cible");
   }
 
   creerCible() {
@@ -53,15 +53,15 @@ export class GestionCiblesComponent implements OnInit {
     );
   }
 
-  modifierCible(cibleModifie: RulesetRef) {
-    this.ciblesListe$ = this.ciblesService
-      .modifierCible(cibleModifie)
-      .pipe(switchMap(() => this.ciblesService.getCibles()));
+  modifierCible(cibleModifie: Item) {
+    this.ciblesListe$ = this.itemsService
+      .modifierItem(cibleModifie)
+      .pipe(switchMap(() => this.itemsService.getItems("cible")));
   }
 
-  supprimerCible(code: string) {
-    this.ciblesService
-      .supprimerCible(code)
+  supprimerCible(id: number) {
+    this.itemsService
+      .supprimerItem(id)
       .subscribe(() => this.recupererCibles());
   }
 }
