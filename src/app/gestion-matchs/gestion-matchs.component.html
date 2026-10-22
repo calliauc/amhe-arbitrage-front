@@ -14,19 +14,19 @@
           [display-with]="formatName"
         />
       </div>
-      <!-- <div id="select-items">
-      @for (item of itemsFiltreListe; track $index) {
+      <div id="select-items">
+      @for (tag of tagsFiltreListe; track $index) {
       <div>
         <input
           type="checkbox"
-          [value]="item.id"
-          [checked]="item.checked"
-          (change)="onCheckItem($event)"
+          [value]="tag.id"
+          [checked]="tag.checked"
+          (change)="onCheckTag($event)"
         />
-        {{ item.code }}
+        {{ tag.code }}
       </div>
       }
-    </div> -->
+    </div>
 
     </form>
 

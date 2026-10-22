@@ -13,7 +13,7 @@ import { NouveauMatch } from '../shared/models/nouveau-match';
 import { Ruleset } from '../shared/models/ruleset';
 import { RulesetsService } from '../shared/services/rulesets.service';
 
-import { couleurs } from '../shared/models/item';
+import { couleurs, Item } from '../shared/models/item';
 import { CreationMatchModalComponent } from './creation-match-modal/creation-match-modal.component';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
@@ -21,6 +21,7 @@ import { RolesNames } from '../shared/models/roles';
 import { Evenement } from '../shared/models/evenement';
 import { PoulesService } from '../shared/services/poules.service';
 import { Poule } from '../shared/models/poule';
+import { ItemsService } from '../shared/services/items.service';
 
 @Component({
     selector: 'app-creation-match',
@@ -42,7 +43,7 @@ export class CreationMatchComponent implements OnInit {
   private inscritsService = inject(InscritsService);
   private poulesService = inject(PoulesService);
   // private rulesetsService = inject(RulesetsService);
-  // private itemsService = inject(ItemsService);
+  private itemsService = inject(ItemsService);
 
   estModalVisible = false;
   evenement!: Evenement;
@@ -51,6 +52,7 @@ export class CreationMatchComponent implements OnInit {
   formCreerMatch!: FormGroup;
   inscritsListe!: Inscrit[];
   poulesListe!: Poule[];
+  tags: Item[] = [];
   rulesetChoisi?: Ruleset;
   inscritA?: Inscrit;
   inscritB?: Inscrit;
@@ -86,38 +88,27 @@ export class CreationMatchComponent implements OnInit {
     this.poulesService.getPoulesByEvent(idEvent).subscribe((liste) => {
       this.poulesListe = liste;
     });
-    // this.itemsService.getItems().subscribe((items) => {
-    //   items.forEach((item) =>
-    //     this.items.push({
-    //       id: item.id,
-    //       code: item.code,
-    //       checked: false,
-    //     })
-    //   );
-    // });
+    this.itemsService.getItems("tag").subscribe((items) => {
+      items.forEach((item) =>
+        this.tags.push({
+          id: item.id,
+          code: item.code,
+          checked: false,
+        })
+      );
+    });
   }
 
   initForm() {
-    // this.inscritA = undefined;
-    // this.inscritB = undefined;
-    // this.colorA = couleurs[0].code;
-    // this.colorB = couleurs[1].code;
-
     this.formCreerMatch = this.formBuilder.group({
       inscritA: null,
       inscritB: null,
       poule: null,
-      // couleurA: couleurs[0].code,
-      // couleurB: couleurs[1].code,
-      items: null,
+      tags: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
       console.log(values);
       this.inscritEnDouble = values.inscritA?.id == values.inscritB?.id;
-      
-      // this.rulesetChoisi = undefined;
-      // this.colorA = values.couleurA;
-      // this.colorB = values.couleurB;
     });
   }
 
@@ -126,7 +117,6 @@ export class CreationMatchComponent implements OnInit {
    */
 
   formatName(item: Inscrit): string {
-    // return `${item.prenom} ${item.nom} (${item.club?.nomCourt})`;
     return `${item.prenom}`;
   }
 
@@ -138,11 +128,11 @@ export class CreationMatchComponent implements OnInit {
   onCheckItem($event: any) {
     const id = $event.target.value;
     const isChecked = $event.target.checked;
-    // this.items.forEach((item) => {
-    //   if (item.id == id) {
-    //     item.checked = isChecked;
-    //   }
-    // });
+    this.tags.forEach((tag) => {
+      if (tag.id == id) {
+        tag.checked = isChecked;
+      }
+    });
   }
 
   /**
@@ -161,8 +151,7 @@ export class CreationMatchComponent implements OnInit {
         this.evenement.id, // evenement
         this.formCreerMatch.value.poule.id,
         0,
-        [],
-        // this.items.filter((item) => item.checked),
+        this.tags.filter((tag) => tag.checked).map((tag) => tag.id),
         this.evenement.ruleset?.id
       );
       console.log(this.nouveauMatch);
@@ -174,8 +163,6 @@ export class CreationMatchComponent implements OnInit {
     return !(
       this.formCreerMatch.value.inscritA &&
       this.formCreerMatch.value.inscritB 
-      // this.formCreerMatch.value.couleurA &&
-      // this.formCreerMatch.value.couleurB
     );
   }
 
@@ -183,7 +170,6 @@ export class CreationMatchComponent implements OnInit {
     return (
       this.formCreerMatch.value.inscritA ===
         this.formCreerMatch.value.inscritB
-      // this.formCreerMatch.value.couleurA === this.formCreerMatch.value.couleurB
     );
   }
 

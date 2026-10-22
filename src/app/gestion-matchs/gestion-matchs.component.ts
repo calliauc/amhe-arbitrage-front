@@ -14,6 +14,8 @@ import { Inscrit } from '../shared/models/inscrit';
 import { Evenement } from '../shared/models/evenement';
 import { EvenementsService } from '../shared/services/evenements.service';
 import { RolesNames } from '../shared/models/roles';
+import { ItemsService } from '../shared/services/items.service';
+import { Item } from '../shared/models/item';
 
 @Component({
     selector: 'app-gestion-matchs',
@@ -31,7 +33,7 @@ export class GestionMatchsComponent implements OnInit {
   private logService = inject(AuthV1Service);
   private matchsService = inject(MatchsService);
   private inscritsService = inject(InscritsService);
-  // private itemsService = inject(ItemsService);
+  private itemsService = inject(ItemsService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private evenementsService = inject(EvenementsService);
@@ -43,6 +45,7 @@ export class GestionMatchsComponent implements OnInit {
   formFiltrage!: FormGroup;
   inscritFiltre: Inscrit = new Inscrit;
   inscritsListe: Inscrit[] = [];
+  tagsFiltreListe: Item[] = [];
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
 
   estModalVisible = false;
@@ -75,15 +78,15 @@ export class GestionMatchsComponent implements OnInit {
     this.inscritsService.getInscrits().subscribe((liste) => {
       this.inscritsListe = liste;
     });
-    // this.itemsService.getItems().subscribe((items) => {
-    //   items.forEach((tag) =>
-    //     this.itemsFiltreListe.push({
-    //       id: item.id,
-    //       code: item.code,
-    //       checked: false,
-    //     })
-    //   );
-    // });
+    this.itemsService.getItems("tag").subscribe((items) => {
+      items.forEach((tag) =>
+        this.tagsFiltreListe.push({
+          id: tag.id,
+          code: tag.code,
+          checked: false,
+        })
+      );
+    });
   }
 
   getMatchs() {
@@ -127,20 +130,19 @@ export class GestionMatchsComponent implements OnInit {
     });
   }
 
-  onCheckItem($event: any) {
+  onCheckTag($event: any) {
     const id = $event.target.value;
     const isChecked = $event.target.checked;
-    // this.tagsFiltreListe.forEach((tag) => {
-    //   if (tag.id == id) {
-    //     tag.checked = isChecked;
-    //   }
-    // });
-    // this.criteres.idItems = this.itemsFiltreListe.filter(item => item.checked).map(item => item.id);
+    this.tagsFiltreListe.forEach((tag) => {
+      if (tag.id == id) {
+        tag.checked = isChecked;
+      }
+    });
+    this.criteres.idItems = this.tagsFiltreListe.filter(tag => tag.checked).map(tag => tag.id);
     this.chercherMatchs(this.criteres);
   }
 
   formatName(item: Inscrit): string {
-    // return `${item.prenom} ${item.nom} (${item.club?.nomCourt})`;
     return `${item.prenom}`;
   }
 

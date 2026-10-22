@@ -19,6 +19,6 @@ export class Match {
   dateFin?: Date;
   statut!: string;
   timer = 0;
-  items: Item[] = [];
+  tags: Item[] = [];
   ruleset!: Ruleset;
 }

@@ -15,7 +15,7 @@ export class NouveauMatch {
     id?: number;
   };
   timer: number;
-  items: Item[] = [];
+  tags: number[];
   ruleset?: Ruleset;
 
   constructor(
@@ -24,7 +24,7 @@ export class NouveauMatch {
     idEvenement: number,
     idPoule: number,
     timer: number,
-    items: Item[],
+    tags: number[],
     idRuleset?: number,
   ) {
     this.inscritA = { id: idInscritA };
@@ -34,7 +34,7 @@ export class NouveauMatch {
       this.poule = { id: idPoule };
     }
     this.timer = timer;
-    this.items = items;
+    this.tags = tags;
     if (idRuleset){
       this.ruleset = { id: idRuleset };
     }
