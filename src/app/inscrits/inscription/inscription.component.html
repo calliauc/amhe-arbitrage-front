@@ -1,0 +1,97 @@
+<ng-template #individu let-item let-i="index">
+  {{ item.prenom }} {{ item.nom }}
+</ng-template>
+
+
+
+<form
+  [formGroup]="formInscription"
+  (ngSubmit)="confirmer()"
+  (keypress.enter)="confirmer()"
+  (keypress.escape)="annuler()"
+>
+@if (individuAInscrire.id) {
+  <tr id="ligneNouvelInscrit">
+    <td class="col">
+      {{ individuAInscrire.prenom }}
+      <!-- <input
+        ngui-auto-complete 
+        class="input-txt"
+        formControlName="prenom"
+        placeholder="Prénom"
+        [source]="individusListe"
+        [itemTemplate]="prenom"
+        [display-with]="affichePrenom"
+      />
+    </td> -->
+    <td class="col">
+      {{ individuAInscrire.nom }}
+      <!-- <input
+        ngui-auto-complete 
+        class="input-txt"
+        formControlName="nom"
+        placeholder="nom"
+        [source]="individusListe"
+        [itemTemplate]="nom"
+        [display-with]="afficheNom"
+      /> -->
+    </td>
+    <td class="col">
+      {{ individuAInscrire.club?.nomComplet }}
+      <!-- <select name="club" formControlName="club">
+        @for (club of clubsListe; track $index){
+        <option [ngValue]="club">{{ club.nomComplet }}</option>
+        }
+      </select> -->
+    </td>
+    <td class="col btns">
+      @if (inscrit.id){
+      <button
+        type="button"
+        class="btn btn-inscrits btn-suppression"
+        (click)="demanderSuppression()"
+      >
+        X</button
+      >}
+      <button class="btn btn-inscrits btn-enregistrer-edition" type="submit">
+        Valider
+      </button>
+      <button
+        type="button"
+        class="btn btn-inscrits btn-annuler-edition"
+        (click)="annuler()"
+      >
+        Annuler
+      </button>
+    </td>
+  </tr>
+}
+  <div id="wrapper-saisie">
+    <input id="input-saisie"
+    ngui-auto-complete 
+    formControlName="selectionIndividu"
+    select-on-blur="true"
+    [source]="individusListe"
+    [itemTemplate]="individu"
+    [display-with]="afficheIndividu"
+    /* #focus */
+    />
+  
+  </div>
+
+  @if (ereurSaisie){
+  <div class="bandeau-erreur">
+    <div class="message-erreur">{{individuAInscrire.prenom}} participe déjà à l'événement</div>
+  </div>
+  }
+
+</form>
+@if (estModalVisible && inscrit.id){
+<app-confirmation-modal
+  [id]="inscrit.id"
+  [titre]="titreModal"
+  [texte]="texteModal"
+  (confirmer)="confirmerSuppression($event)"
+  (annuler)="annulerSuppression()"
+></app-confirmation-modal>
+}

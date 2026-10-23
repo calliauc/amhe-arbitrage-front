@@ -10,12 +10,14 @@ import { Evenement } from '../shared/models/evenement';
 import { EvenementsService } from '../shared/services/evenements.service';
 import { Router } from '@angular/router';
 import { RolesNames } from '../shared/models/roles';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-inscrits',
     imports: [
         InscritLigneComponent,
-        InscritEditerComponent,
+        InscriptionComponent,
         CommonModule
     ],
     templateUrl: './inscrits.component.html',

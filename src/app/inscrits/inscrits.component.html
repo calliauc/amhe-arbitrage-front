@@ -20,10 +20,10 @@
       [role]="role"
     ></app-inscrit-ligne>
     } @if (estModeCreation) {
-    <app-inscrit-editer
+    <app-inscription
       (annulerEditionCreation)="annulerEdition()"
       (validerCreation)="creerInscrit()"
-    ></app-inscrit-editer>
+    ></app-inscription>
     }
   </table>
   @if (!estModeCreation && role!='guest') {

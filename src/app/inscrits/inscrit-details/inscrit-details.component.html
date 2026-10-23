@@ -27,7 +27,7 @@
       @for (match of details.matchs; track $index) {
       <div class="match">
         <div class="match-header">
-          <span>{{ filtreItems(match.items).code }}</span>
+          <span>{{ filtreItems(match.tags).code }}</span>
           <span>à {{ match.dateDebut | date : "H'h'mm" }}</span>
         </div>
         @if (match.inscritA.id === inscritId) {

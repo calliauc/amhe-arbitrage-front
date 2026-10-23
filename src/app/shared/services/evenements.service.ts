@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { Item } from '../models/item';
 import { Evenement } from '../models/evenement';
 import { Params } from '@angular/router';
+import { Individu } from '../models/individu';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,6 @@ export class EvenementsService {
     });
   }
 
-
   public getEvenementsByItemsMatchs(items: Item[]): Observable<Evenement[]> {
     const itemsId = items.map((item) => item.id);
     return this.http.post<Evenement[]>(`${this.URL}/items`, itemsId, {
@@ -41,6 +41,12 @@ export class EvenementsService {
 
   public creerEvenement(evenementACreer: Evenement): Observable<Evenement> {
     return this.http.post<Evenement>(this.URL, evenementACreer, {
+      responseType: 'json',
+    });
+  }
+
+  public inscrire(idEvenement: number, idIndividu: number): Observable<Evenement> {
+    return this.http.put<Evenement>(`${this.URL}/${idEvenement}/inscrire`, [idIndividu], {
       responseType: 'json',
     });
   }
