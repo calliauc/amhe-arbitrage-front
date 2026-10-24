@@ -2,12 +2,12 @@
   <table>
     <thead>
       <tr>
-        <th class="col">Nom</th>
-        <th class="col">Description</th>
-        <th class="col">Inscrits</th>
-        <th class="col">Dates</th>
-        <th class="col">Règles</th>
-        <th class="col"></th>
+        <th id="col-nom" class="col">Nom</th>
+        <th id="col-description" class="col">Description</th>
+        <th id="col-dates" class="col">Dates</th>
+        <th id="col-ruleset" class="col">Règles</th>
+        <th id="col-inscrits" class="col">Inscrits</th>
+        <th id="col-buttons" class="col"></th>
       </tr>
     </thead>
     @for (evenement of evenementsListe$ | async; track $index; let estPair =

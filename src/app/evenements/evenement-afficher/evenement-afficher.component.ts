@@ -4,6 +4,7 @@ import { DatePipe, NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
+import { EvenementsService } from '../../shared/services/evenements.service';
 
 @Component({
     selector: 'app-evenement-afficher',
@@ -14,6 +15,7 @@ import { AuthV1Service } from '../../shared/services/auth-v1.service';
 })
 export class EvenementAfficherComponent implements OnInit {
   private router = inject(Router);
+  private evenementsService = inject(EvenementsService);
   private Auth = AuthV1Service;
 
   @Input() evenement!: Evenement;
@@ -31,7 +33,7 @@ export class EvenementAfficherComponent implements OnInit {
   }
 
   onDetails(event: Evenement) {
-    localStorage.setItem('event', JSON.stringify(event))
+    this.evenementsService.refreshCacheEvent(event);
     let origin = localStorage.getItem('origin-page')|| 'evenement';
     localStorage.removeItem('origin-page');
     this.router.navigate([origin]);

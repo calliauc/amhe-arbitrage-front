@@ -5,7 +5,7 @@
   (keypress.escape)="annuler()"
 >
   <tr [ngClass]="{ lignePair: estPair }">
-    <td class="col">
+    <td id="col-nom" class="col">
       <input
         class="input-txt"
         type="text"
@@ -14,7 +14,7 @@
         #focus
       />
     </td>
-    <td class="col">
+    <td id="col-description" class="col">
       <input
         class="input-txt"
         type="text"
@@ -22,14 +22,47 @@
         placeholder="Description"
       />
     </td>
-    <!-- <td class="col">
-      <select name="club" formControlName="club">
-        @for (club of clubsListe; track $index){
-        <option [ngValue]="club">{{ club.nomComplet }}</option>
-        }
-      </select>
-    </td> -->
-    <td class="col">
+    <td id="col-dates" class="col">
+      <div id="col-dates-txt">
+        <div>Début : </div>
+        <div>Fin : </div>
+      </div>
+      <div id="col-dates-inputs">
+        <input
+        class="input-label"
+        type="date"
+        formControlName="dateDebut"
+        />
+        <input
+          class="input-txt"
+          type="date"
+          formControlName="dateFin"
+        />
+      </div>
+    </td>
+    <td id="col-ruleset" class="col">
+       @if (evenement.ruleset?.id) {
+        {{evenement.ruleset.nom}}
+       } @else {
+        <select name="ruleset" formControlName="ruleset">
+          @for (ruleset of rulesetListe; track $index){
+          <option [ngValue]="ruleset">{{ ruleset.nom }}</option>
+          }
+        </select>  
+       }
+    </td>
+    <td id="col-inscrits" class="col">
+      @if (evenement.id){
+        <button
+          type="button"
+          class="btn btn-evenements btn-suppression"
+          (click)="demanderSuppression()"
+        >
+          X</button
+        >}
+  
+    </td>
+    <td id="col-buttons" class="col">
       <button class="btn btn-evenements btn-enregistrer-edition" type="submit">
         Enregistrer
       </button>
@@ -40,16 +73,11 @@
       >
         Annuler
       </button>
-      @if (evenement.id){
-      <button
-        type="button"
-        class="btn btn-evenements btn-suppression"
-        (click)="demanderSuppression()"
-      >
-        X</button
-      >}
     </td>
   </tr>
+  <div>
+    
+  </div>
   @if (ereurSaisie){
   <div class="bandeau-erreur">
     <div class="message-erreur">Certains champs sont vides</div>

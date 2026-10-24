@@ -1,6 +1,6 @@
 tr {
   display: flex;
-  height: 25px;
+  height: 50px;
   width: 100%;
   padding-bottom: 2px;
   /* border: 1px solid green; */
@@ -14,16 +14,39 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25%;
-  padding-left: 1%;
 }
 
-.col-club {
-  justify-content: center;
-  align-items: center;
-  overflow-x: scroll;
-  white-space: nowrap;
+#col-inscrits {
+  width: 5%;
 }
+
+#col-nom {
+  width: 15%;
+}
+
+#col-description {
+  width: 35%;
+}
+
+#col-dates {
+  width: 25%;
+}
+
+#col-ruleset {
+  width: 10%;
+}
+
+
+#col-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 10%;
+  /* border: 1px solid red; */
+}
+
+
 
 ::-webkit-scrollbar {
   scrollbar-width: 1px;

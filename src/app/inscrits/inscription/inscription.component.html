@@ -10,62 +10,7 @@
   (keypress.enter)="confirmer()"
   (keypress.escape)="annuler()"
 >
-@if (individuAInscrire.id) {
-  <tr id="ligneNouvelInscrit">
-    <td class="col">
-      {{ individuAInscrire.prenom }}
-      <!-- <input
-        ngui-auto-complete 
-        class="input-txt"
-        formControlName="prenom"
-        placeholder="Prénom"
-        [source]="individusListe"
-        [itemTemplate]="prenom"
-        [display-with]="affichePrenom"
-      />
-    </td> -->
-    <td class="col">
-      {{ individuAInscrire.nom }}
-      <!-- <input
-        ngui-auto-complete 
-        class="input-txt"
-        formControlName="nom"
-        placeholder="nom"
-        [source]="individusListe"
-        [itemTemplate]="nom"
-        [display-with]="afficheNom"
-      /> -->
-    </td>
-    <td class="col">
-      {{ individuAInscrire.club?.nomComplet }}
-      <!-- <select name="club" formControlName="club">
-        @for (club of clubsListe; track $index){
-        <option [ngValue]="club">{{ club.nomComplet }}</option>
-        }
-      </select> -->
-    </td>
-    <td class="col btns">
-      @if (inscrit.id){
-      <button
-        type="button"
-        class="btn btn-inscrits btn-suppression"
-        (click)="demanderSuppression()"
-      >
-        X</button
-      >}
-      <button class="btn btn-inscrits btn-enregistrer-edition" type="submit">
-        Valider
-      </button>
-      <button
-        type="button"
-        class="btn btn-inscrits btn-annuler-edition"
-        (click)="annuler()"
-      >
-        Annuler
-      </button>
-    </td>
-  </tr>
-}
+
   <div id="wrapper-saisie">
     <input id="input-saisie"
     ngui-auto-complete 
@@ -78,7 +23,33 @@
     />
   
   </div>
-
+  @if (individuAInscrire.id) {
+    <tr id="ligneNouvelInscrit">
+      <td class="col">{{ individuAInscrire.prenom }}</td>
+      <td class="col">{{ individuAInscrire.nom }}</td>
+      <td class="col">{{ individuAInscrire.club?.nomComplet }}</td>
+      <td class="col btns">
+        @if (inscrit.id){
+        <button
+          type="button"
+          class="btn btn-inscrits btn-suppression"
+          (click)="demanderSuppression()"
+        >
+        X</button>
+        }
+        <button class="btn btn-inscrits btn-enregistrer-edition" type="submit">
+          Valider
+        </button>
+        <button
+          type="button"
+          class="btn btn-inscrits btn-annuler-edition"
+          (click)="annuler()"
+        >
+          Annuler
+        </button>
+      </td>
+    </tr>
+  }
   @if (ereurSaisie){
   <div class="bandeau-erreur">
     <div class="message-erreur">{{individuAInscrire.prenom}} participe déjà à l'événement</div>

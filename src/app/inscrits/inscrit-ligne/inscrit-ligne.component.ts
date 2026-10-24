@@ -16,13 +16,11 @@ export class InscritLigneComponent {
   @Input() estPair!: boolean;
   @Input() role!: RolesNames;
   @Output() supprimerInscrit = new EventEmitter<number>();
-  @Output() modifierInscrit = new EventEmitter<Inscrit>();
   estModif: boolean;
 
   constructor() {
     this.estModif = false;
-    console.log(this.inscrit);
-    
+    console.log(this.inscrit);    
   }
 
   lancerEdition(): void {
@@ -36,10 +34,5 @@ export class InscritLigneComponent {
   suppressionInscrit(id: number) {
     this.estModif = false;
     this.supprimerInscrit.emit(id);
-  }
-
-  modifInscritTerminee(inscritModifie: Inscrit) {
-    this.modifierInscrit.emit(inscritModifie);
-    this.estModif = false;
   }
 }

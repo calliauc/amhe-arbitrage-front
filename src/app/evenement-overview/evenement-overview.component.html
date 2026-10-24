@@ -1,11 +1,11 @@
-@if (evenement) {
+@if (evenement$ | async) {
   <div id="head">
-    <h1>{{ evenement.nom }}</h1>
+    <h1>{{ (evenement$ | async)?.nom }}</h1>
     <div class="date">
       <span>Du </span>
-      <span>{{ evenement.dateDebut | date:'shortDate' }}</span>
+      <span>{{ (evenement$ | async)?.dateDebut | date:'shortDate' }}</span>
       <span> au </span>
-      <span>{{ evenement.dateFin | date:'shortDate' }}</span>
+      <span>{{ (evenement$ | async)?.dateFin | date:'shortDate' }}</span>
     </div>
   </div>
 } @else {

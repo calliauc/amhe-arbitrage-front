@@ -2,9 +2,8 @@
 <app-inscrit-editer
   [estPair]="estPair"
   [inscrit]="inscrit"
-  (annulerEditionCreation)="modifInscritAnnulee()"
+  (annulerEdition)="modifInscritAnnulee()"
   (supprimerInscrit)="suppressionInscrit($event)"
-  (validerEdition)="modifInscritTerminee($event)"
 ></app-inscrit-editer>
 } @else {
 <app-inscrit-afficher

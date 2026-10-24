@@ -37,9 +37,9 @@ export class InscritsComponent implements OnInit {
   role:RolesNames = 'guest';
 
   constructor() {
-    this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;
-    console.log(this.evenement);    
-    if(this.evenement.id == 0){
+    this.evenement = JSON.parse(localStorage.getItem('event') || '') as Evenement || new Evenement;
+    console.log(this.evenement);
+    if(!this.evenement.id){
       localStorage.setItem('origin-page', 'inscrits');
       this.router.navigate(['evenements']);
     }

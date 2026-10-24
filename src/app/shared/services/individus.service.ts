@@ -39,7 +39,7 @@ export class IndividuService {
     individuAModifier: Individu
   ): Observable<Individu> {
     return this.http.put<Individu>(
-      `${this.URL}/${individuAModifier.id}`,
+      `${this.URL}`,
       individuAModifier,
       {
         responseType: 'json',

@@ -1,10 +1,8 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Inscrit } from '../../shared/models/inscrit';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NgClass } from '@angular/common';
 import { Club } from '../../shared/models/club';
 import { ClubsService } from '../../shared/services/clubs.service';
-import { InscritsService } from '../../shared/services/inscrits.service';
 import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { IndividuService } from '../../shared/services/individus.service';
 import { Individu } from '../../shared/models/individu';
@@ -20,10 +18,9 @@ import { EvenementsService } from '../../shared/services/evenements.service';
       ConfirmationModalComponent
     ],
     templateUrl: './inscription.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './inscription.component.css'
 })
-export class InscriptionComponent implements OnInit, AfterViewInit {
+export class InscriptionComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private clubsService = inject(ClubsService);
   private individuService = inject(IndividuService);
@@ -33,7 +30,6 @@ export class InscriptionComponent implements OnInit, AfterViewInit {
   @Output() annulerEditionCreation = new EventEmitter<boolean>();
   @Output() supprimerInscrit = new EventEmitter<number>();
   @Output() validerCreation = new EventEmitter<null>();
-  @ViewChild('focus') focusForm!: ElementRef;
 
   clubsListe!: Club[];
   individusListe!: Individu[];
@@ -41,23 +37,19 @@ export class InscriptionComponent implements OnInit, AfterViewInit {
   evenement!: Evenement;
   ereurSaisie: boolean;
   estModalVisible = false;
-  titreModal = 'Confirmer la suppression ?';
+  titreModal = 'Confirmer la désinscription ?';
   texteModal = 'Cette action est définitive';
   formInscription!: FormGroup;
 
   constructor() {
-    this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;
     this.ereurSaisie = false;
   }
 
   ngOnInit(): void {
+    this.evenementService.refreshEvent$.subscribe(event => this.evenement = event);
     this.recupererIndividus();
     this.recupererClubs();
     this.initFormInscription();
-  }
-
-  ngAfterViewInit(): void {
-    this.focusForm.nativeElement.focus();
   }
 
   recupererIndividus(){
@@ -113,7 +105,7 @@ export class InscriptionComponent implements OnInit, AfterViewInit {
       this.evenementService
       .inscrire(this.evenement.id, this.individuAInscrire.id)
       .subscribe((evenement) => {
-        localStorage.setItem('event', JSON.stringify(evenement))
+        this.evenementService.refreshCacheEvent(evenement);
         this.validerCreation.emit()
       });
     } else {

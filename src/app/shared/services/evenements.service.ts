@@ -1,17 +1,17 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Item } from '../models/item';
 import { Evenement } from '../models/evenement';
-import { Params } from '@angular/router';
-import { Individu } from '../models/individu';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EvenementsService {
   private http = inject(HttpClient);
+  refreshEvent = new BehaviorSubject<Evenement>(JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement);
+  refreshEvent$ = this.refreshEvent.asObservable();
 
   env = environment;
   URL = `${this.env.baseUrl}/evenements`;
@@ -24,6 +24,11 @@ export class EvenementsService {
     return this.http.get<Evenement>(`${this.URL}/${id}`, {
       responseType: 'json',
     });
+  }
+
+  public refreshCacheEvent(event: Evenement) {
+      localStorage.setItem('event', JSON.stringify(event));
+      this.refreshEvent.next(event);
   }
 
   public searchEvenementByName(nom: string): Observable<Evenement[]> {

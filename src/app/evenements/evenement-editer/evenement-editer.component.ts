@@ -6,6 +6,8 @@ import { Club } from '../../shared/models/club';
 import { ClubsService } from '../../shared/services/clubs.service';
 import { EvenementsService } from '../../shared/services/evenements.service';
 import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
+import { Ruleset } from '../../shared/models/ruleset';
+import { RulesetsService } from '../../shared/services/rulesets.service';
 
 @Component({
     selector: 'app-evenement-editer',
@@ -17,7 +19,7 @@ import { ConfirmationModalComponent } from '../../shared/modales/confirmation-mo
 export class EvenementEditerComponent implements OnInit, AfterViewInit {
   private formBuilder = inject(FormBuilder);
   private evenementsService = inject(EvenementsService);
-  private clubsService = inject(ClubsService);
+  private rulesetService = inject(RulesetsService);
 
   @Input() evenement: Evenement = new Evenement();
   @Input() estPair!: boolean;
@@ -27,7 +29,7 @@ export class EvenementEditerComponent implements OnInit, AfterViewInit {
   @Output() validerCreation = new EventEmitter<Evenement>();
   @ViewChild('focus') focusForm!: ElementRef;
 
-  // clubsListe!: Club[];
+  rulesetListe!: Ruleset[];
   ereurSaisie: boolean;
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
@@ -39,13 +41,16 @@ export class EvenementEditerComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    // this.clubsService
-    //   .getClubs()
-    //   .subscribe((clubs) => (this.clubsListe = clubs));
+    this.rulesetService.getRulesets().subscribe(rulesets => this.rulesetListe = rulesets);
+    console.log(this.evenement);
+    
     this.formEditerEvenement = this.formBuilder.group({
       id: this.evenement.id,
       nom: this.evenement.nom,
-      description: this.evenement.nom,
+      description: this.evenement.description,
+      dateDebut: this.evenement.dateDebut,
+      dateFin: this.evenement.dateFin,
+      ruleset: this.evenement.ruleset
     });
   }
 
@@ -72,7 +77,9 @@ export class EvenementEditerComponent implements OnInit, AfterViewInit {
 
   confirmer(): void {
     this.ereurSaisie = false;
-    this.evenement = this.formEditerEvenement.value;
+    this.evenement = {...this.formEditerEvenement.value};
+    console.log(this.evenement);
+    
     if (this.verifierEvenement(this.evenement)) {
       this.enregistrer();
     } else {

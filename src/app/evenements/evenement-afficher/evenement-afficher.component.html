@@ -1,10 +1,10 @@
 <tr [ngClass]="{ lignePair: estPair }">
-  <td class="col">{{ evenement.nom }}</td>
-  <td class="col">{{ evenement.description }}</td>
-  <td class="col">{{ evenement.inscrits?.length }}</td>
-  <td class="col">{{ evenement.dateDebut  | date:'shortDate' }} - {{ evenement.dateFin | date:'shortDate' }}</td>
-  <td class="col">{{ evenement.ruleset?.nom }}</td>
-  <td class="col">
+  <td id="col-nom" class="col">{{ evenement.nom }}</td>
+  <td id="col-description" class="col">{{ evenement.description }}</td>
+  <td id="col-dates" class="col">{{ evenement.dateDebut  | date:'shortDate' }} - {{ evenement.dateFin | date:'shortDate' }}</td>
+  <td id="col-ruleset" class="col">{{ evenement.ruleset?.nom }}</td>
+  <td id="col-inscrits" class="col">{{ evenement.inscrits?.length }}</td>
+  <div id="col-buttons">
     <button
       class="btn btn-evenements btn-afficher-details"
       (click)="onDetails(evenement)"
@@ -18,5 +18,5 @@
     >
       Editer</button
     >}
-  </td>
+  </div>
 </tr>

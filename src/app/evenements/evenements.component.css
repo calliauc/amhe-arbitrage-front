@@ -18,7 +18,30 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#col-inscrits {
+  width: 5%;
+}
+
+#col-nom {
+  width: 15%;
+}
+
+#col-description {
+  width: 35%;
+}
+
+#col-dates {
   width: 25%;
+}
+
+#col-ruleset {
+  width: 10%;
+}
+
+#col-buttons {
+  width: 10%;
 }
 
 th,

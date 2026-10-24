@@ -1,6 +1,6 @@
 tr {
   display: flex;
-  height: 25px;
+  height: 100%;
   width: 100%;
   padding-bottom: 2px;
   /* border: 1px solid green; */
@@ -14,9 +14,51 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25%;
-  padding-left: 1%;
   /* border: 1px solid red; */
+}
+
+#col-nom {
+  width: 20%;
+}
+
+#col-description {
+  width: 30%;
+}
+
+#col-dates {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: end;
+  width: 30%;
+}
+
+#col-dates-label{
+  width: 25%;
+}
+
+#col-dates-inputs {
+  width: 65%;
+}
+
+#col-ruleset {
+  width: 10%;
+}
+
+#col-inscrits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 3%;
+}
+
+#col-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 10%;
 }
 
 .input-txt {
@@ -50,10 +92,10 @@ tr {
 }
 
 .btn-evenements {
-  width: 75px;
+  width: 100px;
+  height: 22px;
   text-align: center;
   align-content: center;
-  height: 22px;
   padding-inline: 5px;
   margin-inline: 5px;
   border-radius: 50px;
@@ -79,9 +121,8 @@ tr {
   background-color: rgb(248, 0, 0);
   border-radius: 7px;
   font-weight: 700;
+  height: 22px;
   width: 22px;
-  /* position: relative;
-  margin-right: -40px; */
 }
 
 .bandeau-erreur {
