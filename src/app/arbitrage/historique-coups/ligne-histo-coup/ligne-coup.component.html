@@ -1,30 +1,27 @@
-<tr class="tr-coup">
-  <td class="txt-histo-coups desktop">
-    <span>{{ coup.timecode | date : "HH:mm:ss" }} - </span>
-    <span>{{ coup | coupDisplay }}</span>
-    <span [style.color]="coup.attaquantCouleur"
-      >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
-    ><span>{{ coup.vulnerant.libelle }}</span>
-    @if (coup.vulnerant.code!=="lutte") {
-    <span>{{ coup.cible?.libelle }}</span
-    >}
-    <span [style.color]="coup.defenseurCouleur"
-      >{{ coup.defenseur.prenom }} ({{ coup.defenseurScore }})</span
-    >
+<tr class="tr-echange">
+  <td class="txt-histo-echanges desktop">
+    <span>{{ echange.timecode | date : "HH:mm:ss" }}</span>
+    <span> - </span>
+    <span>Score : {{ echange.scoreA }}/{{ echange.scoreB }}</span>
+    <span> - </span>
+    <span>{{ echange.inscritA.prenom }}</span>
+    <span> [{{ echange.vulnerantA.code }} {{ echange.cibleA.code }}]</span>
+    <span> - </span>
+    <span>[{{ echange.type.code }}] </span>
+    <span> - </span>
+    <span>{{ echange.inscritB.prenom }}</span>
+    @if (echange.type.code !== 'clean') {
+      <span> [{{ echange.vulnerantB.code }} {{ echange.cibleB.code }}]</span>
+    }
   </td>
-  <td class="txt-histo-coups mobile">
-    <span>{{ coup.timecode | date : "HH:mm:ss" }} - </span>
-    <span>{{ coup | coupDisplay }}</span>
+  <td class="txt-histo-echanges mobile">
+    <span>{{ echange.timecode | date : "HH:mm:ss" }} - </span>
+    <span>{{ echange | echangeDisplay }}</span>
     <br />
-    <span [style.color]="coup.attaquantCouleur"
-      >{{ coup.attaquant.prenom }} ({{ coup.attaquantScore }})</span
-    >
+    <span>{{ echange.inscritA.prenom }} ({{ echange.scoreA }})</span>
     =>
-    <span [style.color]="coup.defenseurCouleur"
-      >{{ coup.defenseur.prenom }} ({{ coup.defenseurScore }})</span
-    >
+    <span>{{ echange.inscritB.prenom }} ({{ echange.scoreB }})</span>
     <br />
-    <span>{{ coup.vulnerant.libelle }}</span
-    >/<span>{{ coup.cible?.libelle }}</span>
+    <span>{{ echange.vulnerantA.code }}</span>/<span>{{ echange.cibleA.code }}</span>
   </td>
 </tr>

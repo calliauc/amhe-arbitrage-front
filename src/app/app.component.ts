@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { EvenementOverviewComponent } from './evenement-overview/evenement-overview.component';
@@ -9,6 +9,6 @@ import { EvenementOverviewComponent } from './evenement-overview/evenement-overv
     templateUrl: './app.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './app.component.css'
-})
+}) 
 export class AppComponent {
 }

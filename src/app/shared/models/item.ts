@@ -1,8 +1,8 @@
 export class Item {
-  public id!: number;
-  public code!: string;
-  public libelle?: string;
-  public checked?: false;
+  id!: number;
+  code!: string;
+  libelle?: string;
+  checked?: false;
 }
 
 export const couleurs: Item[] = [

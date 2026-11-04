@@ -10,8 +10,6 @@ export class Match {
   poule?: Poule;
   inscritA!: Inscrit;
   inscritB!: Inscrit;
-  couleurA!: string;
-  couleurB!: string;
   scoreA = 0;
   scoreB = 0;
   dateCreation?: Date;

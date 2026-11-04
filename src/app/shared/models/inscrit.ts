@@ -1,7 +1,7 @@
 import { Club } from './club';
 
 export class Inscrit {
-  id?: number;
+  id!: number;
   idIndividu!: number;
   idEvenement!: number;
   nom!: string;

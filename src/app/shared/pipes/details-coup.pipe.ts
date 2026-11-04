@@ -1,18 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Coup } from '../models/coup';
+import { Echange } from '../models/echange';
 
 @Pipe({
-  name: 'coupDisplay',
+  name: 'echangeDisplay',
   standalone: true,
 })
-export class DetailsCoupPipe implements PipeTransform {
-  transform(coup: Coup): string {
+export class DetailsEchangePipe implements PipeTransform {
+  transform(coup: Echange): string {
     let details = '';
-    details += coup.doubleAtk ? '[Da] ' : '';
-    details += coup.doubleDef ? '[Dd] ' : '';
-    details += coup.afterblow ? '[A] ' : '';
-    details += coup.simultanee ? '[S] ' : '';
-    details += coup.faute ? '[F] ' : '';
+    // details += coup.doubleAtk ? '[Da] ' : '';
+    // details += coup.doubleDef ? '[Dd] ' : '';
+    // details += coup.afterblow ? '[A] ' : '';
+    // details += coup.simultanee ? '[S] ' : '';
+    // details += coup.faute ? '[F] ' : '';
     details += details.length > 0 ? '- ' : '';
     return details;
   }

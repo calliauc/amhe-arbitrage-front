@@ -14,6 +14,10 @@
     <li class="btn menu-elem" (click)="allerVers('inscrits')">Inscrits</li>
     <li class="btn menu-elem" (click)="allerVers('poules')">Poules</li>
     <li class="btn menu-elem" (click)="allerVers('matchs')">Matchs</li>
+    @if (role=='arbitre') {
+      <li>|</li>
+      <li class="btn menu-elem" (click)="allerVers('saisie-echange')">Echange</li>
+    }
     @if (role=='admin') {
       <li>|</li>
       <li class="btn menu-elem" (click)="allerVers('annuaire')">Annuaire</li>

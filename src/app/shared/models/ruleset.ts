@@ -6,6 +6,7 @@ export class Ruleset {
   description?: string;
   timerLimite?: number;
   timerReverse?: boolean;
+  typesEchange?: Item[];
   vulnerants?: Item[];
   cibles?: Item[];
 }

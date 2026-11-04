@@ -12,6 +12,7 @@ import { InscritsComponent } from './inscrits/inscrits.component';
 import { InscritDetailsComponent } from './inscrits/inscrit-details/inscrit-details.component';
 import { EvenementsComponent } from './evenements/evenements.component';
 import { EvenementComponent } from './evenement/evenement.component';
+import { SaisieEchangeComponent } from './arbitrage/saisie-echange/saisie-echange.component';
 
 export const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
@@ -20,6 +21,9 @@ export const routes: Routes = [
   { path: 'matchs', component: GestionMatchsComponent },
   { path: 'poules', component: GestionPoulesComponent },
   { path: 'inscrits', component: InscritsComponent },
+
+  { path: 'saisie-echange', component: SaisieEchangeComponent },
+
 
   { path: 'creer-match', component: CreationMatchComponent },
   { path: 'match/:id/arbitrage', component: ArbitrageComponent },

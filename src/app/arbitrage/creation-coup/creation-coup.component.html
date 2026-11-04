@@ -1,6 +1,6 @@
 <section id="coup">
   <h3>{{ match.ruleset.nom }}</h3>
-  <form [formGroup]="formSaisirCoup" (ngSubmit)="onSubmit()" id="form-coup">
+  <form [formGroup]="formSaisirEchange" (ngSubmit)="onSubmit()" id="form-echange">
     <div class="section-form">Qui frappe ?</div>
     <div id="attaquant-selector">
       <div class="button-form">
@@ -61,6 +61,6 @@
     <button id="submit" type="submit">Valider le coup</button>
   </form>
   <div>
-    <p id="dernier-coup">{{ coupStr }}</p>
+    <!-- <p id="dernier-coup">{{ coupStr }}</p> -->
   </div>
 </section>

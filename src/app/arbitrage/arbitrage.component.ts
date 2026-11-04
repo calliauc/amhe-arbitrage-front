@@ -7,11 +7,12 @@ import { Match } from '../shared/models/match';
 import { MatchsService } from '../shared/services/matchs.service';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
+import { SaisieEchangeComponent } from './saisie-echange/saisie-echange.component';
 
 @Component({
     selector: 'app-arbitrage',
     imports: [
-    CreationCoupComponent,
+    SaisieEchangeComponent,
     SuiviMatchComponent,
     HistoriqueCoupsComponent
 ],

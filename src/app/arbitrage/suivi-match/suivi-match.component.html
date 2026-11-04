@@ -3,12 +3,12 @@
     id="inscrit-a"
     class="inscrit"
     [inscrit]="match.inscritA"
-    [couleur]="match.couleurA"
+    couleur="rgb(68, 143, 255)"
   ></app-inscrit-match>
   <app-score-inscrit-match
     id="score-a"
     [score]="match.scoreA"
-    [couleur]="match.couleurA"
+    couleur="rgb(68, 143, 255)"
     (scoreEvent)="updateScoreA($event)"
   ></app-score-inscrit-match>
   <app-chrono
@@ -21,13 +21,13 @@
   <app-score-inscrit-match
     id="score-b"
     [score]="match.scoreB"
-    [couleur]="match.couleurB"
+    couleur="rgb(189, 152, 32)"
     (scoreEvent)="updateScoreB($event)"
   ></app-score-inscrit-match>
   <app-inscrit-match
     id="inscrit-b"
     class="inscrit"
     [inscrit]="match.inscritB"
-    [couleur]="match.couleurB"
+    couleur="rgb(189, 152, 32)"
   ></app-inscrit-match>
 </section>

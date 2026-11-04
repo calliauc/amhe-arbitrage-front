@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Coup } from '../../shared/models/coup';
-import { CoupsService } from '../../shared/services/coups.service';
-import { NouveauCoup } from '../../shared/models/nouveau-coup';
+import { Echange } from '../../shared/models/echange';
+import { EchangesService } from '../../shared/services/echanges.service';
+import { EchangeNouveau } from '../../shared/models/echange-nouveau';
 import { Match } from '../../shared/models/match';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { TitleCasePipe } from '@angular/common';
@@ -16,21 +16,21 @@ import { Item } from '../../shared/models/item';
     styleUrl: './creation-coup.component.css'
 })
 export class CreationCoupComponent implements OnInit {
-  private coupsService = inject(CoupsService);
+  private echangesService = inject(EchangesService);
   private formBuilder = inject(FormBuilder);
 
   @Input() match!: Match;
   borderA!: string;
   borderB!: string;
 
-  nouveauCoup: NouveauCoup = new NouveauCoup();
-  formSaisirCoup!: FormGroup;
-  coupStr?: string;
+  nouveauEchange: EchangeNouveau = new EchangeNouveau();
+  formSaisirEchange!: FormGroup;
+  echangeStr?: string;
 
   ngOnInit(): void {
-    this.borderA = '2px solid ' + this.match.couleurA;
-    this.borderB = '2px solid ' + this.match.couleurB;
-    this.formSaisirCoup = this.formBuilder.group({
+    this.borderA = '2px solid ' + "rgb(68, 143, 255)";
+    this.borderB = '2px solid ' + "rgb(189, 152, 32)";
+    this.formSaisirEchange = this.formBuilder.group({
       attaquant: null,
       vulnerant: null,
       cible: null,
@@ -43,91 +43,92 @@ export class CreationCoupComponent implements OnInit {
   }
 
   onSubmit() {
-    this.validerCoupLongsword();
-    if (this.estCoupValide()) {
-      this.enregistrerCoup(this.nouveauCoup);
-      this.formSaisirCoup.reset();
-      this.nouveauCoup = new NouveauCoup();
+    this.validerEchangeLongsword();
+    if (this.estEchangeValide()) {
+      this.enregistrerEchange(this.nouveauEchange);
+      this.formSaisirEchange.reset();
+      this.nouveauEchange = new EchangeNouveau();
     } else {
-      alert('Coup incomplet');
+      alert('Echange incomplet');
     }
   }
 
-  validerCoupLongsword() {
-    try {
-      this.nouveauCoup.matchId = this.match.id;
-      if (this.formSaisirCoup.value.attaquant == 'b') {
-        this.nouveauCoup.attaquant = this.match.inscritB;
-        this.nouveauCoup.attaquantCouleur = this.match.couleurB;
-        this.nouveauCoup.attaquantScore = this.match.scoreB;
-        this.nouveauCoup.defenseur = this.match.inscritA;
-        this.nouveauCoup.defenseurCouleur = this.match.couleurA;
-        this.nouveauCoup.defenseurScore = this.match.scoreA;
-      } else if (this.formSaisirCoup.value.attaquant == 'a') {
-        this.nouveauCoup.attaquant = this.match.inscritA;
-        this.nouveauCoup.attaquantCouleur = this.match.couleurA;
-        this.nouveauCoup.attaquantScore = this.match.scoreA;
-        this.nouveauCoup.defenseur = this.match.inscritB;
-        this.nouveauCoup.defenseurCouleur = this.match.couleurB;
-        this.nouveauCoup.defenseurScore = this.match.scoreB;
-      }
-      this.nouveauCoup.vulnerant = {
-        code: this.formSaisirCoup.value.vulnerant.code,
-      } as Item;
-      if (this.nouveauCoup.vulnerant.code === 'lutte') {
-        this.nouveauCoup.cible = {
-          code: 'lutte',
-        } as Item;
-      } else {
-        this.nouveauCoup.cible = {
-          code: this.formSaisirCoup.value.cible.code,
-        } as Item;
-      }
-      this.nouveauCoup.doubleAtk = this.formSaisirCoup.value.doubleAtk;
-      this.nouveauCoup.doubleDef = this.formSaisirCoup.value.doubleDef;
-      this.nouveauCoup.afterblow = this.formSaisirCoup.value.afterblow;
-      this.nouveauCoup.simultanee = this.formSaisirCoup.value.simultanee;
-      this.nouveauCoup.faute = this.formSaisirCoup.value.faute;
-      console.log(this.nouveauCoup);
-    } catch (e){
-      console.log(e);
-    }
+  validerEchangeLongsword() {
+    // try {
+    //   this.nouveauEchange.matchId = this.match.id;
+    //   if (this.formSaisirEchange.value.attaquant == 'b') {
+    //     this.nouveauEchange.attaquant = this.match.inscritB;
+    //     this.nouveauEchange.attaquantCouleur = "rgb(189, 152, 32)";
+    //     this.nouveauEchange.attaquantScore = this.match.scoreB;
+    //     this.nouveauEchange.defenseur = this.match.inscritA;
+    //     this.nouveauEchange.defenseurCouleur = "rgb(68, 143, 255)";
+    //     this.nouveauEchange.defenseurScore = this.match.scoreA;
+    //   } else if (this.formSaisirEchange.value.attaquant == 'a') {
+    //     this.nouveauEchange.attaquant = this.match.inscritA;
+    //     this.nouveauEchange.attaquantCouleur = "rgb(68, 143, 255)";
+    //     this.nouveauEchange.attaquantScore = this.match.scoreA;
+    //     this.nouveauEchange.defenseur = this.match.inscritB;
+    //     this.nouveauEchange.defenseurCouleur = "rgb(189, 152, 32)";
+    //     this.nouveauEchange.defenseurScore = this.match.scoreB;
+    //   }
+    //   this.nouveauEchange.vulnerant = {
+    //     code: this.formSaisirEchange.value.vulnerant.code,
+    //   } as Item;
+    //   if (this.nouveauEchange.vulnerant.code === 'lutte') {
+    //     this.nouveauEchange.cible = {
+    //       code: 'lutte',
+    //     } as Item;
+    //   } else {
+    //     this.nouveauEchange.cible = {
+    //       code: this.formSaisirEchange.value.cible.code,
+    //     } as Item;
+    //   }
+    //   this.nouveauEchange.doubleAtk = this.formSaisirEchange.value.doubleAtk;
+    //   this.nouveauEchange.doubleDef = this.formSaisirEchange.value.doubleDef;
+    //   this.nouveauEchange.afterblow = this.formSaisirEchange.value.afterblow;
+    //   this.nouveauEchange.simultanee = this.formSaisirEchange.value.simultanee;
+    //   this.nouveauEchange.faute = this.formSaisirEchange.value.faute;
+    //   console.log(this.nouveauEchange);
+    // } catch (e){
+    //   console.log(e);
+    // }
   }
 
-  estCoupValide() {
-    return (
-      this.nouveauCoup.attaquant &&
-      this.nouveauCoup.defenseur &&
-      this.nouveauCoup.vulnerant &&
-      this.nouveauCoup.cible
-    );
+  estEchangeValide() {
+    // return (
+    //   this.nouveauEchange.attaquant &&
+    //   this.nouveauEchange.defenseur &&
+    //   this.nouveauEchange.vulnerant &&
+    //   this.nouveauEchange.cible
+    // );
+    return true;
   }
 
-  enregistrerCoup(nouveauCoup: NouveauCoup) {
+  enregistrerEchange(nouveauEchange: EchangeNouveau) {
     const date = new Date();
     console.log(date);
 
-    const coup = {
-      matchId: nouveauCoup.matchId,
-      attaquant: nouveauCoup.attaquant,
-      attaquantCouleur: nouveauCoup.attaquantCouleur,
-      attaquantScore: nouveauCoup.attaquantScore,
-      defenseur: nouveauCoup.defenseur,
-      defenseurCouleur: nouveauCoup.defenseurCouleur,
-      defenseurScore: nouveauCoup.defenseurScore,
-      doubleAtk: nouveauCoup.doubleAtk,
-      doubleDef: nouveauCoup.doubleDef,
-      afterblow: nouveauCoup.afterblow,
-      simultanee: nouveauCoup.simultanee,
-      faute: nouveauCoup.faute,
-      timecode: date,
-      vulnerant: nouveauCoup.vulnerant,
-      cible: nouveauCoup.cible,
-    } as Coup;
-    console.log(coup);
+    const echange = {
+      // matchId: nouveauEchange.matchId,
+      // attaquant: nouveauEchange.attaquant,
+      // attaquantCouleur: nouveauEchange.attaquantCouleur,
+      // attaquantScore: nouveauEchange.attaquantScore,
+      // defenseur: nouveauEchange.defenseur,
+      // defenseurCouleur: nouveauEchange.defenseurCouleur,
+      // defenseurScore: nouveauEchange.defenseurScore,
+      // doubleAtk: nouveauEchange.doubleAtk,
+      // doubleDef: nouveauEchange.doubleDef,
+      // afterblow: nouveauEchange.afterblow,
+      // simultanee: nouveauEchange.simultanee,
+      // faute: nouveauEchange.faute,
+      // timecode: date,
+      // vulnerant: nouveauEchange.vulnerant,
+      // cible: nouveauEchange.cible,
+    } as Echange;
+    console.log(echange);
 
-    this.coupsService.creerCoup(coup).subscribe(() => {
-      this.coupsService.notificationCoup.next(true);
+    this.echangesService.creerEchange(new EchangeNouveau).subscribe(() => {
+      this.echangesService.notificationEchange.next(true);
     });
   }
 }

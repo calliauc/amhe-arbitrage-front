@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { LigneCoupComponent } from './ligne-histo-coup/ligne-coup.component';
-import { Coup } from '../../shared/models/coup';
-import { CoupsService } from '../../shared/services/coups.service';
+import { Echange } from '../../shared/models/echange';
+import { EchangesService } from '../../shared/services/echanges.service';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
 
@@ -14,26 +14,26 @@ import { AuthV1Service } from '../../shared/services/auth-v1.service';
 })
 export class HistoriqueCoupsComponent implements OnInit {
   private Auth = AuthV1Service;
-  private coupsService = inject(CoupsService);
+  private echangesServices = inject(EchangesService);
 
   @Input() matchId!: number;
   @Input() role!: RolesNames;
-  listeCoups?: Coup[];
+  listeCoups?: Echange[];
 
   ngOnInit(): void {
     this.refreshList();
-    this.coupsService.notification$.subscribe(() => this.refreshList());
+    this.echangesServices.notification$.subscribe(() => this.refreshList());
   }
 
   refreshList() {
-    this.coupsService.getCoupsByMatch(this.matchId).subscribe((coups) => {
-      this.listeCoups = coups.sort((a: Coup, b: Coup) => b.id - a.id);
+    this.echangesServices.getEchangesByMatch(this.matchId).subscribe((coups) => {
+      this.listeCoups = coups.sort((a: Echange, b: Echange) => b.id - a.id);
       console.log(coups);
     });
   }
 
   supprimerCoup(id: number) {
-    this.coupsService.supprimerCoup(id).subscribe(() => {
+    this.echangesServices.supprimerEchange(id).subscribe(() => {
       console.log("C'était ma cape 😎");
       this.refreshList();
     });

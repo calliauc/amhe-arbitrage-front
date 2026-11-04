@@ -1,11 +1,11 @@
 <section id="historique">
   <h2>Historique des coups</h2>
   <table id="table-coups">
-    @for (coup of listeCoups; track $index) {
+    @for (echange of listeCoups; track $index) {
     <div class="ligne-coup">
-      <app-ligne-coup [coup]="coup"></app-ligne-coup>
+      <app-ligne-coup [echange]="echange"></app-ligne-coup>
        @if (Auth.estArbitre(role)) {
-      <span class="btn-histo-coup-supprimer" (click)="supprimerCoup(coup.id)">
+      <span class="btn-histo-coup-supprimer" (click)="supprimerCoup(echange.id)">
         X </span
       >}
     </div>
