@@ -6,6 +6,7 @@ import { HistoriqueCoupsComponent } from '../arbitrage/historique-coups/historiq
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { AfficherinscritCardComponent } from './afficher-inscrit-card/afficher-inscrit-card.component';
 import { RolesNames } from '../shared/models/roles';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-affichage-match',
@@ -19,6 +20,7 @@ export class AffichageMatchComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private matchsService = inject(MatchsService);
   private logService = inject(AuthV1Service);
+  private menuMobileService = inject(MenuMobileService);
   private router = inject(Router);
 
   role:RolesNames = 'guest';
@@ -41,6 +43,7 @@ export class AffichageMatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('MATCH n°' + this.matchId);
     this.logService.notificationRole$.subscribe(e => this.role = e)
   }
 

@@ -7,6 +7,7 @@ import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-evenements',
@@ -23,6 +24,7 @@ export class EvenementsComponent implements OnInit {
   private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private evenementsService = inject(EvenementsService);
+  private menuMobileService = inject(MenuMobileService);
 
   evenementsListe?: Evenement[];
   evenementsListe$?: Observable<Evenement[]>;
@@ -36,6 +38,7 @@ export class EvenementsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('EVENEMENTS');
     this.logService.notificationRole$.subscribe(e => this.role = e)
     this.recupererEvenements();
   }

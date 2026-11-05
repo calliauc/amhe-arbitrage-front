@@ -1,42 +1,30 @@
 header {
+  z-index: 100;
   position: absolute;
   top: 0px;
   left: 0px;
   margin: 0px;
   padding: 0px;
+  padding-inline: 10%;
   width: 100%;
   font-size: 1.5em;
   display: flex;
-  align-content: space-between;
-  justify-content: center;
+  justify-content: space-around;
   background-color: rgb(20, 20, 20);
-  /* border: 1px solid yellow; */
+  color: aliceblue;
+}
+
+#bloc-btn-menu {
+  display: none;
 }
 
 menu {
-  width: 100%;
   margin: 0px;
-  margin-left: 15%;
   padding: 0px;
   display: flex;
   align-content: center;
   justify-content: start;
   list-style-type: none;
-  /* border: 1px solid red; */
-}
-
-.btn-menu {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  margin: 0px;
-  padding: 0px;
-  display: none;
-}
-
-.affiche,
-.masque {
-  display: flex;
 }
 
 .menu-elem {
@@ -46,7 +34,6 @@ menu {
   border-top-right-radius: 10px;
   text-transform: uppercase;
   font-weight: 600;
-  /* border: 1px solid green; */
 }
 
 .menu-elem:hover {
@@ -57,27 +44,66 @@ menu {
 #login {
   margin: 0px;
   margin-right: 15%;
-  /* border: 1px solid blue; */
 }
 
+
 @media screen and (max-width: 1099px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    flex-wrap: wrap;
+    background-color: rgb(20, 20, 20);
+  }
+  
   menu {
-    top: 25px;
-    width: auto;
+    display: flex;
     flex-direction: column;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    flex-wrap: nowrap;
+    order: 3;
+    width: 100%;
+    border-top: 1px solid black;
+  }
+
+  .menu-elem {
+    border-radius: 0%;
   }
 
   .masque {
     display: none;
   }
 
-  .btn-menu {
+  #bloc-btn-menu {
+    order: 1;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    min-width: 50%;
+    margin-left: 5px;
+    border: none;
+    background-color: transparent;
+    color: aliceblue;
     font-size: 1em;
-    width: 65px;
-    height: 25px;
-    display: block;
+    font-weight: 600;
+  }
+
+  #btn-menu{
+    margin-right: 10px;
+    font-weight: 900;
+    font-size: 1.2em;
+  }
+
+  #separateur {
+    display: none;
+  }
+  
+  #login {
+    order: 2;
+    margin: 0px;
+    padding: 0px;
+    height: fit-content;
   }
 }
 

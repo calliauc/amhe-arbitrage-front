@@ -16,6 +16,7 @@ import { EvenementsService } from '../shared/services/evenements.service';
 import { RolesNames } from '../shared/models/roles';
 import { ItemsService } from '../shared/services/items.service';
 import { Item } from '../shared/models/item';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-gestion-matchs',
@@ -37,6 +38,7 @@ export class GestionMatchsComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private evenementsService = inject(EvenementsService);
+  private menuMobileService = inject(MenuMobileService);
 
   matchsNouveau: Match[] = [];
   matchsEnCours: Match[] = [];
@@ -66,6 +68,7 @@ export class GestionMatchsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('MATCHS');
     this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
     this.logService.notificationRole$.subscribe(e => this.role = e);
     this.criteres.idEvenement = this.evenement.id;

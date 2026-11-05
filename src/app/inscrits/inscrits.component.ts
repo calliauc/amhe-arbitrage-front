@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { RolesNames } from '../shared/models/roles';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-inscrits',
@@ -28,6 +29,7 @@ export class InscritsComponent implements OnInit {
   private logService = inject(AuthV1Service);
   private inscritsService = inject(InscritsService);
   private evenementsService = inject(EvenementsService);
+  private menuMobileService = inject(MenuMobileService);
   private router = inject(Router);
 
   evenement!:Evenement;
@@ -46,6 +48,7 @@ export class InscritsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('INSCRITS');
     this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
     this.recupererInscrits();
     this.logService.notificationRole$.subscribe(e => this.role = e)

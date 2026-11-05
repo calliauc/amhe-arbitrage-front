@@ -9,6 +9,7 @@ import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { Evenement } from '../shared/models/evenement';
 import { EvenementsService } from '../shared/services/evenements.service';
 import { RolesNames } from '../shared/models/roles';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-gestion-poules',
@@ -21,6 +22,7 @@ export class GestionPoulesComponent implements OnInit {
   private logService = inject(AuthV1Service);
   private poulesService = inject(PoulesService);
   private evenementsService = inject(EvenementsService);
+  private menuMobileService = inject(MenuMobileService);
   private router = inject(Router);
   private Auth = AuthV1Service;
 
@@ -39,6 +41,7 @@ constructor() {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('POULES');
     this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
     this.recupererPoules();
     this.logService.notificationRole$.subscribe(e => this.role = e)

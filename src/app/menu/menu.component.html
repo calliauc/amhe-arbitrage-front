@@ -1,9 +1,8 @@
 <header>
-  @if (!estMenuVisible) {
-    <button type="button" class="btn-menu" (click)="afficherMenu()" aria-label="Afficher le menu mobile">Menu</button>
-  } @if (estMenuVisible) {
-    <button type="button" class="btn-menu" (click)="masquerMenu()" aria-label="Masquer le menu mobile">Masquer</button>
-  }
+  <button id="bloc-btn-menu" type="button"  (click)="afficherMenu($event)" aria-label='Afficher le menu'>
+    <span id="btn-menu">{{icon}}</span>
+    <span>{{pageActuelle$ | async}}</span>
+  </button>
   <menu
     [ngClass]="{
     'masque': !estMenuVisible,
@@ -15,17 +14,17 @@
     <li class="btn menu-elem" (click)="allerVers('poules')">Poules</li>
     <li class="btn menu-elem" (click)="allerVers('matchs')">Matchs</li>
     @if (role=='arbitre') {
-      <li>|</li>
+      <li id="separateur">|</li>
       <li class="btn menu-elem" (click)="allerVers('saisie-echange')">Echange</li>
     }
     @if (role=='admin') {
-      <li>|</li>
+      <li id="separateur">|</li>
       <li class="btn menu-elem" (click)="allerVers('annuaire')">Annuaire</li>
       <li class="btn menu-elem" (click)="allerVers('clubs')">Clubs</li>
       <li class="btn menu-elem" (click)="allerVers('referentiels')">Référentiels</li>
     }
   </menu>
-<div class="btn" id="login">
-    <app-login></app-login>
-</div>
+  <div class="btn" id="login">
+      <app-login></app-login>
+  </div>
 </header>

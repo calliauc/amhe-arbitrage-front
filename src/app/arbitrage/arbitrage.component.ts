@@ -8,6 +8,7 @@ import { MatchsService } from '../shared/services/matchs.service';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
 import { SaisieEchangeComponent } from './saisie-echange/saisie-echange.component';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-arbitrage',
@@ -23,6 +24,7 @@ import { SaisieEchangeComponent } from './saisie-echange/saisie-echange.componen
 export class ArbitrageComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private matchsService = inject(MatchsService);
+  private menuMobileService = inject(MenuMobileService);
   private logService = inject(AuthV1Service);
   private router = inject(Router);
 
@@ -46,6 +48,7 @@ export class ArbitrageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('ARBITRAGE');
     this.logService.notificationRole$.subscribe(e => {
       if (AuthV1Service.noAuth(e)){
         this.router.navigate(['match', this.matchId, 'details']);

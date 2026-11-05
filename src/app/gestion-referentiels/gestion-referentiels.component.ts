@@ -5,6 +5,7 @@ import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.co
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
 import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-gestion-referentiels',
@@ -20,9 +21,11 @@ import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
 })
 export class GestionReferentielsComponent implements OnInit {
   private logService = inject(AuthV1Service);
+  private menuMobileService = inject(MenuMobileService);
   role:RolesNames = 'guest';
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('REFERENTIELS');
     this.logService.notificationRole$.subscribe(e => this.role = e)
   }
 }

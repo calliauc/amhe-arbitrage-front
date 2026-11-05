@@ -9,6 +9,7 @@ import { GestionMatchsComponent } from '../gestion-matchs/gestion-matchs.compone
 import { RolesNames } from '../shared/models/roles';
 import { HemaRatingService } from '../shared/services/hema-rating.sevice';
 import { environment } from '../../environments/environment';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
   selector: 'app-evenement',
@@ -17,10 +18,11 @@ import { environment } from '../../environments/environment';
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './evenement.component.css'
 })
-export class EvenementComponent {
+export class EvenementComponent implements OnInit {
   private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private evenementsService = inject(EvenementsService);
+  private menuMobileService = inject(MenuMobileService);
   private router = inject(Router);
   private hemaRatingService = inject(HemaRatingService);
 
@@ -43,6 +45,10 @@ export class EvenementComponent {
       localStorage.removeItem('origin-page');
       this.router.navigate(['evenements']);
     }
+  }
+
+  ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('EVENEMENT');
   }
 
   editerScores() {

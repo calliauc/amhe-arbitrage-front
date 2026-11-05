@@ -54,7 +54,6 @@ select {
 @media screen and (max-width: 1099px) {
   table {
     width: 100%;
-    overflow-x: scroll;
   }
 
   th {

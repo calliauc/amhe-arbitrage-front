@@ -7,6 +7,7 @@ import { Observable, switchMap, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-gestion-clubs',
@@ -23,6 +24,7 @@ export class GestionClubsComponent implements OnInit {
   private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private clubsService = inject(ClubsService);
+  private menuMobileService = inject(MenuMobileService);
 
   clubsListe?: Club[];
   clubsListe$?: Observable<Club[]>;
@@ -36,6 +38,7 @@ export class GestionClubsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('CLUBS');
     this.logService.notificationRole$.subscribe(e => this.role = e)
     this.recupererClubs();
   }

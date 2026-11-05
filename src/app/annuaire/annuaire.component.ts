@@ -7,6 +7,7 @@ import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { AnnuaireLigneComponent } from './annuaire-ligne/annuaire-ligne.component';
 import { AnnuaireEditerComponent } from './annuaire-editer/annuaire-editer.component';
 import { RolesNames } from '../shared/models/roles';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-annuaire',
@@ -22,6 +23,7 @@ import { RolesNames } from '../shared/models/roles';
 export class AnnuaireComponent implements OnInit {
   private logService = inject(AuthV1Service);
   private individuService = inject(IndividuService);
+  private menuMobileService = inject(MenuMobileService);
   private Auth = AuthV1Service;
 
   individusListe?: Individu[];
@@ -36,6 +38,7 @@ export class AnnuaireComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('ANNUAIRE');
     this.logService.notificationRole$.subscribe(e => this.role = e)
     this.recupererIndividus();
   }

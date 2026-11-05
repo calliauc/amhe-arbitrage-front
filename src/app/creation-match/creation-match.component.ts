@@ -22,6 +22,7 @@ import { Evenement } from '../shared/models/evenement';
 import { PoulesService } from '../shared/services/poules.service';
 import { Poule } from '../shared/models/poule';
 import { ItemsService } from '../shared/services/items.service';
+import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-creation-match',
@@ -44,6 +45,7 @@ export class CreationMatchComponent implements OnInit {
   private poulesService = inject(PoulesService);
   // private rulesetsService = inject(RulesetsService);
   private itemsService = inject(ItemsService);
+  private menuMobileService = inject(MenuMobileService);
 
   estModalVisible = false;
   evenement!: Evenement;
@@ -71,6 +73,7 @@ export class CreationMatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuMobileService.pageActuelle.next('NOUVEAU MATCH');
     if (this.evenement.id == 0){
       localStorage.setItem('origin-page', 'creer-match');
       this.router.navigate(['evenements']);

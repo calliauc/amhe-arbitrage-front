@@ -37,8 +37,6 @@
         }
       </select>
     </p>
-    <p>{{toucheClean}}</p>
-
     @if (!toucheClean) {
       <p>
         <label for="">Vulnérant de B</label>
@@ -69,8 +67,6 @@
     @for (e of echanges; track $index) {
       <p>{{e.inscritA.prenom}} frappe {{e.inscritB.prenom}} {{e.vulnerantA.libelle }} {{e.cibleA.libelle}}</p>
     }  
-    <div>{{echanges.length}}</div>
   }
-  <div>{{echanges.length}}</div>
 
 
