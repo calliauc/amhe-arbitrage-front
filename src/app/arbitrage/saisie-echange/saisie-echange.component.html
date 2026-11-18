@@ -1,72 +1,67 @@
-<form>
-    <p>
-      <label for="">Type d'échange</label>
-      <select (change)="onSelectItem($event, 'type')">
-        <option hidden selected></option>
-        @for (item of match.ruleset.typesEchange; track $index){
-          <option [value]=item.id>{{ item.code }}</option>
-        }
-      </select>
-    </p>
+<form [formGroup]="formSaisieEchange" (ngSubmit)="onValider()">
+  <p>
+    <label for="type-echange">Type de l'échange</label>
+    <select formControlName="typeEchange">
+      <option [ngValue]="null" hidden selected></option>
+      @for (item of match.ruleset.typesEchange; track $index){
+        <option [ngValue]=item>{{ item.libelle }}</option>
+      }
+    </select>
+  </p>
 
+  @if (labelAttaquant) {
     <p>
-      <label for="">Qui porte le coup ?</label>
-      <select (change)="onSelectItem($event, 'attaquant')">
+      <label for="attaquant">{{labelAttaquant}}</label>
+      <select formControlName="attaquant">
         <option hidden selected></option>
-        <option [value]=match.inscritA.id>{{ match.inscritA.prenom }}</option>
-        <option [value]=match.inscritB.id>{{ match.inscritB.prenom }}</option>
+        <option [ngValue]=match.inscritA>{{ match.inscritA.prenom }}</option>
+        <option [ngValue]=match.inscritB>{{ match.inscritB.prenom }}</option>
       </select>
-    </p>
-  
-    <p>
-      <label for="">Vulnérant de A</label>
-      <select (change)="onSelectItem($event, 'vulnerant_a')">
-        <option hidden selected></option>
-        @for (item of match.ruleset.vulnerants; track $index){
-          <option [value]=item.id>{{ item.code }}</option>
-        }
-      </select>
-    </p>
-
-    <p>
-      <label for="">Cible de A</label>
-      <select (change)="onSelectItem($event, 'cible_a')">
-        <option hidden selected></option>
-        @for (item of match.ruleset.cibles; track $index){
-          <option [value]=item.id>{{ item.code }}</option>
-        }
-      </select>
-    </p>
-    @if (!toucheClean) {
-      <p>
-        <label for="">Vulnérant de B</label>
-        <select (change)="onSelectItem($event, 'vulnerant_b')">
-          <option hidden selected></option>
-          @for (item of match.ruleset.vulnerants; track $index){
-            <option [value]=item.id>{{ item.code }}</option>
-          }
-        </select>
-      </p>
-  
-      <p>
-        <label for="">Cible de B</label>
-        <select (change)="onSelectItem($event, 'cible_b')">
-          <option hidden selected></option>
-          @for (item of match.ruleset.cibles; track $index){
-            <option [value]=item.id>{{ item.code }}</option>
-          }
-        </select>
-      </p>  
-    }
-
-    <!-- <button type="submit" [disabled]="formulaireErreur">Enregistrer échange</button> -->
-    <button type='button' (click)="onValider()" >Enregistrer échange</button>
-  </form>
-
-  @if (echanges.length) {
-    @for (e of echanges; track $index) {
-      <p>{{e.inscritA.prenom}} frappe {{e.inscritB.prenom}} {{e.vulnerantA.libelle }} {{e.cibleA.libelle}}</p>
-    }  
+    </p>  
   }
+  @if (echangeTemp.inscritA && echangeTemp.inscritB){
+    <label for="coup-a">Saisir la touche de : {{echangeTemp.inscritA.prenom}} {{echangeTemp.inscritA.nom}}</label>
+    <div formGroupName="coupA">
+      <label for="vulnerant-a">Vulnérant</label>
+      <select formControlName="vulnerant">
+        <option [ngValue]="null" hidden selected></option>
+        @for (item of match.ruleset.vulnerants; track $index){
+          <option [ngValue]=item>{{ item.code }}</option>
+        }
+      </select>
+
+      <label for="cible-a">Cible</label>
+      <select formControlName="cible">
+        <option [ngValue]="null" hidden selected></option>
+        @for (item of match.ruleset.cibles; track $index){
+          <option [ngValue]=item>{{ item.code }}</option>
+        }
+      </select>
+    </div>
+
+  @if (hasCoupDef) {
+    <label for="coup-b">Saisir la touche de : {{echangeTemp.inscritB.prenom}} {{echangeTemp.inscritB.nom}}</label>
+    <div formGroupName="coupB">
+      <label for="vulnerant-b">Vulnérant</label>
+      <select formControlName="vulnerant">
+        <option [ngValue]="null" hidden selected></option>
+        @for (item of match.ruleset.vulnerants; track $index){
+          <option [ngValue]=item>{{ item.code }}</option>
+        }
+      </select>
+
+      <label for="cible-b">Cible</label>
+      <select formControlName="cible">
+        <option [ngValue]="null" hidden selected></option>
+        @for (item of match.ruleset.cibles; track $index){
+          <option [ngValue]=item>{{ item.code }}</option>
+        }
+      </select>
+    </div>
+  }
+}
+  <!-- <button type="submit" [disabled]="formulaireErreur">Enregistrer échange</button> -->
+  <button id="submitButton" type='submit'>Enregistrer échange</button>
+</form>
 
 

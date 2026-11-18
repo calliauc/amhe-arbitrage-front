@@ -23,31 +23,9 @@ export class InscritDetailsComponent {
   inscritId!: number;
   itemPoule!: Item;
   items: TagFiltres = {
-    itemsRequis: [
-      {
-        id: 1,
-        code: 'B-CUP-25',
-      },
-      {
-        id: 2,
-        code: 'Epée',
-      },
-    ],
-    itemsOptions: [],
-    itemsExclus: [
-      {
-        id: 3,
-        code: 'Hache',
-      },
-      {
-        id: 16,
-        code: 'Finale-p',
-      },
-      {
-        id: 17,
-        code: 'Finale-g',
-      },
-    ],
+    tagsRequis: [],
+    tagsOptions: [],
+    tagsExclus: [],
   };
 
   constructor() {
@@ -78,6 +56,6 @@ export class InscritDetailsComponent {
   }
 
   filtreItems(items: Item[]): Item {
-    return items.filter((item) => item.code.startsWith('Poule'))[0];
+    return items.filter((item) => item.libelle.startsWith('Poule'))[0];
   }
 }

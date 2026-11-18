@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Inscrit } from '../../shared/models/inscrit';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Club } from '../../shared/models/club';
-import { ClubsService } from '../../shared/services/clubs.service';
 import { ConfirmationModalComponent } from '../../shared/modales/confirmation-modal/confirmation-modal.component';
 import { IndividuService } from '../../shared/services/individus.service';
 import { Individu } from '../../shared/models/individu';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { Evenement } from '../../shared/models/evenement';
 import { EvenementsService } from '../../shared/services/evenements.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-inscription',
@@ -22,7 +22,6 @@ import { EvenementsService } from '../../shared/services/evenements.service';
 })
 export class InscriptionComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
-  private clubsService = inject(ClubsService);
   private individuService = inject(IndividuService);
   private evenementService = inject(EvenementsService);
 
@@ -31,8 +30,10 @@ export class InscriptionComponent implements OnInit {
   @Output() supprimerInscrit = new EventEmitter<number>();
   @Output() validerCreation = new EventEmitter<null>();
 
-  clubsListe!: Club[];
-  individusListe!: Individu[];
+  rechercheIndividu = (keyword: string): Observable<any> => {
+    return this.individuService.searchIndividuByName(keyword);
+  };
+
   individuAInscrire: Individu = new Individu;
   evenement!: Evenement;
   ereurSaisie: boolean;
@@ -47,35 +48,46 @@ export class InscriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.evenementService.refreshEvent$.subscribe(event => this.evenement = event);
-    this.recupererIndividus();
-    this.recupererClubs();
     this.initFormInscription();
-  }
-
-  recupererIndividus(){
-    const idsInscrits = this.evenement.inscrits?.map(inscrit => inscrit.idIndividu) || [];
-    this.individuService
-      .getIndividus()
-      .subscribe((individus) => this.individusListe = individus.filter(ind => !idsInscrits?.includes(ind.id as number)));
-  }
-
-  recupererClubs(){
-    this.clubsService
-    .getClubs()
-    .subscribe((clubs) => this.clubsListe = clubs);
   }
 
   initFormInscription(){
     this.formInscription = this.formBuilder.group({
-      selectionIndividu: null,
+      selectionIndividu: new FormControl(null, [
+        Validators.required,
+        this.inscriptionValidator()
+      ]),
     });
     this.formInscription.controls['selectionIndividu'].valueChanges.subscribe((individu) => {
-      this.individuAInscrire = individu;
+      console.log(this.formInscription.controls['selectionIndividu'].errors?.['dejaInscrit']);
+      console.log(this.formInscription.controls['selectionIndividu'].errors);
+      
+      // if (this.estInscrit(individu.id)){
+      //   this.ereurSaisie = true;
+      // } else {
+      //   this.ereurSaisie = false;
+        this.individuAInscrire = individu;
+      // }
     });
   }
 
   afficheIndividu(item: Individu): string {
     return `${item.prenom} ${item.nom}`;
+  }
+
+  inscriptionValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => { 
+      if(!control.value){
+        return null;
+      }
+      return this.estInscrit(control.value.id) ? {dejaInscrit: {msg: `${control.value.prenom} est déjà inscrit`}} : null
+    }
+  }
+
+  estInscrit(idIndividu:number):boolean{
+    const ins = this.evenement.inscrits?.find(inscrit => inscrit.idIndividu === idIndividu);
+    console.log("ins : " + ins?.prenom);
+    return !!ins;
   }
 
   annuler(): void {

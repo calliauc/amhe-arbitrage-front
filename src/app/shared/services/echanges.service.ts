@@ -1,9 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { Echange } from '../models/echange';
+import { Echange, EchangeTempApi } from '../models/echange';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { EchangeNouveau } from '../models/echange-nouveau';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,7 @@ export class EchangesService {
 
   env = environment;
   URL = `${this.env.baseUrl}/echanges`;
-  notificationEchange = new Subject<boolean>();
+  notificationEchange = new Subject<Echange>();
   notification$ = this.notificationEchange.asObservable();
 
   public getEchanges(): Observable<Echange[]> {
@@ -32,7 +31,7 @@ export class EchangesService {
     });
   }
 
-  public creerEchange(echangeACreer: EchangeNouveau): Observable<Echange> {
+  public creerEchange(echangeACreer: EchangeTempApi): Observable<Echange> {
     return this.http.post<Echange>(this.URL, echangeACreer, {
       responseType: 'json',
     });

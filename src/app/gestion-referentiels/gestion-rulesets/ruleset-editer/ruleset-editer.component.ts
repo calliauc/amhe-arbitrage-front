@@ -72,8 +72,8 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
       this.itemsService.getItems("vulnerant").subscribe((vs) => {
         vs.forEach((v) => {
           const ref = {
-            code: v.code,
             libelle: v.libelle,
+            code: v.code,
             checked: false,
           } as Item;
           this.ruleset.vulnerants?.push(ref);
@@ -87,7 +87,7 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     this.ruleset?.vulnerants?.forEach((vulnerant) => {
       formVulnerants.push(
         new FormGroup({
-          code: new FormControl(vulnerant.code),
+          code: new FormControl(vulnerant.libelle),
           checked: new FormControl(vulnerant.checked),
         })
       );
@@ -99,8 +99,8 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
       this.itemsService.getItems("cible").subscribe((cs) => {
         cs.forEach((c) => {
           const ref = {
-            code: c.code,
             libelle: c.libelle,
+            code: c.code,
             checked: false,
           } as Item;
           this.ruleset.cibles?.push(ref);
@@ -112,7 +112,7 @@ export class RulesetEditerComponent implements OnInit, AfterViewInit {
     this.ruleset?.cibles?.forEach((cible) => {
       formCibles.push(
         new FormGroup({
-          code: new FormControl(cible.code),
+          code: new FormControl(cible.libelle),
           checked: new FormControl(cible.checked),
         })
       );

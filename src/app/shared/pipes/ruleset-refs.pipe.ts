@@ -10,7 +10,7 @@ export class RulsetRefPipe implements PipeTransform {
     let text = '';
     if (refs) {
       refs.forEach((ref) => {
-        if (ref.checked) text = text + ref.code + ', ';
+        if (ref.checked) text = text + ref.libelle + ', ';
       });
     }
     return text;

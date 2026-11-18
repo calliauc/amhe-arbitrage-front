@@ -16,6 +16,12 @@ main {
   border-radius: 15px;
 }
 
+#echanges {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 @media screen and (max-width: 1099px) {
   #separateur {
     margin-top: 10px;

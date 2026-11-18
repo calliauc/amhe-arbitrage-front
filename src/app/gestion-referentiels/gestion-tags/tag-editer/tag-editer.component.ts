@@ -38,7 +38,7 @@ export class TagEditerComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.formEditerItem = this.formBuilder.group({
       id: this.tag.id,
-      code: this.tag.code,
+      code: this.tag.libelle,
     });
   }
 
@@ -89,6 +89,6 @@ export class TagEditerComponent implements OnInit, AfterViewInit {
   }
 
   verifierTag(tag: Item): boolean {
-    return !!tag.code;
+    return !!tag.libelle;
   }
 }

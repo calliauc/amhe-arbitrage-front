@@ -1,31 +1,27 @@
 export class Item {
   id!: number;
-  code!: string;
-  libelle?: string;
+  type!: string;
+  libelle!: string;
+  code?: string;
   checked?: false;
+  flags?: string[];
+}
+
+export interface detailsItem {
+  [key: string]: boolean;
 }
 
 export const couleurs: Item[] = [
-  // {
-  //   code: 'rgb(162, 17, 190)',
-  //   libelle: 'violet',
-  // },
   {
     id:0,
-    code: 'rgb(68, 143, 255)',
-    libelle: 'bleu',
+    type: 'couleur',
+    code: 'bleu',
+    libelle: 'rgb(68, 143, 255)',
   },
-  // {
-  //   code: 'rgb(53, 231, 62)',
-  //   libelle: 'vert',
-  // },
   {
     id:0,
-    code: 'rgb(189, 152, 32)',
-    libelle: 'jaune',
-  },
-  // {
-  //   code: 'rgb(252, 102, 102)',
-  //   libelle: 'rouge',
-  // },
+    type: 'couleur',
+    code: 'jaune',
+    libelle: 'rgb(189, 152, 32)',
+  }
 ] as Item[];

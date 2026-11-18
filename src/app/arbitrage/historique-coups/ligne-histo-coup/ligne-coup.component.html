@@ -1,22 +1,29 @@
-<tr class="tr-echange">
-  <td class="txt-histo-echanges desktop">
-    <span>{{ echange.timecode | date : "HH:mm:ss" }}</span>
-    <span> - </span>
-    <span>Score : {{ echange.scoreA }}/{{ echange.scoreB }}</span>
-    <span> - </span>
-    <span>{{ echange.inscritA.prenom }}</span>
-    <span> [{{ echange.vulnerantA.code }} {{ echange.cibleA.code }}]</span>
-    <span> - </span>
-    <span>[{{ echange.type.code }}] </span>
-    <span> - </span>
-    <span>{{ echange.inscritB.prenom }}</span>
-    @if (echange.type.code !== 'clean') {
-      <span> [{{ echange.vulnerantB.code }} {{ echange.cibleB.code }}]</span>
-    }
-  </td>
-  <td class="txt-histo-echanges mobile">
-    <span>{{ echange.timecode | date : "HH:mm:ss" }} - </span>
-    <span>{{ echange | echangeDisplay }}</span>
+<div id="ligneEchange">
+  <!-- <td class="txt-histo-echanges desktop"> -->
+    <div id="echange">
+      <span>{{ echange.timecode | date : "H:mm:ss" }}</span>
+      <span> - </span>
+      <span>Score : {{ echange.scoreA }}/{{ echange.scoreB }}</span>
+      <span> - </span>
+      <span>[{{ echange.type.libelle }}] </span>
+    </div>
+    <div id="coups">
+      <div>
+        <span>{{ echange.inscritA.prenom }}</span>
+        <span> [{{ echange.vulnerantA.code }} {{ echange.cibleA.code }}]</span>  
+      </div>
+      @if (echange.type.code !== 'clean') {
+        <div>
+          <span>{{ echange.inscritB.prenom }}</span>
+          <span> [{{ echange.vulnerantB?.code }} {{ echange.cibleB?.code }}]</span>  
+        </div>
+      }  
+    </div>
+  </div>
+  <!-- </td> -->
+  <!-- <td class="txt-histo-echanges mobile"> -->
+    <!-- <span>{{ echange.timecode | date : "HH:mm:ss" }} - </span> -->
+    <!-- <span>{{ echange | echangeDisplay }}</span>
     <br />
     <span>{{ echange.inscritA.prenom }} ({{ echange.scoreA }})</span>
     =>
@@ -24,4 +31,4 @@
     <br />
     <span>{{ echange.vulnerantA.code }}</span>/<span>{{ echange.cibleA.code }}</span>
   </td>
-</tr>
+</tr> -->

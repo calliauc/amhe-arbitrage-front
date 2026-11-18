@@ -1,6 +1,15 @@
-.txt-histo-coups {
+#ligneEchange {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  align-content: center;
+  /* border: 1px solid green; */
+}
+
+/* .txt-histo-coups {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   padding-left: 5px;
   padding-block: 1px;
   height: 25px;
@@ -8,6 +17,13 @@
 }
 .txt-histo-coups::first-letter {
   text-transform: capitalize;
+} */
+
+#coups{
+  display:flex;
+  width: 100%;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
 }
 
 .mobile {

@@ -2,11 +2,9 @@ import { Component, Input, OnInit, inject, ChangeDetectionStrategy } from '@angu
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Echange } from '../../shared/models/echange';
 import { EchangesService } from '../../shared/services/echanges.service';
-import { EchangeNouveau } from '../../shared/models/echange-nouveau';
 import { Match } from '../../shared/models/match';
 import { NomsPipe } from '../../shared/pipes/noms.pipe';
 import { TitleCasePipe } from '@angular/common';
-import { Item } from '../../shared/models/item';
 
 @Component({
     selector: 'app-creation-coup',
@@ -23,7 +21,7 @@ export class CreationCoupComponent implements OnInit {
   borderA!: string;
   borderB!: string;
 
-  nouveauEchange: EchangeNouveau = new EchangeNouveau();
+  // nouveauEchange: IEchangeForm = new EchangeForm();
   formSaisirEchange!: FormGroup;
   echangeStr?: string;
 
@@ -45,9 +43,9 @@ export class CreationCoupComponent implements OnInit {
   onSubmit() {
     this.validerEchangeLongsword();
     if (this.estEchangeValide()) {
-      this.enregistrerEchange(this.nouveauEchange);
+      // this.enregistrerEchange(this.nouveauEchange);
       this.formSaisirEchange.reset();
-      this.nouveauEchange = new EchangeNouveau();
+      // this.nouveauEchange = new EchangeForm();
     } else {
       alert('Echange incomplet');
     }
@@ -102,33 +100,5 @@ export class CreationCoupComponent implements OnInit {
     //   this.nouveauEchange.cible
     // );
     return true;
-  }
-
-  enregistrerEchange(nouveauEchange: EchangeNouveau) {
-    const date = new Date();
-    console.log(date);
-
-    const echange = {
-      // matchId: nouveauEchange.matchId,
-      // attaquant: nouveauEchange.attaquant,
-      // attaquantCouleur: nouveauEchange.attaquantCouleur,
-      // attaquantScore: nouveauEchange.attaquantScore,
-      // defenseur: nouveauEchange.defenseur,
-      // defenseurCouleur: nouveauEchange.defenseurCouleur,
-      // defenseurScore: nouveauEchange.defenseurScore,
-      // doubleAtk: nouveauEchange.doubleAtk,
-      // doubleDef: nouveauEchange.doubleDef,
-      // afterblow: nouveauEchange.afterblow,
-      // simultanee: nouveauEchange.simultanee,
-      // faute: nouveauEchange.faute,
-      // timecode: date,
-      // vulnerant: nouveauEchange.vulnerant,
-      // cible: nouveauEchange.cible,
-    } as Echange;
-    console.log(echange);
-
-    this.echangesService.creerEchange(new EchangeNouveau).subscribe(() => {
-      this.echangesService.notificationEchange.next(true);
-    });
   }
 }

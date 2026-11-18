@@ -84,9 +84,8 @@ export class GestionMatchsComponent implements OnInit {
     this.itemsService.getItems("tag").subscribe((items) => {
       items.forEach((tag) =>
         this.tagsFiltreListe.push({
-          id: tag.id,
-          code: tag.code,
           checked: false,
+          ...tag
         })
       );
     });

@@ -22,7 +22,8 @@ export class HistoriqueCoupsComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshList();
-    this.echangesServices.notification$.subscribe(() => this.refreshList());
+    // this.echangesServices.notification$.subscribe((echange) => this.refreshList());
+    this.echangesServices.notification$.subscribe((echange) => this.listeCoups?.unshift(echange));
   }
 
   refreshList() {
@@ -33,6 +34,7 @@ export class HistoriqueCoupsComponent implements OnInit {
   }
 
   supprimerCoup(id: number) {
+    // TODO debug les relations
     this.echangesServices.supprimerEchange(id).subscribe(() => {
       console.log("C'était ma cape 😎");
       this.refreshList();

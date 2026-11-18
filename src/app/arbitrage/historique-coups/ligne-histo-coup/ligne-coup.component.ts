@@ -5,7 +5,7 @@ import { DetailsEchangePipe } from '../../../shared/pipes/details-coup.pipe';
 
 @Component({
     selector: 'app-ligne-coup',
-    imports: [ DatePipe , DetailsEchangePipe],
+    imports: [ DatePipe ],
     templateUrl: './ligne-coup.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './ligne-coup.component.css'

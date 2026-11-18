@@ -1,16 +1,20 @@
 <main>
   @if (match) {
-  <div>Statut : {{ match.statut }}</div>
-  <app-gestion-match
-    [match]="match"
-    (matchEvent)="refreshMatch()"
-  ></app-gestion-match>
-  <div id="separateur"></div>
-  <app-saisie-echange [match]="match"></app-saisie-echange>
-  <app-historique-coups
-  [role]="role"
-  [matchId]="match.id"></app-historique-coups>
+    <div>Statut : {{ match.statut }}</div>
+    <app-gestion-match
+      [match]="match"
+      (matchEvent)="refreshMatch()"
+    ></app-gestion-match>
+    <div id="separateur"></div>
+    // TODO auto update affichage des échanges saisis
+    <section id="echanges">
+      <app-saisie-echange [match]="match"></app-saisie-echange>
+      <app-historique-coups
+        [role]="role"
+        [matchId]="match.id">
+      </app-historique-coups>
+    </section>
   } @else {
-  <div>Chargement du match</div>
+    <section>Chargement du match</section>
   }
 </main>

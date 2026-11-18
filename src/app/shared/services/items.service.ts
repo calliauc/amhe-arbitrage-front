@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Item } from '../models/item';
@@ -14,7 +14,8 @@ export class ItemsService {
   URL = `${this.env.baseUrl}/items`;
 
   public getItems(type:string): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.URL}/type/${type}`, { responseType: 'json' });
+    const params = new HttpParams().set('type', type)
+    return this.http.get<Item[]>(`${this.URL}`, {params});
   }
 
   public getItemsByListe(codes: string[]): Observable<Item[]> {
@@ -37,7 +38,7 @@ export class ItemsService {
 
   public modifierItem(itemAModifier: Item): Observable<Item> {
     return this.http.put<Item>(
-      `${this.URL}/${itemAModifier.code}`,
+      `${this.URL}/${itemAModifier.libelle}`,
       itemAModifier,
       {
         responseType: 'json',

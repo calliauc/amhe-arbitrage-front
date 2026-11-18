@@ -1,8 +1,6 @@
 <ng-template #individu let-item let-i="index">
-  {{ item.prenom }} {{ item.nom }}
+  @if(estInscrit(item.id)){[Inscrit] }{{ item.prenom }} {{ item.nom }}
 </ng-template>
-
-
 
 <form
   [formGroup]="formInscription"
@@ -16,14 +14,20 @@
     ngui-auto-complete 
     formControlName="selectionIndividu"
     select-on-blur="true"
-    [source]="individusListe"
+    loading-text="Recherche dans l'annuaire"
+    [source]="rechercheIndividu"
     [itemTemplate]="individu"
     [display-with]="afficheIndividu"
     /* #focus */
     />
   
+  <button type="reset">x</button>
   </div>
-  @if (individuAInscrire.id) {
+  @if (formInscription.controls['selectionIndividu'].errors?.['dejaInscrit']){
+    <div class="bandeau-erreur">
+      <div class="message-erreur">{{formInscription.controls['selectionIndividu'].errors?.['dejaInscrit'].msg}}</div>
+    </div>
+  } @else if (individuAInscrire.id) {
     <tr id="ligneNouvelInscrit">
       <td class="col">{{ individuAInscrire.prenom }}</td>
       <td class="col">{{ individuAInscrire.nom }}</td>
@@ -49,11 +53,6 @@
         </button>
       </td>
     </tr>
-  }
-  @if (ereurSaisie){
-  <div class="bandeau-erreur">
-    <div class="message-erreur">{{individuAInscrire.prenom}} participe déjà à l'événement</div>
-  </div>
   }
 
 </form>

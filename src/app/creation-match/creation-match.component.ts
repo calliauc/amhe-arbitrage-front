@@ -94,9 +94,8 @@ export class CreationMatchComponent implements OnInit {
     this.itemsService.getItems("tag").subscribe((items) => {
       items.forEach((item) =>
         this.tags.push({
-          id: item.id,
-          code: item.code,
           checked: false,
+          ...item
         })
       );
     });

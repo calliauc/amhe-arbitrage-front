@@ -38,8 +38,8 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.formEditerVulnerant = this.formBuilder.group({
-      code: this.vulnerant.code,
-      libelle: this.vulnerant.libelle,
+      code: this.vulnerant.libelle,
+      libelle: this.vulnerant.code,
     });
   }
 
@@ -94,6 +94,6 @@ export class VulnerantEditerComponent implements OnInit, AfterViewInit {
   }
 
   verifierVulnerant(vulnerant: Item): boolean {
-    return !!vulnerant.code && !!vulnerant.libelle;
+    return !!vulnerant.libelle && !!vulnerant.code;
   }
 }

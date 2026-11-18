@@ -38,8 +38,8 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.formEditerCible = this.formBuilder.group({
-      code: this.cible.code,
-      libelle: this.cible.libelle,
+      code: this.cible.libelle,
+      libelle: this.cible.code,
     });
   }
 
@@ -90,6 +90,6 @@ export class CibleEditerComponent implements OnInit, AfterViewInit {
   }
 
   verifierCible(cible: Item): boolean {
-    return !!cible.code && !!cible.libelle;
+    return !!cible.libelle && !!cible.code;
   }
 }
