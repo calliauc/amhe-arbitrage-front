@@ -28,4 +28,8 @@ main {
     width: 100%;
     height: 20px;
   }
+
+  #echanges {
+    flex-direction: column;
+  }
 }

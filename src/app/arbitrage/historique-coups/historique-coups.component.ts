@@ -21,12 +21,11 @@ export class HistoriqueCoupsComponent implements OnInit {
   listeCoups?: Echange[];
 
   ngOnInit(): void {
-    this.refreshList();
-    // this.echangesServices.notification$.subscribe((echange) => this.refreshList());
+    this.chargerListeEchanges();
     this.echangesServices.notification$.subscribe((echange) => this.listeCoups?.unshift(echange));
   }
 
-  refreshList() {
+  chargerListeEchanges() {
     this.echangesServices.getEchangesByMatch(this.matchId).subscribe((coups) => {
       this.listeCoups = coups.sort((a: Echange, b: Echange) => b.id - a.id);
       console.log(coups);
@@ -34,10 +33,9 @@ export class HistoriqueCoupsComponent implements OnInit {
   }
 
   supprimerCoup(id: number) {
-    // TODO debug les relations
     this.echangesServices.supprimerEchange(id).subscribe(() => {
       console.log("C'était ma cape 😎");
-      this.refreshList();
+      this.chargerListeEchanges();
     });
   }
 }
