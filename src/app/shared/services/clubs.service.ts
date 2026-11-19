@@ -25,7 +25,7 @@ export class ClubsService {
 
   public modifierClub(clubAModifier: Club): Observable<Club> {
     return this.http.put<Club>(
-      `${this.URL}/${clubAModifier.id}`,
+      `${this.URL}`,
       clubAModifier,
       {
         responseType: 'json',
