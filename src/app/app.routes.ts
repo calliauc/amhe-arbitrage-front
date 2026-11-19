@@ -13,6 +13,7 @@ import { InscritDetailsComponent } from './inscrits/inscrit-details/inscrit-deta
 import { EvenementsComponent } from './evenements/evenements.component';
 import { EvenementComponent } from './evenement/evenement.component';
 import { SaisieEchangeComponent } from './arbitrage/saisie-echange/saisie-echange.component';
+import { IndividuDetailsComponent } from './individu-details/individu-details.component';
 
 export const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'clubs', component: GestionClubsComponent },
   { path: 'referentiels', component: GestionReferentielsComponent },
   { path: 'annuaire', component: AnnuaireComponent },
+  { path: 'annuaire/:id', component: IndividuDetailsComponent },
   // { path: 'accueil', component: AccueilComponent },
   { path: '**', component: EvenementComponent },
 ];

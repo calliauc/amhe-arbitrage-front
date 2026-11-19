@@ -32,6 +32,6 @@ export class AnnuaireAfficherComponent implements OnInit {
   }
 
   onDetails(id: number) {
-    this.router.navigate(['individu', id]);
+    this.router.navigate(['annuaire', id]);
   }
 }
