@@ -1,3 +1,8 @@
 <div>
     <p>{{(individu$|async)?.prenom}}</p>
+    <p>Nombre d'inscriptions : {{(inscriptions$|async)?.length}}</p>
+    @for (inscription of inscriptions$ | async; track $index; let estPair = $even) {
+        <p>{{inscription.evenement}}</p>
+    }
+
 </div>

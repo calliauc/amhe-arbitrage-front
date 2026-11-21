@@ -67,8 +67,8 @@ export class SaisieEchangeComponent implements OnInit {
       this.prio = this.hasFlag(type, 'prio');
       this.simu = this.hasFlag(type, 'simu');
     }
-    this.formSaisieEchange.controls.coupA.patchValue({cible: null, vulnerant:null});
-    this.formSaisieEchange.controls.coupB.patchValue({cible: null, vulnerant:null});
+    this.formSaisieEchange.controls.coupA.reset();
+    this.formSaisieEchange.controls.coupB.reset();
     this.labelAttaquant = this.changeLabelAttaquant()
     if (this.simu){
       this.formSaisieEchange.controls.attaquant.setValue(this.match.inscritA);
@@ -128,7 +128,7 @@ export class SaisieEchangeComponent implements OnInit {
     .creerEchange(this.echangeCreation)
     .subscribe(echange => {
       this.echangeService.notificationEchange.next(echange);
-      console.log(echange);
+      this.formSaisieEchange.reset();
     });
   }
 }

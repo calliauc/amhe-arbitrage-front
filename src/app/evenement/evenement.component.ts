@@ -13,7 +13,7 @@ import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
   selector: 'app-evenement',
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule, DatePipe, InscritsComponent],
   templateUrl: './evenement.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './evenement.component.css'

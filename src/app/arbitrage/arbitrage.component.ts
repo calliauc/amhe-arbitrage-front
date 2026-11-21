@@ -1,5 +1,4 @@
 import { Component, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { CreationCoupComponent } from './creation-coup/creation-coup.component';
 import { HistoriqueCoupsComponent } from './historique-coups/historique-coups.component';
 import { SuiviMatchComponent } from './suivi-match/suivi-match.component';
 import { ActivatedRoute, Router } from '@angular/router';

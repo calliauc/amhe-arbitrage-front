@@ -4,6 +4,8 @@ import { Individu } from '../shared/models/individu';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { InscritsService } from '../shared/services/inscrits.service';
+import { Inscrit } from '../shared/models/inscrit';
 
 @Component({
   imports: [AsyncPipe],
@@ -14,14 +16,17 @@ import { AsyncPipe } from '@angular/common';
 export class IndividuDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private individuService = inject(IndividuService);
+  private inscritsService = inject(InscritsService);
 
   individu$?: Observable<Individu>;
+  inscriptions$?: Observable<Inscrit[]>;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = Number(params["id"]);
       if (!!id){
         this.individu$ = this.individuService.getIndividuById(id);
+        this.inscriptions$ = this.inscritsService.getInscritsByIndividu(id);
       }
     }) 
 

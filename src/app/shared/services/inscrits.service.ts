@@ -38,6 +38,12 @@ export class InscritsService {
     });
   }
 
+  public getInscritsByIndividu(idIndividu: number): Observable<Inscrit[]> {
+    return this.http.get<Inscrit[]>(`${this.URL}/individu/${idIndividu}`, {
+      responseType: 'json',
+    });
+  }
+
   public getInscritsByItemsMatchs(items: Item[]): Observable<Inscrit[]> {
     const itemsId = items.map((item) => item.id);
     return this.http.post<Inscrit[]>(`${this.URL}/items`, itemsId, {

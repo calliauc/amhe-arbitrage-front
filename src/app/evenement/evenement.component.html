@@ -8,6 +8,9 @@
         <span> au </span>
         <span>{{ evenement.dateFin | date:'shortDate' }}</span>
       </h2>
+      <div>
+        <app-inscrits></app-inscrits>
+      </div>
       @if (Auth.estAdmin(role)) {
         <div>
           <button class="btn" (click)="editerScores()">

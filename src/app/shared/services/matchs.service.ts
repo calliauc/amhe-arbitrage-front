@@ -39,6 +39,16 @@ export class MatchsService {
     });
   }
 
+  public creerMatchs(id: number):Observable<Match[]>{
+    return this.http.post<Match[]>(
+      `${this.URL}/poule/${id}/generer-matchs`,
+      {
+        responseType: 'json',
+      }
+    );
+
+  }
+
   public modifierDateDebutMatch(
     id: number,
     dateDebut: Date

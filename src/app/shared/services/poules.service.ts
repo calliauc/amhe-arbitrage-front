@@ -3,6 +3,7 @@ import { Poule } from '../models/poule';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { Match } from '../models/match';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +54,6 @@ export class PoulesService {
       }
     );
   }
-
 
   public supprimerPoule(id: number): Observable<object> {
     return this.http.delete(this.URL + '/' + id);

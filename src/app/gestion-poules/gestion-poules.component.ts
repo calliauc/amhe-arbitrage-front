@@ -10,6 +10,7 @@ import { Evenement } from '../shared/models/evenement';
 import { EvenementsService } from '../shared/services/evenements.service';
 import { RolesNames } from '../shared/models/roles';
 import { MenuMobileService } from '../shared/services/menu-mobile.service';
+import { MatchsService } from '../shared/services/matchs.service';
 
 @Component({
     selector: 'app-gestion-poules',
@@ -21,6 +22,7 @@ import { MenuMobileService } from '../shared/services/menu-mobile.service';
 export class GestionPoulesComponent implements OnInit {
   private logService = inject(AuthV1Service);
   private poulesService = inject(PoulesService);
+  private matchsService = inject(MatchsService);
   private evenementsService = inject(EvenementsService);
   private menuMobileService = inject(MenuMobileService);
   private router = inject(Router);
@@ -88,6 +90,10 @@ constructor() {
     //   this.chargerPoules();
     //   this.estModeCreation = false;
     // });
+  }
+
+  creerMatchs(id: number){
+    this.matchsService.creerMatchs(id).subscribe(matchs => console.log(matchs));
   }
 
   supprimerPoule(id: number) {

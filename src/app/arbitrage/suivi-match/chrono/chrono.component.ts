@@ -64,4 +64,10 @@ export class ChronoComponent implements AfterViewInit {
     this.estFini = true;
     this.timerFinEvent.emit(this.tickActuel);
   }
+
+  demarrerMatch(){
+    this.chrono.start();
+    this.estDemarre = true;
+    this.timerDebutEvent.emit();
+  }
 }

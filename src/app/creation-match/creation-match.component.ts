@@ -150,8 +150,8 @@ export class CreationMatchComponent implements OnInit {
       this.nouveauMatch = new NouveauMatch(
         this.formCreerMatch.value.inscritA.id,
         this.formCreerMatch.value.inscritB.id,
-        this.evenement.id, // evenement
-        this.formCreerMatch.value.poule.id,
+        this.evenement.id,
+        this.formCreerMatch.value.poule?.id,
         0,
         this.tags.filter((tag) => tag.checked).map((tag) => tag.id),
         this.evenement.ruleset?.id
