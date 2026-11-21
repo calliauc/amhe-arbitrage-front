@@ -11,10 +11,16 @@ import { EvenementsService } from '../shared/services/evenements.service';
 import { RolesNames } from '../shared/models/roles';
 import { MenuMobileService } from '../shared/services/menu-mobile.service';
 import { MatchsService } from '../shared/services/matchs.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+interface formPoule{
+  nom: FormControl<string|null>;
+  description: FormControl<string|null>;
+}
 
 @Component({
     selector: 'app-gestion-poules',
-    imports: [CdkDrag, NomsPipe, CdkDropListGroup, CdkDropList],
+    imports: [CdkDrag, NomsPipe, CdkDropListGroup, CdkDropList, ReactiveFormsModule],
     templateUrl: './gestion-poules.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-poules.component.css'
@@ -33,6 +39,11 @@ export class GestionPoulesComponent implements OnInit {
   estModeCreation = false;
   role:RolesNames = 'guest';
 
+  formCreationPoule: FormGroup<formPoule> = new FormGroup({
+    nom: new FormControl<string>(""),
+    description: new FormControl<string>(""),
+  });
+
 constructor() {
     this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;
     console.log(this.evenement);    
@@ -42,6 +53,7 @@ constructor() {
     }
   }
 
+  
   ngOnInit(): void {
     this.menuMobileService.pageActuelle.next('POULES');
     this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
@@ -58,38 +70,24 @@ constructor() {
     this.estModeCreation = true;
   }
 
-  onNomChange($event: any) {
-    // this.nom = $event.target.value;
-  }
-
-  onItemsChange($event: any) {
-    // const id = $event.target.value;
-    // const isChecked = $event.target.checked;
-    // this.items.forEach((item) => {
-    //   if (item.id == id) {
-    //     item.checked = isChecked;
-    //   }
-    // });
-  }
 
   annulerAjout() {
-    // this.estModeCreation = false;
+    this.estModeCreation = false;
   }
 
   ajouterPoule() {
-    // const itemsPoule = this.items.filter((item) => item.checked);
-    // if (itemsPoule.length == 0 || this.nom.length == 0) {
-    //   alert('Il manque des informations');
-    //   return;
-    // }
-    // const nouvellePoule = {
-    //   nom: this.nom,
-    //   items: itemsPoule,
-    // } as Poule;
-    // this.poulesService.creerPoule(nouvellePoule).subscribe(() => {
-    //   this.chargerPoules();
-    //   this.estModeCreation = false;
-    // });
+    
+    const nouvellePoule = {
+      evenement: this.evenement, ...this.formCreationPoule.value
+    } as Poule;
+    if(!nouvellePoule.nom){
+      return;
+    }
+    
+    this.poulesService.creerPoule(nouvellePoule).subscribe((pouleCree) => {
+      this.estModeCreation = false;
+      this.recupererPoules();
+    });
   }
 
   creerMatchs(id: number){

@@ -10,5 +10,5 @@ export class Poule {
   evenement!: Evenement;
   inscrits: Inscrit[] = [];
   matchs: Match[] = [];
-  items: Item[] = [];
+  tags: Item[] = [];
 }

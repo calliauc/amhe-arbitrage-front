@@ -9,13 +9,15 @@ import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { Evenement } from '../../shared/models/evenement';
 import { EvenementsService } from '../../shared/services/evenements.service';
 import { Observable } from 'rxjs';
+import { NouveauInscritModalComponent } from '../../shared/modales/nouveau-inscrit-modal/nouveau-inscrit-modal.component';
 
 @Component({
     selector: 'app-inscription',
     imports: [
       ReactiveFormsModule,
       NguiAutoCompleteDirective,
-      ConfirmationModalComponent
+      ConfirmationModalComponent,
+      NouveauInscritModalComponent
     ],
     templateUrl: './inscription.component.html',
     styleUrl: './inscription.component.css'
@@ -37,7 +39,8 @@ export class InscriptionComponent implements OnInit {
   individuAInscrire: Individu = new Individu;
   evenement!: Evenement;
   ereurSaisie: boolean;
-  estModalVisible = false;
+  estModalIndividuVisible = false;
+  estModalConfirmationVisible = false;
   titreModal = 'Confirmer la désinscription ?';
   texteModal = 'Cette action est définitive';
   formInscription!: FormGroup;
@@ -95,16 +98,16 @@ export class InscriptionComponent implements OnInit {
   }
 
   demanderSuppression(): void {
-    this.estModalVisible = true;
+    this.estModalConfirmationVisible = true;
   }
 
   confirmerSuppression(id: number | string) {
-    this.estModalVisible = false;
+    this.estModalConfirmationVisible = false;
     this.supprimerInscrit.emit(id as number);
   }
 
   annulerSuppression() {
-    this.estModalVisible = false;
+    this.estModalConfirmationVisible = false;
   }
 
   confirmer(): void {
@@ -132,5 +135,21 @@ export class InscriptionComponent implements OnInit {
   verifierInscription(individu: Individu): boolean {
     this.ereurSaisie = this.evenement.inscrits!.filter(inscrit => inscrit.idIndividu === individu.id).length != 0;
     return !this.ereurSaisie;
+  }
+
+  creerIndividu(){
+    this.estModalIndividuVisible=true;
+  }
+
+  confirmerInscriptionNouvelIndividu(individu: Individu){
+    this.estModalIndividuVisible=false;
+    console.log(individu);
+    this.formInscription.controls["selectionIndividu"].patchValue(individu);
+    this.confirmer();
+  }
+
+  annulerInscriptionNouvelIndividu(){
+    this.estModalIndividuVisible=false;
+    
   }
 }

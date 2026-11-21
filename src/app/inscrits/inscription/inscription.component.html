@@ -5,6 +5,7 @@
 <form
   [formGroup]="formInscription"
   (ngSubmit)="confirmer()"
+  (reset)="annuler()"
   (keypress.enter)="confirmer()"
   (keypress.escape)="annuler()"
 >
@@ -22,7 +23,8 @@
     />
   
   <button type="reset">x</button>
-  </div>
+  <button type="button" (click)="creerIndividu()">Creer individu</button>
+</div>
   @if (formInscription.controls['selectionIndividu'].errors?.['dejaInscrit']){
     <div class="bandeau-erreur">
       <div class="message-erreur">{{formInscription.controls['selectionIndividu'].errors?.['dejaInscrit'].msg}}</div>
@@ -45,9 +47,8 @@
           Valider
         </button>
         <button
-          type="button"
+          type="reset"
           class="btn btn-inscrits btn-annuler-edition"
-          (click)="annuler()"
         >
           Annuler
         </button>
@@ -56,7 +57,7 @@
   }
 
 </form>
-@if (estModalVisible && inscrit.id){
+@if (estModalConfirmationVisible && inscrit.id){
 <app-confirmation-modal
   [id]="inscrit.id"
   [titre]="titreModal"
@@ -65,3 +66,13 @@
   (annuler)="annulerSuppression()"
 ></app-confirmation-modal>
 }
+@if (estModalIndividuVisible){
+  <app-nouveau-inscrit-modal
+    [id]="inscrit.id"
+    [titre]="'Creer individu'"
+    [texte]="''"
+    (confirmer)="confirmerInscriptionNouvelIndividu($event)"
+    (annuler)="annulerInscriptionNouvelIndividu()"
+  ></app-nouveau-inscrit-modal>
+  }
+  

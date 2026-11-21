@@ -6,38 +6,22 @@
       Ajouter poule
     </button>
     } @if (estModeCreation) {
-    <!-- <div id="form-creation">
-      <div id="select-items">
-        @for (item of items; track $index) {
+    <div id="form-creation">
+      <form [formGroup]="formCreationPoule" (ngSubmit)="ajouterPoule()" (reset)="annulerAjout()">
         <div>
-          <input
-            type="checkbox"
-            [value]="item.id"
-            [checked]="item.checked"
-            (change)="onItemsChange($event)"
-          />
-          {{ item.code }}
+          <label for="nom">Nom de la poule : </label>
+          <input type="text" formControlName="nom">
         </div>
-        }
-      </div>
-      <div id="nom-poule">
-        <label for="nomPoule">Nom :</label>
-        <input
-          id="input-nom"
-          name="nomPoule"
-          type="text"
-          (change)="onNomChange($event)"
-        />
         <div>
-          <button class="btn btn-poule" (click)="ajouterPoule()">
-            Valider
-          </button>
-          <button class="btn btn-poule" (click)="annulerAjout()">
-            Annuler
-          </button>
+          <label for="Description">Description de la poule : </label>
+          <input type="text" formControlName="description">  
         </div>
-      </div>
-    </div> -->
+        <div>
+          <button type="reset">Annuler</button>
+          <button type="submit">Creer</button>  
+        </div>
+      </form>
+    </div>
     }
   </div>
   }
@@ -55,9 +39,9 @@
             <button class="btn" id="btn-supprimer" (click)="supprimerPoule(poule.id)">X</button>
           }
         </div>
-        @if (poule.items) {
+        @if (poule.tags) {
           <h4 id="liste-items">
-            @for (item of poule.items; track $index) {
+            @for (item of poule.tags; track $index) {
             <span class="item">{{ item.code }}</span>
             }
           </h4>
@@ -77,9 +61,11 @@
           }
         </table>
       </div>
-      <button (click)="creerMatchs(poule.id!)">
-        creer matchs
-      </button>
+      @if (poule.inscrits.length >= 2) {
+        <button (click)="creerMatchs(poule.id!)">
+          creer matchs
+        </button>
+      }
       </div>
     </div>
     }

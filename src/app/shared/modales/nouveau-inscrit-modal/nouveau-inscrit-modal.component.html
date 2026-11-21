@@ -1,0 +1,36 @@
+<ng-template #club let-item let-i="index">
+  {{ item.nomCourt }}
+</ng-template>
+
+<div class="modal-overlay" (click)="annulerAction()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>{{ titre }}</h2>
+    <p>{{ texte }}</p>
+    <div>
+      <form [formGroup]="formCreationIndividu" (ngSubmit)="confirmerAction()" (reset)="annulerAction()">
+        <div>
+          <label for="nom">Nom : </label>
+          <input type="text" formControlName="nom">
+        </div>
+        <div>
+          <label for="prenom">Prénom : </label>
+          <input type="text" formControlName="prenom">  
+        </div>
+        <div class="autocomplete">
+          <input 
+            ngui-auto-complete 
+            formControlName="club"
+            [source]="clubs$ | async"
+            [itemTemplate]="club"
+            [display-with]="formatName"
+          />
+        </div>
+        <div>
+          <button type="reset">Annuler</button>
+          <button type="submit">Creer</button>  
+        </div>
+      </form>
+    </div>
+  
+  </div>
+</div>
