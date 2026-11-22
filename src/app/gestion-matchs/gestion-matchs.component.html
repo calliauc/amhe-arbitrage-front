@@ -1,31 +1,39 @@
 <main>
-  <ng-template #row let-item let-i="index">
-    <strong>{{ i + 1 }}.</strong> {{ item.nom }} {{ item.prenom }} ({{ item.club.nomCourt }})
+  <ng-template #ligneInscrit let-item let-i="index">
+    {{ item.nom }} {{ item.prenom }}
   </ng-template>
 
-  <form [formGroup]="formFiltrage">
-      <div id="select-inscrit">
-        <input
-          ngui-auto-complete 
-          formControlName="inscritFiltre"
-          blank-option-text="Voir tout les matchs"
-          [source]="inscritsListe"
-          [itemTemplate]="row" 
-          [display-with]="formatName"
-        />
-      </div>
-      <div id="select-items">
-      @for (tag of tagsFiltreListe; track $index) {
-      <div>
-        <input
-          type="checkbox"
-          [value]="tag.id"
-          [checked]="tag.checked"
-          (change)="onCheckTag($event)"
-        />
-        {{ tag.code }}
-      </div>
-      }
+  <ng-template #lignePoule let-item let-i="index">
+    {{ item.nom }}
+  </ng-template>
+
+  <form [formGroup]="formFiltrageMatchs">
+    <div id="select-inscrit">
+      <label for="inscrit">Filtrer par participant(e) : </label>
+      <input
+        ngui-auto-complete 
+        formControlName="inscrit"
+        blank-option-text="Voir tout les matchs"
+        [select-on-blur]="true"
+        no-match-found-text=""
+        [source]="evenement.inscrits"
+        [itemTemplate]="ligneInscrit" 
+        [display-with]="formatInscrit"
+      />
+    <button type="button" (click)="resetInscrit()">X</button>
+  </div>
+    <div id="select-poule">
+      <label for="poule">Filtrer par poule : </label>
+      <input
+        ngui-auto-complete 
+        formControlName="poule"
+        blank-option-text="Voir tout les matchs"
+        [select-on-blur]="true"
+        [source]="pouleListe"
+        [itemTemplate]="lignePoule" 
+        [display-with]="formatPoule"
+      />
+      <button type="button" (click)="resetPoule()">X</button>
     </div>
 
     </form>

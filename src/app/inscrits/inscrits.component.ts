@@ -31,6 +31,7 @@ export class InscritsComponent implements OnInit {
   private evenementsService = inject(EvenementsService);
   private menuMobileService = inject(MenuMobileService);
   private router = inject(Router);
+  private Auth = AuthV1Service;
 
   evenement!:Evenement;
   inscritsListe$?: Observable<Inscrit[]>;

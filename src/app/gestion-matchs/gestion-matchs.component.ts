@@ -7,7 +7,7 @@ import { HemaRatingService } from '../shared/services/hema-rating.sevice';
 import { environment } from '../../environments/environment';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InscritsService } from '../shared/services/inscrits.service';
 import { CriteresRechercheMatch } from '../shared/models/criteresRechercheMatch';
 import { Inscrit } from '../shared/models/inscrit';
@@ -17,6 +17,13 @@ import { RolesNames } from '../shared/models/roles';
 import { ItemsService } from '../shared/services/items.service';
 import { Item } from '../shared/models/item';
 import { MenuMobileService } from '../shared/services/menu-mobile.service';
+import { Poule } from '../shared/models/poule';
+import { PoulesService } from '../shared/services/poules.service';
+
+interface formFiltrage{
+  inscrit: FormControl<Inscrit|null>;
+  poule: FormControl<Poule|null>;
+}
 
 @Component({
     selector: 'app-gestion-matchs',
@@ -33,9 +40,7 @@ export class GestionMatchsComponent implements OnInit {
   private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private matchsService = inject(MatchsService);
-  private inscritsService = inject(InscritsService);
-  private itemsService = inject(ItemsService);
-  private formBuilder = inject(FormBuilder);
+  private pouleService = inject(PoulesService);
   private router = inject(Router);
   private evenementsService = inject(EvenementsService);
   private menuMobileService = inject(MenuMobileService);
@@ -44,10 +49,7 @@ export class GestionMatchsComponent implements OnInit {
   matchsEnCours: Match[] = [];
   matchsFinis: Match[] = [];
 
-  formFiltrage!: FormGroup;
-  inscritFiltre: Inscrit = new Inscrit;
-  inscritsListe: Inscrit[] = [];
-  tagsFiltreListe: Item[] = [];
+  pouleListe: Poule[] = [];
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
 
   estModalVisible = false;
@@ -57,6 +59,11 @@ export class GestionMatchsComponent implements OnInit {
   idASupprimer?: number;
   evenement!:Evenement;
   role:RolesNames = 'guest';
+
+  formFiltrageMatchs: FormGroup<formFiltrage> = new FormGroup({
+    inscrit: new FormControl<Inscrit|null>(null),
+    poule: new FormControl<Poule|null>(null),
+  });
 
   constructor(private _auth: AuthV1Service) {
     this.evenement = JSON.parse(localStorage.getItem('event') || "{\"id\":0}") as Evenement;
@@ -69,32 +76,19 @@ export class GestionMatchsComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuMobileService.pageActuelle.next('MATCHS');
-    this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
+    this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => {this.evenement = e});
+    this.pouleService.getPoulesByEvent(this.evenement.id).subscribe(p => this.pouleListe = [...p]);
     this.logService.notificationRole$.subscribe(e => this.role = e);
     this.criteres.idEvenement = this.evenement.id;
-    this.initData();
     this.chercherMatchs(this.criteres);
-    this.initForm();
-  }
-
-  initData(){
-    this.inscritsService.getInscrits().subscribe((liste) => {
-      this.inscritsListe = liste;
-    });
-    this.itemsService.getItems("tag").subscribe((items) => {
-      items.forEach((tag) =>
-        this.tagsFiltreListe.push({
-          checked: false,
-          ...tag
-        })
-      );
-    });
-  }
-
-  getMatchs() {
-    this.matchsService.getMatchs().subscribe((matchs) => {
-      this.repartirMatchs(matchs);
-    });
+    this.formFiltrageMatchs.controls.inscrit.valueChanges.subscribe(inscrit => {
+      this.criteres.idInscrit = inscrit?.id;
+      this.chercherMatchs(this.criteres);
+    })
+    this.formFiltrageMatchs.controls.poule.valueChanges.subscribe(poule => {
+      this.criteres.idPoule = poule?.id;
+      this.chercherMatchs(this.criteres);
+    })
   }
 
   chercherMatchs(criteres: CriteresRechercheMatch) {
@@ -116,40 +110,29 @@ export class GestionMatchsComponent implements OnInit {
     return matchs;
   }
 
-  initForm() {
-    this.formFiltrage = this.formBuilder.group({
-      inscritFiltre: null,
-      itemsFiltre:null,
-    });
-    this.formFiltrage.valueChanges.subscribe((values) => {
-      console.log("id recherché : " + values.inscritFiltre.id);
-      if (values.inscritFiltre.id){
-        this.criteres.idInscrit = values.inscritFiltre.id;
-      } else {
-        this.criteres.idInscrit = undefined;
-      }
-      this.chercherMatchs(this.criteres)
-    });
+
+  formatInscrit(item: Inscrit): string {
+    return `${item.prenom} ${item.nom} (${item.club})`;
   }
 
-  onCheckTag($event: any) {
-    const id = $event.target.value;
-    const isChecked = $event.target.checked;
-    this.tagsFiltreListe.forEach((tag) => {
-      if (tag.id == id) {
-        tag.checked = isChecked;
-      }
-    });
-    this.criteres.idItems = this.tagsFiltreListe.filter(tag => tag.checked).map(tag => tag.id);
-    this.chercherMatchs(this.criteres);
+  formatPoule(item: Poule): string {
+    return `${item.nom}`;
   }
 
-  formatName(item: Inscrit): string {
-    return `${item.prenom}`;
+  resetInscrit(){
+    this.formFiltrageMatchs.controls.inscrit.reset();
+  }
+
+  resetPoule(){
+    this.formFiltrageMatchs.controls.poule.reset();
   }
 
   creerMatch() {
     this.router.navigate(['creer-match']);
+  }
+
+  getMatchs(){
+    this.chercherMatchs(this.criteres);
   }
 
   demanderSuppression(id: number): void {
@@ -161,7 +144,7 @@ export class GestionMatchsComponent implements OnInit {
     this.estModalVisible = false;
     this.matchsService
       .supprimerMatch(id as number)
-      .subscribe(() => this.getMatchs());
+      .subscribe(() => this.chercherMatchs(this.criteres));
   }
 
   annulerSuppression() {

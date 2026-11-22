@@ -1,5 +1,7 @@
+import { Poule } from "./poule";
+
 export class CriteresRechercheMatch {
   idEvenement!: number;
   idInscrit?: number;
-  idItems?: number[]
+  idPoule?: number;
 }

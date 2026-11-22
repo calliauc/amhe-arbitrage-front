@@ -1,13 +1,26 @@
 <main>
-   @if (Auth.estAdmin(role)) {
+  @if (evenement.id) {
+    <h2>Poules de l'événement {{evenement.nom}}</h2>
+  }
+  @if (Auth.estAdmin(role)) {
   <div id="bloc-creation">
+    @if (!estModeEdition) {
+      <button class="btn btn-poule" (click)="basculerModeEdition(true)">
+        Modifier les poules
+      </button>
+    }
+    @if (estModeEdition) {
+      <button class="btn btn-poule" (click)="basculerModeEdition(false)">
+        Figer les poules
+      </button>
+    }
     @if (!estModeCreation) {
-    <button class="btn btn-poule" (click)="entrerModeCreation()">
+    <button class="btn btn-poule" (click)="basculerModeCreation(true)">
       Ajouter poule
     </button>
     } @if (estModeCreation) {
     <div id="form-creation">
-      <form [formGroup]="formCreationPoule" (ngSubmit)="ajouterPoule()" (reset)="annulerAjout()">
+      <form [formGroup]="formCreationPoule" (ngSubmit)="ajouterPoule()" (reset)="basculerModeCreation(false)">
         <div>
           <label for="nom">Nom de la poule : </label>
           <input type="text" formControlName="nom">
@@ -25,49 +38,78 @@
     }
   </div>
   }
-  @if (evenement.id) {
-    <div>{{evenement.id}}</div>
-  }
 
-  <div id="liste-poules" cdkDropListGroup>
-    @for (poule of poules; track $index) {
-    <div class="poule">
-      <div id="poule">
-        <div id="titre-poule">
-          <h3>{{ poule.nom }}</h3>
-          @if (Auth.estAdmin(role) && poule.id) {
-            <button class="btn" id="btn-supprimer" (click)="supprimerPoule(poule.id)">X</button>
-          }
-        </div>
-        @if (poule.tags) {
-          <h4 id="liste-items">
-            @for (item of poule.tags; track $index) {
-            <span class="item">{{ item.code }}</span>
-            }
-          </h4>
-        }
-        <div
-        cdkDropList
-        [cdkDropListData]="poule.inscrits"
-        (cdkDropListDropped)="drop($event)"
-        >
-        <table id="liste-inscrits">
-          @for (i of poule.inscrits; track i) {
-            <tr class="inscrit" cdkDrag [cdkDragDisabled]="Auth.noAuth(role)">
-              <td class="nom">{{ i | nomsDisplay }}</td>
-              <td>-</td>
-              <td class="club">{{ i.club }}</td>
-            </tr>
-          }
-        </table>
-      </div>
-      @if (poule.inscrits.length >= 2) {
-        <button (click)="creerMatchs(poule.id!)">
-          creer matchs
-        </button>
+    <div id="liste-poules" cdkDropListGroup>
+      @if (Auth.estAdmin(role) && estModeEdition) {
+        <div class="poule">
+            <div class="titre-poule">
+              <h3>Event</h3>
+            </div>
+                <div
+                cdkDropList
+                    [cdkDropListData]="evenement.inscrits!"
+                    cdkDropListConnectedTo="all"
+                    (cdkDropListDropped)="drop($event)"
+                    [cdkDropListEnterPredicate]="noPredicate"
+                    cdkDropListSortingDisabled
+                    cdkDropListHasAnchor
+                  >
+                <table class="liste-inscrits">
+                  @for (i of evenement.inscrits; track i) {
+                    <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition">
+                      <td class="nom">{{ i | nomsDisplay }}</td>
+                      <td>-</td>
+                      <td class="club">{{ i.club }}</td>
+                    </tr>
+                  }
+                </table>
+                @if (doublon) {
+                  <p>{{doublon.prenom}}</p>
+                }
+              </div>
+          </div>
       }
-      </div>
+      @for (poule of poules; track $index) {
+      <div class="poule">
+          <div class="titre-poule">
+            <h3>{{ poule.nom }}</h3>
+            @if (estModeEdition && poule.id) {
+              <button class="btn" id="btn-supprimer" (click)="supprimerPoule(poule.id)">X</button>
+            }
+          </div>
+          @if (poule.tags) {
+            <h4 id="liste-items">
+              @for (item of poule.tags; track $index) {
+              <span class="tag">{{ item.code }}</span>
+              }
+            </h4>
+          }
+          <div
+          cdkDropList
+          [cdkDropListData]="poule.inscrits"
+          cdkDropListConnectedTo="all"
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListEnterPredicate]="doublonPredicate"
+          >
+          <table class="liste-inscrits">
+            @for (i of poule.inscrits; track i) {
+              <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition">
+                <td class="nom">{{ i | nomsDisplay }}</td>
+                <td>-</td>
+                <td class="club">{{ i.club }}</td>
+                @if (Auth.estAdmin(role) && estModeEdition) {
+                  <td><button type="button" (click)="retirerInscritPoule(poule, i)">X</button></td>
+                }
+              </tr>
+            }
+          </table>
+        </div>
+        @if (Auth.estAdmin(role) && poule.inscrits.length >= 2) {
+          <button (click)="creerMatchs(poule.id!)">
+            creer matchs
+          </button>
+        }
+        </div>
+      }
     </div>
-    }
-  </div>
 </main>

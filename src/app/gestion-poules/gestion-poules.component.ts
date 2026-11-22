@@ -1,10 +1,10 @@
 import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Poule } from '../shared/models/poule';
 import { Inscrit } from '../shared/models/inscrit';
-import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, copyArrayItem, moveItemInArray, transferArrayItem, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { PoulesService } from '../shared/services/poules.service';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NomsPipe } from '../shared/pipes/noms.pipe';
 import { Evenement } from '../shared/models/evenement';
 import { EvenementsService } from '../shared/services/evenements.service';
@@ -36,8 +36,12 @@ export class GestionPoulesComponent implements OnInit {
 
   evenement!: Evenement;
   poules: Poule[] = [];
+  doublon?:Inscrit;
   estModeCreation = false;
+  estModeEdition = false;
+  estModeAjout = false;
   role:RolesNames = 'guest';
+
 
   formCreationPoule: FormGroup<formPoule> = new FormGroup({
     nom: new FormControl<string>(""),
@@ -57,8 +61,8 @@ constructor() {
   ngOnInit(): void {
     this.menuMobileService.pageActuelle.next('POULES');
     this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
-    this.recupererPoules();
     this.logService.notificationRole$.subscribe(e => this.role = e)
+    this.recupererPoules();
   }
 
   recupererPoules() {
@@ -66,17 +70,16 @@ constructor() {
       this.poules = poules;
     });
   }
-    entrerModeCreation() {
-    this.estModeCreation = true;
+
+  basculerModeEdition(modeEdition:boolean) {
+    this.estModeEdition = modeEdition;
   }
 
-
-  annulerAjout() {
-    this.estModeCreation = false;
+  basculerModeCreation(modecreation:boolean) {
+    this.estModeCreation = modecreation;
   }
 
-  ajouterPoule() {
-    
+  ajouterPoule() {  
     const nouvellePoule = {
       evenement: this.evenement, ...this.formCreationPoule.value
     } as Poule;
@@ -100,18 +103,55 @@ constructor() {
       .subscribe(() => this.recupererPoules());
   }
 
+  retirerInscritPoule(poule: Poule, inscrit: Inscrit){
+    this.poules.find(p => p.id === poule.id)!.inscrits = poule.inscrits.filter(i => i.id !== inscrit.id);
+    this.updateInscrits();
+  }
+
+  doublonPredicate(inscrit:CdkDrag<Inscrit>, destination:CdkDropList<Inscrit[]>):boolean {
+    // console.log("=========");
+    // console.log("inscrit", inscrit);
+    // console.log("destination", destination);
+    
+    // const p:Set<Poule> = destination["_group"]["_items"];
+    // const pp: any[] = [...p].slice(1);
+    // const inscritsPoules:number[] = pp.flatMap(poule => poule.data).map(inscrit => inscrit?.id);
+    // console.log(inscritsPoules, inscrit.data.id);
+    // const doublon = inscritsPoules.includes(inscrit.data.id);
+    // console.log("Présence d'un doublon : ", doublon);
+    
+    // return !doublon;
+    
+    
+    const value = destination.data.filter(existant => existant.id == inscrit.data.id);
+    return value.length==0;
+  }
+
+  noPredicate(item:CdkDrag<Inscrit>, drop:CdkDropList<Inscrit[]>):boolean {
+    return false;
+  }
 
   drop(event: CdkDragDrop<Inscrit[]>) {
     console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      if(event.previousContainer.hasAnchor){
+        copyArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+      }
+     else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );  
+      }
     }
 
     this.updateInscrits();
