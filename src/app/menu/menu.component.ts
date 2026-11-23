@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
     styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
+  private Auth = AuthV1Service;
   private logService = inject(AuthV1Service);
   private menuMobileService = inject(MenuMobileService);
   private router = inject(Router);

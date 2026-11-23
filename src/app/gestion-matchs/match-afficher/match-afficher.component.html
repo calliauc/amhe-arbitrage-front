@@ -1,29 +1,30 @@
 <div class="match-wrapper">
   <div id="top-card">
-    <div id="intro-top-card">
-      <!-- <div id=""> -->
-        <span>Match {{ match.id }} </span>
-        @if(match.poule?.id){
-          <span>({{match.poule.nom}})</span>
-        }
-        @if (Auth.estAdmin(role)) {
-          <button
-          id="button-supprimer"
-          class="btn-match"
-          (click)="demanderSuppression()"
-          >
-          X
-        </button>
-        }
-      </div>
-    <div id="horodatage">
+    @if (Auth.estAdmin(role)) {
+      <button
+      id="button-supprimer"
+      class="btn-match"
+      (click)="demanderSuppression()"
+      >
+      X
+    </button>
+    }
+
+    <div id="info-match">
+      <div>Match {{ match.id }}</div>
+      @if(match.poule?.id){
+        <div>({{match.poule.nom}})</div>
+      }
+  <div>
       @if (match.statut==="nouveau") {
         <span>A venir</span>
       } @else if (match.statut==="en cours") {
-        <span>Débuté à {{ match.dateDebut | date : "dd/MM/yyyy" }}</span>
+        <span>Débuté à {{ match.dateDebut | date : "HH:mm" }}</span>
       } @else if (match.statut==="fini") {
-        <span>terminé à {{ match.dateFin | date : "HH:mm" }}</span>
+        <span>Terminé à {{ match.dateFin | date : "HH:mm" }}</span>
       }
+    </div>
+
     </div>
   </div>
   @if (qrCodeVisible) {
@@ -36,24 +37,24 @@
     <div id="chrono">Chrono : {{ match.timer | timer }}</div>
     }
     <div>
-      <div class="ligne-inscrit" [style.color]="couleurs[0].code">
+      <div class="ligne-inscrit" [style.color]="'rgb(68, 143, 255)'">
         <span class="inscrit">{{ match.inscritA | nomsDisplay }}</span>
         @if(match.statut!=="nouveau") {
         <div class="score-inscrit">{{ match.scoreA }}</div>
         }
       </div>
-      <div class="ligne-inscrit" [style.color]="couleurs[1].code">
+      <div class="ligne-inscrit" [style.color]="'rgb(189, 152, 32)'">
         <span class="inscrit">{{ match.inscritB | nomsDisplay }}</span>
         @if(match.statut!=="nouveau") {
         <div class="score-inscrit">{{ match.scoreB }}</div>
       }
       </div>
     </div>
-    <div id="tags">
+    <!-- <div id="tags">
       @for (tag of match.tags; track $index) {
       <span class="tag">{{ tag.code }}</span>
       }
-    </div>
+    </div> -->
   </div>
   <div id="bottom-card">
       @if (Auth.estArbitre(role)) {

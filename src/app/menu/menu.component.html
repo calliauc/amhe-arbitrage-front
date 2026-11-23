@@ -10,14 +10,9 @@
   }"
   >
     <li class="btn menu-elem" (click)="allerVers('evenement')">Evenement</li>
-    <!-- <li class="btn menu-elem" (click)="allerVers('inscrits')">Inscrits</li> -->
     <li class="btn menu-elem" (click)="allerVers('poules')">Poules</li>
     <li class="btn menu-elem" (click)="allerVers('matchs')">Matchs</li>
-    @if (role=='arbitre') {
-      <li id="separateur">|</li>
-      <li class="btn menu-elem" (click)="allerVers('saisie-echange')">Echange</li>
-    }
-    @if (role=='admin') {
+    @if (Auth.estAdmin(role)) {
       <li id="separateur">|</li>
       <li class="btn menu-elem" (click)="allerVers('annuaire')">Annuaire</li>
       <li class="btn menu-elem" (click)="allerVers('clubs')">Clubs</li>
