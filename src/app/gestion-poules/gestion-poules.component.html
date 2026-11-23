@@ -56,7 +56,7 @@
                   >
                 <table class="liste-inscrits">
                   @for (i of evenement.inscrits; track i) {
-                    <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition">
+                    <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition" [style.cursor]="estModeEdition?'grab':'text'">
                       <td class="nom">{{ i | nomsDisplay }}</td>
                       <td>-</td>
                       <td class="club">{{ i.club }}</td>
@@ -93,7 +93,7 @@
           >
           <table class="liste-inscrits">
             @for (i of poule.inscrits; track i) {
-              <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition">
+              <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition" [style.cursor]="estModeEdition?'grab':'text'">
                 <td class="nom">{{ i | nomsDisplay }}</td>
                 <td>-</td>
                 <td class="club">{{ i.club }}</td>
@@ -104,11 +104,11 @@
             }
           </table>
         </div>
-        @if (Auth.estAdmin(role) && poule.inscrits.length >= 2) {
-          <button (click)="creerMatchs(poule.id!)">
-            creer matchs
+        @if (estModeEdition && Auth.estAdmin(role) && poule.inscrits.length >= 2) {
+          <button [disabled]="matchsExistant(poule)" (click)="creerMatchs(poule.id!)">
+            {{matchsExistant(poule)?'Des matchs existent déjà':'Générer les matchs'}}
           </button>
-        }
+      }
         </div>
       }
     </div>

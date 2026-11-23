@@ -18,6 +18,7 @@ interface formPoule{
   description: FormControl<string|null>;
 }
 
+
 @Component({
     selector: 'app-gestion-poules',
     imports: [CdkDrag, NomsPipe, CdkDropListGroup, CdkDropList, ReactiveFormsModule],
@@ -41,7 +42,6 @@ export class GestionPoulesComponent implements OnInit {
   estModeEdition = false;
   estModeAjout = false;
   role:RolesNames = 'guest';
-
 
   formCreationPoule: FormGroup<formPoule> = new FormGroup({
     nom: new FormControl<string>(""),
@@ -94,7 +94,10 @@ constructor() {
   }
 
   creerMatchs(id: number){
-    this.matchsService.creerMatchs(id).subscribe(matchs => console.log(matchs));
+    this.matchsService.creerMatchs(id).subscribe(matchs => {
+      this.recupererPoules();
+      alert(`${matchs.length} matchs créés`)
+    });
   }
 
   supprimerPoule(id: number) {
@@ -157,7 +160,13 @@ constructor() {
     this.updateInscrits();
   }
 
+  matchsExistant(poule: Poule){
+    return poule.matchs.length>=1;
+  }
+
   updateInscrits(){
     this.poulesService.modifierInscrits(this.poules).subscribe(p => this.poules = p);
   }
+
+
 }

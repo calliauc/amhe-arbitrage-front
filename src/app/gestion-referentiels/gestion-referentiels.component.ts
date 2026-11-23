@@ -1,19 +1,15 @@
 import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core';
-import { GestionCiblesComponent } from './gestion-cibles/gestion-cibles.component';
-import { GestionVulnerantsComponent } from './gestion-vulnerants/gestion-vulnerants.component';
 import { GestionRulesetsComponent } from './gestion-rulesets/gestion-rulesets.component';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { RolesNames } from '../shared/models/roles';
-import { GestionTagsComponent } from './gestion-tags/gestion-tags.component';
+import { GestionItemsComponent } from './gestion-items/gestion-items.component';
 import { MenuMobileService } from '../shared/services/menu-mobile.service';
 
 @Component({
     selector: 'app-gestion-referentiels',
     imports: [
-        GestionCiblesComponent,
-        GestionVulnerantsComponent,
         GestionRulesetsComponent,
-        GestionTagsComponent,
+        GestionItemsComponent,
     ],
     templateUrl: './gestion-referentiels.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

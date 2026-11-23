@@ -1,0 +1,29 @@
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th class="col">{{type}}</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    @for (item of itemsListe$ | async; track $index; let estPair = $even) {
+    <app-item-ligne
+      (supprimerItem)="supprimerItem($event)"
+      (modifierItem)="modifierItem($event)"
+      [role]="role"
+      [estPair]="estPair"
+      [item]="item"
+    ></app-item-ligne>
+    } @if (estModeCreation) {
+    <app-item-editer
+      (annulerEditionCreation)="annulerEdition()"
+      (validerCreation)="creerItem()"
+    ></app-item-editer>
+    }
+  </table>
+  @if (!estModeCreation && Auth.noAuth(role)) {
+  <button class="btn" id="ajouter-item" (click)="modeAjout()">
+    Ajouter item
+  </button>
+  }
+</main>

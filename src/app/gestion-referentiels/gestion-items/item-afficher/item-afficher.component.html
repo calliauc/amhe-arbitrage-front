@@ -1,0 +1,9 @@
+<tr [ngClass]="{ lignePair: estPair }">
+  <td class="col">{{ item.code }}</td>
+  <td class="col">
+     @if (Auth.estAdmin(role)) {
+    <button class="btn btn-items btn-editer-item" (click)="editer()">
+      Editer</button
+    >}
+  </td>
+</tr>

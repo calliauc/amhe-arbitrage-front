@@ -1,0 +1,17 @@
+@if (estModif) {
+<app-item-editer
+  [estPair]="estPair"
+  [item]="item"
+  [estModeEdition]="true"
+  (annulerEditionCreation)="modifItemAnnulee()"
+  (supprimerItem)="suppressionItem($event)"
+  (validerEdition)="modifItemTerminee($event)"
+></app-item-editer>
+} @else {
+<app-item-afficher
+  [estPair]="estPair"
+  [item]="item"
+  [role]="role"
+  (editerItem)="lancerEdition()"
+></app-item-afficher>
+}

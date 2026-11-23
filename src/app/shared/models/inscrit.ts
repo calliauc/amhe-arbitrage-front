@@ -8,5 +8,7 @@ export class Inscrit {
   prenom!: string;
   pseudo?: string;
   club!: string;
+  estDesinscrit: boolean = false;
+  estListeAttente: boolean = false;
   evenement!: string;
 }

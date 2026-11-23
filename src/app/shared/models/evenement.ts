@@ -10,5 +10,6 @@ export class Evenement {
   dateFin?: Date;
   organisateur?: Club;
   inscrits?: Inscrit[];
+  nbPlacesMax?: number;
   ruleset?: Ruleset;
 }
