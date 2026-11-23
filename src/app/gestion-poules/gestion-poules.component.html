@@ -9,12 +9,12 @@
         Modifier les poules
       </button>
     }
-    @if (estModeEdition) {
+    @if (estModeEdition && !estModeCreation) {
       <button class="btn btn-poule" (click)="basculerModeEdition(false)">
         Figer les poules
       </button>
     }
-    @if (!estModeCreation) {
+    @if (!estModeCreation && estModeEdition) {
     <button class="btn btn-poule" (click)="basculerModeCreation(true)">
       Ajouter poule
     </button>
@@ -24,10 +24,12 @@
         <div>
           <label for="nom">Nom de la poule : </label>
           <input type="text" formControlName="nom">
+          <button type="button" (click)="resetNom()">X</button>
         </div>
         <div>
           <label for="Description">Description de la poule : </label>
           <input type="text" formControlName="description">  
+          <button type="button" (click)="resetDescription()">X</button>
         </div>
         <div>
           <button type="reset">Annuler</button>

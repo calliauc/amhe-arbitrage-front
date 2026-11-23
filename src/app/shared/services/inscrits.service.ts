@@ -76,7 +76,7 @@ export class InscritsService {
     inscritAModifier: Inscrit
   ): Observable<Inscrit> {
     return this.http.put<Inscrit>(
-      `${this.URL}/${inscritAModifier.id}`,
+      `${this.URL}`,
       inscritAModifier,
       {
         responseType: 'json',

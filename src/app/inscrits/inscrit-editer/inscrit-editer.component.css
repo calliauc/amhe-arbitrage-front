@@ -85,8 +85,11 @@ tr {
   border-radius: 7px;
   font-weight: 700;
   width: 22px;
-  /* position: relative;
-  margin-right: -40px; */
+}
+
+.btn-modifier {
+  width: auto;
+  background-color: #cca113;
 }
 
 .bandeau-erreur {

@@ -79,6 +79,13 @@ constructor() {
     this.estModeCreation = modecreation;
   }
 
+  resetNom(){
+    this.formCreationPoule.controls.nom.reset();
+  }
+  resetDescription(){
+    this.formCreationPoule.controls.description.reset();
+  }
+
   ajouterPoule() {  
     const nouvellePoule = {
       evenement: this.evenement, ...this.formCreationPoule.value

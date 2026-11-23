@@ -3,8 +3,9 @@
   [estPair]="estPair"
   [inscrit]="inscrit"
   (annulerEdition)="modifInscritAnnulee()"
+  (modifierInscrit)="modificationInscrit($event)"
   (supprimerInscrit)="suppressionInscrit($event)"
-></app-inscrit-editer>
+  ></app-inscrit-editer>
 } @else {
 <app-inscrit-afficher
   [estPair]="estPair"

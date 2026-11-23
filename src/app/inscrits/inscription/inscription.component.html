@@ -5,7 +5,7 @@
 <form
   [formGroup]="formInscription"
   (ngSubmit)="confirmer()"
-  (reset)="annuler()"
+  (reset)="reset()"
   (keypress.enter)="confirmer()"
   (keypress.escape)="annuler()"
 >
@@ -24,7 +24,9 @@
   
   <button type="reset">x</button>
   <button type="button" (click)="creerIndividu()">Creer individu</button>
+  <button type="button" (click)="annuler()">Annuler</button>
 </div>
+
   @if (formInscription.controls['selectionIndividu'].errors?.['dejaInscrit']){
     <div class="bandeau-erreur">
       <div class="message-erreur">{{formInscription.controls['selectionIndividu'].errors?.['dejaInscrit'].msg}}</div>

@@ -1,5 +1,6 @@
 @if (evenement) {
   <main>
+  <h2>Inscrits</h2>
   <table>
     <thead>
       <tr>
@@ -10,15 +11,42 @@
         <th class="col"></th>
       </tr>
     </thead>
-    @for (inscrit of inscritsListe$ | async; track $index; let estPair =
-    $even) {
-    <app-inscrit-ligne
+    @for (inscrit of (inscritsListe$ | async)?.filter(i => estListePrincipale(i)); track $index; let estPair = $even) {
+      <app-inscrit-ligne
       (supprimerInscrit)="supprimerInscrit($event)"
+      (modifierInscrit)="modifierInscrit($event)"
       [estPair]="estPair"
       [inscrit]="inscrit"
       [role]="role"
     ></app-inscrit-ligne>
-    } @if (estModeCreation) {
+    }
+    <button type="button" (click)="permuterFileAttente()">{{afficherFileAttente?'Masquer':'Afficher'}} la file d'attente</button>
+    <button type="button" (click)="permuterDesinscrits()">{{afficherDesinscrits?'Masquer':'Afficher'}} les désinscrits</button>
+    @if (afficherFileAttente) {
+      <h2>File d'attente</h2>
+      @for (inscrit of (inscritsListe$ | async)?.filter(i => estEnAttente(i)); track $index; let estPair = $even) {
+        <app-inscrit-ligne
+        (supprimerInscrit)="supprimerInscrit($event)"
+        (modifierInscrit)="modifierInscrit($event)"
+        [estPair]="estPair"
+        [inscrit]="inscrit"
+        [role]="role"
+      ></app-inscrit-ligne>
+      }
+    }
+    @if (afficherDesinscrits) {
+      <h2>Désinscrits</h2>
+      @for (inscrit of (inscritsListe$ | async)?.filter(i => estDesinscrit(i)); track $index; let estPair = $even) {
+        <app-inscrit-ligne
+        (supprimerInscrit)="supprimerInscrit($event)"
+        (modifierInscrit)="modifierInscrit($event)"
+        [estPair]="estPair"
+        [inscrit]="inscrit"
+        [role]="role"
+      ></app-inscrit-ligne>
+      }
+    }
+     @if (estModeCreation) {
     <app-inscription
       (annulerEditionCreation)="annulerEdition()"
       (validerCreation)="creerInscrit()"

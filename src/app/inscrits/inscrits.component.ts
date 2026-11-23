@@ -38,6 +38,8 @@ export class InscritsComponent implements OnInit {
   estModeCreation = false;
   nouveauInscrit= new Inscrit();
   role:RolesNames = 'guest';
+  afficherDesinscrits: boolean=false;
+  afficherFileAttente: boolean=false;
 
   constructor() {
     this.evenement = JSON.parse(localStorage.getItem('event') || '') as Evenement || new Evenement;
@@ -58,6 +60,26 @@ export class InscritsComponent implements OnInit {
     this.inscritsListe$ = this.inscritsService.getInscritsByEvent(this.evenement.id);
   }
 
+  estListePrincipale(inscrit: Inscrit):boolean{
+    return !inscrit.estDesinscrit && !inscrit.estListeAttente;
+  }
+
+  estDesinscrit(inscrit: Inscrit):boolean{
+    return inscrit.estDesinscrit && !inscrit.estListeAttente;
+  }
+
+  estEnAttente(inscrit: Inscrit):boolean{
+    return !inscrit.estDesinscrit && inscrit.estListeAttente;
+  }
+
+  permuterFileAttente(){
+    this.afficherFileAttente = !this.afficherFileAttente;
+  }
+
+  permuterDesinscrits(){
+    this.afficherDesinscrits = !this.afficherDesinscrits;
+  }
+
   creerInscrit() {
     this.inscritsListe$ = this.inscritsListe$?.pipe(
       tap(() => (this.estModeCreation = false))
@@ -75,7 +97,7 @@ export class InscritsComponent implements OnInit {
   modifierInscrit(inscritModifie: Inscrit) {
     this.inscritsListe$ = this.inscritsService
       .modifierInscrit(inscritModifie)
-      .pipe(switchMap(() => this.inscritsService.getInscrits()));
+      .pipe(switchMap(() => this.inscritsService.getInscritsByEvent(this.evenement.id)));
   }
 
   supprimerInscrit(id: number) {

@@ -12,6 +12,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class InscritEditerComponent {
   @Input() inscrit: Inscrit = new Inscrit();
   @Input() estPair!: boolean;
+  @Output() modifierInscrit = new EventEmitter<Inscrit>();
   @Output() supprimerInscrit = new EventEmitter<number>();
   @Output() annulerEdition = new EventEmitter<boolean>();
 
@@ -19,9 +20,34 @@ export class InscritEditerComponent {
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
 
+  desinscrire(){
+    this.inscrit.estDesinscrit=true;
+    this.enregistrerInscrit();
+  }
+
+  resinscrire(){
+    this.inscrit.estDesinscrit=false;
+    this.enregistrerInscrit();
+  }
+
+  enAttente(){
+    this.inscrit.estListeAttente=true;
+    this.enregistrerInscrit();
+  }
+
+  sortirAttente(){
+    this.inscrit.estListeAttente=false;
+    this.enregistrerInscrit();
+  }
+
+  enregistrerInscrit(): void{
+    this.modifierInscrit.emit(this.inscrit);
+  }
+
   annuler(): void {
     this.annulerEdition.emit(true);
   }
+
   demanderSuppression(): void {
     this.estModalVisible = true;
   }

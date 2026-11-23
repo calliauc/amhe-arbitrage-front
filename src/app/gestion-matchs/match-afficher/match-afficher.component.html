@@ -3,7 +3,7 @@
     <div id="intro-top-card">
       <!-- <div id=""> -->
         <span>Match {{ match.id }} </span>
-        @if(match.poule){
+        @if(match.poule?.id){
           <span>({{match.poule.nom}})</span>
         }
         @if (Auth.estAdmin(role)) {

@@ -97,6 +97,10 @@ export class InscriptionComponent implements OnInit {
     this.annulerEditionCreation.emit(true);
   }
 
+  reset(): void {
+    this.formInscription.controls['selectionIndividu'].reset();
+  }
+
   demanderSuppression(): void {
     this.estModalConfirmationVisible = true;
   }
