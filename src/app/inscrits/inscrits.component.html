@@ -4,7 +4,6 @@
   <table>
     <thead>
       <tr>
-        <!-- <th class="col">Evenement</th> -->
         <th class="col">Prénom</th>
         <th class="col">Nom</th>
         <th class="col">Club/Ville</th>
@@ -17,11 +16,14 @@
       (modifierInscrit)="modifierInscrit($event)"
       [estPair]="estPair"
       [inscrit]="inscrit"
-      [role]="role"
+      [estModeModif]="estModeModif"
     ></app-inscrit-ligne>
     }
     <button type="button" (click)="permuterFileAttente()">{{afficherFileAttente?'Masquer':'Afficher'}} la file d'attente ({{listeAttente?.length}})</button>
     <button type="button" (click)="permuterDesinscrits()">{{afficherDesinscrits?'Masquer':'Afficher'}} les désinscrits ({{desinscrits?.length}})</button>
+    @if (Auth.estAdmin(role)) {
+      <button type="button" (click)="modifierInscrits()">{{estModeModif?'Bloquer':'Permettre'}} la modification des inscriptions</button>
+    }
     @if (afficherFileAttente) {
       <h2>File d'attente</h2>
       @for (inscrit of listeAttente; track $index; let estPair = $even) {
@@ -30,7 +32,7 @@
         (modifierInscrit)="modifierInscrit($event)"
         [estPair]="estPair"
         [inscrit]="inscrit"
-        [role]="role"
+        [estModeModif]="estModeModif"
       ></app-inscrit-ligne>
       }
     }
@@ -42,7 +44,7 @@
         (modifierInscrit)="modifierInscrit($event)"
         [estPair]="estPair"
         [inscrit]="inscrit"
-        [role]="role"
+        [estModeModif]="estModeModif"
       ></app-inscrit-ligne>
       }
     }

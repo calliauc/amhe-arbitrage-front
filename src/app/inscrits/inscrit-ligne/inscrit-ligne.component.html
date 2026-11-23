@@ -1,16 +1,63 @@
-@if (estModif) {
-<app-inscrit-editer
-  [estPair]="estPair"
-  [inscrit]="inscrit"
-  (annulerEdition)="modifInscritAnnulee()"
-  (modifierInscrit)="modificationInscrit($event)"
-  (supprimerInscrit)="suppressionInscrit($event)"
-  ></app-inscrit-editer>
-} @else {
-<app-inscrit-afficher
-  [estPair]="estPair"
-  [inscrit]="inscrit"
-  [role]="role"
-  (editerInscrit)="lancerEdition()"
-></app-inscrit-afficher>
+<tr [ngClass]="{ lignePair: estPair }">
+  <td class="col">{{ inscrit.prenom }}</td>
+  <td class="col">{{ inscrit.nom }}</td>
+  <td class="col">{{ inscrit.club }}</td>
+  <td class="col btns">
+    @if (inscrit.id && estModeModif){
+      <button
+        type="button"
+        class="btn btn-inscrits btn-suppression"
+        (click)="demanderSuppression()">
+        X
+      </button>
+      @if (!inscrit.estDesinscrit && !inscrit.estListeAttente) {
+        <button
+          type="button"
+          class="btn btn-inscrits btn-modifier"
+          (click)="desinscrire()">
+          Désinscrire
+        </button>
+        <button
+          type="button"
+          class="btn btn-inscrits btn-modifier"
+          (click)="enAttente()">
+          Attente
+        </button>
+      }
+      @if (inscrit.estDesinscrit && !inscrit.estListeAttente) {
+        <button
+          type="button"
+          class="btn btn-inscrits btn-modifier"
+          (click)="resinscrire()">
+          Résinscrire
+        </button>
+      }
+
+      @if (!inscrit.estDesinscrit && inscrit.estListeAttente) {
+        <button
+        type="button"
+        class="btn btn-inscrits btn-modifier"
+        (click)="sortirAttente()">
+        Liste principale
+        </button>
+      }
+
+    }
+    <button
+      type="button"
+      class="btn btn-inscrits btn-details"
+      (click)="annuler()">
+      Details
+    </button>
+  </td>
+</tr>
+
+  @if (estModalVisible && inscrit.id){
+<app-confirmation-modal
+  [id]="inscrit.id"
+  [titre]="titreModal"
+  [texte]="texteModal"
+  (confirmer)="confirmerSuppression($event)"
+  (annuler)="annulerSuppression()"
+></app-confirmation-modal>
 }

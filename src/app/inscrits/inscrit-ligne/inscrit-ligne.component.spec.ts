@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InscritLigneComponent } from './inscrit-ligne.component';
+import { InscritEditerComponent } from './inscrit-editer.component';
 
-describe('InscritLigneComponent', () => {
-  let component: InscritLigneComponent;
-  let fixture: ComponentFixture<InscritLigneComponent>;
+describe('InscritEditerComponent', () => {
+  let component: InscritEditerComponent;
+  let fixture: ComponentFixture<InscritEditerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InscritLigneComponent]
+      imports: [InscritEditerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InscritLigneComponent);
+    fixture = TestBed.createComponent(InscritEditerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

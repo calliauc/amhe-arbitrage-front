@@ -1,9 +1,7 @@
 import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { InscritsService } from '../shared/services/inscrits.service';
 import { Inscrit } from '../shared/models/inscrit';
-import { InscritLigneComponent } from './inscrit-ligne/inscrit-ligne.component';
-import { InscritEditerComponent } from './inscrit-editer/inscrit-editer.component';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthV1Service } from '../shared/services/auth-v1.service';
 import { Evenement } from '../shared/models/evenement';
@@ -11,15 +9,15 @@ import { EvenementsService } from '../shared/services/evenements.service';
 import { Router } from '@angular/router';
 import { RolesNames } from '../shared/models/roles';
 import { InscriptionComponent } from './inscription/inscription.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { MenuMobileService } from '../shared/services/menu-mobile.service';
+import { InscritLigneComponent } from './inscrit-ligne/inscrit-ligne.component';
 
 @Component({
     selector: 'app-inscrits',
     imports: [
-        InscritLigneComponent,
-        InscriptionComponent,
-        CommonModule
+      InscritLigneComponent,
+      InscriptionComponent,
+      CommonModule
     ],
     templateUrl: './inscrits.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
@@ -39,6 +37,7 @@ export class InscritsComponent implements OnInit {
   desinscrits?: Inscrit[];
   listeAttente?: Inscrit[];
   estModeCreation = false;
+  estModeModif = false;
   nouveauInscrit= new Inscrit();
   role:RolesNames = 'guest';
   afficherDesinscrits: boolean=false;
@@ -77,6 +76,10 @@ export class InscritsComponent implements OnInit {
 
   estEnAttente(inscrit: Inscrit):boolean{
     return !inscrit.estDesinscrit && inscrit.estListeAttente;
+  }
+
+  modifierInscrits(){
+    this.estModeModif = !this.estModeModif;
   }
 
   permuterFileAttente(){
