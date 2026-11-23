@@ -35,6 +35,9 @@ export class InscritsComponent implements OnInit {
 
   evenement!:Evenement;
   inscritsListe$?: Observable<Inscrit[]>;
+  inscritsActifs?: Inscrit[];
+  desinscrits?: Inscrit[];
+  listeAttente?: Inscrit[];
   estModeCreation = false;
   nouveauInscrit= new Inscrit();
   role:RolesNames = 'guest';
@@ -57,7 +60,11 @@ export class InscritsComponent implements OnInit {
   }
 
   recupererInscrits() {
-    this.inscritsListe$ = this.inscritsService.getInscritsByEvent(this.evenement.id);
+    this.inscritsService.getInscritsByEvent(this.evenement.id).subscribe(inscrits => {
+      this.inscritsActifs = [...inscrits].filter(i => this.estListePrincipale(i))||[];
+      this.listeAttente = [...inscrits].filter(i => this.estEnAttente(i))||[];
+      this.desinscrits = [...inscrits].filter(i => this.estDesinscrit(i))||[];
+    });
   }
 
   estListePrincipale(inscrit: Inscrit):boolean{
@@ -95,9 +102,9 @@ export class InscritsComponent implements OnInit {
   }
 
   modifierInscrit(inscritModifie: Inscrit) {
-    this.inscritsListe$ = this.inscritsService
+    this.inscritsService
       .modifierInscrit(inscritModifie)
-      .pipe(switchMap(() => this.inscritsService.getInscritsByEvent(this.evenement.id)));
+      .subscribe(_ => this.recupererInscrits());
   }
 
   supprimerInscrit(id: number) {

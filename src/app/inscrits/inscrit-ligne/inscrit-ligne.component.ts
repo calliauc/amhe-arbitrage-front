@@ -15,9 +15,9 @@ export class InscritLigneComponent {
   @Input() inscrit!: Inscrit;
   @Input() estPair!: boolean;
   @Input() role!: RolesNames;
+  @Input() estModif!: boolean;
   @Output() supprimerInscrit = new EventEmitter<number>();
   @Output() modifierInscrit = new EventEmitter<Inscrit>();
-  estModif: boolean;
 
   constructor() {
     this.estModif = false;
@@ -33,6 +33,7 @@ export class InscritLigneComponent {
   }
 
   modificationInscrit(inscrit: Inscrit) {
+    this.estModif = false;
     this.modifierInscrit.emit(inscrit);
   }
 
