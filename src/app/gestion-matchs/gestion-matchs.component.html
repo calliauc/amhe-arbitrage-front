@@ -20,8 +20,8 @@
         [itemTemplate]="ligneInscrit" 
         [display-with]="formatInscrit"
       />
-    <button type="button" (click)="resetInscrit()">X</button>
-  </div>
+      <button type="button" (click)="resetInscrit()">X</button>
+    </div>
     <div id="select-poule">
       <label for="poule">Filtrer par poule : </label>
       <input
@@ -36,7 +36,7 @@
       <button type="button" (click)="resetPoule()">X</button>
     </div>
 
-    </form>
+  </form>
 
    @if (Auth.estAdmin(role)) {
   <div id="btns">

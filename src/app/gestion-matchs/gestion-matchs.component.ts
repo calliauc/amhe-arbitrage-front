@@ -77,7 +77,7 @@ export class GestionMatchsComponent implements OnInit {
   ngOnInit(): void {
     this.menuMobileService.pageActuelle.next('MATCHS');
     this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => {this.evenement = e});
-    this.pouleService.getPoulesByEvent(this.evenement.id).subscribe(p => this.pouleListe = [...p]);
+    this.pouleService.getPoulesByEvent(this.evenement.id).subscribe(p => this.pouleListe = p?.length>1?[...p]:[]);
     this.logService.notificationRole$.subscribe(e => this.role = e);
     this.criteres.idEvenement = this.evenement.id;
     this.chercherMatchs(this.criteres);
