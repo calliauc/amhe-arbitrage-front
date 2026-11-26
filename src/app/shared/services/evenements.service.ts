@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Item } from '../models/item';
 import { Evenement } from '../models/evenement';
+import { Inscrit } from '../models/inscrit';
 
 @Injectable({
   providedIn: 'root',
@@ -50,10 +51,13 @@ export class EvenementsService {
     });
   }
 
-  public inscrire(idEvenement: number, idIndividu: number): Observable<Evenement> {
-    return this.http.put<Evenement>(`${this.URL}/${idEvenement}/inscrire`, [idIndividu], {
-      responseType: 'json',
-    });
+  public inscrire(idEvent: number, inscription: Inscrit): Observable<Evenement> {
+    console.log(inscription);
+    
+    return this.http.put<Evenement>(`${this.URL}/${idEvent}/inscrire`,
+      inscription,
+      {responseType: 'json',}
+    );
   }
 
   public modifierEvenement(

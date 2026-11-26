@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Inscrit } from '../../shared/models/inscrit';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { IndividuService } from '../../shared/services/individus.service';
@@ -8,9 +8,11 @@ import { Evenement } from '../../shared/models/evenement';
 import { EvenementsService } from '../../shared/services/evenements.service';
 import { Observable } from 'rxjs';
 import { NouveauInscritModalComponent } from '../../shared/modales/nouveau-inscrit-modal/nouveau-inscrit-modal.component';
+import { InscritsService } from '../../shared/services/inscrits.service';
 
 interface formRechercheIndividu{
   individu: FormControl<Individu|null>;
+  listeAttente: FormControl<boolean|null>;
 }
 
 @Component({
@@ -26,6 +28,7 @@ interface formRechercheIndividu{
 export class InscriptionComponent implements OnInit {
   private individuService = inject(IndividuService);
   private evenementService = inject(EvenementsService);
+  private inscritService = inject(InscritsService);
 
   @Input() evenement!: Evenement;
   @Input() inscrits!: Inscrit[];
@@ -45,6 +48,7 @@ export class InscriptionComponent implements OnInit {
 
   formInscription: FormGroup<formRechercheIndividu> = new FormGroup({
     individu: new FormControl<Individu|null>(null, this.inscriptionValidator()),
+    listeAttente: new FormControl<boolean>(false)
   });
 
   ngOnInit(): void {
@@ -53,9 +57,9 @@ export class InscriptionComponent implements OnInit {
 
   initFormInscription(){
     this.formInscription.controls.individu.valueChanges.subscribe(individu => {
-      console.log(individu);
       this.individuAInscrire = individu||new Individu;
     });
+    this.formInscription.controls.listeAttente.patchValue(!!this.evenement.nbPlacesMax && this.evenement.nbPlacesMax <= this.inscrits.length)
   }
 
   afficheIndividu(item: Individu): string {
@@ -64,19 +68,26 @@ export class InscriptionComponent implements OnInit {
 
   inscriptionValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => { 
-      console.log(control.value);
       if(!control.value){
         return null;
       }
-      const estDejaInscrit = this.estInscrit(control.value.id);
-      const msgErreur =`${control.value.prenom} est déjà inscrit`;
-      return estDejaInscrit?{dejaInscrit: {description: msgErreur}}:null;
+      const inscritExistant = this.estInscrit(control.value.id);
+
+      let detailInscriptionExistante = '';
+      if (!inscritExistant?.estDesinscrit && !inscritExistant?.estListeAttente){
+        detailInscriptionExistante += ("est déjà inscrit(e)")
+      }else if (inscritExistant?.estDesinscrit){
+        detailInscriptionExistante +=('a déjà été désinscrit(e)')
+      } else if (inscritExistant?.estListeAttente){
+        detailInscriptionExistante += ("est déjà en liste d'attente")
+      }
+
+      return inscritExistant?{dejaInscrit: {description: `${control.value.prenom} ${detailInscriptionExistante}`}}:null;
     }
   }
 
-  estInscrit(idIndividu:number):boolean{
-    const estDejaInscrit = this.inscrits.find(inscrit => inscrit.idIndividu === idIndividu);
-    return !!estDejaInscrit;
+  estInscrit(idIndividu:number):Inscrit|undefined{
+    return this.inscrits.find(inscrit => inscrit.idIndividu === idIndividu);
   }
 
   getErreur(code: string){
@@ -93,9 +104,16 @@ export class InscriptionComponent implements OnInit {
   }
 
   confirmerInscription(): void {
+    const listeAttente = this.formInscription.controls.listeAttente.value||false;
+    const idIndividu = this.formInscription.controls.individu.value!.id;
+    const inscription:Inscrit = {
+      idEvenement: this.evenement.id,
+      idIndividu: idIndividu,
+      estListeAttente: listeAttente
+    } as Inscrit;
     if (this.individuAInscrire.id) {
       this.evenementService
-      .inscrire(this.evenement.id, this.individuAInscrire.id)
+      .inscrire(this.evenement.id, inscription)
       .subscribe((evenement) => {
         this.evenement = evenement;
         this.evenementService.refreshCacheEvent(evenement);

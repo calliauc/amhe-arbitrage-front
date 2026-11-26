@@ -1,5 +1,5 @@
 <ng-template #individu let-item let-i="index">
-  @if(estInscrit(item.id)){[Inscrit] }{{ item.prenom }} {{ item.nom }}
+  @if(estInscrit(item.id)){[Inscrit]}{{ item.prenom }} {{ item.nom }}
 </ng-template>
 
 <form
@@ -12,6 +12,7 @@
 
   <div id="wrapper-saisie">
     <input id="input-saisie"
+    autofocus
     ngui-auto-complete 
     formControlName="individu"
     select-on-blur="true"
@@ -19,7 +20,6 @@
     [source]="rechercheIndividu"
     [itemTemplate]="individu"
     [display-with]="afficheIndividu"
-    /* #focus */
     />
   
   <button type="reset">x</button>
@@ -38,6 +38,7 @@
       <td class="col">{{ individuAInscrire.nom }}</td>
       <td class="col">{{ individuAInscrire.club?.nomComplet }}</td>
       <td class="col btns">
+        <input type="checkbox" formControlName="listeAttente">
         <button class="btn btn-inscrits btn-enregistrer-edition" type="submit">
           Valider
         </button>
