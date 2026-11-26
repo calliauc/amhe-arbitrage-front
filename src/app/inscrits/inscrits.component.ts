@@ -32,10 +32,10 @@ export class InscritsComponent implements OnInit {
   private Auth = AuthV1Service;
 
   evenement!:Evenement;
-  inscritsListe$?: Observable<Inscrit[]>;
-  inscritsActifs?: Inscrit[];
-  desinscrits?: Inscrit[];
-  listeAttente?: Inscrit[];
+  inscrits: Inscrit[] = [];
+  inscritsActifs: Inscrit[] = [];;
+  desinscrits: Inscrit[] = [];;
+  listeAttente: Inscrit[] = [];;
   estModeCreation = false;
   estModeModif = false;
   nouveauInscrit= new Inscrit();
@@ -60,9 +60,10 @@ export class InscritsComponent implements OnInit {
 
   recupererInscrits() {
     this.inscritsService.getInscritsByEvent(this.evenement.id).subscribe(inscrits => {
-      this.inscritsActifs = [...inscrits].filter(i => this.estListePrincipale(i))||[];
-      this.listeAttente = [...inscrits].filter(i => this.estEnAttente(i))||[];
-      this.desinscrits = [...inscrits].filter(i => this.estDesinscrit(i))||[];
+      this.inscrits = [...inscrits];
+      this.inscritsActifs = [...inscrits].filter(i => this.estListePrincipale(i));
+      this.listeAttente = [...inscrits].filter(i => this.estEnAttente(i));
+      this.desinscrits = [...inscrits].filter(i => this.estDesinscrit(i));
     });
   }
 
@@ -91,9 +92,8 @@ export class InscritsComponent implements OnInit {
   }
 
   creerInscrit() {
-    this.inscritsListe$ = this.inscritsListe$?.pipe(
-      tap(() => (this.estModeCreation = false))
-    );
+    this.recupererInscrits();
+    this.estModeCreation = false;
   }
 
   modeAjout(): void {

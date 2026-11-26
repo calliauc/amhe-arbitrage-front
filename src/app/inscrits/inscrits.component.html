@@ -50,6 +50,8 @@
     }
      @if (estModeCreation) {
     <app-inscription
+      [evenement]="evenement"
+      [inscrits]="inscrits"
       (annulerEditionCreation)="annulerEdition()"
       (validerCreation)="creerInscrit()"
     ></app-inscription>

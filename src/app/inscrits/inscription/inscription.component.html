@@ -4,16 +4,16 @@
 
 <form
   [formGroup]="formInscription"
-  (ngSubmit)="confirmer()"
+  (ngSubmit)="confirmerInscription()"
   (reset)="reset()"
-  (keypress.enter)="confirmer()"
+  (keypress.enter)="confirmerInscription()"
   (keypress.escape)="annuler()"
 >
 
   <div id="wrapper-saisie">
     <input id="input-saisie"
     ngui-auto-complete 
-    formControlName="selectionIndividu"
+    formControlName="individu"
     select-on-blur="true"
     loading-text="Recherche dans l'annuaire"
     [source]="rechercheIndividu"
@@ -23,13 +23,14 @@
     />
   
   <button type="reset">x</button>
-  <button type="button" (click)="creerIndividu()">Creer individu</button>
+  <button type="button" [disabled]="individuAInscrire.id" (click)="creerIndividu()">Creer individu</button>
   <button type="button" (click)="annuler()">Annuler</button>
 </div>
 
-  @if (formInscription.controls['selectionIndividu'].errors?.['dejaInscrit']){
+  @if (formInscription.controls.individu.invalid){
     <div class="bandeau-erreur">
-      <div class="message-erreur">{{formInscription.controls['selectionIndividu'].errors?.['dejaInscrit'].msg}}</div>
+      @if (formInscription.controls.individu.hasError('dejaInscrit')) {}
+      <div class="message-erreur">{{getErreur('dejaInscrit')}}</div>
     </div>
   } @else if (individuAInscrire.id) {
     <tr id="ligneNouvelInscrit">
@@ -37,14 +38,6 @@
       <td class="col">{{ individuAInscrire.nom }}</td>
       <td class="col">{{ individuAInscrire.club?.nomComplet }}</td>
       <td class="col btns">
-        @if (inscrit.id){
-        <button
-          type="button"
-          class="btn btn-inscrits btn-suppression"
-          (click)="demanderSuppression()"
-        >
-        X</button>
-        }
         <button class="btn btn-inscrits btn-enregistrer-edition" type="submit">
           Valider
         </button>
@@ -59,18 +52,8 @@
   }
 
 </form>
-@if (estModalConfirmationVisible && inscrit.id){
-<app-confirmation-modal
-  [id]="inscrit.id"
-  [titre]="titreModal"
-  [texte]="texteModal"
-  (confirmer)="confirmerSuppression($event)"
-  (annuler)="annulerSuppression()"
-></app-confirmation-modal>
-}
 @if (estModalIndividuVisible){
   <app-nouveau-inscrit-modal
-    [id]="inscrit.id"
     [titre]="'Creer individu'"
     [texte]="''"
     (confirmer)="confirmerInscriptionNouvelIndividu($event)"

@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
     styleUrl: './confirmation-modal.component.css'
 })
 export class ConfirmationModalComponent {
-  @Input() id!: number;
+  @Input() id?: number;
   @Input() code = '';
   @Input() titre = "Confirmer l'action ?";
   @Input() texte = 'Pour de vrai de vrai ? Pinkie promesse ?';
