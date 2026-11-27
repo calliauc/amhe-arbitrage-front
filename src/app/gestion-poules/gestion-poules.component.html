@@ -40,12 +40,15 @@
     }
   </div>
   }
+  @if (!estModeCreation && estModeEdition) {
+    <p>Drag'n'drop les inscrits d'un bloc à un autre</p>
+  }
 
     <div id="liste-poules" cdkDropListGroup>
       @if (Auth.estAdmin(role) && estModeEdition) {
         <div class="poule">
             <div class="titre-poule">
-              <h3>Event</h3>
+              <h3>{{evenement.nom}} ({{listeInscritsActifs.length}}/{{evenement.nbPlacesMax}})</h3>
             </div>
                 <div
                 cdkDropList
@@ -73,7 +76,7 @@
       @for (poule of poules; track $index) {
       <div class="poule">
           <div class="titre-poule">
-            <h3>{{ poule.nom }} {{(poule.prefixe)}}</h3>
+            <h3>{{ poule.nom }} ({{poule.inscrits.length}})</h3>
             @if (estModeEdition && poule.id) {
               <button class="btn" id="btn-supprimer" (click)="supprimerPoule(poule.id)">X</button>
             }
