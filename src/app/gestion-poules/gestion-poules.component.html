@@ -49,7 +49,7 @@
             </div>
                 <div
                 cdkDropList
-                    [cdkDropListData]="evenement.inscrits!"
+                    [cdkDropListData]="evenement.inscrits!.sort((a, b) => a.prenom>b.prenom?1:-1)"
                     cdkDropListConnectedTo="all"
                     (cdkDropListDropped)="drop($event)"
                     [cdkDropListEnterPredicate]="noPredicate"
