@@ -69,7 +69,7 @@ constructor() {
       if (e.inscrits){
         const list = e.inscrits
         .filter((i:Inscrit) => !i.estDesinscrit && !i.estListeAttente)
-        .sort((a, b) => a.prenom>b.prenom?1:-1);
+        .sort((a, b) => a.prenom.localeCompare(b.prenom));
         
         this.listeInscritsActifs = [... list];
       }
