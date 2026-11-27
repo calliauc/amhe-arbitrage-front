@@ -53,6 +53,32 @@ main {
   margin: 10px;
 }
 
+.liste-inscrits {
+  max-height: 400px;
+  overflow: auto
+}  
+
+.inscrit{
+  padding-inline: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nom{
+  width: 70%;
+  white-space: nowrap;
+  text-overflow: clip;
+  /* border: 1px solid red; */
+}
+
+.club {
+  min-width: 25%;
+  text-align: right;
+  white-space: nowrap;
+  overflow-y: auto;
+  /* border: 1px solid red; */
+}
+
 @media screen and (max-width: 1099px) {
   .poule {
     border: 2px solid grey;

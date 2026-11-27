@@ -12,6 +12,7 @@ import { RolesNames } from '../shared/models/roles';
 import { MenuMobileService } from '../shared/services/menu-mobile.service';
 import { MatchsService } from '../shared/services/matchs.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationModalComponent } from '../shared/modales/confirmation-modal/confirmation-modal.component';
 
 interface formPoule{
   nom: FormControl<string|null>;
@@ -21,7 +22,7 @@ interface formPoule{
 
 @Component({
     selector: 'app-gestion-poules',
-    imports: [CdkDrag, NomsPipe, CdkDropListGroup, CdkDropList, ReactiveFormsModule],
+    imports: [CdkDrag, NomsPipe, CdkDropListGroup, CdkDropList, ReactiveFormsModule, ConfirmationModalComponent],
     templateUrl: './gestion-poules.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './gestion-poules.component.css'
@@ -39,9 +40,11 @@ export class GestionPoulesComponent implements OnInit {
   poules: Poule[] = [];
   doublon?:Inscrit;
   listeInscritsActifs!: Inscrit[];
+  idPouleActive?: number;
   estModeCreation = false;
   estModeEdition = false;
   estModeAjout = false;
+  estModalVisible = false;
   role:RolesNames = 'guest';
 
   formCreationPoule: FormGroup<formPoule> = new FormGroup({
@@ -110,7 +113,27 @@ constructor() {
     });
   }
 
+  confirmerSuppression(id: number) {
+    this.estModalVisible = false;
+    this.creerMatchs(id);
+  }
+
+  annulerSuppression() {
+    this.idPouleActive = undefined;
+    this.estModalVisible = false;
+  }
+
+  genererMatchsAvecVerif(poule: Poule){
+    if(this.matchsExistant(poule)){
+      this.idPouleActive = poule.id;
+      this.estModalVisible = true;
+    } else {
+      this.creerMatchs(poule.id!);
+    }
+  }
+
   creerMatchs(id: number){
+    this.idPouleActive = undefined;
     this.matchsService.creerMatchs(id).subscribe(matchs => {
       this.recupererPoules();
       alert(`${matchs.length} matchs créés`)

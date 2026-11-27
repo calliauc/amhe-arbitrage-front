@@ -57,11 +57,10 @@
                     cdkDropListHasAnchor
                   >
                 <table class="liste-inscrits">
-                  @for (i of listeInscritsActifs; track i) {
-                    <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition" [style.cursor]="estModeEdition?'grab':'text'">
-                      <td class="nom">{{ i | nomsDisplay }}</td>
-                      <td>-</td>
-                      <td class="club">{{ i.club }}</td>
+                  @for (inscritEvent of listeInscritsActifs; track inscritEvent) {
+                    <tr class="inscrit" cdkDrag [cdkDragData]="inscritEvent" [cdkDragDisabled]="!estModeEdition" [style.cursor]="estModeEdition?'grab':'text'">
+                      <td class="nom">- {{ inscritEvent | nomsDisplay }}</td>
+                      <td class="club">[{{ inscritEvent.club }}]</td>
                     </tr>
                   }
                 </table>
@@ -94,24 +93,33 @@
           [cdkDropListEnterPredicate]="doublonPredicate"
           >
           <table class="liste-inscrits">
-            @for (i of poule.inscrits; track i) {
-              <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition" [style.cursor]="estModeEdition?'grab':'text'">
-                <td class="nom">{{ i | nomsDisplay }}</td>
-                <td>-</td>
-                <td class="club">{{ i.club }}</td>
+            @for (inscritPoule of poule.inscrits; track inscritPoule) {
+              <tr class="inscrit" cdkDrag [cdkDragData]="inscritPoule" [cdkDragDisabled]="!estModeEdition" [style.cursor]="estModeEdition?'grab':'text'">
+                <td class="nom">- {{ inscritPoule | nomsDisplay }}</td>
+                <td class="club">[{{ inscritPoule.club }}]</td>
                 @if (Auth.estAdmin(role) && estModeEdition) {
-                  <td><button type="button" (click)="retirerInscritPoule(poule, i)">X</button></td>
+                  <td><button type="button" (click)="retirerInscritPoule(poule, inscritPoule)">X</button></td>
                 }
               </tr>
             }
           </table>
         </div>
         @if (estModeEdition && Auth.estAdmin(role) && poule.inscrits.length >= 2) {
-          <button [disabled]="matchsExistant(poule)" (click)="creerMatchs(poule.id!)">
-            {{matchsExistant(poule)?'Des matchs existent déjà':'Générer les matchs'}}
+          <button (click)="genererMatchsAvecVerif(poule)">
+            {{matchsExistant(poule)?'Re-générer les matchs':'Générer les matchs'}}
           </button>
       }
         </div>
       }
     </div>
+    
+  @if (estModalVisible){
+  <app-confirmation-modal
+    [id]="idPouleActive"
+    [titre]="'Matchs trouvés'"
+    [texte]="'Cette action va supprimer tout les matchs rattachés à cette poule'"
+    (confirmer)="confirmerSuppression($event)"
+    (annuler)="annulerSuppression()"
+  ></app-confirmation-modal>
+  }
 </main>
