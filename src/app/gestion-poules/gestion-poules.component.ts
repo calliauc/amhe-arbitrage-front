@@ -15,7 +15,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 interface formPoule{
   nom: FormControl<string|null>;
-  description: FormControl<string|null>;
+  prefixe: FormControl<string|null>;
 }
 
 
@@ -45,7 +45,7 @@ export class GestionPoulesComponent implements OnInit {
 
   formCreationPoule: FormGroup<formPoule> = new FormGroup({
     nom: new FormControl<string>(""),
-    description: new FormControl<string>(""),
+    prefixe: new FormControl<string>(""),
   });
 
 constructor() {
@@ -82,15 +82,15 @@ constructor() {
   resetNom(){
     this.formCreationPoule.controls.nom.reset();
   }
-  resetDescription(){
-    this.formCreationPoule.controls.description.reset();
+  resetPrefixe(){
+    this.formCreationPoule.controls.prefixe.reset();
   }
 
   ajouterPoule() {  
     const nouvellePoule = {
       evenement: this.evenement, ...this.formCreationPoule.value
     } as Poule;
-    if(!nouvellePoule.nom){
+    if(!nouvellePoule.nom || !nouvellePoule.prefixe){
       return;
     }
     

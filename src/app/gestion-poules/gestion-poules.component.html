@@ -27,9 +27,9 @@
           <button type="button" (click)="resetNom()">X</button>
         </div>
         <div>
-          <label for="Description">Description de la poule : </label>
-          <input type="text" formControlName="description">  
-          <button type="button" (click)="resetDescription()">X</button>
+          <label for="prefixe">Préfixe des matchs de la poule : </label>
+          <input type="text" formControlName="prefixe">  
+          <button type="button" (click)="resetPrefixe()">X</button>
         </div>
         <div>
           <button type="reset">Annuler</button>
@@ -74,7 +74,7 @@
       @for (poule of poules; track $index) {
       <div class="poule">
           <div class="titre-poule">
-            <h3>{{ poule.nom }}</h3>
+            <h3>{{ poule.nom }} {{(poule.prefixe)}}</h3>
             @if (estModeEdition && poule.id) {
               <button class="btn" id="btn-supprimer" (click)="supprimerPoule(poule.id)">X</button>
             }
