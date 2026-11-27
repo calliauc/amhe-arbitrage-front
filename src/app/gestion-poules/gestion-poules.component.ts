@@ -38,6 +38,7 @@ export class GestionPoulesComponent implements OnInit {
   evenement!: Evenement;
   poules: Poule[] = [];
   doublon?:Inscrit;
+  listeInscritsActifs!: Inscrit[];
   estModeCreation = false;
   estModeEdition = false;
   estModeAjout = false;
@@ -60,7 +61,16 @@ constructor() {
   
   ngOnInit(): void {
     this.menuMobileService.pageActuelle.next('POULES');
-    this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => this.evenement = e);
+    this.evenementsService.getEvenementById(this.evenement!.id).subscribe(e => {
+      this.evenement = e;
+      if (e.inscrits){
+        const list = e.inscrits
+        .filter((i:Inscrit) => !i.estDesinscrit && !i.estListeAttente)
+        .sort((a, b) => a.prenom>b.prenom?1:-1);
+        
+        this.listeInscritsActifs = [... list];
+      }
+    });
     this.logService.notificationRole$.subscribe(e => this.role = e)
     this.recupererPoules();
   }

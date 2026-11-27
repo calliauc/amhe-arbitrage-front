@@ -49,7 +49,7 @@
             </div>
                 <div
                 cdkDropList
-                    [cdkDropListData]="evenement.inscrits!.sort((a, b) => a.prenom>b.prenom?1:-1)"
+                    [cdkDropListData]="listeInscritsActifs"
                     cdkDropListConnectedTo="all"
                     (cdkDropListDropped)="drop($event)"
                     [cdkDropListEnterPredicate]="noPredicate"
@@ -57,7 +57,7 @@
                     cdkDropListHasAnchor
                   >
                 <table class="liste-inscrits">
-                  @for (i of evenement.inscrits; track i) {
+                  @for (i of listeInscritsActifs; track i) {
                     <tr class="inscrit" cdkDrag [cdkDragData]="i" [cdkDragDisabled]="!estModeEdition" [style.cursor]="estModeEdition?'grab':'text'">
                       <td class="nom">{{ i | nomsDisplay }}</td>
                       <td>-</td>
