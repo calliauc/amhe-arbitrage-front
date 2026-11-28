@@ -19,8 +19,8 @@
       [estModeModif]="estModeModif"
     ></app-inscrit-ligne>
     }
-    <button type="button" (click)="permuterFileAttente()">{{afficherFileAttente?'Masquer':'Afficher'}} la file d'attente ({{listeAttente?.length}})</button>
-    <button type="button" (click)="permuterDesinscrits()">{{afficherDesinscrits?'Masquer':'Afficher'}} les désinscrits ({{desinscrits?.length}})</button>
+    <button type="button" (click)="permuterFileAttente()">{{afficherFileAttente?'Masquer':'Afficher'}} la file d'attente ({{listeAttente.length}})</button>
+    <button type="button" (click)="permuterDesinscrits()">{{afficherDesinscrits?'Masquer':'Afficher'}} les désinscrits ({{desinscrits.length}})</button>
     @if (Auth.estAdmin(role)) {
       <button type="button" (click)="modifierInscrits()">{{estModeModif?'Bloquer':'Permettre'}} la modification des inscriptions</button>
     }

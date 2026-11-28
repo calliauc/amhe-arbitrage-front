@@ -51,18 +51,10 @@ export class InscritsService {
     });
   }
 
-  public getInscritsDetails(
-    id: number,
-    tags: TagFiltres
-  ): Observable<InscritDetails> {
-    console.log(id);
-    console.log(tags);
-    return this.http.post<InscritDetails>(
-      `${this.URL}/details/${id}`,
-      tags,
-      {
-        responseType: 'json',
-      }
+  public getInscritsDetails(id: number): Observable<InscritDetails> {
+    return this.http.get<InscritDetails>(
+      `${this.URL}/${id}/details`,
+      {responseType: 'json',}
     );
   }
 

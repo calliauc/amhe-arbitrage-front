@@ -5,7 +5,7 @@ import { TagFiltres } from './tag';
 export class InscritDetails {
   inscrit!: Inscrit;
   matchs!: Match[];
-  items!: TagFiltres;
+  nbMatchs?: number;
   pointsMarques!: number;
   pointsPerdus!: number;
   coupsSubis!: InscritDetailsCoups;

@@ -26,6 +26,8 @@ export class InscritLigneComponent {
   texteModal = 'Cette action est définitive';
 
   details(){
+    console.log("Go ", this.inscrit.prenom);
+    
     this.router.navigate(['inscrit', this.inscrit.id]);
   }
 

@@ -14,15 +14,19 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 30%;
   padding-left: 1%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .col-item {
   justify-content: left;
   overflow-x: scroll;
   white-space: nowrap;
+}
+
+#col-btn {
+  width: 15%;
 }
 
 ::-webkit-scrollbar {

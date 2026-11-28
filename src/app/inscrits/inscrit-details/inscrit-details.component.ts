@@ -6,10 +6,12 @@ import { Item } from '../../shared/models/item';
 import { TagFiltres } from '../../shared/models/tag';
 import { CommonModule, DatePipe } from '@angular/common';
 import { InscritDetails } from '../../shared/models/inscrit-details';
+import { Inscrit } from '../../shared/models/inscrit';
+import { first, forkJoin, map, pluck, tap } from 'rxjs';
 
 @Component({
     selector: 'app-inscrit-details',
-    imports: [NomsPipe, DatePipe, CommonModule],
+    imports: [CommonModule],
     templateUrl: './inscrit-details.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './inscrit-details.component.css'
@@ -20,30 +22,13 @@ export class InscritDetailsComponent {
   private router = inject(Router);
 
   details!: InscritDetails;
-  inscritId!: number;
-  itemPoule!: Item;
-  items: TagFiltres = {
-    tagsRequis: [],
-    tagsOptions: [],
-    tagsExclus: [],
-  };
+  inscrit!: Inscrit;
+
 
   constructor() {
-    this.route.params.subscribe((params) => {
-      this.inscritService
-        .getInscritsDetails(params['id'], this.items)
-        .subscribe((details) => {
-          if (details) {
-            this.details = details;
-            console.log(details);
-          } else {
-            alert('Inscrit introuvable');
-            this.router.navigate(['inscrits']);
-          }
-          this.trieStats();
-        });
-      this.inscritId = params['id'];
-    });
+    this.route.params
+    .subscribe(params => this.inscritService.getInscritsDetails(params['id'])
+    .subscribe(details => this.details=details));
   }
 
   trieStats() {
@@ -53,9 +38,5 @@ export class InscritDetailsComponent {
     this.details.coupsSubis.cibles?.sort((a, b) => b.valeur - a.valeur);
     this.details.coupsSubis.vulnerants?.sort((a, b) => b.valeur - a.valeur);
     this.details.coupsSubis.details?.sort((a, b) => b.valeur - a.valeur);
-  }
-
-  filtreItems(items: Item[]): Item {
-    return items.filter((item) => item.libelle.startsWith('Poule'))[0];
   }
 }
