@@ -8,7 +8,7 @@
   </ng-template>
 
   <form [formGroup]="formFiltrageMatchs">
-    <div id="select-inscrit">
+    <div class="ligne-form" id="select-inscrit">
       <label for="inscrit">Filtrer par participant(e) : </label>
       <input
         ngui-auto-complete 
@@ -22,7 +22,7 @@
       />
       <button type="button" (click)="resetInscrit()">X</button>
     </div>
-    <div id="select-poule">
+    <div class="ligne-form" id="select-poule">
       <label for="poule">Filtrer par poule : </label>
       <input
         ngui-auto-complete 
@@ -34,7 +34,8 @@
         [display-with]="formatPoule"
       />
       <button type="button" (click)="resetPoule()">X</button>
-      <br>
+    </div>
+    <div class="ligne-form" id="select-code">
       <label for="Code-match">N° de match : </label>
       <input
         ngui-auto-complete 

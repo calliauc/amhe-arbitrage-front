@@ -15,6 +15,21 @@ main {
   padding-block-start: 10px;
 }
 
+form {
+  margin-top: 5px;
+}
+
+.ligne-form {
+  width: 100%;
+  display:flex;
+  margin:2px;
+  justify-content: end;
+}
+
+input {
+  margin: 2px;
+}
+
 .match {
   padding: 10px;
 }
@@ -42,6 +57,10 @@ main {
 @media screen and (max-width: 1099px) {
   .liste-matchs {
     padding: 0px;
+  }
+
+  .match {
+    padding: 2px;
   }
 
   #btns {
