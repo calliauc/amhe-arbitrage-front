@@ -35,13 +35,13 @@
     }
     <div>
       <div class="ligne-inscrit" [style.color]="'rgb(68, 143, 255)'">
-        <span class="inscrit">{{ match.inscritA | nomsDisplay }}</span>
+        <span class="inscrit">{{estVainqueur(match.inscritA)}} {{ match.inscritA | nomsDisplay }}</span>
         @if(match.statut!=="nouveau") {
         <div class="score-inscrit">{{ match.scoreA }}</div>
         }
       </div>
       <div class="ligne-inscrit" [style.color]="'rgb(189, 152, 32)'">
-        <span class="inscrit">{{ match.inscritB | nomsDisplay }}</span>
+        <span class="inscrit">{{estVainqueur(match.inscritB)}} {{ match.inscritB | nomsDisplay }}</span>
         @if(match.statut!=="nouveau") {
         <div class="score-inscrit">{{ match.scoreB }}</div>
       }

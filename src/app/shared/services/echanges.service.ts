@@ -26,7 +26,7 @@ export class EchangesService {
   }
 
   public getEchangeById(id: number): Observable<Echange> {
-    return this.http.put<Echange>(`${this.URL}/${id}`, {
+    return this.http.get<Echange>(`${this.URL}/${id}`, {
       responseType: 'json',
     });
   }

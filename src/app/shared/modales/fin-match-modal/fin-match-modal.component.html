@@ -2,7 +2,11 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
     <h2>{{ titre }}</h2>
     <p>{{ texte }}</p>
-    <button id="btn-annuler" (click)="annulerAction()">Annuler</button>
-    <button id="btn-confirmer" (click)="confirmerAction()">Confirmer</button>
+    <button id="btn-a" (click)="saisieResultat(a)">{{a.prenom}} {{a.nom}}</button>
+    <button id="btn-b" (click)="saisieResultat(b)">{{b.prenom}} {{b.nom}}</button>
+    <br>
+    <button id="btn-null" (click)="saisieMatchNull(true)">Match null</button>
+    <br>
+    <button id="btn-annuler" (click)="annulerAction()">Retour</button>
   </div>
 </div>

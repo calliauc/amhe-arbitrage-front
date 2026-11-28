@@ -40,6 +40,12 @@ button:hover {
   background-color: grey;
 }
 
-#btn-confirmer {
+#btn-a {
+  background-color: rgb(68, 143, 255);
+}
+#btn-b {
+  background-color:rgb(189, 152, 32);
+}
+#btn-null {
   background-color: rgb(163, 71, 71);
 }

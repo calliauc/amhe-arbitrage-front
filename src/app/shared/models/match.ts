@@ -13,6 +13,8 @@ export class Match {
   inscritB!: Inscrit;
   scoreA = 0;
   scoreB = 0;
+  matchNull?: boolean;
+  vainqueur?: Inscrit;
   dateCreation?: Date;
   dateDebut?: Date;
   dateFin?: Date;

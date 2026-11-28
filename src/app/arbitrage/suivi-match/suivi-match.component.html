@@ -15,8 +15,8 @@
     id="chrono"
     [match]="match"
     (timerEvent)="updateTimer($event)"
+    (timerFinEvent)="saisirFinMatch()"
     (timerDebutEvent)="setDebutMatch()"
-    (timerFinEvent)="setFinMatch($event)"
   ></app-chrono>
   <app-score-inscrit-match
     id="score-b"
@@ -31,3 +31,13 @@
     couleur="rgb(189, 152, 32)"
   ></app-inscrit-match>
 </section>
+
+@if (estModaleSaisieVisible){
+  <app-fin-match-modal
+    [a]="match.inscritA"
+    [b]="match.inscritB"
+    (annuler)="annulerSaisieFinMatch()"
+    (matchNull)="enregistrerMatchNull($event)"
+    (resultat)="enregistrerVainqueurMatch($event)"
+  ></app-fin-match-modal>
+}

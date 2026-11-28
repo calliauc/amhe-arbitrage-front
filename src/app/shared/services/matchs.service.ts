@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { NouveauMatch } from '../models/nouveau-match';
 import { environment } from '../../../environments/environment';
 import { CriteresRechercheMatch } from '../models/criteresRechercheMatch';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -60,17 +61,19 @@ export class MatchsService {
       null
     );
   }
-
-  public modifierDateFinMatch(
-    id: number,
-    dateFin: Date,
-    timer: number
-  ): Observable<object> {
-    dateFin.setHours(dateFin.getHours() + 1);
-    const dateString = dateFin.toISOString().slice(0, -5);
-    return this.http.put(
-      `${this.URL}/partial/${id}?dateFin=${dateString}&timer=${timer}&statut=fini`,
+  
+  public enregistrerMatchFini(match:Match): Observable<Match> {
+    let params = `${match.id}?timer=${match.timer}&statut=fini`;
+    return this.http.put<Match>(
+      `${this.URL}/partial/${params}`,
       null
+    );
+  }
+
+  public enregistrerResultatMatch(match:Match): Observable<Match> {
+    return this.http.put<Match>(
+      `${this.URL}/resultat`,
+      match
     );
   }
 

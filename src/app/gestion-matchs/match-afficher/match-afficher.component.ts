@@ -10,6 +10,7 @@ import { QRCodeComponent } from 'angularx-qrcode';
 import { RolesNames } from '../../shared/models/roles';
 import { AuthV1Service } from '../../shared/services/auth-v1.service';
 import { couleurs } from '../../shared/models/item';
+import { Inscrit } from '../../shared/models/inscrit';
 
 @Component({
     selector: 'app-match-afficher',
@@ -50,6 +51,15 @@ export class MatchAfficherComponent implements OnInit {
     }
   }
 
+  estVainqueur(inscrit: Inscrit){
+    if (this.match.statut == "fini" && this.match.vainqueur?.id == inscrit.id){
+      return "(V)"
+    } else if (this.match.statut == "fini" && this.match.matchNull == true){
+      return "(N)";
+    } else {
+      return "";
+    }
+  }
   demanderSuppression(): void {
     this.estModalVisible = true;
   }
