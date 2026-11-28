@@ -34,8 +34,20 @@
         [display-with]="formatPoule"
       />
       <button type="button" (click)="resetPoule()">X</button>
-    </div>
+      <br>
+      <label for="Code-match">N° de match : </label>
+      <input
+        ngui-auto-complete 
+        formControlName="code"
+        blank-option-text="Voir tout les matchs"
+        [select-on-blur]="true"
+        [source]="matchsNouveau.map(match => match.code)"
+        /* [itemTemplate]="lignePoule" 
+        [display-with]="formatPoule" */
+      />
+      <button type="button" (click)="resetCode()">X</button>
 
+    </div>
   </form>
 
    @if (Auth.estAdmin(role)) {
@@ -53,7 +65,7 @@
   <p>Pas de match à lancer</p>
   }
   <div class="liste-matchs">
-    @for (match of matchsNouveau; track $index) {
+    @for (match of matchsNouveauFiltre; track $index) {
     <div class="match">
       <app-match-afficher
         [match]="match"

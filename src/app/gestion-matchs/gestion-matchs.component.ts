@@ -23,6 +23,7 @@ import { PoulesService } from '../shared/services/poules.service';
 interface formFiltrage{
   inscrit: FormControl<Inscrit|null>;
   poule: FormControl<Poule|null>;
+  code: FormControl<string|null>;
 }
 
 @Component({
@@ -46,11 +47,13 @@ export class GestionMatchsComponent implements OnInit {
   private menuMobileService = inject(MenuMobileService);
 
   matchsNouveau: Match[] = [];
+  matchsNouveauFiltre: Match[] = [];
   matchsEnCours: Match[] = [];
   matchsFinis: Match[] = [];
 
   pouleListe: Poule[] = [];
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
+  codeMatch: string="";
 
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
@@ -63,6 +66,7 @@ export class GestionMatchsComponent implements OnInit {
   formFiltrageMatchs: FormGroup<formFiltrage> = new FormGroup({
     inscrit: new FormControl<Inscrit|null>(null),
     poule: new FormControl<Poule|null>(null),
+    code: new FormControl<string>(""),
   });
 
   constructor(private _auth: AuthV1Service) {
@@ -88,6 +92,16 @@ export class GestionMatchsComponent implements OnInit {
     this.formFiltrageMatchs.controls.poule.valueChanges.subscribe(poule => {
       this.criteres.idPoule = poule?.id;
       this.chercherMatchs(this.criteres);
+    })
+    this.formFiltrageMatchs.controls.code.valueChanges.subscribe(code => {
+      if (code && code !=="")
+        this.matchsNouveauFiltre = [...this.matchsNouveau].filter(match => match.code == code);
+      else {
+        this.matchsNouveauFiltre = [...this.matchsNouveau];
+      }
+      console.log(this.matchsNouveau);
+      console.log(this.matchsNouveauFiltre);
+      
     })
   }
 
@@ -126,6 +140,11 @@ export class GestionMatchsComponent implements OnInit {
   resetPoule(){
     this.formFiltrageMatchs.controls.poule.reset();
   }
+
+  resetCode(){
+    this.formFiltrageMatchs.controls.code.reset();
+  }
+
 
   creerMatch() {
     this.router.navigate(['creer-match']);
