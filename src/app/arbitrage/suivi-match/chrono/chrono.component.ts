@@ -55,13 +55,11 @@ export class ChronoComponent implements AfterViewInit {
   }
 
   complete() {
-    this.estFini = true;
     this.timerFinEvent.emit(this.tickActuel);
   }
 
   terminerMatch() {
     this.chrono.stop();
-    this.estFini = true;
     this.timerFinEvent.emit(this.tickActuel);
   }
 

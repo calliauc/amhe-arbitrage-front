@@ -6,6 +6,7 @@ import { Item } from './item';
 export class Poule {
   id?: number;
   nom!: string;
+  prefixe!: string;
   description?: string;
   evenement!: Evenement;
   inscrits: Inscrit[] = [];

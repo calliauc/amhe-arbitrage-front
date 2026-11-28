@@ -106,7 +106,6 @@ export class CreationMatchComponent implements OnInit {
       inscritA: null,
       inscritB: null,
       poule: null,
-      tags: null,
     });
     this.formCreerMatch.valueChanges.subscribe((values) => {
       console.log(values);

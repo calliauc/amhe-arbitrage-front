@@ -67,6 +67,18 @@ export class InscritsComponent implements OnInit {
     });
   }
 
+  triPrenom(){
+    this.inscritsActifs.sort((a, b)=> a.prenom.localeCompare(b.prenom));
+  }
+
+  triNom(){
+    this.inscritsActifs.sort((a, b)=> a.prenom.localeCompare(b.prenom));
+  }
+
+  triClub(){
+    this.inscritsActifs.sort((a, b)=> a.prenom.localeCompare(b.prenom));
+  }
+
   estListePrincipale(inscrit: Inscrit):boolean{
     return !inscrit.estDesinscrit && !inscrit.estListeAttente;
   }

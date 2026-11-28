@@ -8,6 +8,7 @@ export class Match {
   id!: number;
   evenement!: Evenement;
   poule?: Poule;
+  code?: string;
   inscritA!: Inscrit;
   inscritB!: Inscrit;
   scoreA = 0;

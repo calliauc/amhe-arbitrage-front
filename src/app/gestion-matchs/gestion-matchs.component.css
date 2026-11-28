@@ -10,7 +10,6 @@ main {
   flex-wrap: wrap;
   justify-content: flex-start;
   border-radius: 30px;
-  /* background-color: rgb(30, 30, 30); */
   width: 100%;
   padding-inline-start: 10px;
   padding-block-start: 10px;
@@ -41,9 +40,14 @@ main {
 }
 
 @media screen and (max-width: 1099px) {
-  .match {
-    margin-inline: auto;
+  .liste-matchs {
+    padding: 0px;
   }
+
+  .match {
+    width: 100%;
+  }
+
   #btns {
     flex-direction: column;
   }
