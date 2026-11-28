@@ -4,17 +4,6 @@ main {
   align-items: center;
 }
 
-.liste-matchs {
-  font-size: 1.3em;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  border-radius: 30px;
-  width: 100%;
-  padding-inline-start: 10px;
-  padding-block-start: 10px;
-}
-
 form {
   margin-top: 5px;
 }
@@ -28,6 +17,15 @@ form {
 
 input {
   margin: 2px;
+}
+
+.liste-matchs {
+  font-size: 1.3em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border-radius: 30px;
+  width: 100%;
 }
 
 .match {

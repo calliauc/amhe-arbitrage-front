@@ -61,7 +61,7 @@
     </button>
   </div>
   }
-  <h2>Nouveaux matchs - <button (click)="affichageNouveaux()">{{masqueNouveaux?"Afficher":"Masquer"}}</button></h2>
+  <h2>Nouveaux matchs ({{matchsNouveau.length}}) <button (click)="affichageNouveaux()">{{masqueNouveaux?"Afficher":"Masquer"}}</button></h2>
   @if (!masqueNouveaux){
     @if (matchsNouveau.length===0) {
     <p>Pas de match à lancer</p>
@@ -78,7 +78,7 @@
       }
     </div>
   }
-  <h2>Matchs en cours - <button (click)="affichageEnCours()">{{masqueEnCours?"Afficher":"Masquer"}}</button></h2>
+  <h2>Matchs en cours ({{matchsEnCours.length}}) <button (click)="affichageEnCours()">{{masqueEnCours?"Afficher":"Masquer"}}</button></h2>
   @if (!masqueEnCours){
     @if (matchsEnCours.length===0) {
     <p>Pas de match en cours</p>
@@ -95,7 +95,7 @@
       }
     </div>
   }
-  <h2>Matchs terminés - <button (click)="affichageFinis()">{{masqueFinis?"Afficher":"Masquer"}}</button></h2>
+  <h2>Matchs terminés ({{matchsFinis.length}}) <button (click)="affichageFinis()">{{masqueFinis?"Afficher":"Masquer"}}</button></h2>
   @if (!masqueFinis){
     @if (matchsFinis.length===0) {
     <p>Pas de match terminé</p>
