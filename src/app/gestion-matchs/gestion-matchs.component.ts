@@ -66,7 +66,7 @@ export class GestionMatchsComponent implements OnInit {
   formFiltrageMatchs: FormGroup<formFiltrage> = new FormGroup({
     inscrit: new FormControl<Inscrit|null>(null),
     poule: new FormControl<Poule|null>(null),
-    code: new FormControl<string>(""),
+    code: new FormControl<string|null>(null),
   });
 
   constructor(private _auth: AuthV1Service) {
@@ -86,10 +86,12 @@ export class GestionMatchsComponent implements OnInit {
     this.criteres.idEvenement = this.evenement.id;
     this.chercherMatchs(this.criteres);
     this.formFiltrageMatchs.controls.inscrit.valueChanges.subscribe(inscrit => {
+      this.resetCode();
       this.criteres.idInscrit = inscrit?.id;
       this.chercherMatchs(this.criteres);
     })
     this.formFiltrageMatchs.controls.poule.valueChanges.subscribe(poule => {
+      this.resetCode();
       this.criteres.idPoule = poule?.id;
       this.chercherMatchs(this.criteres);
     })
@@ -99,10 +101,8 @@ export class GestionMatchsComponent implements OnInit {
       else {
         this.matchsNouveauFiltre = [...this.matchsNouveau];
       }
-      console.log(this.matchsNouveau);
-      console.log(this.matchsNouveauFiltre);
-      
     })
+    this.resetCode();
   }
 
   chercherMatchs(criteres: CriteresRechercheMatch) {
@@ -121,6 +121,7 @@ export class GestionMatchsComponent implements OnInit {
         this.matchsEnCours = [];
         this.matchsFinis = [];
       }
+      this.matchsNouveauFiltre = [...this.matchsNouveau];
     return matchs;
   }
 
