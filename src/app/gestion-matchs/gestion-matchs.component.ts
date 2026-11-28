@@ -47,10 +47,13 @@ export class GestionMatchsComponent implements OnInit {
   private menuMobileService = inject(MenuMobileService);
 
   matchsNouveau: Match[] = [];
-  matchsNouveauFiltre: Match[] = [];
   matchsEnCours: Match[] = [];
   matchsFinis: Match[] = [];
 
+  matchsNouveauFiltre: Match[] = [];
+  matchsEnCoursFiltre: Match[] = [];
+  matchsFinisFiltre: Match[] = [];
+  
   pouleListe: Poule[] = [];
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
   codeMatch: string="";
@@ -63,6 +66,7 @@ export class GestionMatchsComponent implements OnInit {
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
 
+  codeListe:string[] = [];
   idASupprimer?: number;
   evenement!:Evenement;
   role:RolesNames = 'guest';
@@ -100,10 +104,17 @@ export class GestionMatchsComponent implements OnInit {
       this.chercherMatchs(this.criteres);
     })
     this.formFiltrageMatchs.controls.code.valueChanges.subscribe(code => {
-      if (code && code !=="")
+      if (code && code !==""){
         this.matchsNouveauFiltre = [...this.matchsNouveau].filter(match => match.code == code);
-      else {
+        this.matchsEnCoursFiltre = [...this.matchsEnCours].filter(match => match.code == code);
+        this.matchsFinisFiltre = [...this.matchsFinis].filter(match => match.code == code);
+        this.masqueNouveaux = false;
+        this.masqueEnCours = false;
+        this.masqueFinis = false;
+      } else {
         this.matchsNouveauFiltre = [...this.matchsNouveau];
+        this.matchsEnCoursFiltre = [...this.matchsEnCours];
+        this.matchsFinisFiltre = [...this.matchsFinis];
       }
     })
     this.resetCode();
@@ -117,6 +128,7 @@ export class GestionMatchsComponent implements OnInit {
 
   repartirMatchs(matchs: Match[]):Match[]{
     if (matchs) {
+        this.codeListe = [...matchs].map(match => match.code as string);
         this.matchsNouveau = matchs.filter((match) => match.statut === 'nouveau');
         this.matchsEnCours = matchs.filter((match) => match.statut === 'en cours');
         this.matchsFinis = matchs.filter((match) => match.statut === 'fini');
@@ -126,6 +138,8 @@ export class GestionMatchsComponent implements OnInit {
         this.matchsFinis = [];
       }
       this.matchsNouveauFiltre = [...this.matchsNouveau];
+      this.matchsEnCoursFiltre = [...this.matchsEnCours];
+      this.matchsFinisFiltre = [...this.matchsFinis];
     return matchs;
   }
 

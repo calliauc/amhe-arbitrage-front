@@ -42,7 +42,7 @@
         formControlName="code"
         blank-option-text="Voir tout les matchs"
         [select-on-blur]="true"
-        [source]="matchsNouveau.map(match => match.code)"
+        [source]="codeListe"
         /* [itemTemplate]="lignePoule" 
         [display-with]="formatPoule" */
       />
@@ -84,7 +84,7 @@
     <p>Pas de match en cours</p>
     }
     <div class="liste-matchs">
-      @for (match of matchsEnCours; track $index) {
+      @for (match of matchsEnCoursFiltre; track $index) {
       <div class="match">
         <app-match-afficher
           [match]="match"
@@ -101,7 +101,7 @@
     <p>Pas de match terminé</p>
     }
     <div class="liste-matchs">
-      @for (match of matchsFinis; track $index) {
+      @for (match of matchsFinisFiltre; track $index) {
       <div class="match">
         <app-match-afficher
           [match]="match"
