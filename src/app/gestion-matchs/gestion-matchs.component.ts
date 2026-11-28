@@ -55,6 +55,10 @@ export class GestionMatchsComponent implements OnInit {
   criteres: CriteresRechercheMatch = new CriteresRechercheMatch;
   codeMatch: string="";
 
+  masqueNouveaux = false;
+  masqueEnCours = true;
+  masqueFinis = true;
+
   estModalVisible = false;
   titreModal = 'Confirmer la suppression ?';
   texteModal = 'Cette action est définitive';
@@ -146,6 +150,17 @@ export class GestionMatchsComponent implements OnInit {
     this.formFiltrageMatchs.controls.code.reset();
   }
 
+  affichageNouveaux(){
+    this.masqueNouveaux = !this.masqueNouveaux;
+  }
+
+  affichageEnCours(){
+    this.masqueEnCours = !this.masqueEnCours;
+  }
+
+  affichageFinis(){
+    this.masqueFinis = !this.masqueFinis;
+  }
 
   creerMatch() {
     this.router.navigate(['creer-match']);

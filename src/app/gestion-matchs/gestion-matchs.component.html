@@ -60,49 +60,55 @@
     </button>
   </div>
   }
-  <h2>Nouveaux matchs</h2>
-  @if (matchsNouveau.length===0) {
-  <p>Pas de match à lancer</p>
-  }
-  <div class="liste-matchs">
-    @for (match of matchsNouveauFiltre; track $index) {
-    <div class="match">
-      <app-match-afficher
-        [match]="match"
-        [role]="role"
-        (matchEvent)="getMatchs()"
-      ></app-match-afficher>
-    </div>
+  <h2>Nouveaux matchs - <button (click)="affichageNouveaux()">{{masqueNouveaux?"Afficher":"Masquer"}}</button></h2>
+  @if (!masqueNouveaux){
+    @if (matchsNouveau.length===0) {
+    <p>Pas de match à lancer</p>
     }
-  </div>
-  <h2>Matchs en cours</h2>
-  @if (matchsEnCours.length===0) {
-  <p>Pas de match en cours</p>
-  }
-  <div class="liste-matchs">
-    @for (match of matchsEnCours; track $index) {
-    <div class="match">
-      <app-match-afficher
-        [match]="match"
-        [role]="role"
-        (matchEvent)="getMatchs()"
-      ></app-match-afficher>
+    <div class="liste-matchs">
+      @for (match of matchsNouveauFiltre; track $index) {
+      <div class="match">
+        <app-match-afficher
+          [match]="match"
+          [role]="role"
+          (matchEvent)="getMatchs()"
+        ></app-match-afficher>
+      </div>
+      }
     </div>
-    }
-  </div>
-  <h2>Matchs terminés</h2>
-  @if (matchsFinis.length===0) {
-  <p>Pas de match terminé</p>
   }
-  <div class="liste-matchs">
-    @for (match of matchsFinis; track $index) {
-    <div class="match">
-      <app-match-afficher
-        [match]="match"
-        [role]="role"
-        (matchEvent)="getMatchs()"
-      ></app-match-afficher>
-    </div>
+  <h2>Matchs en cours - <button (click)="affichageEnCours()">{{masqueEnCours?"Afficher":"Masquer"}}</button></h2>
+  @if (!masqueEnCours){
+    @if (matchsEnCours.length===0) {
+    <p>Pas de match en cours</p>
     }
-  </div>
+    <div class="liste-matchs">
+      @for (match of matchsEnCours; track $index) {
+      <div class="match">
+        <app-match-afficher
+          [match]="match"
+          [role]="role"
+          (matchEvent)="getMatchs()"
+        ></app-match-afficher>
+      </div>
+      }
+    </div>
+  }
+  <h2>Matchs terminés - <button (click)="affichageFinis()">{{masqueFinis?"Afficher":"Masquer"}}</button></h2>
+  @if (!masqueFinis){
+    @if (matchsFinis.length===0) {
+    <p>Pas de match terminé</p>
+    }
+    <div class="liste-matchs">
+      @for (match of matchsFinis; track $index) {
+      <div class="match">
+        <app-match-afficher
+          [match]="match"
+          [role]="role"
+          (matchEvent)="getMatchs()"
+        ></app-match-afficher>
+      </div>
+      }
+    </div>
+  }
 </main>
