@@ -62,4 +62,8 @@ export class ArbitrageComponent implements OnInit {
       console.log(this.match);
     });
   }
+
+  updateTimer(timer: number){
+    this.match.timer = timer;
+  }
 }

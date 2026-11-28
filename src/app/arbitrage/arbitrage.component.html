@@ -4,6 +4,7 @@
     <app-gestion-match
       [match]="match"
       (matchEvent)="refreshMatch()"
+      (timer)="updateTimer($event)"
     ></app-gestion-match>
     <div id="separateur"></div>
     <section id="echanges">

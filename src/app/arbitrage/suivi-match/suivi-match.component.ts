@@ -19,13 +19,12 @@ export class SuiviMatchComponent {
 
   @Input() match!: Match;
   @Output() matchEvent = new EventEmitter<null>();
+  @Output() timer = new EventEmitter<number>();
 
   estModaleSaisieVisible = false;
 
   updateTimer(tick_count: number) {
-    this.matchsService
-      .modifierTimerMatch(this.match.id, tick_count)
-      .subscribe();
+    this.timer.emit(tick_count);
   }
 
   updateScoreA(scoreA: number) {
