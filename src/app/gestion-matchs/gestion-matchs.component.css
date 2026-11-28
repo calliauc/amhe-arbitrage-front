@@ -44,10 +44,6 @@ main {
     padding: 0px;
   }
 
-  .match {
-    width: 100%;
-  }
-
   #btns {
     flex-direction: column;
   }
